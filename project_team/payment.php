@@ -128,70 +128,39 @@
               
                 <!-- Checkout Button -->
                 <div class="mt-6 text-center text-sm"  >
-                  <a href = "#" class="w-full py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400" id="checkout_button" >
+                  <a href = "#" class="w-full py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400" id="" >
                     Proceed to Checkout
                   </a>
                 </div>
                 </div>
             </form>
+            <!-- boostrap -->
+             <!-- Button trigger modal -->
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                Launch static backdrop modal
+              </button>
+
+              <!-- Modal -->
+              <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary">Understood</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+             <!-- boostrap -->
         </div>
         </div>
     </div>
-    <!-- start aba form -->
-    <!— Popup Checkout Form —>
-			<div id="aba_main_modal" class="aba-modal">
-				<!— Modal content —>
-				<div class="aba-modal-content">
-
-					<!-- Include PHP class -->
-					<?php
-						require_once 'PayWayApiCheckout.php';
-                      $item [0]['name'] = 'test1';
-                      $item [0]['quantity'] = '1';
-                      $item [0]['price'] = '1';
-                      $item [1]['name'] = 'test2';
-                      $item [1]['quantity'] = '1';
-                      $item [1]['price'] = '1';
-
-                      $items = base64_encode(json_encode($item));
-
-                      $req_time = time();
-                      $merchant_id = "ec439287";
-                      $transactionId = time();
-                      $amount = '0.01';
-                      $firstName = 'Makara';
-                      $lastName = 'Prom';
-                      $phone = '093630466';
-                      $email = 'prom.makara@ababank.com';
-                      $return_params = "Hello World!";
-                      $payment_option = "abapay";
-                      $currency = "USD";
-                      $shipping = '2';
-                      $continue_success_url = "https://domain.gov.kh/buydomain/PurchasThank";
-                      $type = "purchase";
-					?>
-
-					<form method="POST" target="aba_webservice" action="<?php echo PayWayApiCheckout::getApiUrl(); ?>" id="aba_merchant_request">
-						<input type="hidden" name="hash" value="<?php echo PayWayApiCheckout::getHash($req_time . ABA_PAYWAY_MERCHANT_ID . $transactionId . $amount . $items . $shipping . $firstName . $lastName . $email . $phone . $type . $payment_option . $currency .$return_params); ?>" id="hash"/>
-						<input type="hidden" name="tran_id" value="<?php echo $transactionId; ?>" id="tran_id"/>
-						<input type="hidden" name="amount" value="<?php echo $amount; ?>" id="amount"/>
-						<input type="hidden" name="items" value="<?php echo $items; ?>" id="items">
-						<input type="hidden" name="shipping" value="<?php echo $shipping; ?>"/>
-						<input type="hidden" name="firstname" value="<?php echo $firstName; ?>"/>
-						<input type="hidden" name="lastname" value="<?php echo $lastName; ?>"/>
-						<input type="hidden" name="email" value="<?php echo $email; ?>"/>
-						<input type="hidden" name="phone" value="<?php echo $phone; ?>"/>
-						<input type="hidden" name="type" value="<?php echo $type; ?>"/>
-						<input type="hidden" name="payment_option" value="<?php echo $payment_option;?>"/>
-						<input type="hidden" name="currency" value = "<?php echo $currency; ?>">
-            <input type="hidden" name="return_params" value="<?php echo $return_params; ?>"/>
-						<input type="hidden" name="merchant_id" value="<?php echo $merchant_id; ?>"/>
-            <input type="hidden" name="req_time" value="<?php echo $req_time; ?>"/>
-            </form>
-				</div>
-				<!— end Modal content—>
-			</div>
-		<!— End Popup Checkout Form —>
-    <!-- end aba form -->
     <!-- end of shopping-cart-block -->
 <?php include('includes/footer.php')?>

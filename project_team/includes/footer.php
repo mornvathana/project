@@ -112,30 +112,12 @@
       <!-- Font Awesome Telegram Icon -->
       <img src="https://static-00.iconduck.com/assets.00/telegram-icon-512x512-4sztjer8.png" alt="" class="w-[40px]">
       </a>
-  
-      <!-- Overlay -->
-      <div class="overlay hidden fixed inset-0 bg-white bg-opacity-80 z-50" id="overlay" onclick="closeSearchBox()"></div>
-  
-      <!-- Floating Search Box -->
-      <div class="search-box hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl w-11/12 max-w-lg z-50"
-           id="searchBox">
-          <button class="absolute top-2 right-2 bg-[#144194] text-white px-3 py-1 rounded-full hover:bg-red-500 focus:outline-none"
-                  onclick="closeSearchBox()">X</button>
-          <input type="text" class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Search For Products..." id="searchInput">
-      </div>
-    <!-- script aba -->
-    <script src="https://checkout.payway.com.kh/plugins/checkout2-0.js"></script>
-    <script src="https://payway.ababank.com/checkout-popup.html?file=js"></script>
-    <script>
-        $(document).ready(function () {
-            $('#checkout_button').click(function () {
-                AbaPayway.checkout();
-            });
-        });
-    </script>
+    
     <!-- end script aba -->
     <!-- script link cdn -->
     <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+     <!-- qrcode -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src = "assets/script/test.js"></script>
     <script src = "assets/script/custom1.js"></script>
