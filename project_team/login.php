@@ -11,7 +11,6 @@
 //     $client->setClientId("");
 //     $client->setClientSecret("");
 //     $client->setRedirectUri("http://localhost:8080/ecommerce_project_sarana/");
-//     // 
 //     $client->addScope("email");
 //     $client->addScope("profile");
 
