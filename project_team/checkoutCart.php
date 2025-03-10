@@ -1,0 +1,136 @@
+<?php 
+include('includes/header.php');
+include('authication.php');
+?>
+    <!-- start -->
+    <div class="shopping-cart-block w-full p-3 sm:p-5 mt-10">
+        <div class="head">
+            <h1
+                class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-3xl text-[#2e3192] shadow-black">
+                Shopping Cart</h1>
+            <div class="line w-full h-[2px] bg-[#144194] mt-3"></div>
+        </div>
+
+        <div class="cart-block w-full flex flex-col lg:flex-row justify-between mt-5">
+
+            <!-- cart-box-noresponsive -->
+            <div class="cart-box w-[100%] lg:w-[60%] border rounded-xl h-fit p-5 hidden md:block">
+                <div class="box">
+                    <!-- form of cart-box -->
+                    <form action="" method="POST" class="w-full font-[Poppins,hanuman,Sans-serif] text-gray-700">
+
+                        <!-- table of product-cart -->
+                        <table class="" >
+                            <?php
+                             $get_cart = getAll("cart");
+                            if(mysqli_num_rows($get_cart) == 0){
+                                ?>
+                                <h1 class = "text-center">No Product Available</h1>
+                                <?php
+                            }else{
+                                    ?>
+                                    <thead class="">
+                                        <tr class="font-normal">
+                                            <td class="invisible"></td>
+                                            <th>Image</th>
+                                            <th>Product Name</th>
+                                            <th>Quantity</th>
+                                            <th>Price</th>
+                                            <th>Total Price</th>
+                                        </tr>
+                                    </thead>
+                                    <?php
+                                }
+                            ?>
+                            <tbody class="font-normal">
+                               <?php
+                               $totalPrice = 0;
+                                $get_cart = getAll("cart");
+                                if(mysqli_num_rows($get_cart) > 0){
+                                  foreach($get_cart as $cart){
+                                    $itemTotal = $cart['product_price'] * $cart['product_qty'];
+                                    $totalPrice += $itemTotal;
+                                    ?>  
+                                  <tr class="border-b-2" id = "mycart-<?= $cart['id']?>">
+                                    <td><a href="#" id = "deleteProduct" data-cart = "<?= $cart['id']?>"><i class="fa-solid fa-xmark"></i></a></td>
+                                    <td><a href="#"><img src="uploads/<?= $cart['product_image']?>" alt="Product Image"></a></td>
+                                    <td><?= $cart['product_name'] ?></td>
+                                    <td><input type="number" id="inputValue" value = "<?= $cart['product_qty']?>" value="0" min="0" step="1" class="w-[70px] text-center border border-gray-300 rounded-lg"></td>
+                                    <td>$<?= $cart['product_price']?></td>
+                                    <td>$<?= number_format($itemTotal,2) ?></td>
+                                  </tr>
+                                    <?php
+                                  }
+                                }
+                               ?>
+                            </tbody>
+                        </table>
+                        <!-- <button class="mt-5 bg-red-500 text-white rounded-lg p-3 font-semibold"><a href="index.php">Back</a></button> -->
+                    </form>
+                </div>
+            </div>
+            <!-- cart-total -->
+            <?php
+            $get_cart = getAll("cart");
+            if(mysqli_num_rows($get_cart) == 0){
+                ?>
+                
+                <?php
+            }else{
+                ?>
+                <div class="cart-total w-[100%] lg:w-[38%] h-fit mt-5 lg:mt-0 font-semibold font-[Poppins,hanuman,Sans-serif] p-5 border rounded-xl text-gray-700" style="border: 1px solid #d1d5db;">
+                <h2 class="text-md md:text- font-bold mb-8">Cart Summary</h2>
+                <div class="mb-8 flex justify-between text-sm md:text-[17px] font-normal">
+                    <span>Subtotal:</span>
+                    <span>$100.00</span>
+                </div>
+
+                <form action="">
+                <ul>
+                    <li class="flex flex-col space-y-2 text-sm md:text-[17px] font-normal">
+                        <span class="font-semibold">Shipping:</span>
+                        <div class="mt-5 text-sm space-y-3">
+                        <div class="flex items-center mt-3 space-x-1">
+                            <input type="radio" name="shipping" value = "0" id="shipping" value="shipping" checked>
+                            <label for="shipping">Local pickup</label>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <input type="radio" name="shipping" value = "10" id="shipping" value="shipping">
+                            <label for="shipping">COD in Sihanoukville, Bavet, Poipet: $ 10</label>
+                        </div>
+                        <div class="flex items-center space-x-1">
+                            <input type="radio" name="shipping" id="shipping" value = "3" value="shipping">
+                            <label for="shipping">Flat Rate under $300 (Only in Phnom Penh): $ 3</label>
+                        </div>
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="mt-5 flex flex-col text-sm md:text-[17px] font-normal space-y-3">
+                    <span>Calculate shipping</span>
+                    <span class="w-100 h-[2px] bg-gray-600"></span>
+                </div>
+
+                <!-- sub-total -->
+                <div class="flex justify-between text-sm md:text-[17px] font-normal mt-3">
+                    <span class="font-semibold text-green-600">Subtotal:</span>
+                    <span class="">$<?= number_format($totalPrice, 2) ?></span>
+                </div>
+
+                <div class="flex flex-col space-y-2 mt-5">
+                    <button class="w-full p-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-yellow-400 text-sm">
+                        <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Proceed to Checkout</a>
+                    </button>
+                    <button class="w-full p-3 bg-gray-200 text-gray-600 font-semibold rounded-md hover:bg-gray-300 text-sm">
+                        <a href="payment.php"><i class="fa-solid fa-cart-shopping"></i> Continue Shopping</a>
+                    </button>
+                </div>
+            </div>
+                <?php
+            }
+            ?>
+            <!-- end cart -->
+        </div>
+    </div>
+     <!-- end -->
+<?php include('includes/footer.php')?>

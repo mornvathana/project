@@ -1,0 +1,80 @@
+<?php
+    include("../config/dbcon.php");
+    session_start();
+    
+    // get user
+    function getUser($selectCol,$property){
+        global $conn;
+        $query = "SELECT * FROM users where $selectCol = $property";
+        return $query_run = mysqli_query($conn,$query);
+    }
+    function countCategoryItem($table,$value){
+        global $conn;
+        $query = "SELECT count(*) as count FROM $table WHERE product_id = '$value'";
+        $query_run = mysqli_query($conn,$query);
+        if($query_run){
+            $result = mysqli_fetch_assoc($query_run);
+                return $result['count'];
+        }
+        return 0;
+    }
+    function countTable($table){
+        global $conn;
+        $query = "SELECT COUNT(*) AS count FROM $table";
+        $query_run = mysqli_query($conn,$query);
+        if($query_run){
+            $result = mysqli_fetch_assoc($query_run);
+                return $result['count'];
+        }
+        return 0;
+    }
+    function countData($table, $selectName) {
+        global $conn;
+        $query = "SELECT COUNT(*) AS count FROM $table WHERE product_name = '$selectName'";
+        $query_run = mysqli_query($conn, $query);
+        
+        if ($query_run) {
+            $result = mysqli_fetch_assoc($query_run);
+            return $result['count']; 
+        }
+        return 0; 
+    }
+    // get edit category
+    function getById($table,$id){
+        global $conn;
+        $sql = "SELECT * FROM $table WHERE id = $id";
+        return $sql_run = mysqli_query($conn,$sql);
+    }
+    //count
+    function whereProduct($table,$selectCol,$property){
+        global $conn;
+        $query = "SELECT * FROM $table where $selectCol = '$property'";
+        return $query_run = mysqli_query($conn,$query);
+    }
+    // function for select product
+    function selectProduct($name,$table){
+        global $conn;
+        $query = "SELECT $name FROM $table";
+        return $query_run = mysqli_query($conn,$query);
+    }
+    function getAll($table){
+        global $conn;
+        $product = "SELECT * FROM $table";
+        return $product_run = mysqli_query($conn,$product);
+    }
+    function getAdmin($table){
+        global $conn;
+        $product = "SELECT * FROM $table where role_as = 1";
+        return $product_run = mysqli_query($conn,$product);
+    }
+    function redirect($url,$message){
+        $_SESSION['message'] = $message;
+        header('Location: '.$url);
+        exit();
+    }
+    function redirect1($url,$message1){
+        $_SESSION['message1'] = $message1;
+        header('Location: '.$url);
+        exit();
+    }
+?>
