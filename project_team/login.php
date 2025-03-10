@@ -5,17 +5,17 @@
 //      $_SESSION['message'] = "You already login!";
 //      exit();
 //  }
-include('includes/header.php');
-    require __DIR__ . "/vendor/autoload.php";
-    $client = new Google\Client;
-    $client->setClientId("825786283493-ub18v7kqos3b4jevukrv7g2r3mv1pn7o.apps.googleusercontent.com");
-    $client->setClientSecret("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");
-    $client->setRedirectUri("http://localhost:8080/ecommerce_project_sarana/");
-    // 
-    $client->addScope("email");
-    $client->addScope("profile");
+// include('includes/header.php');
+//     require __DIR__ . "/vendor/autoload.php";
+//     $client = new Google\Client;
+//     $client->setClientId("825786283493-ub18v7kqos3b4jevukrv7g2r3mv1pn7o.apps.googleusercontent.com");
+//     $client->setClientSecret("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");
+//     $client->setRedirectUri("http://localhost:8080/ecommerce_project_sarana/");
+//     // 
+//     $client->addScope("email");
+//     $client->addScope("profile");
 
-    $url = $client->createAuthUrl();
+//     $url = $client->createAuthUrl();
 ?>
     <!-- start -->
     <div class="form-body py-[70px]">
