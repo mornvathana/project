@@ -138,7 +138,6 @@
 
         $path = "../uploads/admin";  
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
-        $filename = time() . '.' . $image_ext;
 
         if($size > 100 * 1024){
 
@@ -179,6 +178,12 @@
                     }
                     // end delete image
                     $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                    // for image if we got old image or not
+                    if(!empty($image)){
+                        $filename = time() . '.' . $image_ext;
+                    }else{
+                        $filename = $old_image;
+                    }
                     $update_pass = "UPDATE users SET name = '$username',email = '$email', image = '$filename', password = '$hashedPassword'  WHERE id = $userId";
                     $update_pass_run = $conn->query($update_pass);
                     if($update_pass_run){

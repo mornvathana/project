@@ -60,12 +60,13 @@ if(isset($_GET['id'])){
                                                 echo '../uploads/default/default.jpg';
                                             }
                                         ?>
-                                        " id = "showImage" name = "old_image" class = "w-full h-full object-contain" alt="">
+                                        " id = "showImage" class = "w-full h-full object-contain" alt="">
+                                        <input type="hidden" name="old_image" value = "<?= $user['image'] ?>" >
                                     </div>
                                 </div> 
                                 <div class = "w-[50%] flex justify-center items-center relative">
                                     <div class="w-[80%] border border-[1px] border-dashed border-blue-900 h-[100%] rounded-md">
-                                        <input type="file" name = "image" value = "<?= $user['image'] ?>" id = "profile_image"  accept="image/*" class = "w-[100%] h-[100%] hidden ">
+                                        <input type="file" name = "image"  id = "profile_image"  accept="image/*" class = "w-[100%] h-[100%]  ">
                                     </div>
                                     <label for="profile_image" class = "absolute text-sm ">Select Image</label>
                                 </div> 

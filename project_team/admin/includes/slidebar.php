@@ -16,7 +16,7 @@
                         <a href="brand.php"><i class="fa-solid fa-box-open"></i> Brands</a>
                     </li>
                     <li class = "p-2 my-1 text-sm font-bold rounded-md hover:text-white hover:bg-blue-500">
-                        <a href="category1.php"><i class="fa-solid fa-boxes-stacked"></i> Categories</a>
+                        <a href="category1.php"><i class="fa-solid fa-boxes-stacked"></i> Category</a>
                     </li>
                     <!-- <li class = "p-2 my-1 text-sm font-bold rounded-md hover:text-white hover:bg-blue-500">
                         <a href="viewcategory.php"><i class="fa-solid fa-boxes-stacked"></i> View Categories</a>
