@@ -43,14 +43,21 @@
         $email_double = "SELECT * FROM users WHERE email = '$email'";
         $email_double_run = mysqli_query($conn,$email_double);
         if(mysqli_num_rows($email_double_run) > 0){
+
             redirect1("../register.php","We got the same email!");
+
         }else{
+
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $register = "INSERT INTO users (id,name,email,password) VALUES(null,'$username','$email','$hashedPassword')";
         $register_run = mysqli_query($conn,$register);
+
         if($register_run){
+
             redirect("../login.php","Register successfully!");
+
         }else{
+            
             redirect1("register.php","Something went wrong!");
         }
         } 

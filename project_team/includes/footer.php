@@ -106,18 +106,21 @@
         </div>
     </footer>
      
-      <!-- Floating Telegram Icon Link -->
-      <a href="https://t.me/your_username" target="_blank" 
-      class="fixed bottom-4 right-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-400 focus:outline-none transition duration-300 ease-in-out block sm:hidden">
-      <!-- Font Awesome Telegram Icon -->
-      <img src="https://static-00.iconduck.com/assets.00/telegram-icon-512x512-4sztjer8.png" alt="" class="w-[40px]">
-      </a>
-    
-    <!-- end script aba -->
-    <!-- script link cdn -->
-    <!-- Swiper JS -->
+    <!-- Floating Telegram Icon Link -->
+    <a href="https://t.me/your_username" target="_blank" class="fixed bottom-4 right-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-400 focus:outline-none transition duration-300 ease-in-out block sm:hidden">
+    <!-- boostrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkXUXYpwNAZJgR9IpbWiW+UcoJ6FXT3zU5TzF4zI5FqjzEd+Uww" crossorigin="anonymous"></script>
+    <!-- Font Awesome Telegram Icon -->
+    <img src="https://static-00.iconduck.com/assets.00/telegram-icon-512x512-4sztjer8.png" alt="" class="w-[40px]">
+    </a>
+    <!-- qrcode -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-     <!-- qrcode -->
+    <!-- script khqr -->
+     <script src = "assets/script/khqr.js"></script>
+    <!-- end script aba -->
+    <!-- js tailwind flowbite -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src = "assets/script/test.js"></script>
     <script src = "assets/script/custom1.js"></script>

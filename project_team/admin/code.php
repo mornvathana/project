@@ -128,29 +128,70 @@
         $conn = new mysqli("localhost","root","","ecommerce_data");
         $pageId = $_POST['page_id'];
         $userId = $_POST['userid'];
+        $username = $_POST['username'];
+        $email = $_POST['email'];
         $newPassword = $_POST['new_password'];
         $conPassword = $_POST['con_password'];
-        if(strlen($newPassword) > 8){
-            redirect1("changeinfor.php?id=$pageId","Your new password must be at least 8 characters long.");
+        $old_image = $_POST['old_image'];
+        $size = $_FILES['image']['size'];
+        $image = $_FILES['image']['name'];
+
+        $path = "../uploads/admin";  
+        $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+        $filename = time() . '.' . $image_ext;
+
+        if($size > 100 * 1024){
+
+            redirect1("changeinfor.php?id=$pageId","Please upload new image!");
+
         }else{
-        $check_pass = "SELECT * FROM users WHERE password = '$newPassword' ";
-        $check_pass_run = $conn->query($check_pass);
-        if($check_pass_run->num_rows > 0){
-            redirect1("changeinfor.php?id=$pageId","it's the same as your old password!");
-        }else{
-            if($newPassword != $conPassword){
-                redirect1("changeinfor.php?id=$pageId","Your Password is not match!");
+
+            if(!empty($newPassword) && strlen($newPassword) < 8){
+
+                redirect1("changeinfor.php?id=$pageId","Your new password must be at least 8 characters long.");
+
             }else{
-                $update_pass = "UPDATE users SET password = '$newPassword' WHERE id = $userId";
-                $update_pass_run = $conn->query($update_pass);
-                if($update_pass_run){
-                    redirect("useradmin.php","Update password sucessfully!");
+
+            $check_pass = "SELECT * FROM users WHERE password = '$newPassword' ";
+            $check_pass_run = $conn->query($check_pass);
+
+            if($check_pass_run->num_rows > 0){
+
+                redirect1("changeinfor.php?id=$pageId","it's the same as your old password!");
+
+            }else{
+
+                if( !empty($newPassword) && $newPassword != $conPassword){
+                    redirect1("changeinfor.php?id=$pageId","Your Password is not match!");
                 }else{
-                    redirect1("changeinfor.php?id=$pageId","Something went wrong!");
+                    // delete old image 
+                    if(!empty($image)){
+                        $img_data = "SELECT image FROM users WHERE id = $userId";
+                        $img_data_run = $conn->query($img_data);
+                        if($img_data_run->num_rows > 0){
+                            $img_query = $img_data_run->fetch_assoc()['image'];
+                            $img_path = $path . '/' . $img_query;
+                            // remove image from folder 
+                            if($img_query != $old_image && $img_query != "default.jpg" && file_exists($img_path)){
+                                unlink($img_path);
+                            }
+                    }
+                    }
+                    // end delete image
+                    $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                    $update_pass = "UPDATE users SET name = '$username',email = '$email', image = '$filename', password = '$hashedPassword'  WHERE id = $userId";
+                    $update_pass_run = $conn->query($update_pass);
+                    if($update_pass_run){
+                        move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+                        redirect("useradmin.php","Update password sucessfully!");
+                    }else{
+                        redirect1("changeinfor.php?id=$pageId","Something went wrong!");
+                    }
                 }
             }
+            }
         }
-        }
+
     }else if(isset($_POST['create_admin'])){
         $role_as = 1;
         $pageId = $_POST['userid'];
