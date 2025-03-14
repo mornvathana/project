@@ -22,7 +22,7 @@ try {
     $mail->Port = 465; // Port for SSL (or 587 for TLS)
 
     // Enable debug output
-    // $mail->SMTPDebug = SMTP::DEBUG_SERVER;
+    $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
 } catch (Exception $e) {
     echo "Mailer Error: {$mail->ErrorInfo}";

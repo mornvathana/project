@@ -1,6 +1,6 @@
 <?php
     $host = "smtp.gmail.com";
     $username = "mornsovathana@gmail.com";
-    $sender = "me@example.com";
+    $sender = "example@gmail.com";
     $hostPassword = "adjujoekjgqfxeqg";
 ?>

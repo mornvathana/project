@@ -17,9 +17,9 @@ if ($count->num_rows > 0) {
         require 'emailAPI.php';
 
         // Properly set up email
-        $mail->setFrom($sender, 'OTP Sender');
+        $mail->setFrom($email, 'OTP Sender');
         $mail->addAddress($email, 'Syntax Flow');
-        $mail->addReplyTo($sender, 'OTP Sender');
+        $mail->addReplyTo($email, 'OTP Sender');
 
         // Correct interpolation of OTP
         $mail->isHTML(true);
