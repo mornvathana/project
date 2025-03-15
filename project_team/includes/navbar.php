@@ -44,7 +44,19 @@
                 </a>
             </button>
             <button class="cus-account text-[#144194] text-xl">
-                <a href="login.php"><i class="fa-solid fa-user"></i></a>
+                <a href="
+                <?php
+                    if(isset($_SESSION['auth'])){
+                        if($_SESSION['role_as'] == 1){
+                            echo "../project_team/admin/index.php";
+                        }else{
+                            echo "profile.php";
+                        }
+                    }else{
+                        echo "login.php";
+                    }
+                ?>
+                "><i class="fa-solid fa-user"></i></a>
             </button>
         </div>
 
