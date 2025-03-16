@@ -131,7 +131,7 @@
     <script src="assets/script/script1.js"></script>
     <script src="assets/script/script3.js"></script>
     <script src="assets/script/script4.js"></script>
-    <script src="assets/script/swiper-bundle.min.js"></script>
+    <!-- <script src="assets/script/swiper-bundle.min.js"></script> -->
     <script src="assets/script/theme.js"></script>
     <script src="assets/script/zoomsl.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>

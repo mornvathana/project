@@ -273,10 +273,10 @@
           font-size: 35px;
           }
           .swiper-button-next{
-          right: 0;
+          right: 0px;
           }
           .swiper-button-prev{
-          left: 0;
+          left: 0px;
           }
           /* end of pro-detail-slider */
       
@@ -561,7 +561,7 @@
       
       /* main slider */
       .main {
-          height: 80vh;
+          /* height: 80vh; */
           width: 100%;
           }
           .wrapper,
@@ -601,13 +601,13 @@
           color: #fff;
           }
           .image-data h2 {
-          font-size: 45px;
+          /* font-size: 45px; */
           font-weight: 600;
           color: #fff;
           }
           a.button {
           display: inline-block;
-          padding: 10px 20px;
+          /* padding: 10px 20px; */
           border-radius: 25px;
           color: #333;
           background: #fff;
@@ -631,10 +631,10 @@
           /* background: rgba(255, 255, 255, 0.4); */
           }
           .swiper-button-next {
-          right: 50px;
+          right: 0px;
           }
           .swiper-button-prev {
-          left: 50px;
+          left: 0px;
           }
           .nav-btn::before,
           .nav-btn::after {
