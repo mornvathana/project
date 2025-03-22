@@ -1,14 +1,12 @@
+
 <?php include('includes/header.php')?>
 <div class="shopping-checkout-block w-full p-3 sm:p-5 mt-10">
         <div class="head">
-            <h1
-                class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-2xl text-[#2e3192] shadow-black">
+            <h1 class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-2xl text-[#2e3192] shadow-black">
                 CheckOut</h1>
             <div class="line w-full h-[2px] bg-[#144194] mt-3"></div>
         </div>
-
         <div class="cart-block w-full mt-5">
-
             <!-- cart-box-noresponsive -->
             <div class="w-full chechout-box">
                     <!-- Checkout form -->
@@ -128,31 +126,39 @@
               
                 <!-- Checkout Button -->
                 <div class="mt-6 text-center text-sm"  >
-                  <a href = "#" class="w-full py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400" id="" >
+                  <button id = "checkout" data-modal-target="popup-modal" data-modal-toggle="popup-modal" type = "button" class="w-full py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400"  >
                     Proceed to Checkout
-                  </a>
+                  </button>
                 </div>
                 </div>
             </form>
-            <!-- boostrap -->
-            <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="qrCodeModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h5 class="modal-title" id="qrCodeModalLabel">Scan QR Code</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <!-- end -->
+            <div id="popup-modal" tabindex="-1" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                <div class="relative p-4 w-full max-w-md max-h-full">
+                    <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                        <button type="button" class="absolute top-3 end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-hide="popup-modal">
+                            <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                            </svg>
+                            <span class="sr-only">Close modal</span>
+                        </button>
+                        <div class="p-4 md:p-5 text-center">
+                            <div class = "w-full h-[300px]">
+                                <div class = "w-full h-[10%] flex justify-center items-center">
+                                    <h1 class = "font-medium">Payment QR</h1>
+                                </div>
+                                <div class = "w-full h-[90%] bg-white flex justify-center items-center">
+                                    <div class = "w-[70%] h-[50%] flex justify-center items-center">
+                                      <canvas id="qrCodeCanvas" class = "w-full h-full" ></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  <canvas id="qrCodeCanvas"></canvas>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
-              </div>
             </div>
-          </div>
 
-             <!-- boostrap -->
+            <!-- end -->
         </div>
         </div>
     </div>
