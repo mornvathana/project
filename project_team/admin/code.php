@@ -231,5 +231,98 @@
                 }
             }
         }
+    }else if(isset($_POST['add_brand'])){
+        $userId = $_POST['userId'];
+        $name = $_POST['name'];
+        $size = $_FILES['image']['size'];
+        $image = $_FILES['image']['name'];
+
+        $path = "../uploads/brand";  
+        $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+        $filename = time() . '.' . $image_ext;
+
+        if($size > 100 * 1204){
+            redirect1("brand.php","Please upload new image!");
+        }else{
+            $brand = "INSERT INTO brands (user_id,name,image) VALUES($userId,'$name','$filename')";
+            $brand_run = $conn->query($brand);
+            if($brand_run){
+                move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+                redirect("branddisplay.php","Data added successfully!");
+            }else{
+                redirect1("brand.php","Something went wrong!");
+            }
+        }
+    }else if(isset($_POST['btn_active'])){
+        $status = 0;
+        $brand_id = $_POST['brand_id'];
+        $status = "UPDATE brands SET status = '$status' WHERE id = $brand_id";
+        $status_run = $conn->query($status);
+
+        if($status_run){
+            redirect("branddisplay.php","Status updated successfully!");
+        }else{
+            redirect1("branddisplay.php","Something went wrong!");
+        }
+    }else if(isset($_POST['btn_disable'])){
+        $status = 1;
+        $brand_id = $_POST['brand_id'];
+        $status = "UPDATE brands SET status = '$status' WHERE id = $brand_id";
+        $status_run = $conn->query($status);
+
+        if($status_run){
+            redirect("branddisplay.php","Status updated successfully!");
+        }else{
+            redirect1("branddisplay.php","Something went wrong!");
+        }
+    }else if(isset($_POST['btn_delete'])){
+        $brand_id = $_POST['brand_id'];
+        $brand = "DELETE FROM brands WHERE id = $brand_id";
+        $brand_run = $conn->query($brand);
+        // image
+        $old_image = $_POST['image'];
+        $path = '../uploads/brand';
+        $img_path = $path . '/' . $old_image;
+
+        if($brand_run){
+            unlink($img_path);
+            redirect("branddisplay.php","Brand deleted successfully!");
+        }else{
+            redirect1("branddisplay.php","Something went wrong!");
+        }
+    }else if(isset($_POST['edit_brand'])){
+        $userId = $_POST['userId'];
+        $name = $_POST['name'];
+        $old_image = $_POST['old_image'];
+        $size = $_FILES['image']['size'];
+        $image = $_FILES['image']['name'];
+
+        $path = "../uploads/brand";  
+        $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+        $img_path = $path . '/' . $old_image;
+
+        if($size > 100 * 1204){
+            redirect1("brandedit.php?id=$userId","Please upload new image!");
+        }else{
+            // delete old image 
+            if(!empty($image)){
+                unlink($img_path);
+            }
+            // for image if we got old image or not
+            if(!empty($image)){
+                $filename = time() . '.' . $image_ext;
+            }else{
+                $filename = $old_image;
+            }
+            $stmt = $conn->prepare("UPDATE brands SET name = ?, image = ? WHERE id = ?");
+            $stmt->bind_param("ssi", $name, $filename, $userId);
+            $brand_run = $stmt->execute();
+            if($brand_run){
+                move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+                redirect("branddisplay.php","Data edited successfully!");
+            }else{
+                redirect1("brandedit.php","Something went wrong!");
+            }
+        }
     }   
 ?>
