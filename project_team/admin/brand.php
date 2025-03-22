@@ -1,33 +1,34 @@
 <?php include('includes/header.php')?>
         <!-- end header -->
         <div class = "h-full px-2 py-2 bg-blue-50">
-            <div class = "w-full bg-[#ffffff] rounded-md p-5">
-                <div class = "w-full h-[30%] flex justify-between items-center">
+            <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
+                <div class = "w-full h-[10%] flex justify-between items-center">
                     <div>
                         <h1 class = "font-medium">Create Brand</h1>
                     </div>
                     <div>
-                        <button class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md">Back</button>
+                        <button class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i>Back</button>
                     </div>
                 </div>
                 <div class="w-full h-[70%] mt-5">
                     <form action="" class = "">
-                        <div class = "w-full flex ">
-                        <div class = "w-[50%]">
-                            <label for="name" class = "block py-1 text-[15px]">Name</label>
+                        <div class = "w-full grid grid-cols-1 md:grid-cols-2 gap-5 ">
+                        <div class = "">
+                            <label for="name" class = "block py-1 text-[13px]">Name</label>
                             <input type="text" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Enter your name">
                         </div>
-                        <div class = "w-[50%] h-[180px] flex">
+                        <div class = " h-[180px] flex">
+                        <label for="name" class = "block py-1 text-[13px]">Upload*</label>
                            <div class = "w-[60%] flex justify-center items-center">
-                                <div class="w-[50%] border border-[1px] border-blue-900 h-[100%] rounded-md">
+                                <div class="w-[50%] border-dotted border-[2px] p-4 border-blue-900 h-[100%] rounded-md">
 
                                 </div>
                            </div> 
                            <div class = "w-[50%] flex justify-center items-center relative">
-                                <div class="w-[80%] border border-[1px] border-blue-900 h-[100%] rounded-md">
+                                <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
                                     <input type="file" id = "inputfile" class = "w-full h-full hidden">
                                 </div>
-                                <label for="inputfile" class = "absolute text-sm ">Select Image</label>
+                                <label for="inputfile" class = "absolute text-sm ">Select Image <i class="fa-solid fa-image"></i></label>
                            </div> 
                         </div>
                         </div>
