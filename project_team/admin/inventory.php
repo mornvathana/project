@@ -1,4 +1,9 @@
-<?php include('includes/header.php')?>
+<?php 
+include('includes/header.php');
+$barcodeData = "123456789"; // Your barcode value
+$barcodeType = "Code128"; // Barcode type (Code128, EAN13, UPC, etc.)
+$barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$barcodeType&dpi=96";
+?>
 <div class = "h-full px-2 py-2 bg-blue-50">
             <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
                 <div class = "w-full h-[10%] flex justify-between items-center">
@@ -29,7 +34,9 @@
                                 ?>
                             <tr id = "brand-<?= $brand['id']?>">
                             <td class = "text-[11px] md:text-[13px] py-2 border border-gray-200"><?= $brand['id']?></td>
-                            <td id = "brandName" class = "text-[11px] md:text-[13px] py-2 border border-gray-200"><?= $brand['name']?></td>
+                            <td id = "brandName" class = "text-[11px] md:text-[13px] py-2 border border-gray-200 flex justify-center items-center">
+                            <img src="<?php echo $barcodeURL; ?>" class = "w-[100px] h-[40px]" alt="Barcode">
+                            </td>
                             <td id = "brandName" class = "text-[11px] md:text-[13px] py-2 border border-gray-200"><?= $brand['name']?></td>
                             <td id = "brandName" class = "text-[11px] md:text-[13px] py-2 border border-gray-200"><?= $brand['name']?></td>
                             <td class = "border border-gray-200 text-[11px] md:text-[13px] py-2">
