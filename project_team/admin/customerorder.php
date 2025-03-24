@@ -1,10 +1,10 @@
 <?php include('includes/header.php')?>
 <!--  -->
-<div class = "h-full px-2 py-5 bg-blue-50">
-    <div class = "w-full bg-[#ffffff] rounded-md p-5">
+<div class = "h-full px-2 py-2 bg-blue-50">
+    <div class = "w-full bg-[#ffffff] md:h-[100vh]  rounded-md p-5">
         <div class = "w-full h-[20px] flex justify-between items-center">
             <div class = "w-[10%] h-full">
-                <p class = "font-medium font-md">Report</p>
+                <p class = "font-medium font-md ml-3">Report</p>
             </div>
             <div class = "w-[90%] h-full">
 
@@ -13,15 +13,15 @@
         <div class="w-full grid grid-cols-1 md:grid-cols-2">
             <div class="">
             <div class="grid gap-3 grid-cols-1 md:grid-cols-3 lg:grid-cols-3 mt-[30px]">
-                <div class="h-[80px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 flex justify-center items-center flex-col bg-gray-800 text-white font-medium text-sm rounded-sm">
+                <div class="h-[70px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 flex justify-center items-center flex-col bg-gray-800 text-white font-medium text-sm rounded-sm">
                     <p>Finish</p>
                     <p>0</p>
                 </div>
-                <div class="h-[80px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 flex justify-center items-center flex-col bg-gray-800 text-white font-medium text-sm rounded-sm">
+                <div class="h-[70px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 flex justify-center items-center flex-col bg-gray-800 text-white font-medium text-sm rounded-sm">
                     <p>Processing</p>
                     <p>0</p>
                 </div>
-                <div class="h-[80px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 flex justify-center items-center flex-col bg-gray-800 text-white font-medium text-sm rounded-sm">
+                <div class="h-[70px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 flex justify-center items-center flex-col bg-gray-800 text-white font-medium text-sm rounded-sm">
                     <p>Pedding</p>
                     <p>0</p>
                 </div>
