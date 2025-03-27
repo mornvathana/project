@@ -87,29 +87,116 @@
         <ul
             class="menu font-[Montserrat,hanuman,Sans-serif] font-bold text-sm text-gray-800 hidden lg:flex justify-center items-center space-x-8 xl:space-x-10 relative z-10">
             <li class="text-[#144194]"><a href="index.php"><i class="fa-solid fa-house"></i> Home</a></li>
+            
             <?php
             $navItem = getAll("product_database");
             if(mysqli_num_rows($navItem) > 0){
                 foreach( $navItem as $item){
                     ?>
-                <li id="btnSubMenu3"><a href="#"><?= $item['product_name']?></a> <i class="fa-solid fa-angle-down"></i>
+            <li><a href="#"><?= $item['product_name']?></a> <i class="fa-solid fa-angle-down"></i></a>
+                <!-- sub-menu -->
                 <?php
                     $navSub = whereProduct("category_db","product_id",$item['product_name']);
                     if(mysqli_num_rows($navSub) > 0){
                         foreach($navSub as $itemSub){
                             ?>
-                            <ul class="sub-menu hidden absolute grid-cols-1 bg-gray-200 gap-3 text-gray-800 p-3 grid text-sm"
-                            id="sub-menu2">
-                            <li><a href="products.php?Id=<?= $item['product_name']?>"><?= $itemSub['name']?></a></li>
-                            </ul>
-                            <?php
+                <ul
+                    class="sub-menu absolute grid-cols-2 gap-5 bg-gray-200 p-5 shadow-lg hidden text-gray-800 font-medium rounded-md">
+                    <li><a href="products.php?Id=<?= $item['product_name']?>"><?= $itemSub['name']?></a></li>
+                </ul>
+            </li>
+            <?php
                         }
                     }
-                ?>
-                </li>
-                    <?php
                 }
             }
             ?>
+    </nav>
+
+    <!-- responsive-navbar -->
+    <nav class="block lg:hidden">
+        <ul class="menu w-full flex md:hidden justify-center flex-col space-y-3 p-3 left-0 font-[Montserrat,hanuman,Sans-serif] font-medium text-md text-gray-700 bg-white z-30 border-t-2 shadow-xl fixed top-[63px]"
+            id="menu">
+            <li class="w-full"><a href="#">Home</a></li>
+            <li id="btnSubMenu1"><a href="#">Brand</a> <i class="fa-solid fa-angle-down"></i>
+                <ul class="sub-menu  grid-cols-2 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu1">
+                    <li><a href="products.html">Apple</a></li>
+                    <li><a href="#">Jbl</a></li>
+                    <li><a href="#">Samsung</a></li>
+                    <li><a href="#">microsoft</a></li>
+                    <li><a href="#">Oppo</a></li>
+                    <li><a href="#">Vivo</a></li>
+                    <li><a href="#">Nokia</a></li>
+                    <li><a href="#">Asus</a></li>
+                    <li><a href="#">sony</a></li>
+                    <li><a href="#">Techno</a></li>
+                    <li><a href="#">hornor</a></li>
+                    <li><a href="#">infinix</a></li>
+                </ul>
+            </li>
+            <li id="btnSubMenu2"><a href="#">Computer</a> <i class="fa-solid fa-angle-down"></i>
+                <ul class="sub-menu  grid-cols-1 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu2">
+                    <li><a href="#">Macbook</a></li>
+                    <li><a href="#">Huawei Laptop</a></li>
+                    <li><a href="#">Micosoft Surface</a></li>
+                </ul>
+            </li>
+            <li id="btnSubMenu3"><a href="#">Smartphone</a> <i class="fa-solid fa-angle-down"></i>
+                <ul class="sub-menu  grid-cols-2 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu3">
+                    <li><a href="#">Apple</a></li>
+                    <li><a href="#">Jbl</a></li>
+                    <li><a href="#">Samsung</a></li>
+                    <li><a href="#">microsoft</a></li>
+                    <li><a href="#">Oppo</a></li>
+                    <li><a href="#">Vivo</a></li>
+                    <li><a href="#">Nokia</a></li>
+                    <li><a href="#">Asus</a></li>
+                    <li><a href="#">sony</a></li>
+                    <li><a href="#">Techno</a></li>
+                    <li><a href="#">hornor</a></li>
+                    <li><a href="#">infinix</a></li>
+                </ul>
+            </li>
+            <li id="btnSubMenu4"><a href="#">Tablet</a> <i class="fa-solid fa-angle-down"></i>
+                <ul class="sub-menu grid-cols-1 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu4">
+                    <li><a href="#">iPad</a></li>
+                    <li><a href="#">Galaxy Tabs</a></li>
+                    <li><a href="#">Huawei Tablets</a></li>
+                    <li><a href="#">Xiaomi Tablet</a></li>
+                </ul>
+            </li>
+            <li id="btnSubMenu5"><a href="#">Watch</a> <i class="fa-solid fa-angle-down"></i>
+                <ul class="sub-menu grid-cols-1 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu5">
+                    <li><a href="#">Apple Watch</a></li>
+                    <li><a href="#">Samsung Watch</a></li>
+                    <li><a href="#">Huawei Watch</a></li>
+                    <li><a href="#">Xoami Watch</a></li>
+                    <li><a href="#">Google Watch</a></li>
+                    <li><a href="#">Amazfit Watch</a></li>
+                    <li><a href="#">Oppo Watch</a></li>
+                </ul>
+            </li>
+            <li id="btnSubMenu6"><a href="#">Accessories</a> <i class="fa-solid fa-angle-down"></i>
+                <ul class="sub-menu grid-cols-2 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu6">
+                    <li><a href="#">Ipad & Tablet case</a></li>
+                    <li><a href="#">Phone case</a></li>
+                    <li><a href="#">Other Case</a></li>
+                    <li><a href="#">Car Charger</a></li>
+                    <li><a href="#">Ear Phone</a></li>
+                    <li><a href="#">Headphone</a></li>
+                    <li><a href="#">Speaker</a></li>
+                    <li><a href="#">Bluetooth Wireless</a></li>
+                    <li><a href="#">Adapter & Cable</a></li>
+                    <li><a href="#">Powerbank & Battery</a></li>
+                </ul>
+            </li>
         </ul>
     </nav>
+    <!-- end of responsive-navbar -->
+    <!-- end of header -->
