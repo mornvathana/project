@@ -36,7 +36,7 @@
     // );
     ?>
     <!-- end of main-slide -->
-    <section class="main swiper mySwiper h-[40vh] sm:h-[60vh] md:h-[80vh] lg:h-[80vh] xl:h-[80vh] 2xl:h-[80vh]">
+    <section class="main swiper mySwiper h-[30vh] sm:h-[60vh] md:h-[80vh] lg:h-[80vh] xl:h-[80vh] 2xl:h-[80vh]">
         <div class="wrapper swiper-wrapper">
           <div class="slide swiper-slide">
             <img src="https://news.mynavi.jp/article/20181023-iphone_xs/ogp_images/ogp.jpg" alt="" class="image" />
