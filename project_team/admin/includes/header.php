@@ -33,7 +33,7 @@ ob_clean();
     </style>
 </head>
 <body>
-<div class = "w-full h-[100vh] grid grid-cols-1 lg:grid-cols-[200px_1fr] ">
+<div class = "w-full h-[100vh] grid grid-cols-1 lg:grid-cols-[149px_1fr] ">
     <?php include('slidebar.php')?>
     <?php include('navbar.php')?>
 

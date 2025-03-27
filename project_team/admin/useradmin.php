@@ -8,7 +8,7 @@
 <!--  -->
 <div class = "h-full px-2 py-5">
     <div class = "w-full bg-[#ffffff] rounded-md p-5">
-        <div class = "w-full shadow-md h-[50%] bg-[#ffffff] grid grid-cols-1 md:grid-cols-[250px_1fr] ">
+        <div class = "w-full lg:w-[70%] shadow-md h-[50%] bg-[#ffffff] grid grid-cols-1 md:grid-cols-[250px_1fr] ">
             <?php
                 $user = getById("users",$user_id);
                 if(mysqli_num_rows($user) > 0){
@@ -20,31 +20,31 @@
                     </div>
                     <div class = "">
                         <div class = "w-full h-[10%] px-5">
-                            <p class = " text-[11px] md:text-sm font-medium">Information</p>
+                            <p class = " text-[10px] md:text-sm font-medium">Information</p>
                         </div>
                         <hr>
                         <div class = "w-full h-[25%] flex justify-between items-center py-1 px-5">
                             <div class = "">
-                                <p class = " text-[11px] md:text-sm font-medium my-1">Email</p>
-                                <p class = " text-[11px] md:text-sm my-1"><?= $userItem['email']?></p>
+                                <p class = " text-[10px] md:text-sm font-medium my-2">Email</p>
+                                <p class = " text-[10px] md:text-sm my-1"><?= $userItem['email']?></p>
                             </div>
                             <div class = "">
-                                <p class = " text-[11px] md:text-sm font-medium my-1">Created</p>
-                                <p class = " text-[11px] md:text-sm my-1"><?= $userItem['create_at']?></p>
+                                <p class = " text-[10px] md:text-sm font-medium my-2">Created</p>
+                                <p class = " text-[10px] md:text-sm my-1"><?= $userItem['create_at']?></p>
                             </div>
                         </div>
                         <div class = "w-full h-[10%] px-5">
-                            <p class = " text-[11px] md:text-sm font-medium">Projects</p>
+                            <p class = " text-[10px] md:text-sm font-medium my-2">Projects</p>
                         </div>
                         <hr>
                         <div class = "w-full h-[25%] flex justify-between items-center py-1 px-5">
                             <div class = "">
-                                <p class = " text-[11px] md:text-sm font-medium my-1">Status</p>
-                                <p class = " text-[11px] md:text-sm my-1"><?= $userItem['status'] == 1 ? 'active' : 'underfine' ?></p>
+                                <p class = " text-[10px] md:text-sm font-medium my-2">Status</p>
+                                <p class = " text-[10px] md:text-sm my-1"><?= $userItem['status'] == 1 ? 'active' : 'underfine' ?></p>
                             </div>
                             <div class = "">
-                                <p class = " text-[11px] md:text-sm font-medium my-1">Email Verify</p>
-                                <p class = " text-[11px] md:text-sm my-1"><?= $userItem['create_at']?></p>
+                                <p class = " text-[10px] md:text-sm font-medium my-2">Email Verify</p>
+                                <p class = " text-[10px] md:text-sm my-1"><?= $userItem['create_at']?></p>
                             </div>
                         </div>
                         <hr>

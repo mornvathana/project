@@ -9,16 +9,16 @@ if(isset($_GET['id'])){
 ?>
         <!-- end header -->
         <div class = "h-full px-2 py-2 bg-blue-50">
-        <div class = "w-full bg-[#ffffff] rounded-md p-5">
-                <div class = "w-full h-[30%] flex justify-between items-center">
+        <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
+                <div class = "w-full h-[8%] flex justify-between items-center">
                     <div>
-                        <h1 class = "font-medium">Change Informatoin</h1>
+                        <h1 class = "font-medium">Change Information</h1>
                     </div>
                     <div>
-                        <a href = "useradmin.php" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md">Back</a>
+                        <a href = "useradmin.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i>Back</a>
                     </div>
                 </div>
-                <div class="w-full h-[70%] mt-5">
+                <div class="w-full h-[92%] mt-5">
                     <?php
                         if(mysqli_num_rows($user_detail) > 0){
                             foreach($user_detail as $user){
@@ -65,10 +65,11 @@ if(isset($_GET['id'])){
                                     </div>
                                 </div> 
                                 <div class = "w-[50%] flex justify-center items-center relative">
-                                    <div class="w-[80%] border border-[1px] border-dashed border-blue-900 h-[100%] rounded-md">
-                                        <input type="file" name = "image"  id = "profile_image"  accept="image/*" class = "w-[100%] h-[100%]  ">
-                                    </div>
-                                    <label for="profile_image" class = "absolute text-sm ">Select Image</label>
+                                <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
+                                    <input type="file" name = "image" id = "profile_image" accept="image/*" class = "w-full h-full hidden" required>
+                                </div>
+                                <label for="profile_image" class = "absolute text-sm ">Select Image <i class="fa-solid fa-image"></i></label>
+                                </div>
                                 </div> 
                                 </div>
                                 </div>

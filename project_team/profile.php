@@ -1,4 +1,9 @@
-<?php include('includes/header.php')?>
+<?php 
+    include('includes/header.php');
+    if(isset($_SESSION['auth_user'])){
+        $id = $_SESSION['auth_user']['user_id'];
+    }   
+?>
 <div class="profile-block w-[90%] mx-auto mt-10 flex flex-col md:flex-row justify-between relative">
         <!-- menu -->
         <div class="menu w-[100%] md:w-[30%] h-fit sticky top-[4rem]" style="border: 1px solid #d2d3d4; border-radius: 10px;">
@@ -17,30 +22,36 @@
                 <h1 class="text-green-900 font-[Montserrat,hanuman,Sans-serif] font-bold">My Profile</h1>
                 <div class="line w-[13%] bg-gray-500 h-[2px] rounded-md mt-1"></div>
                 <div class="mt-5">
-                <img src="https://th.bing.com/th/id/OIP.aSf3G-F6Q5cp21tveGCIDAHaHY?rs=1&pid=ImgDetMain" alt="" class="w-[100px] h-[100px] rounded-full" style="border: 1px solid #d2d3d4;">
                 <form id="myForm" class="space-y-4">
                     <!-- Input 1 -->
-                    <div>
-                      <label for="input1" class="block text-[15px] text-gray-700 font-medium font-[Montserrat,hanuman,Sans-serif]">Username</label>
-                      <input type="text" id="input1" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 font-medium text-gray-800" disabled placeholder="Heaoun" value="Heaoun"/>
-                    </div>
-                
-                    <!-- Input 2 -->
-                    <div>
-                      <label for="input2" class="block text-[15px] text-gray-700 font-medium font-[Montserrat,hanuman,Sans-serif]">Email</label>
-                      <input type="text" id="input2" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 font-medium text-gray-800" disabled placeholder="Heaoun@gmail.com" value="Heaoun@gmail.com"/>
-                    </div>
-                
+                    <?php
+                        $user = getById("users",$id);
+                        if($user->num_rows > 0){
+                         foreach($user as $users){
+                        ?>
+                        <div>
+                        <label for="input1" class="block text-[15px] text-gray-700 font-medium font-[Montserrat,hanuman,Sans-serif]">Username</label>
+                        <input type="text" id="input1" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 font-medium text-gray-800" placeholder="Enter your name" value="<?= $users['name']?>"/>
+                        </div>
+                        <!-- Input 2 -->
+                        <div>
+                        <label for="input2" class="block text-[15px] text-gray-700 font-medium font-[Montserrat,hanuman,Sans-serif]">Email</label>
+                        <input type="text" id="input2" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 font-medium text-gray-800" placeholder="Heaoun@gmail.com"value="<?= $users['email']?>"/>
+                        </div>
+                        <?php
+                         }
+                        }
+                    ?>
                     <!-- Password Fields -->
                     <div id="passwordFields" class="hidden">
                       <div>
                           <label for="password" class="block text-[15px] text-gray-700 font-medium font-[Montserrat,hanuman,Sans-serif]">Old Password</label>
-                          <input type="password" id="password" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"/>
+                          <input type="password" id="password" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder = "Old Password"/>
                       </div>
           
                       <div>
                         <label for="password" class="block text-[15px] text-gray-700 font-medium font-[Montserrat,hanuman,Sans-serif]">New Password</label>
-                        <input type="password" id="password" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"/>
+                        <input type="password" id="password" class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder = "New Password"/>
                       </div>
                 
                       <div>

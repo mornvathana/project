@@ -204,31 +204,153 @@
         $conPassword = $_POST['con_password'];
         $username = $_POST['username'];
         $email = $_POST['email'];
-        if(strlen($newPassword) < 8){
-            redirect1("createadmin.php?id=$pageId","password must be at least 8 characters long.");
+
+        $size = $_FILES['image']['size'];
+        $image = $_FILES['image']['name'];
+
+        $path = "../uploads/admin";  
+        $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+
+        if($size > 100 * 1024){
+            redirect1("createadmin.php?id=$pageId","Please input image less than 10KB");
         }else{
-            if($newPassword != $conPassword){
-                redirect1("createadmin.php?id=$pageId","Your Password is not match!");
+            if(strlen($newPassword) < 8){
+                redirect1("createadmin.php?id=$pageId","password must be at least 8 characters long.");
             }else{
-
-                $email_check = "SELECT * FROM users WHERE email = '$email' AND role_as = $role_as";
-
-                $email_check_run = $conn->query($email_check);
-                if($email_check_run->num_rows > 0){
-                    redirect1("createadmin.php?id=$pageId","Please use another email!");
+                if($newPassword != $conPassword){
+                    redirect1("createadmin.php?id=$pageId","Your Password is not match!");
                 }else{
-                $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
-                
-                $stmt = $conn->prepare("INSERT INTO users (name, email, password, role_as) VALUES (?, ?, ?, ?)");
-                $stmt->bind_param("sssi", $username, $email, $hashedPassword, $role_as);
-                $register_run = $stmt->execute();
-                
-                if($register_run){
-                    redirect("useradmin.php","Register Successfully!");
-                }else{
-                    redirect1("createadmin.php?id=$pageId","Something went wrong!");
+    
+                    $email_check = "SELECT * FROM users WHERE email = '$email' AND role_as = $role_as";
+    
+                    $email_check_run = $conn->query($email_check);
+                    if($email_check_run->num_rows > 0){
+                        redirect1("createadmin.php?id=$pageId","Please use another email");
+                    }else{
+                    $user_check = "SELECT * FROM users WHERE name = ?";
+                    $stmt = $conn->prepare($user_check);
+                    $stmt->bind_param("s",$username);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+    
+                    if($result->num_rows > 0){
+                        redirect1("createadmin.php?id=$pageId","Please use another username");
+                    }else{
+                        
+                        if(!empty($image)){
+                            $filename = time() . '.' . $image_ext;
+                        }else{
+                            $filename = '../uploads/default/default.jpg';
+                        }
+
+                        $hashedPassword = password_hash($newPassword, PASSWORD_DEFAULT);
+                        $stmt = $conn->prepare("INSERT INTO users (name, email,image, password, role_as) VALUES (?, ?,? , ?, ?)");
+                        $stmt->bind_param("ssisi", $username, $email, $filename, $hashedPassword, $role_as);
+                        $register_run = $stmt->execute();
+                        
+                        if($register_run){
+                            move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+                            redirect("useradmin.php","Register Successfully!");
+                        }else{
+                            redirect1("createadmin.php?id=$pageId","Something went wrong!");
+                        }
+                    }
+                    }
                 }
-                }
+            }
+        }
+        
+    }else if(isset($_POST['add_brand'])){
+        $userId = $_POST['userId'];
+        $name = $_POST['name'];
+        $size = $_FILES['image']['size'];
+        $image = $_FILES['image']['name'];
+
+        $path = "../uploads/brand";  
+        $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+        $filename = time() . '.' . $image_ext;
+
+        if($size > 100 * 1204){
+            redirect1("brand.php","Please upload new image!");
+        }else{
+            $brand = "INSERT INTO brands (user_id,name,image) VALUES($userId,'$name','$filename')";
+            $brand_run = $conn->query($brand);
+            if($brand_run){
+                move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+                redirect("branddisplay.php","Data added successfully!");
+            }else{
+                redirect1("brand.php","Something went wrong!");
+            }
+        }
+    }else if(isset($_POST['btn_active'])){
+        $status = 0;
+        $brand_id = $_POST['brand_id'];
+        $status = "UPDATE brands SET status = '$status' WHERE id = $brand_id";
+        $status_run = $conn->query($status);
+
+        if($status_run){
+            redirect("branddisplay.php","Status updated successfully!");
+        }else{
+            redirect1("branddisplay.php","Something went wrong!");
+        }
+    }else if(isset($_POST['btn_disable'])){
+        $status = 1;
+        $brand_id = $_POST['brand_id'];
+        $status = "UPDATE brands SET status = '$status' WHERE id = $brand_id";
+        $status_run = $conn->query($status);
+
+        if($status_run){
+            redirect("branddisplay.php","Status updated successfully!");
+        }else{
+            redirect1("branddisplay.php","Something went wrong!");
+        }
+    }else if(isset($_POST['btn_delete'])){
+        $brand_id = $_POST['brand_id'];
+        $brand = "DELETE FROM brands WHERE id = $brand_id";
+        $brand_run = $conn->query($brand);
+        // image
+        $old_image = $_POST['image'];
+        $path = '../uploads/brand';
+        $img_path = $path . '/' . $old_image;
+
+        if($brand_run){
+            unlink($img_path);
+            redirect("branddisplay.php","Brand deleted successfully!");
+        }else{
+            redirect1("branddisplay.php","Something went wrong!");
+        }
+    }else if(isset($_POST['edit_brand'])){
+        $userId = $_POST['userId'];
+        $name = $_POST['name'];
+        $old_image = $_POST['old_image'];
+        $size = $_FILES['image']['size'];
+        $image = $_FILES['image']['name'];
+
+        $path = "../uploads/brand";  
+        $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+        $img_path = $path . '/' . $old_image;
+
+        if($size > 100 * 1204){
+            redirect1("brandedit.php?id=$userId","Please upload new image!");
+        }else{
+            // delete old image 
+            if(!empty($image)){
+                unlink($img_path);
+            }
+            // for image if we got old image or not
+            if(!empty($image)){
+                $filename = time() . '.' . $image_ext;
+            }else{
+                $filename = $old_image;
+            }
+            $stmt = $conn->prepare("UPDATE brands SET name = ?, image = ? WHERE id = ?");
+            $stmt->bind_param("ssi", $name, $filename, $userId);
+            $brand_run = $stmt->execute();
+            if($brand_run){
+                move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+                redirect("branddisplay.php","Data edited successfully!");
+            }else{
+                redirect1("brandedit.php","Something went wrong!");
             }
         }
     }   

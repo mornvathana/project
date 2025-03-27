@@ -1,5 +1,5 @@
 <div class = "w-full h-full">
-            <div class = "header w-full sticky top-0 z-10 bg-white h-[40px] px-5 py-5 shadow-md flex items-center justify-between">
+            <div class = "header w-full sticky top-0 z-10 bg-white h-[50px] px-5 py-5 shadow-sm flex items-center justify-between">
                 <div class = "bar lg:hidden" id = "menu-small">
                     <i class="fa-solid fa-bars"></i>
                 </div>

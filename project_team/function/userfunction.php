@@ -20,6 +20,11 @@
         $query = "SELECT product_name FROM product_database";
         return $query_run = mysqli_query($conn,$query);
     }
+    function getById($table,$id){
+        global $conn;
+        $sql = "SELECT * FROM $table WHERE id = $id";
+        return $sql_run = mysqli_query($conn,$sql);
+    }
     function redirect($url,$message){
         $_SESSION['message'] = $message;
         header('Location: '.$url);
