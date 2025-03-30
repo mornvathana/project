@@ -149,6 +149,7 @@
             class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Search For Products..." id="searchInput">
     </div>
+    
     <!-- qrcode -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <!-- script khqr -->
