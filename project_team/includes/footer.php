@@ -107,12 +107,49 @@
     </footer>
      
     <!-- Floating Telegram Icon Link -->
-    <a href="https://t.me/your_username" target="_blank" class="fixed bottom-4 right-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-400 focus:outline-none transition duration-300 ease-in-out block sm:hidden">
+    <a href="https://t.me/your_username" target="_blank"
+        class="fixed bottom-4 right-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-400 focus:outline-none transition duration-300 ease-in-out block sm:hidden">
+        <!-- Font Awesome Telegram Icon -->
+        <img src="https://static-00.iconduck.com/assets.00/telegram-icon-512x512-4sztjer8.png" alt="" class="w-[40px]">
+    </a>
+
+    <!-- Overlay -->
+    <div class="overlay hidden fixed inset-0 bg-white bg-opacity-80 z-50" id="overlay" onclick="closeSearchBox()"></div>
+
+    <!-- Floating Search Box -->
+    <div class="search-box hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl w-11/12 max-w-lg z-50"
+        id="searchBox">
+        <button
+            class="absolute top-2 right-2 bg-[#144194] text-white px-3 py-1 rounded-full hover:bg-red-500 focus:outline-none"
+            onclick="closeSearchBox()">X</button>
+        <input type="text"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Search For Products..." id="searchInput">
+    </div>
+    
     <!-- boostrap -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkXUXYpwNAZJgR9IpbWiW+UcoJ6FXT3zU5TzF4zI5FqjzEd+Uww" crossorigin="anonymous"></script>
-    <!-- Font Awesome Telegram Icon -->
-    <img src="https://static-00.iconduck.com/assets.00/telegram-icon-512x512-4sztjer8.png" alt="" class="w-[40px]">
+    <!-- Floating Telegram Icon Link -->
+    <a href="https://t.me/your_username" target="_blank"
+        class="fixed bottom-4 right-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-400 focus:outline-none transition duration-300 ease-in-out block sm:hidden">
+        <!-- Font Awesome Telegram Icon -->
+        <img src="https://static-00.iconduck.com/assets.00/telegram-icon-512x512-4sztjer8.png" alt="" class="w-[40px]">
     </a>
+
+    <!-- Overlay -->
+    <div class="overlay hidden fixed inset-0 bg-white bg-opacity-80 z-50" id="overlay" onclick="closeSearchBox()"></div>
+
+    <!-- Floating Search Box -->
+    <div class="search-box hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl w-11/12 max-w-lg z-50"
+        id="searchBox">
+        <button
+            class="absolute top-2 right-2 bg-[#144194] text-white px-3 py-1 rounded-full hover:bg-red-500 focus:outline-none"
+            onclick="closeSearchBox()">X</button>
+        <input type="text"
+            class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Search For Products..." id="searchInput">
+    </div>
+    
     <!-- qrcode -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <!-- script khqr -->

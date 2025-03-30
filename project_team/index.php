@@ -36,37 +36,37 @@
     // );
     ?>
     <!-- end of main-slide -->
-    <section class="main swiper mySwiper">
+    <section class="main swiper mySwiper h-[30vh] sm:h-[60vh] md:h-[80vh] lg:h-[80vh] xl:h-[80vh] 2xl:h-[80vh]">
         <div class="wrapper swiper-wrapper">
           <div class="slide swiper-slide">
             <img src="https://news.mynavi.jp/article/20181023-iphone_xs/ogp_images/ogp.jpg" alt="" class="image" />
             <div class="image-data">
-              <h2>
+              <h2 class="text-[30px] sm:text-[40px] md:text-[40px] lg:text-[45px] xl:text-[45px] 2xl:text-[45px]">
                 Ipone 13 Pro Max <br />
               </h2>
-              <a href="#" class="button">About Us</a>
+              <!-- <a href="#" class="button">About Us</a> -->
             </div>
           </div>
           <div class="slide swiper-slide">
             <img src="https://i.pcmag.com/imagery/articles/07z4b4eQHimaZIemnRH39Tx-1.1569492276.fit_lim.size_1200x630.jpg" alt="" class="image" />
             <div class="image-data">
               <span class="text">We really like what we do.</span>
-              <h2>
+              <h2 class="text-[30px] sm:text-[40px] md:text-[40px] lg:text-[45px] xl:text-[45px] 2xl:text-[45px]">
                 Coffee Beans with a <br />
                 Perfect Aroma
               </h2>
-              <a href="#" class="button">About Us</a>
+              <!-- <a href="#" class="button">About Us</a> -->
             </div>
           </div>
           <div class="slide swiper-slide">
             <img src="https://th.bing.com/th/id/OIP.wiZZF8jA_2dvHD81R6NuNwHaE8?w=1200&h=800&rs=1&pid=ImgDetMain" alt="" class="image" />
             <div class="image-data">
               <span class="text">Making Our coffee with lover.</span>
-              <h2>
+              <h2 class="text-[30px] sm:text-[40px] md:text-[40px] lg:text-[45px] xl:text-[45px] 2xl:text-[45px]">
                 Alluring and Fragrant <br />
                 Coffee Aroma
               </h2>
-              <a href="#" class="button">About Us</a>
+              <!-- <a href="#" class="button">About Us</a> -->
             </div>
           </div>
         </div>
