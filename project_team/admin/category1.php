@@ -1,7 +1,7 @@
 <?php include('includes/header.php')?>
 <!-- start  -->
 <div class = "h-full px-2 py-5 bg-blue-50">
-    <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
+    <div class = "w-full bg-[#ffffff] rounded-md p-5">
         <div class = "w-full flex justify-between items-center">
             <div class="flex justify-between items-center w-[70%] ">
                 <div class = "w-[35px] py-2 rounded-sm">
@@ -63,22 +63,33 @@
         <div class = "w-full h-full mt-5">
             <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
                 <?php
-                $category_pd = getAll("category_db");
-                if(mysqli_num_rows($category_pd) > 0){
-                    foreach($category_pd as $category){
+                    $item = allProduct();
+                    if($item->num_rows > 0){
+                        foreach($item as $category){
                         ?>
                         <div class = "h-[250px] border shadow-md border-gray-100 rounded-sm p-2">
                     <div class = "w-full h-[60%]">
-                        <img src = "../uploads/<?= $category['image']?>" alt = "" class = "w-full h-full object-contain" />
+                        <img src = "../uploads/category/<?= $category['image']?>" alt = "" class = "w-full h-full object-contain" />
                     </div>
                     <div class = "w-full h-[40%]">
                         <div class = "w-full h-[70%]">
                         <div class=" w-full h-[50%] justify-between items-center flex">
-                            <p class = "text-[12px] text-[#515151]"><?= $category['product_id']?></p>
+                            <p class = "text-[12px] text-[#515151]">
+                                <?php
+                                    $name = whereProduct1($category['brand_id']);
+                                    if($name->num_rows > 0){
+                                        foreach($name as $name1){
+                                            ?>
+                                            <?= $name1['name'] ?>
+                                            <?php
+                                        }
+                                    }
+                                ?>
+                            </p>
                             <p class = "text-[12px] text-[#515151]">$<?= $category['sell_price']?></p>
                         </div>
                         <div class=" w-full h-[50%] justify-center items-center flex">
-                            <p class = "text-[12px] text-[#515151]"><?= implode(' ', array_slice(explode(' ', $category['small_des']), 0, 5)) ?>...</p>
+                            <p class = "text-[12px] text-[#515151]"><?= implode(' ', array_slice(explode(' ', $category['name']), 0, 5)) ?></p>
                         </div>
                         </div>
                         <div class = " w-full h-[30%] flex justify-end items-center gap-2 text-sm">
@@ -86,10 +97,10 @@
                         <a href="categoryEdit.php?id=<?= $category['id']?>"><i class="fa-solid fa-pen-to-square btn-edit" ></i></a>
                         </div>
                         </div>
-                    </div>
-                            <?php
+                        </div>
+                        <?php
                         }
-                     }
+                    }
                 ?>
             </div>
         </div>

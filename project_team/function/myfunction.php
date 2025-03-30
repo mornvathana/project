@@ -51,6 +51,12 @@
         $query = "SELECT * FROM $table where $selectCol = '$property'";
         return $query_run = mysqli_query($conn,$query);
     }
+    // matching brand 
+    function whereProduct1($property){
+        global $conn;
+        $query = "SELECT * FROM brands where id = $property";
+        return $query_run = mysqli_query($conn,$query);
+    }
     // function for select product
     function selectProduct($name,$table){
         global $conn;
@@ -66,6 +72,13 @@
         global $conn;
         $product = "SELECT * FROM $table where role_as = 1";
         return $product_run = mysqli_query($conn,$product);
+    }
+    // join table 
+    function allProduct(){
+        global $conn;
+        $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
+                    , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id";
+        return $product1 = mysqli_query($conn,$product);
     }
     function redirect($url,$message){
         $_SESSION['message'] = $message;
