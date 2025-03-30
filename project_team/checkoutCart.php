@@ -25,7 +25,7 @@ include('authication.php');
                              $get_cart = getAll("cart");
                             if(mysqli_num_rows($get_cart) == 0){
                                 ?>
-                                <h1 class = "text-center">No Product Available</h1>
+                                <h1 class = "text-left font-[Poppins,hanuman,Sans-serif] text-sm md:text-[15px]"><i class="fa-solid fa-box-archive text-[#144194]"></i> Your cart is currently empty.</h1>
                                 <?php
                             }else{
                                     ?>
@@ -69,6 +69,93 @@ include('authication.php');
                     </form>
                 </div>
             </div>
+
+            <!-- cart-box-responsive -->
+            <div class="cart-box w-[100%] lg:w-[60%] border rounded-xl h-fit p-5 mt-3 block md:hidden">
+                <div class="box">
+                    <!-- form of cart-box -->
+                    <form action="" method="POST"
+                        class="w-full font-semibold font-[Poppins,hanuman,Sans-serif] text-gray-700">
+                        <!-- cart -->
+                        <div class="cart w-full space-y-5 border-b-2 pb-3 text-sm">
+                            <div class="flex justify-between w-full">
+                                <label for="remove-product"></label>
+                                <div><a href="#"><i class="fa-solid fa-xmark"></i></a></div>
+                            </div>
+
+                            <div class="flex justify-between w-full">
+                                <label for="product-image" class="invisible">Image:</label>
+                                <div><img
+                                        src="https://shunliphone.com/wp-content/uploads/2024/09/iphone16.plus_.green_-300x300.png"
+                                        alt="Product Image" class="w-[100px]"></div>
+                            </div>
+
+                            <div class="flex justify-between w-full">
+                                <label for="product-name">Product:</label>
+                                <div class="text-right"><a href="#">iPhone 16 Plus – Non active</a></div>
+                            </div>
+
+                            <div class="flex justify-between">
+                                <label for="price">Price:</label>
+                                <div>$15.00</div>
+                            </div>
+
+                            <div class="flex justify-between">
+                                <label for="qty">Quantity:</label>
+                                <div><input type="number" id="inputValue" value="0" min="0" step="1"
+                                        class="w-[70px] text-center border border-gray-300 rounded-lg"></div>
+                            </div>
+
+                            <div class="flex justify-between">
+                                <label for="sub-total">Sub Total:</label>
+                                <div>$15.00</div>
+                            </div>
+
+                        </div>
+
+                        <!-- cart -->
+                        <div class="cart w-full space-y-5 border-b-2 pb-3 text-sm mt-3">
+                            <div class="flex justify-between w-full">
+                                <label for="remove-product"></label>
+                                <div><a href="#"><i class="fa-solid fa-xmark"></i></a></div>
+                            </div>
+
+                            <div class="flex justify-between w-full">
+                                <label for="product-image" class="invisible">Image:</label>
+                                <div><img
+                                        src="https://shunliphone.com/wp-content/uploads/2024/09/iphone16pro.max_.gold_-300x300.png"
+                                        alt="Product Image" class="w-[100px]"></div>
+                            </div>
+
+                            <div class="flex justify-between w-full">
+                                <label for="product-name">Product:</label>
+                                <div class="text-right"><a href="#">iPhone 16 Plus – Non active</a></div>
+                            </div>
+
+                            <div class="flex justify-between">
+                                <label for="price">Price:</label>
+                                <div>$15.00</div>
+                            </div>
+
+                            <div class="flex justify-between">
+                                <label for="qty">Quantity:</label>
+                                <div><input type="number" id="inputValue" value="0" min="0" step="1"
+                                        class="w-[70px] text-center border border-gray-300 rounded-lg"></div>
+                            </div>
+
+                            <div class="flex justify-between">
+                                <label for="sub-total">Sub Total:</label>
+                                <div>$15.00</div>
+                            </div>
+
+                        </div>
+
+                        <button class="mt-5 bg-blue-500 text-white rounded-lg p-2 text-sm"><a href="#"> <i
+                                    class="fa-regular fa-pen-to-square"></i> Update</a></button>
+                    </form>
+                </div>
+            </div>
+            
             <!-- cart-total -->
             <?php
             $get_cart = getAll("cart");
@@ -119,10 +206,10 @@ include('authication.php');
 
                 <div class="flex flex-col space-y-2 mt-5">
                     <button class="w-full p-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-yellow-400 text-sm">
-                        <a href="checkout.html"><i class="fa-solid fa-credit-card"></i> Proceed to Checkout</a>
+                        <a href="payment.php"><i class="fa-solid fa-credit-card"></i> Proceed to Checkout</a>
                     </button>
                     <button class="w-full p-3 bg-gray-200 text-gray-600 font-semibold rounded-md hover:bg-gray-300 text-sm">
-                        <a href="payment.php"><i class="fa-solid fa-cart-shopping"></i> Continue Shopping</a>
+                        <a href="index.php"><i class="fa-solid fa-cart-shopping"></i> Continue Shopping</a>
                     </button>
                 </div>
             </div>

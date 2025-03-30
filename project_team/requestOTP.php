@@ -15,7 +15,7 @@ include('includes/header.php');
             <form action = "sendOTP.php" method = "post">
                 <!-- Username -->
                 <div class="relative mb-4">
-                    <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500"></i>
+                    <i class="fas fa-user absolute left-3 top-1/2 transform -translate-y-[45%] text-gray-500"></i>
                     <input type="text" name = "email" id="login-username" placeholder="Email" class="w-full py-2 pl-10 pr-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 </div>
                 <button type="submit" class="w-full py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none" name = "login_btn">Send</button>
