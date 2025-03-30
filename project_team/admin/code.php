@@ -21,108 +21,73 @@
         } else{
             redirect('product.php', 'Something went wrong!');
         } 
-    }else if(isset($_POST['category_save'])){
-        $cate_name = $_POST['cate_name'];
-        $product_id = $_POST['product_id'];
-        $cate_small_des = $_POST['cate_small_des'];
-        $cate_sell_price = $_POST['cate_sell_price'];
-        $cate_original_price = $_POST['cate_original_price'];
-        $cate_promotion = $_POST['cate_promotion'];
-        $cate_warrenty = $_POST['cate_warrenty'];
-        $cate_color = $_POST['cate_color'];
-        $cate_ram = $_POST['cate_ram'];
-        $cate_memory = $_POST['cate_memory'];
-        $cate_announed = $_POST['cate_announed'];
-        $cate_status = $_POST['cate_status'];
-        $cate_slot = $_POST['cate_slot'];
-        $cate_internal = $_POST['cate_internal'];
-        $cate_techno = $_POST['cate_techno'];
-        $cate_3G = $_POST['cate_3G'];
-        $cate_4G = $_POST['cate_4G'];
-        $cate_speed = $_POST['cate_speed'];
-        $cate_dimensions = $_POST['cate_dimensions'];
-        $cate_weight = $_POST['cate_weight'];
-        $cate_sim = $_POST['cate_sim'];
-        $cate_dual = $_POST['cate_dual'];
-        $cate_feature = $_POST['cate_feature'];
-        $cate_video_cam = $_POST['cate_video_cam'];
-        $cate_single_selfie = $_POST['cate_single_selfie'];
-        $cate_video_selfie = $_POST['cate_video_selfie'];
-        $cate_battery_type = $_POST['cate_battery_type'];
-        $cate_battery_charging = $_POST['cate_battery_charging'];
-        $cate_color_phone = $_POST['cate_color_phone'];
-        $cate_model = $_POST['cate_model'];
-        // handle image
-        $cate_image = $_FILES['cate_image']['name'];
-        $cate_de_image = $_FILES['cate_de_image']['name'];
+    }else if(isset($_POST['add_category'])){
+        $barcode = $_POST['barcode'];
+        $name = $_POST['name'];
+        $original_price = $_POST['original_price'];
+        $sell_price = $_POST['sell_price'];
+        $specification = $_POST['specification'];
+        $description = $_POST['description'];
+        $brand = $_POST['brand'];
+        $promotion = $_POST['promotion'];
 
-        $path = "../uploads";  // Add semicolon here
-        $image_ext = pathinfo($cate_image, PATHINFO_EXTENSION);
-        $filename1 = time() . '.' . $image_ext;
-        $image_ext = pathinfo($cate_de_image, PATHINFO_EXTENSION);
-        $filename2 = time() . '.' . $image_ext;
-        // end handle image
-        $sql = "INSERT INTO category_db (product_id, name, small_des, ram, sell_price, original_price, promotion, warranty, color, image, demo_image, announced, Satus, card_slot, internal, technology, 3G, 4G, speed, dimensions, weight, sim, dual_camera, features, video_camera, single_selfie, video_selfie, battery_type, battery_charging, color_phone, model) 
-        VALUES ('$product_id', '$cate_name', '$cate_small_des', '$cate_ram', '$cate_sell_price', '$cate_original_price', '$cate_promotion', '$cate_warrenty', '$cate_color', '$filename1', '$filename2', '$cate_announed', '$cate_status', '$cate_slot', '$cate_internal', '$cate_techno', '$cate_3G', '$cate_4G', '$cate_speed', '$cate_dimensions', '$cate_weight', '$cate_sim', '$cate_dual', '$cate_feature', '$cate_video_cam', '$cate_single_selfie', '$cate_video_selfie', '$cate_battery_type', '$cate_battery_charging', '$cate_color_phone', '$cate_model')";
-        $sql_run = mysqli_query($conn,$sql);
-        if($sql_run){
-            move_uploaded_file($_FILES['cate_image']['tmp_name'], $path.'/'.$filename1);
-            move_uploaded_file($_FILES['cate_de_image']['tmp_name'], $path.'/'.$filename2);
-            redirect('category.php', 'We have added category!');
-        }else{
-            redirect('category.php', 'Something went wrong!');
+        $demo_image = $_FILES['image']['demo_image']; 
+
+        $size = $_FILES['image']['size'];
+        $path = "../uploads/category"; 
+        $image = $_FILES['image']['name']; 
+        $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+        $filename = time() . '.' . $image_ext;
+
+
+        $valid = true;
+        $demo_images = [];
+
+        foreach($_FILES['demo_image']['size'] as $key => $demo_size){
+            if($demo_size > 100 * 1024){
+                $valid = false;
+                break;
+            }
         }
+
+         if($size > 100 * 1024 || !$valid){
+            redirect1("category.php","Please upload new image!");
+         }else{
+            $category = "INSERT INTO product_detail (brand_id, promotion, barcode, name, original_price, sell_price) 
+             VALUES (?, ?, ?, ?, ?, ?)";
+            $stmt = $conn->prepare($category);
+            $stmt->bind_param("iiissi", $brand, $promotion, $barcode, $name, $original_price, $sell_price);
+            $stmt->execute();
+            
+            if($stmt){
+                $id = $conn->insert_id;
+                // process demo image 
+                foreach($_FILES['demo_image']['name'] as $key => $demo_name){
+                    $demo_ext = pathinfo($demo_name, PATHINFO_EXTENSION);
+                    $demo_filename = time() . '_' . $key . '.' . $demo_ext;
+                    move_uploaded_file($_FILES['demo_image']['tmp_name'][$key], $path . '/' . $demo_filename);
+                    $demo_images[] = $demo_filename;
+                }
+                $demo_images_string = implode(',',$demo_images);
+
+                $category_image = "INSERT INTO product_image (product_id,specification,description,image,demo_image) VALUES(?,?,?,?,?)";
+                $stmt1 = $conn->prepare($category_image);
+                $stmt1->bind_param("issss",$id,$specification,$description,$filename,$demo_images_string);
+                $stmt1->execute();
+                
+                if($stmt1){
+                    move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+                    redirect("category1.php","Data has created!");
+                }else{
+                    redirect1("category.php","Something went wrong!");
+                }
+            }
+
+         }
+        
+       
     }else if(isset($_POST['category_update'])){
-        $cate_name = $_POST['cate_name'];
-        $product_id = $_POST['product_id'];
-        $cate_small_des = $_POST['cate_small_des'];
-        $cate_sell_price = $_POST['cate_sell_price'];
-        $cate_original_price = $_POST['cate_original_price'];
-        $cate_promotion = $_POST['cate_promotion'];
-        $cate_warrenty = $_POST['cate_warrenty'];
-        $cate_color = $_POST['cate_color'];
-        $cate_ram = $_POST['cate_ram'];
-        $cate_memory = $_POST['cate_memory'];
-        $cate_announed = $_POST['cate_announed'];
-        $cate_status = $_POST['cate_status'];
-        $cate_slot = $_POST['cate_slot'];
-        $cate_internal = $_POST['cate_internal'];
-        $cate_techno = $_POST['cate_techno'];
-        $cate_3G = $_POST['cate_3G'];
-        $cate_4G = $_POST['cate_4G'];
-        $cate_speed = $_POST['cate_speed'];
-        $cate_dimensions = $_POST['cate_dimensions'];
-        $cate_weight = $_POST['cate_weight'];
-        $cate_sim = $_POST['cate_sim'];
-        $cate_dual = $_POST['cate_dual'];
-        $cate_feature = $_POST['cate_feature'];
-        $cate_video_cam = $_POST['cate_video_cam'];
-        $cate_single_selfie = $_POST['cate_single_selfie'];
-        $cate_video_selfie = $_POST['cate_video_selfie'];
-        $cate_battery_type = $_POST['cate_battery_type'];
-        $cate_battery_charging = $_POST['cate_battery_charging'];
-        $cate_color_phone = $_POST['cate_color_phone'];
-        $cate_model = $_POST['cate_model'];
-        // handle image
-        $cate_image = $_FILES['cate_image']['name'];
-        $cate_de_image = $_FILES['cate_de_image']['name'];
-
-        $path = "../uploads";  // Add semicolon here
-        $image_ext = pathinfo($cate_image, PATHINFO_EXTENSION);
-        $filename1 = time() . '.' . $image_ext;
-        $image_ext = pathinfo($cate_de_image, PATHINFO_EXTENSION);
-        $filename2 = time() . '.' . $image_ext;
-        // end handle image
-        $sql = "INSERT INTO category_db (product_id, name, small_des, ram, sell_price, original_price, promotion, warranty, color, image, demo_image, announced, Satus, card_slot, internal, technology, 3G, 4G, speed, dimensions, weight, sim, dual_camera, features, video_camera, single_selfie, video_selfie, battery_type, battery_charging, color_phone, model) 
-        VALUES ('$product_id', '$cate_name', '$cate_small_des', '$cate_ram', '$cate_sell_price', '$cate_original_price', '$cate_promotion', '$cate_warrenty', '$cate_color', '$filename1', '$filename2', '$cate_announed', '$cate_status', '$cate_slot', '$cate_internal', '$cate_techno', '$cate_3G', '$cate_4G', '$cate_speed', '$cate_dimensions', '$cate_weight', '$cate_sim', '$cate_dual', '$cate_feature', '$cate_video_cam', '$cate_single_selfie', '$cate_video_selfie', '$cate_battery_type', '$cate_battery_charging', '$cate_color_phone', '$cate_model')";
-        $sql_run = mysqli_query($conn,$sql);
-        if($sql_run){
-            move_uploaded_file($_FILES['cate_image']['tmp_name'], $path.'/'.$filename1);
-            move_uploaded_file($_FILES['cate_de_image']['tmp_name'], $path.'/'.$filename2);
-            redirect('category.php', 'We have added category!');
-        }else{
-            redirect('category.php', 'Something went wrong!');
-        }
+        
     }
     else if(isset($_POST['change_password'])){
         $conn = new mysqli("localhost","root","","ecommerce_data");
