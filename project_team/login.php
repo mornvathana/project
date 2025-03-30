@@ -1,5 +1,4 @@
 <?php 
-include('includes/header.php')
 //  session_start();
 //  if(isset($_SESSION['auth'])){
 //      header('Location: index.php');
@@ -16,6 +15,7 @@ include('includes/header.php')
 //     $client->addScope("profile");
 
 //     $url = $client->createAuthUrl();
+include('includes/header.php');
 ?>
     <!-- start -->
     <div class="form-body py-[70px]">
@@ -37,7 +37,7 @@ include('includes/header.php')
                 </div>
     
                 <div class="checkbox-text">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content text-[#4070f4]">
                     <input type="checkbox" id="logCheck" checked/>
                     <label for="logCheck" class="text">Remember me</label>
                   </div>
@@ -92,7 +92,7 @@ include('includes/header.php')
                 </div>
     
                 <div class="checkbox-text">
-                  <div class="checkbox-content">
+                  <div class="checkbox-content text-[#4070f4]">
                     <input type="checkbox" id="termCon" checked/>
                     <label for="termCon" class="text">I accepted all terms and conditions</label>
                   </div>
