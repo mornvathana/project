@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <!-- end css style -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-     <!-- end aba link  -->
     <!-- tailwind css link cdn -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- font awesome link cdn -->
@@ -46,7 +45,6 @@
     <!-- cdn link flowbite tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
     <!-- header bakong QR -->
-    <script src="https://github.com/davidhuotkeo/bakong-khqr/releases/download/bakong-khqr-1.0.6/khqr-1.0.6.min.js"></script>
 </head>
 <body>
     <?php include('navbar.php')?>

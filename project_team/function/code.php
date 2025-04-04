@@ -13,13 +13,15 @@
                     $prod_name = $_POST['prod_name'];
                     $prod_price = $_POST['prod_price'];
                     $prod_image = $_POST['prod_image'];
+                    $prod_specification = $_POST['prod_specification'];
+                    $prod_barcode = $_POST['prod_barcode'];
                     $check_exising_cart = "SELECT * FROM cart WHERE category_id = '$prod_id' AND user_id = '$user_id'";
                     $check_exising_cart_run = $conn->query($check_exising_cart);
                     if($check_exising_cart_run->num_rows > 0){
                         echo 400;
                     }else{
-                        $insert_product = "INSERT INTO cart (category_id, user_id, product_name, product_price, product_image, product_qty) 
-                        VALUES ('$prod_id', '$user_id', '$prod_name', '$prod_price', '$prod_image', '$prod_qty')";
+                        $insert_product = "INSERT INTO cart (category_id, user_id, barcode, product_name, product_price, specification , product_image, product_qty) 
+                        VALUES ('$prod_id', '$user_id','$prod_barcode', '$prod_name', '$prod_price','$prod_specification', '$prod_image', '$prod_qty')";
                         $insert_product_run = $conn->query($insert_product);
                         if($insert_product_run){
                             echo 200;

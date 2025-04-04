@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     
         // Show the modal
-        const qrCodeModal = new bootstrap.Modal(document.getElementById("popup-modal"));
+        const qrCodeModal = new bootstrap.Modal(document.getElementById("qrCodeModal"));
         qrCodeModal.show();
     };
     
@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
     
     // Handle modal open event
-    $('#popup-modal').on('shown.bs.modal', function () {
+    $('#qrCodeModal').on('shown.bs.modal', function () {
         const md5Value = individual?.data?.md5; // Replace with actual md5 generation logic if needed
         startQrCodeScanner(md5Value);
     });
@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.responseMessage === 'Success') {
                     clearInterval(checkTransactionInterval);
-                    window.location.href = 'project/project_team/profile.php';
+                    window.location.href = 'http://localhost:8080/project/project_team/profile.php';
                     // for telegram message
                     const token_telegram = "7948926578:AAH13fuvJf_wUOFr2fNo8YGFIZzJvuUvSX0";
                     const chat_id = "1985070836";

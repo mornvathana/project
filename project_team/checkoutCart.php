@@ -1,6 +1,9 @@
 <?php 
 include('includes/header.php');
 include('authication.php');
+if($_SESSION['auth_user']){
+    $user_id = $_SESSION['auth_user']['user_id'];
+}
 ?>
     <!-- start -->
     <div class="shopping-cart-block w-full p-3 sm:p-5 mt-10">
@@ -22,7 +25,7 @@ include('authication.php');
                         <!-- table of product-cart -->
                         <table class="" >
                             <?php
-                             $get_cart = getAll("cart");
+                             $get_cart = getProductUser("cart",$user_id);
                             if(mysqli_num_rows($get_cart) == 0){
                                 ?>
                                 <h1 class = "text-left font-[Poppins,hanuman,Sans-serif] text-sm md:text-[15px]"><i class="fa-solid fa-box-archive text-[#144194]"></i> Your cart is currently empty.</h1>
@@ -53,7 +56,7 @@ include('authication.php');
                                     ?>  
                                   <tr class="border-b-2" id = "mycart-<?= $cart['id']?>">
                                     <td><a href="#" id = "deleteProduct" data-cart = "<?= $cart['id']?>"><i class="fa-solid fa-xmark"></i></a></td>
-                                    <td><a href="#"><img src="uploads/<?= $cart['product_image']?>" alt="Product Image"></a></td>
+                                    <td><a href="#"><img src="uploads/category/<?= $cart['product_image']?>" alt="Product Image"></a></td>
                                     <td><?= $cart['product_name'] ?></td>
                                     <td><input type="number" id="inputValue" value = "<?= $cart['product_qty']?>" value="0" min="0" step="1" class="w-[70px] text-center border border-gray-300 rounded-lg"></td>
                                     <td>$<?= $cart['product_price']?></td>

@@ -1,8 +1,8 @@
 <?php include('includes/header.php')?>
 <?php
-    if(isset($_GET{'Id'})){
-        $product = $_GET['Id'];
-         $product_item = whereProduct("category_db","product_id",$product);
+    if(isset($_GET{'id'})){
+        $product = $_GET['id'];
+         $product_item = getProduct($product);
     }
 ?>
 <!-- start proudct -->
@@ -63,13 +63,13 @@
                 <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
                 <a href="viewdetail.php?id=<?= $item['id']?>" class="flex flex-col items-center space-y-2 w-full">
                     <div class="pro-img w-full overflow-hidden rounded-md">
-                        <img src="uploads/<?= $item['image']?>" alt="" class="w-full">
+                        <img src="uploads/category/<?= $item['image']?>" alt="" class="w-full">a
                     </div>
                     <div class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
                         <del class="dis-price opacity-50">$<?= $item['sell_price']?></del>
                         <div class="full-price text-[#f34770!important]">$<?= $item['original_price']?></div>
                     </div>
-                    <div class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden"><?= $item['small_des']?></div>
+                    <div class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden"><?= $item['name']?></div>
                     <button class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-cart-shopping"></i> Add to cart</button>
                     <div class="line"></div>
                 </a>

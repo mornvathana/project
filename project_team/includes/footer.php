@@ -128,8 +128,7 @@
     </div>
     
     <!-- boostrap -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkXUXYpwNAZJgR9IpbWiW+UcoJ6FXT3zU5TzF4zI5FqjzEd+Uww" crossorigin="anonymous"></script>
-    <!-- Floating Telegram Icon Link -->
+         <!-- Floating Telegram Icon Link -->
     <a href="https://t.me/your_username" target="_blank"
         class="fixed bottom-4 right-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-400 focus:outline-none transition duration-300 ease-in-out block sm:hidden">
         <!-- Font Awesome Telegram Icon -->
@@ -149,12 +148,6 @@
             class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Search For Products..." id="searchInput">
     </div>
-    
-    <!-- qrcode -->
-    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-    <!-- script khqr -->
-     <script src = "assets/script/khqr.js"></script>
-    <!-- end script aba -->
     <!-- js tailwind flowbite -->
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <!-- Swiper JS -->
@@ -204,11 +197,30 @@
             success: function (response) {
                 if(response == 200){
                     Swal.fire({
-                    icon: 'success',
-                    title: 'We have deleted product!',
-                    confirmButtonText: 'OK'
-                    });
-                    $(`#mycart-${prod_id}`).remove();
+                    icon: 'warning',
+                    title: '<span class="text-gray-800 font-semibold text-lg">Are you sure you want to delete?</span>',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancel',
+                    reverseButtons: true,
+                    background: '#fff',
+                    focusCancel: true,
+                    buttonsStyling: false,
+                    customClass: {
+                        popup: 'rounded-xl shadow-md p-6',
+                        confirmButton: 'bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 rounded-md ml-2',
+                        cancelButton: 'bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-4 py-2 rounded-md',
+                    },
+                    didOpen: () => {
+                        document.querySelector('.swal2-popup').style.width = '400px';
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $(`#mycart-${prod_id}`).remove();
+                        location.reload();
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        console.log("Deletion cancelled.");
+                    }
+                });
                 }else if(response == 300){
                  Swal.fire({
                  icon: 'warning',
@@ -229,38 +241,62 @@
         e.preventDefault();
         var qty = $(this).closest('.product_qty').find('.input-qty').val();
         var prod_id = $('#prod_id').val();
-        var prod_name = $('.product_name').val();
+        var prod_name = $('#product_name').val();
         var prod_price = $('#product_price').val();
         var prod_image = $('#product_image').val();
+        var prod_barcode = $('#product_barcode').val();
+        var prod_specification = $('#specification').val();
+        alert("Hello");
         $.ajax({
             method:"POST",
             url: "function/code.php",
             data: {
                 "prod_id":prod_id,
                 "prod_name":prod_name,
+                "prod_barcode": prod_barcode,
                 "prod_price":prod_price,
                 "prod_image":prod_image,
                 "prod_qty":qty,
+                "prod_specification": prod_specification,
                 "scrope":"add"
             },
             success: function (response) {
                 if(response == 200){
                     Swal.fire({
                     icon: 'success',
-                    title: 'Product Added!',
-                    text: 'The product has been added to your cart.',
-                    confirmButtonText: 'OK'
+                    title: '<span class="text-gray-800 font-semibold text-lg">Product added to Cart!</span>',
+                    showCancelButton: false,  
+                    showConfirmButton: false, 
+                    timer: 1000,  
+                    background: '#fff',
+                    focusCancel: true,
+                    buttonsStyling: false,
+                    customClass: {
+                        popup: 'rounded-xl shadow-md p-6',
+                    },
+                    didOpen: () => {
+                        document.querySelector('.swal2-popup').style.width = '400px';
+                    }
                     });
+
+
                 }else if(response == 400){
-                 Swal.fire({
-                 icon: 'warning',
-                 title: 'Oops...',
-                 text: 'Product already added!',
-                 confirmButtonText: 'OK',
-                 customClass: {
-                 popup: 'custom-popup',  // Add custom class to popup
-                }
-                });
+                    Swal.fire({
+                    icon: 'warning',
+                    title: '<span class="text-gray-800 font-semibold text-lg">Product already added!</span>',
+                    showCancelButton: false,  // Remove Cancel button
+                    showConfirmButton: false,  // Remove OK button
+                    timer: 1000,  // Auto-close after 3 seconds (3000 milliseconds)
+                    background: '#fff',
+                    focusCancel: true,
+                    buttonsStyling: false,
+                    customClass: {
+                        popup: 'rounded-xl shadow-md p-6',
+                    },
+                    didOpen: () => {
+                        document.querySelector('.swal2-popup').style.width = '400px';
+                    }
+                    });
 
                 }
             }
