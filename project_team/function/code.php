@@ -40,6 +40,20 @@
                         echo 300;
                     } 
                 break;
+                case "updateQty":
+                    $prod_qty = $_POST['prod_qty'];
+                    $prod_id = $_POST['prod_id'];
+                    $stmt = $conn->prepare("UPDATE cart SET product_qty = ? WHERE id = ?");
+                    $stmt->bind_param('ii',$prod_qty,$prod_id);
+                    $stmt->execute();
+                break;
+                case "updateShipping":
+                    $prod_shipping = $_POST['shipping_id'];
+                    $prod_id = $_POST['prod_id'];
+                    $stmt = $conn->prepare("UPDATE cart SET shipping_id = ? WHERE id = ?");
+                    $stmt->bind_param('ii',$prod_shipping,$prod_id);
+                    $stmt->execute();
+                break;
                 default:
                 echo "Invailed Scrope";
             }

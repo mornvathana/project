@@ -48,17 +48,24 @@ if($_SESSION['auth_user']){
                             <tbody class="font-normal">
                                <?php
                                $totalPrice = 0;
-                                $get_cart = getAll("cart");
+                               $totalshipping = 0;
+                                $get_cart = getProductUser("cart",$user_id);
                                 if(mysqli_num_rows($get_cart) > 0){
                                   foreach($get_cart as $cart){
                                     $itemTotal = $cart['product_price'] * $cart['product_qty'];
+                                    $shippingTotal = $itemTotal + $cart['shipping_price'];
+
                                     $totalPrice += $itemTotal;
+                                    $totalshipping += $shippingTotal;
                                     ?>  
                                   <tr class="border-b-2" id = "mycart-<?= $cart['id']?>">
                                     <td><a href="#" id = "deleteProduct" data-cart = "<?= $cart['id']?>"><i class="fa-solid fa-xmark"></i></a></td>
                                     <td><a href="#"><img src="uploads/category/<?= $cart['product_image']?>" alt="Product Image"></a></td>
                                     <td><?= $cart['product_name'] ?></td>
-                                    <td><input type="number" id="inputValue" value = "<?= $cart['product_qty']?>" value="0" min="0" step="1" class="w-[70px] text-center border border-gray-300 rounded-lg"></td>
+                                    <td>
+                                        <input type="number" id="inputValue" name = "update_qty" value = "<?= $cart['product_qty']?>" value="0" min="0" step="1" class="w-[70px] text-center border border-gray-300 rounded-lg">
+                                        <input type="hidden" name="id" id = "cartId" value = "<?= $cart['id']?>">
+                                    </td>
                                     <td>$<?= $cart['product_price']?></td>
                                     <td>$<?= number_format($itemTotal,2) ?></td>
                                   </tr>
@@ -142,8 +149,7 @@ if($_SESSION['auth_user']){
 
                             <div class="flex justify-between">
                                 <label for="qty">Quantity:</label>
-                                <div><input type="number" id="inputValue" value="0" min="0" step="1"
-                                        class="w-[70px] text-center border border-gray-300 rounded-lg"></div>
+                                <div><input type="number" id="inputValue" value="0" min="0" step="1" class="w-[70px] text-center border border-gray-300 rounded-lg"></div>
                             </div>
 
                             <div class="flex justify-between">
@@ -161,7 +167,7 @@ if($_SESSION['auth_user']){
             
             <!-- cart-total -->
             <?php
-            $get_cart = getAll("cart");
+            $get_cart = getProductUser("cart",$user_id);
             if(mysqli_num_rows($get_cart) == 0){
                 ?>
                 
@@ -172,7 +178,7 @@ if($_SESSION['auth_user']){
                 <h2 class="text-md md:text- font-bold mb-8">Cart Summary</h2>
                 <div class="mb-8 flex justify-between text-sm md:text-[17px] font-normal">
                     <span>Subtotal:</span>
-                    <span>$100.00</span>
+                    <span>$<?= number_format($totalPrice, 2) ?></span>
                 </div>
 
                 <form action="">
@@ -180,18 +186,20 @@ if($_SESSION['auth_user']){
                     <li class="flex flex-col space-y-2 text-sm md:text-[17px] font-normal">
                         <span class="font-semibold">Shipping:</span>
                         <div class="mt-5 text-sm space-y-3">
-                        <div class="flex items-center mt-3 space-x-1">
-                            <input type="radio" name="shipping" value = "0" id="shipping" value="shipping" checked>
-                            <label for="shipping">Local pickup</label>
-                        </div>
-                        <div class="flex items-center space-x-1">
-                            <input type="radio" name="shipping" value = "10" id="shipping" value="shipping">
-                            <label for="shipping">COD in Sihanoukville, Bavet, Poipet: $ 10</label>
-                        </div>
-                        <div class="flex items-center space-x-1">
-                            <input type="radio" name="shipping" id="shipping" value = "3" value="shipping">
-                            <label for="shipping">Flat Rate under $300 (Only in Phnom Penh): $ 3</label>
-                        </div>
+                        <?php
+                            $current_shipping_id = $cart['shipping_id'];
+                            $shipping = getAll("shipping");
+                            if($shipping->num_rows > 0){
+                            foreach($shipping as $item){
+                            ?>
+                            <div class="flex items-center mt-3 space-x-1">
+                                <input type="radio" name="shipping" value = "<?= $item['id'] ?>" id="shipping" class = 'shipping-radio' <?= ($item['id'] == $current_shipping_id) ? 'checked' : ''?>>
+                                <label for="shipping"><?= $item['shipping_option'] ?></label>
+                            </div>
+                            <?php
+                            }
+                            }
+                        ?>
                         </div>
                     </li>
                 </ul>
@@ -204,7 +212,16 @@ if($_SESSION['auth_user']){
                 <!-- sub-total -->
                 <div class="flex justify-between text-sm md:text-[17px] font-normal mt-3">
                     <span class="font-semibold text-green-600">Subtotal:</span>
-                    <span class="">$<?= number_format($totalPrice, 2) ?></span>
+                    <span class="">
+                        <?php
+                            $get_shipping = getShipping1($current_shipping_id);
+                            if($get_shipping->num_rows > 0){
+                                $shippingData = $get_shipping->fetch_assoc();
+                                $finalTotal = $totalPrice + $shippingData['shipping_price'];
+                                echo '$' . number_format($finalTotal, 2);
+                            }
+                        ?>
+                    </span>
                 </div>
 
                 <div class="flex flex-col space-y-2 mt-5">
@@ -223,4 +240,6 @@ if($_SESSION['auth_user']){
         </div>
     </div>
      <!-- end -->
+    <!-- javascript -->
+     <script src = "assets/script/custom.js"></script>
 <?php include('includes/footer.php')?>
