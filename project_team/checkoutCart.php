@@ -53,7 +53,7 @@ if($_SESSION['auth_user']){
                                 if(mysqli_num_rows($get_cart) > 0){
                                   foreach($get_cart as $cart){
                                     $itemTotal = $cart['product_price'] * $cart['product_qty'];
-                                    $shippingTotal = $itemTotal + $cart['shipping_price'];
+                                    $shippingTotal = $itemTotal + $cart['total_price'];
 
                                     $totalPrice += $itemTotal;
                                     $totalshipping += $shippingTotal;
@@ -218,7 +218,7 @@ if($_SESSION['auth_user']){
                             if($get_shipping->num_rows > 0){
                                 $shippingData = $get_shipping->fetch_assoc();
                                 $finalTotal = $totalPrice + $shippingData['shipping_price'];
-                                echo '$' . number_format($finalTotal, 2);
+                                echo '$' . number_format($finalTotal);
                             }
                         ?>
                     </span>

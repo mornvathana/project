@@ -47,6 +47,11 @@
                     , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.id = '$id'";
         return $product1 = mysqli_query($conn,$product);
     }
+    function getShipping($id){
+        global $conn;
+        $product1 = "SELECT * FROM shipping WHERE id = $id";
+        return $product = mysqli_query($conn,$product1);
+    }
     function redirect($url,$message){
         $_SESSION['message'] = $message;
         header('Location: '.$url);

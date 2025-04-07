@@ -8,18 +8,81 @@ document.addEventListener("DOMContentLoaded", function () {
     
     const data = KHQR.khqrData;
     const info = KHQR.IndividualInfo;
-    
+     // total price
+     const btncheckout = document.getElementById('checkout');
+     const totalPrice = parseFloat(btncheckout.dataset.total);
+    // handle form 
+    const form = document.getElementById("checkoutForm");
+    const firstName = document.getElementById("first-name");
+    const lastName = document.getElementById("last-name");
+    const email = document.getElementById("email");
+    const city = document.getElementById("city");
+    const address = document.getElementById("address");
+    const phoneNumber = document.getElementById("phone-number");
+    const userId = document.getElementById("user_id");
+    const CartId = document.getElementById("cart_id");
+
+    let hasSubmitted = false; 
+
+    form.addEventListener("input", function () {
+        if (
+        firstName.value.trim() !== "" &&
+        lastName.value.trim() !== "" &&
+        email.value.trim() !== "" &&
+        city.value.trim() !== "" &&
+        address.value.trim() !== "" &&
+        phoneNumber.value.trim() !== "" &&
+        !hasSubmitted
+        ) {
+        hasSubmitted = true; 
+        setTimeout(function () {
+            alert("Please make payment!");
+            btncheckout.style.display = "block";
+        }, 5000); 
+        }
+    });
+    // auto save 
+    function autoSaveData() {
+        const formData = {
+            first_name: firstName.value,
+            last_name: lastName.value,
+            email: email.value,
+            userid: userId.value,
+            cartid: CartId.value,
+            city: city.value,
+            address: address.value,
+            phone_number: phoneNumber.value,
+            totalPrice: totalPrice,
+        };
+
+        fetch('save_checkout_data.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Data saved successfully:', data);
+        })
+        .catch(error => {
+            console.error('Error saving data:', error);
+        });
+    }
+    // end handle data
+
     const optionalData = {
-        currency: data.currency.usd,
-        amount:1, 
-        mobileNumber: "85512233455",
-        storeLabel: "Coffee Shop",
-        terminalLabel: "Cashier_1",
-        purposeOfTransaction: "oversea",
-        languagePreference: "km",
-        merchantNameAlternateLanguage: "ចន ស្មីន",
-        merchantCityAlternateLanguage: "សៀមរាប",
-        upiMerchantAccount: "0001034400010344ABCDEFGHJIKLMNO"
+    currency: data.currency.usd,
+    amount:totalPrice, 
+    mobileNumber: "85512233455",
+    storeLabel: "Coffee Shop",
+    terminalLabel: "Cashier_1",
+    purposeOfTransaction: "oversea",
+    languagePreference: "km",
+    merchantNameAlternateLanguage: "ចន ស្មីន",
+    merchantCityAlternateLanguage: "សៀមរាប",
+    upiMerchantAccount: "0001034400010344ABCDEFGHJIKLMNO"
     };
     
     const individualInfo = new info("morn_sovathana1@amkb", "morn sovathana", "PHNOM PENH", optionalData);
@@ -96,6 +159,8 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.responseMessage === 'Success') {
                     clearInterval(checkTransactionInterval);
+                    // save data function 
+                    autoSaveData();
                     window.location.href = 'http://localhost:8080/project/project_team/profile.php';
                     // for telegram message
                     const token_telegram = "7948926578:AAH13fuvJf_wUOFr2fNo8YGFIZzJvuUvSX0";

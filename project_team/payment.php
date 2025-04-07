@@ -16,43 +16,87 @@ if($_SESSION['auth_user']){
             <!-- cart-box-noresponsive -->
             <div class="w-full chechout-box">
                     <!-- Checkout form -->
-                    <form action="" method="POST" class="w-full font-[Poppins,hanuman,Sans-serif] font-medium text-gray-700 flex flex-col lg:flex-row justify-between">
-
+                    <form
+                        id="checkoutForm"
+                        method="POST"
+                        class="w-full font-[Poppins,hanuman,Sans-serif] font-medium text-gray-700 flex flex-col lg:flex-row justify-between"
+                      >
                         <div class="w-[100%] lg:w-[60%] h-fit p-5 rounded-xl border" style="border: 1px solid #d1d5db;">
-                        <!-- Billing Information Section -->
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                          <div>
-                            <label for="first-name" class="block text-gray-700">First Name</label>
-                            <input type="text" id="first-name" name="first-name" class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium" placeholder="First Name" require>
+                          <!-- Billing Information Section -->
+                          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                            <div>
+                              <label for="first-name" class="block text-gray-700">First Name</label>
+                              <input
+                                type="text"
+                                id="first-name"
+                                name="first-name"
+                                class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium"
+                                placeholder="First Name"
+                                required
+                              />
+                            </div>
+                            <div>
+                              <label for="last-name" class="block text-gray-700">Last Name</label>
+                              <input
+                                type="text"
+                                id="last-name"
+                                name="last-name"
+                                class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium"
+                                placeholder="Last Name"
+                                required
+                              />
+                            </div>
                           </div>
-                          <div>
-                            <label for="last-name" class="block text-gray-700">Last Name</label>
-                            <input type="text" id="last-name" name="last-name" class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium" placeholder="Last Name" require>
+                          
+                          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                            <div>
+                              <label for="city" class="block text-gray-700">City</label>
+                              <input
+                                type="text"
+                                id="city"
+                                name="city"
+                                class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium"
+                                placeholder="City"
+                                required
+                              />
+                            </div>
+                            <div class="mb-8">
+                              <label for="address" class="block text-gray-700">Address</label>
+                              <input
+                                type="text"
+                                id="address"
+                                name="address"
+                                class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium"
+                                placeholder="Address"
+                                required
+                              />
+                            </div>
                           </div>
-                        </div>
-                    
-                        
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                        <div>
-                          <label for="city" class="block text-gray-700">City</label>
-                          <input type="text" id="city" name="city" class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium" placeholder="City" require>
-                        </div>
-                        <div class="mb-8">
-                          <label for="address" class="block text-gray-700">Address</label>
-                          <input type="text" id="address" name="address" class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium" placeholder="Address" require>
-                        </div>
-                      </div>
 
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
-                          <div>
-                            <label for="email" class="block text-gray-700">Email</label>
-                            <input type="email" id="email" name="email" class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium" placeholder="Email" require>
+                          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
+                            <div>
+                              <label for="email" class="block text-gray-700">Email</label>
+                              <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium"
+                                placeholder="Email"
+                                required
+                              />
+                            </div>
+                            <div class="mb-8">
+                              <label for="phone-number" class="block text-gray-700">Phone</label>
+                              <input
+                                type="tel"
+                                id="phone-number"
+                                name="phone-number"
+                                class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium"
+                                placeholder="Phone"
+                                required
+                              />
+                            </div>
                           </div>
-                          <div class="mb-8">
-                            <label for="phone" class="block text-gray-700">Phone</label>
-                            <input type="phone" id="phone" name="phone" class="mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium" placeholder="phone" require>
-                          </div>
-                        </div>
                         </div>
 
                         <!-- place-order -->
@@ -71,6 +115,10 @@ if($_SESSION['auth_user']){
                         ?>
                         <tr class="border-b border-gray-100 hover:bg-gray-50 text-sm md:text-[15px] font-normal">
                         <td class="py-4 px-4"><?= $product['product_name'] ?></td>
+                        <!-- user_id -->
+                        <input type="hidden" name="user_id" id= "user_id" value = "<?= $user_id?>">
+                        <input type="hidden" name="cart_id" id = "cart_id" value = "<?= $product['id']?>">
+                        <!-- end user_id and cart_id -->
                         <td class="py-4 px-4"><?= $product['product_qty'] ?></td>
                         <td class="py-4 px-4 text-right">$<?= $product['product_price'] ?></td>
                         </tr>
@@ -87,24 +135,57 @@ if($_SESSION['auth_user']){
                   <div class="space-y-3">
                     <p class="text-gray-700">Subtotal</p>
                     <p class="text-gray-700">Shipping</p>
-                    <p class="text-gray-700">Tax</p>
                   </div>
                   <div class="text-right space-y-3">
-                    <p class="font-semibold text-gray-900">$625.00</p> <!-- Subtotal -->
-                    <p class="font-semibold text-gray-900">$15.00</p>   <!-- Shipping -->
-                    <p class="font-semibold text-gray-900">$45.00</p>   <!-- Tax -->
+                    <p class="font-semibold text-gray-900">
+                      <?php
+                         $itemTotal = 0;
+                         $shipping_id = 0;
+                         $get_cart = getProductUser("cart",$user_id);
+                         if(mysqli_num_rows($get_cart) > 0){
+                          foreach($get_cart as $cart){
+                            $itemTotal = $cart['product_price'] * $cart['product_qty'];
+                            $shipping_id = $cart['shipping_id'];
+                          }
+                          ?>
+                          $<?= $itemTotal?>
+                          <?php
+                         }
+                      ?>
+                    </p> <!-- Subtotal -->
+                    <p class="font-semibold text-gray-900">
+                      <?php
+                        $shipping = getShipping($shipping_id);
+                        if($shipping->num_rows > 0){
+                          $price = $shipping->fetch_assoc();
+                          ?>
+                          $<?= $price['shipping_price'] ?>
+                          <?php
+                        }
+
+                      ?>
+                    </p>   <!-- Shipping -->
                   </div>
                 </div>
               
                 <!-- Total Section -->
                 <div class="mt-6 flex justify-between items-center text-lg md:text-xl font-medium">
                   <p class="text-gray-900">Total</p>
-                  <p class="text-green-500">$685.00</p> <!-- Total amount -->
+                  <p class="text-green-500">
+                  <?php
+                      $get_shipping = getShipping1($shipping_id);
+                      if($get_shipping->num_rows > 0){
+                          $shippingData = $get_shipping->fetch_assoc();
+                          $finalTotal = $itemTotal + $shippingData['shipping_price'];
+                          echo '$' . number_format($finalTotal);
+                      }
+                  ?>
+                  </p> <!-- Total amount -->
                 </div>
               
                 <!-- Checkout Button -->
                 <div class="mt-6 text-center text-sm"  >
-                  <button id = "checkout" data-bs-toggle="modal" data-bs-target="#qrCodeModal" type = "button" class="w-full py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400"  >
+                  <button id = "checkout" data-total = "<?= $finalTotal ?>" data-bs-toggle="modal" data-bs-target="#qrCodeModal" type = "button" class="w-full hidden py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400"  >
                     Proceed to Checkout
                   </button>
                 </div>
