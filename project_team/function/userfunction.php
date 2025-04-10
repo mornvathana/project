@@ -17,7 +17,7 @@
     }
     function getTitle($table){
         global $conn;
-        $query = "SELECT product_name FROM product_database";
+        $query = "SELECT product_name FROM $table ORDER BY id DESC LIMIT 1";
         return $query_run = mysqli_query($conn,$query);
     }
     function redirect($url,$message){
