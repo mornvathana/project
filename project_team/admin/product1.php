@@ -4,9 +4,9 @@
         <div class = "w-full h-[100vh] bg-[#ffffff] rounded-md p-5">
             <div class = "w-full h-[140px] md:h-[70px] grid grid-cols-2 sm:grid-cols-5 sm:h-[70px] md:grid-cols-6 gap-5 ">
                 <div class = "bg-gray-800 h-full flex  justify-center items-center flex-col text-white rounded-md sm:text-[11px] text-[10px]">
-                <p>Total Main Product</p>
+                <p>Total Brand</p>
                 <?php
-                $count = countTable("product_database");
+                $count = countTable("brands");
                 ?>
                 <p><?= $count ?></p>
                 <?php
@@ -15,21 +15,21 @@
                 <div class = "bg-gray-800 h-full flex  justify-center items-center flex-col text-white rounded-md sm:text-[11px] text-[10px]">
                 <p>Total Sub Category</p>
                 <?php
-                $count = countTable("category_db");
+                $count = countTable("product_detail");
                 ?>
                 <p><?= $count ?></p>
                 <?php
                 ?>
                 </div>  
-                <div class = "bg-gray-800 h-full flex  justify-center items-center flex-col text-white rounded-md sm:text-[11px] text-[10px]">
+                <!-- <div class = "bg-gray-800 h-full flex  justify-center items-center flex-col text-white rounded-md sm:text-[11px] text-[10px]">
                 <p>Brands</p>
                 <?php
-                $count = countTable("category_db");
+                $count = countTable("brands");
                 ?>
                 <p><?= $count ?></p>
                 <?php
                 ?>
-                </div> 
+                </div>  -->
             </div>
             <div class = "w-full h-full mt-5 overflow-x-auto">
             <table class = "text-center w-full table-auto">
@@ -43,19 +43,19 @@
                     </thead>
                     <tbody>
                         <?php
-                         $product_title = getAll("product_database");
+                         $product_title = getAll('brands');
                          if(mysqli_num_rows($product_title)){
                             foreach($product_title as $product){
                                 ?>
                             <tr id = "product-<?= $product['id']?>">
                             <td class = "text-[11px] md:text-[13px] py-1 border border-gray-200"><?= $product['id']?></td>
-                            <td id = "productName" class = "text-[11px] md:text-[13px] py-1 border border-gray-200"><?= $product['product_name']?></td>
+                            <td id = "productName" class = "text-[11px] md:text-[13px] py-1 border border-gray-200"><?= $product['name']?></td>
                             <td class = "text-[11px] md:text-[13px] py-1 border border-gray-200"><span id = "circle" class = "text-[11px] md:text-[13px] py-1 border border-gray-200">
                                 <?php
-                                    $count = countCategoryItem("category_db",$product['product_name']);
-                                    ?>
-                                    <?= $count?>
-                                    <?php
+                                $count = countCategoryItem("product_detail",$product['id']);
+                                ?>
+                                <?= $count?>
+                                <?php
                                 ?>
                             </span></td>
                             <td class = "border border-gray-200 text-[11px] md:text-[13px] py-1">

@@ -35,16 +35,22 @@
         $sql = "SELECT * FROM $table WHERE id = $id";
         return $sql_run = mysqli_query($conn,$sql);
     }
-    function getProduct($id){
+    function getProduct($id,$min,$max){
         global $conn;
         $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
-                    , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.brand_id = '$id'";
+                    , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.brand_id = $id AND d.sell_price BETWEEN $min AND $max";
         return $product1 = mysqli_query($conn,$product);
     }
     function getProductEach($id){
         global $conn;
         $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
                     , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.id = '$id'";
+        return $product1 = mysqli_query($conn,$product);
+    }
+    function getBrandEach($id){
+        global $conn;
+        $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
+                    , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.brand_id = $id";
         return $product1 = mysqli_query($conn,$product);
     }
     function getShipping($id){

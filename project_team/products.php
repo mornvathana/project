@@ -1,8 +1,10 @@
 <?php include('includes/header.php')?>
 <?php
+  	$min = isset($_GET['min-price']) ? (int)$_GET['min-price'] : 8;
+    $max = isset($_GET['max-price']) ? (int)$_GET['max-price'] : 3000;
     if(isset($_GET{'id'})){
         $product = $_GET['id'];
-         $product_item = getProduct($product);
+         $product_item = getProduct($product,$min,$max);
     }
 ?>
 <!-- start proudct -->
@@ -33,26 +35,22 @@
             <!-- end of product-head -->
             
             <!-- ui slider range -->
-            <div class="flex items-center justify-center">
-                <div class="rounded-xl w-full">    
-                    <!-- Range Slider -->
-                    <div class="relative mt-8">
-                        <div class="range-container">
-                            <div id="slider-track" class="track"></div>
-                            <input type="range" id="range-min" min="8" max="1000" value="8" step="1" class="absolute left-0 z-10">
-                            <input type="range" id="range-max" min="8" max="1000" value="1000" step="1" class="absolute right-0 z-10">
-                        </div>
-                    </div>
-            
-                    <!-- Display current min and max value -->
-                    <div class="mt-3 text-center font-[Poppins,hanuman,Sans-serif]">
-                        <span id="min-value" class="text-md md:text-lg font-normal text-gray-800">8</span> -
-                        <span id="max-value" class="text-md md:text-lg font-normal text-gray-800">1000</span>
-                    </div>
-                </div>
-            
-            </div>
-
+            <form method="GET" action="" class="flex items-center justify-center">
+              <input type="hidden" name="id" value="<?= $_GET['id'] ?? '' ?>">
+              <div class="rounded-xl w-full">
+                  <div class="relative mt-8">
+                      <div class="range-container">
+                          <div id="slider-track" class="track"></div>
+                          <input type="range" name="min-price" id="range-min" min="8" max="3000" value="<?= $_GET['min-price'] ?? 8 ?>" step="1" class="absolute left-0 z-10">
+                          <input type="range" name="max-price" id="range-max" min="8" max="3000" value="<?= $_GET['max-price'] ?? 3000 ?>" step="1" class="absolute right-0 z-10">
+                      </div>
+                  </div>
+                  <div class="mt-3 text-center font-[Poppins,hanuman,Sans-serif]">
+                      <span id="min-value" class="text-md md:text-lg font-normal text-gray-800"><?= $_GET['min-price'] ?? 8 ?></span> -
+                      <span id="max-value" class="text-md md:text-lg font-normal text-gray-800"><?= $_GET['max-price'] ?? 3000 ?></span>
+                  </div>
+              </div>
+          </form>
             <!-- product-box -->
             <div class="product-box w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-4 gap-3 mt-5">
             <!-- box -->
@@ -123,5 +121,28 @@
             <a href="#"><img src="https://angkormeas.com/wp-content/uploads/2023/10/Apple-Watch-SE-2024.webp" alt="" class="w-full h-full"></a>
         </div>
     </div>
-<!-- end product -->
+    <!-- end product -->
+        <script>
+        const form = document.querySelector("form");
+        const rangeMin = document.getElementById("range-min");
+        const rangeMax = document.getElementById("range-max");
+        const minValue = document.getElementById("min-value");
+        const maxValue = document.getElementById("max-value");
+
+        rangeMin.addEventListener("input", () => {
+            minValue.textContent = rangeMin.value;
+        });
+
+        rangeMax.addEventListener("input", () => {
+            maxValue.textContent = rangeMax.value;
+        });
+        
+        rangeMin.addEventListener("change", () => {
+            form.submit();
+        });
+        rangeMax.addEventListener("change", () => {
+            form.submit();
+        });
+    </script>
+
 <?php include('includes/footer.php')?>

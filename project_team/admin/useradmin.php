@@ -30,7 +30,7 @@
                             </div>
                             <div class = "">
                                 <p class = " text-[10px] md:text-sm font-medium my-2">Created</p>
-                                <p class = " text-[10px] md:text-sm my-1"><?= $userItem['create_at']?></p>
+                                <p class = " text-[10px] md:text-sm my-1"><?= $userItem['created_at']?></p>
                             </div>
                         </div>
                         <div class = "w-full h-[10%] px-5">
@@ -44,7 +44,7 @@
                             </div>
                             <div class = "">
                                 <p class = " text-[10px] md:text-sm font-medium my-2">Email Verify</p>
-                                <p class = " text-[10px] md:text-sm my-1"><?= $userItem['create_at']?></p>
+                                <p class = " text-[10px] md:text-sm my-1"><?= $userItem['created_at']?></p>
                             </div>
                         </div>
                         <hr>
@@ -83,7 +83,7 @@
                             <td class = " text-[11px] md:text-sm py-2 border border-gray-200"><?= $userItem['name'] ?></td>
                             <td class = " text-[11px] md:text-sm py-2 border border-gray-200 break-words"><?= $userItem['email'] ?></td>
                             <td class = " text-[11px] md:text-sm py-2 border border-gray-200"><?= $userItem['status'] == 1 ? 'Active' : 'Disabled' ?></td>
-                            <td class = " text-[11px] md:text-sm py-2 border border-gray-200"><?= $userItem['create_at'] ?></td>
+                            <td class = " text-[11px] md:text-sm py-2 border border-gray-200"><?= $userItem['created_at'] ?></td>
                             <td class = " text-[11px] md:text-sm py-2 border border-gray-200">
                                 <?php
                                     if($user_name == $userItem['name']){

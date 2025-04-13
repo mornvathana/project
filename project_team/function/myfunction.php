@@ -10,7 +10,7 @@
     }
     function countCategoryItem($table,$value){
         global $conn;
-        $query = "SELECT count(*) as count FROM $table WHERE product_id = '$value'";
+        $query = "SELECT count(*) as count FROM $table WHERE id = $value";
         $query_run = mysqli_query($conn,$query);
         if($query_run){
             $result = mysqli_fetch_assoc($query_run);

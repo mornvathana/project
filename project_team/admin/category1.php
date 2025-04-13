@@ -3,29 +3,13 @@
 <div class = "h-full px-2 py-5 bg-blue-50">
     <div class = "w-full bg-[#ffffff] rounded-md p-5">
         <div class = "w-full flex justify-between items-center">
-            <div class="flex justify-between items-center w-[70%] ">
-                <div class = "w-[35px] py-2 rounded-sm">
-                    <label  class = "text-[13px] font-medium text-[#515151]">Product</label>
-                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-[200px] py-1 font-medium text-[#515151] outline-none">
-                    <option value = "" selected class = "text-[13px]">Select</option>
-                    <?php
-                        $product = getAll("product_database");
-                        if(mysqli_num_rows($product) > 0){
-                            foreach($product as $productItem){
-                                ?>
-                                <option value="<?= $productItem['product_name']?>" class = "text-[14px]"><?= $productItem['product_name']?></option>
-                                <?php
-                            }
-                        }
-                    ?>
-                    </select>
-                </div>
+            <div class="flex justify-between items-center w-[50%] ">
                 <div class = "w-[35px] py-2 rounded-sm">
                     <label  class = "text-[13px] font-medium text-[#515151]">Category</label>
                     <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-[200px] py-1 font-medium text-[#515151] outline-none">
                     <option value = "" selected class = "text-[13px]">Select</option>
                     <?php
-                    $product = getAll("category_db");
+                    $product = getAll("product_detail");
                     if(mysqli_num_rows($product) > 0){
                         foreach($product as $productItem){
                             ?>
@@ -41,11 +25,11 @@
                     <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-[200px] py-1 font-medium text-[#515151] outline-none">
                     <option value = "" selected class = "text-[13px]">Select</option>
                     <?php
-                    $product = getAll("product_database");
+                    $product = getAll("brands");
                     if(mysqli_num_rows($product) > 0){
                         foreach($product as $productItem){
                             ?>
-                            <option value="<?= $productItem['product_name']?>" class = "text-[14px]"><?= $productItem['product_name']?></option>
+                            <option value="<?= $productItem['name']?>" class = "text-[14px]"><?= $productItem['name']?></option>
                             <?php
                             }
                         }
