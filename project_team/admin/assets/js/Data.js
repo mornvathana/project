@@ -9,7 +9,15 @@ $(document).ready(function () {
             dataType: "json", 
             success: function (response) {
                 if (response == 400) { 
-                    alert("We found the same name!");
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'We got the same name!',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                    popup: 'custom-popup', 
+                    }
+                    });
                 }
             },
         });

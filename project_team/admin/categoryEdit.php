@@ -22,8 +22,7 @@
                                         <div class = " w-full h-full">
                                         <div class  = "w-full">
                                         <div class = "w-full">
-                                            <input type="hidden" name = "userid" value = "<?= $user['id']?>" readonly>
-                                            <input type="hidden" name="page_id" value = "<?= $user_id ?>">
+                                            <input type="hidden" name = "id" id = "pdid" value = "<?= $item['id']?>">
                                             <label for="barcode" class = "block py-1 text-[13px]">Barcode</label>
                                             <input type="text" name = "barcode" value = "<?= $item['barcode'] ?>" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" id = "name" placeholder = "Barcode">
                                         </div>
@@ -59,10 +58,10 @@
                                             <?php
                                                 $brand = getAll('brands');
                                                 if($brand->num_rows > 0){
-                                                foreach($brand as $item){
+                                                foreach($brand as $item1){
                                                 ?>
                                                 <select id = "brand" name = "brand" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md">
-                                                <option value="<?= $item['id']?>"><?= $item['name'] ?></option>
+                                                <option value="<?= $item1['id']?>"><?= $item1['name'] ?></option>
                                                 </select>
                                                 <?php
                                                 }
@@ -83,21 +82,14 @@
                                         <div class = "w-full h-[170px] flex">
                                         <div class = "w-[50%] flex justify-center items-center none">
                                             <div class="w-[90%] border border-[1px] border-dashed border-blue-900 h-[100%] rounded-md">
-                                                <img src="
-                                                <?php
-                                                    if(!empty($item['image'])){
-                                                        echo '../uploads/category/' . $item['image'];
-                                                    }else{
-                                                        echo '../uploads/default/default.jpg';
-                                                    }
-                                                ?>
-                                                " id = "showImage" class = "w-full h-full object-contain" alt="">
-                                                <input type="hidden" name="old_image" value = "<?= $item['image'] ?>" >
+                                            <?php $imagePath = !empty($item['image']) ? '../uploads/category/' . $item['image'] : '../uploads/default/default.jpg'; ?>
+                                            <img src="<?php echo $imagePath; ?>" alt="Image" id = "showImage" class = "w-full h-full object-contain" alt="">
+                                            <input type="hidden" name="old_image" value = "<?= $item['image'] ?>" >
                                             </div>
                                         </div> 
                                         <div class = "w-[50%] flex justify-center items-center relative">
                                         <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
-                                            <input type="file" name = "image" id = "profile_image" accept="image/*" class = "w-full h-full hidden" required>
+                                            <input type="file" name = "image"  id = "profile_image" accept="image/*" class = "w-full h-full hidden">
                                         </div>
                                         <label for="profile_image" class = "absolute text-sm ">Select Image <i class="fa-solid fa-image"></i></label>
                                         </div> 
@@ -114,24 +106,35 @@
                                                 <?php
                                                     $image_string = $item['demo_image'];
                                                     $image_array = explode(',', $image_string);
-                                                    foreach($iimage_array as $img){
-                                                        ?>
-                                                        
+                                                    foreach($image_array as $img){
+                                                    ?>
+                                                     <div class = " h-[50%]">
+                                                        <img src="
                                                         <?php
+                                                            if(!empty($img)){
+                                                                echo '../uploads/category/' . $img;
+                                                            }else{
+                                                                echo '../uploads/default/default.jpg';
+                                                            }
+                                                        ?>
+                                                        " id = "showImage1" class = "w-full h-full object-contain" alt="">
+                                                        <input type="checkbox" name="" value = "<?= $img ?>" id="checked">
+                                                        </div>
+                                                    <?php
                                                     }
                                                 ?>
                                             </div>
                                         </div> 
                                         <div class = "w-[50%] flex justify-center items-center relative">
                                         <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
-                                            <input type="file" name = "demo_image[]" id = "profile_image1" multiple accept="image/*" class = "w-full h-full hidden" required>
+                                            <input type="file" name = "demo_image[]" id = "profile_image1"  multiple accept="image/*" class = "w-full h-full hidden">
                                         </div>
                                         <label for="profile_image1" class = "absolute text-sm ">Demo Image <i class="fa-solid fa-image"></i></label>
                                         </div> 
                                         </div>
                                         </div>
                                         <div class="w-full mt-3 flex justify-end items-center pr-5">
-                                        <button type = "submit" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md" name = "add_category">Submit</button>
+                                        <button type = "submit" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md" name = "category_update">Update</button>
                                         </div>
                                         </div>
                                         </div>
@@ -146,19 +149,6 @@
                     ?>
                 </div>
             </div>
-            <!-- <div class = " h-[50%]">
-    <img src="
-    <?php
-        if(!empty($user['image'])){
-            echo '../uploads/admin/' . $user['image'];
-        }else{
-            echo '../uploads/default/default.jpg';
-        }
-    ?>
-    " id = "showImage1" class = "w-full h-full object-contain" alt="">
-    <input type="checkbox" name="" id="">
-    <input type="hidden" name="old_image" value = "<?= $user['image'] ?>" >
-    </div> -->
         <!-- ckeditor -->
         <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
         <script>
@@ -171,19 +161,30 @@
             height: 130,
         });
         </script>
-         <script>
-        $(document).ready(function(){
-            $("#profile_image").change(function(e){
-                var readerView = new FileReader();
-                readerView.onload = function(event){
-                    $("#showImage").attr("src", event.target.result);
-                }
-                readerView.readAsDataURL(e.target.files[0]);
-            });
-        });
-        </script>
         <script>
         $(document).ready(function(){
+            // checked image 
+            $("#checked").click(function(){
+                const id = $("#pdid").val();
+                const img = $(this).val();
+                $.ajax({
+                    method: "POST",
+                    url: "deleteProduct.php",
+                    data: {
+                        "id" : id,
+                        "img" : img,
+                        "scrope": "deleteDimg"
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        if(response == 200){
+                            location.reload();
+                        }else if(response == 404){
+                            alert("fails");
+                        }
+                    }
+                });
+            });
             $("#profile_image1").change(function(e){
                 var readerView = new FileReader();
                 readerView.onload = function(event){

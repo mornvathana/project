@@ -1,7 +1,7 @@
 <?php include('includes/header.php')?>
 <!--  -->
 <div class = "h-full px-2 py-2 bg-blue-50">
-    <div class = "w-full bg-[#ffffff] md:h-[100vh]  rounded-md p-5">
+    <div class = "w-full bg-[#ffffff]   rounded-md p-5">
         <div class = "w-full h-[20px] flex justify-between items-center">
             <div class = "w-[10%] h-full">
                 <p class = "font-medium font-md ml-3">Report</p>
@@ -59,20 +59,36 @@
         </div>
         <div class = "w-full h-full ">
             <div class="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-[30px]">
-                <div class="h-[150px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 bg-blue-50">
+                
+               <?php
+                  $order = getAll('orders');
+                  if($order->num_rows > 0){
+                    foreach($order as $item){
+                    ?>
+                     <div class="h-[150px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 bg-blue-50">
                     <div class="flex h-[25%] justify-between items-center">
-                        <span class = "text-[13px] font-medium text-[#515151]">Vathana</span>
+                        <span class = "text-[13px] font-medium text-[#515151]"><?= $item['first_name'] ?> <?= $item['last_name'] ?></span>
+                        <?php
+                        if($item['status'] == 1){
+                        ?>
+                        <span class = "text-red-500"><i class="fa-solid fa-circle"></i></span>
+                        <?php
+                        }else{
+                        ?>
                         <span class = "text-green-500"><i class="fa-solid fa-circle"></i></span>
+                        <?php
+                        }
+                        ?>
                     </div>
                     <hr>
                     <div class="flex h-[25%] justify-between items-center">
-                        <span class = "text-[13px] font-medium text-[#515151]">Order</span>
-                        <span class = "text-[13px] text-[#515151]">500</span>
+                        <span class = "text-[13px] font-medium text-[#515151]">ID</span>
+                        <span class = "text-[13px] text-[#515151]"><?= $item['id'] ?></span>
                     </div>
                     <hr>
                     <div class="flex h-[25%] justify-between items-center">
                         <span class = "text-[13px] font-medium text-[#515151]"><i class="fa-regular fa-clock"></i></span>
-                        <span class = "text-[13px] text-[#515151]">12/1/2024 5:00 AM</span>
+                        <span class = "text-[13px] text-[#515151]"><?= $item['created_at'] ?></span>
                     </div>
                     <hr>
                     <div class = "flex h-[25%] justify-between items-center">   
@@ -80,186 +96,16 @@
                         <button class = "text-[13px] bg-blue-500 text-white rounded-sm px-1 font-medium text-[#515151]">Check</button>
                         <button class = "text-[13px] bg-red-500 text-white rounded-sm px-1 font-medium text-[#515151]"><i class="fa-solid fa-trash-can"></i></button>
                     </div>
-                </div>
-                <div class="h-[150px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 bg-blue-50">
-                    <div class="flex h-[25%] justify-between items-center">
-                        <span class = "text-[13px] font-medium text-[#515151]">Vathana</span>
-                        <span class = "text-green-500"><i class="fa-solid fa-circle"></i></span>
                     </div>
-                    <hr>
-                    <div class="flex h-[25%] justify-between items-center">
-                        <span class = "text-[13px] font-medium text-[#515151]">Order</span>
-                        <span class = "text-[13px] text-[#515151]">500</span>
-                    </div>
-                    <hr>
-                    <div class="flex h-[25%] justify-between items-center">
-                        <span class = "text-[13px] font-medium text-[#515151]"><i class="fa-regular fa-clock"></i></span>
-                        <span class = "text-[13px] text-[#515151]">12/1/2024 5:00 AM</span>
-                    </div>
-                    <hr>
-                    <div class = "flex h-[25%] justify-between items-center">   
-                        <button class = "text-[13px] bg-green-500 text-white rounded-sm px-1 font-medium text-[#515151]">Verify</button>
-                        <button class = "text-[13px] bg-blue-500 text-white rounded-sm px-1 font-medium text-[#515151]">Check</button>
-                        <button class = "text-[13px] bg-red-500 text-white rounded-sm px-1 font-medium text-[#515151]"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                </div>
-                <div class="h-[150px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 bg-blue-50">
-                    <div class="flex h-[25%] justify-between items-center">
-                        <span class = "text-[13px] font-medium text-[#515151]">Vathana</span>
-                        <span class = "text-green-500"><i class="fa-solid fa-circle"></i></span>
-                    </div>
-                    <hr>
-                    <div class="flex h-[25%] justify-between items-center">
-                        <span class = "text-[13px] font-medium text-[#515151]">Order</span>
-                        <span class = "text-[13px] text-[#515151]">500</span>
-                    </div>
-                    <hr>
-                    <div class="flex h-[25%] justify-between items-center">
-                        <span class = "text-[13px] font-medium text-[#515151]"><i class="fa-regular fa-clock"></i></span>
-                        <span class = "text-[13px] text-[#515151]">12/1/2024 5:00 AM</span>
-                    </div>
-                    <hr>
-                    <div class = "flex h-[25%] justify-between items-center">   
-                        <button class = "text-[13px] bg-green-500 text-white rounded-sm px-1 font-medium text-[#515151]">Verify</button>
-                        <button class = "text-[13px] bg-blue-500 text-white rounded-sm px-1 font-medium text-[#515151]">Check</button>
-                        <button class = "text-[13px] bg-red-500 text-white rounded-sm px-1 font-medium text-[#515151]"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                </div>
-            </div>
+                    <?php
+                    }
+                  }
+               ?>
+
+            </div> 
         </div>
     </div>
-            <!-- <div class = "box-ordering">
-                <div class = "rounded-md shadow-md box-ordering-item">
-                    <h3>Ordering</h3>
-                    <h3>3</h3>
-                </div>
-                <div class = "rounded-md shadow-md box-ordering-item">
-                    <h3>Order Success</h3>
-                    <h3>3</h3>
-                </div>
-                <div class = "rounded-md shadow-md box-ordering-item">
-                    <h3>Paid</h3>
-                    <h3>3</h3>
-                </div>
-            </div>
-             end ordering box -->
-            <!-- <div class = "list-ordering">
-                <div class = "shadow-md list-ordering-item">
-                    <div class="list-header">
-                        <span>Vathana</span>
-                        <span class = "text-green-500"><i class="fa-solid fa-circle"></i></span>
-                    </div>
-                    <div class="list-header">
-                        <span>Order</span>
-                        <span>500</span>
-                    </div>
-                    <div class="list-header">
-                        <span><i class="fa-regular fa-clock"></i></span>
-                        <span style = "font-size: 12px;">12/1/2024 5:00 AM</span>
-                    </div>
-                    <div class = "list-body">   
-                        <button>Verify</button>
-                        <button>Check</button>
-                        <button><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                </div>
-                <div class = "shadow-md list-ordering-item">
-                    <div class="list-header">
-                        <span>Vathana</span>
-                        <span class = "text-green-500"><i class="fa-solid fa-circle"></i></span>
-                    </div>
-                    <div class="list-header">
-                        <span>Order</span>
-                        <span>500</span>
-                    </div>
-                    <div class="list-header">
-                        <span><i class="fa-regular fa-clock"></i></span>
-                        <span style = "font-size: 12px;">12/1/2024 5:00 AM</span>
-                    </div>
-                    <div class = "list-body">   
-                        <button>Verify</button>
-                        <button>Check</button>
-                        <button><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                </div>
-                <div class = "shadow-md list-ordering-item">
-                    <div class="list-header">
-                        <span>Vathana</span>
-                        <span class = "text-green-500"><i class="fa-solid fa-circle"></i></span>
-                    </div>
-                    <div class="list-header">
-                        <span>Order</span>
-                        <span>500</span>
-                    </div>
-                    <div class="list-header">
-                        <span><i class="fa-regular fa-clock"></i></span>
-                        <span style = "font-size: 12px;">12/1/2024 5:00 AM</span>
-                    </div>
-                    <div class = "list-body">   
-                        <button>Verify</button>
-                        <button>Check</button>
-                        <button><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                </div>
-                <div class = "shadow-md list-ordering-item">
-                    <div class="list-header">
-                        <span>Vathana</span>
-                        <span class = "text-green-500"><i class="fa-solid fa-circle"></i></span>
-                    </div>
-                    <div class="list-header">
-                        <span>Order</span>
-                        <span>500</span>
-                    </div>
-                    <div class="list-header">
-                        <span><i class="fa-regular fa-clock"></i></span>
-                        <span style = "font-size: 12px;">12/1/2024 5:00 AM</span>
-                    </div>
-                    <div class = "list-body">   
-                        <button>Verify</button>
-                        <button>Check</button>
-                        <button><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                </div>
-                <div class = "shadow-md list-ordering-item">
-                    <div class="list-header">
-                        <span>Vathana</span>
-                        <span class = "text-green-500"><i class="fa-solid fa-circle"></i></span>
-                    </div>
-                    <div class="list-header">
-                        <span>Order</span>
-                        <span>500</span>
-                    </div>
-                    <div class="list-header">
-                        <span><i class="fa-regular fa-clock"></i></span>
-                        <span style = "font-size: 12px;">12/1/2024 5:00 AM</span>
-                    </div>
-                    <div class = "list-body">   
-                        <button>Verify</button>
-                        <button>Check</button>
-                        <button><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                </div>
-                <div class = "shadow-md list-ordering-item">
-                    <div class="list-header">
-                        <span>Vathana</span>
-                        <span class = "text-green-500"><i class="fa-solid fa-circle"></i></span>
-                    </div>
-                    <div class="list-header">
-                        <span>Order</span>
-                        <span>500</span>
-                    </div>
-                    <div class="list-header">
-                        <span><i class="fa-regular fa-clock"></i></span>
-                        <span style = "font-size: 12px;">12/1/2024 5:00 AM</span>
-                    </div>
-                    <div class = "list-body">   
-                        <button>Verify</button>
-                        <button>Check</button>
-                        <button><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                </div>
-            </div> -->
-            
-        </div>
+           
+    </div>
 <!--  -->
 <?php include('includes/footer.php')?>

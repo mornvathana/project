@@ -246,7 +246,6 @@
         var prod_image = $('#product_image').val();
         var prod_barcode = $('#product_barcode').val();
         var prod_specification = $('#specification').val();
-        alert("Hello");
         $.ajax({
             method:"POST",
             url: "function/code.php",

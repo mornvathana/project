@@ -27,22 +27,32 @@ $(document).ready(function () {
                         if(response == 200){
                         $("#productName").text(productName);
                         Swal.fire({
-                        position: "top-center",
-                        icon: "success",
-                        title: "Data has updated!",
-                        showConfirmButton: false,
-                        timer: 1500
+                        icon: 'success',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Data has updated!</span>',
+                        showCancelButton: false,  
+                        showConfirmButton: false, 
+                        timer: 1000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
                         });
-                        
                         }
                         if(response == 404){
                         Swal.fire({
-                        position: "top-center",
-                        icon: "warning",
-                        title: "Something went wrong!",
-                        showConfirmButton: false,
-                        timer: 1500
-                        });
+                            icon: 'warning',
+                            title: 'Oops...',
+                            text: 'Something went wrong!',
+                            confirmButtonText: 'OK',
+                            customClass: {
+                            popup: 'custom-popup', 
+                            }
+                            });
                         }
                     }
                 });
@@ -66,20 +76,31 @@ $(document).ready(function () {
             success: function (response) {
                 if(response == 200){
                     Swal.fire({
-                    position: "top-center",
-                    icon: "success",
-                    title: "Data has updated!",
-                    showConfirmButton: false,
-                    timer: 1500
+                    icon: 'success',
+                    title: '<span class="text-gray-800 font-semibold text-lg">Data has updated!</span>',
+                    showCancelButton: false,  
+                    showConfirmButton: false, 
+                    timer: 1000,  
+                    background: '#fff',
+                    focusCancel: true,
+                    buttonsStyling: false,
+                    customClass: {
+                        popup: 'rounded-xl shadow-md p-6',
+                    },
+                    didOpen: () => {
+                        document.querySelector('.swal2-popup').style.width = '400px';
+                    }
                     });
                     }
                     if(response == 404){
                     Swal.fire({
-                    position: "top-center",
-                    icon: "warning",
-                    title: "Something went wrong!",
-                    showConfirmButton: false,
-                    timer: 1500
+                    icon: 'warning',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                    popup: 'custom-popup', 
+                    }
                     });
                     }
             }

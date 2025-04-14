@@ -87,7 +87,86 @@
         
        
     }else if(isset($_POST['category_update'])){
-        
+        $barcode = $_POST['barcode'];
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $original_price = $_POST['original_price'];
+        $sell_price = $_POST['sell_price'];
+        $specification = $_POST['specification'];
+        $description = $_POST['description'];
+        $brand = $_POST['brand'];
+        $promotion = $_POST['promotion'];
+
+        $old_image = $_POST['old_image'];
+        $size = $_FILES['image']['size'];
+        $image = $_FILES['image']['name'];
+
+        $path = "../uploads/category";  
+        $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+
+        $demo_image = $_FILES['image']['demo_image']; 
+        $valid = true;
+        $demo_images = [];
+
+        foreach($_FILES['demo_image']['size'] as $key => $demo_size){
+            if($demo_size > 100 * 1024){
+                $valid = false;
+                break;
+            }
+        }
+
+         if($size > 100 * 1024 || !$valid){
+            redirect1("category.php","Please upload new image!");
+         }else{
+            $stmt = $conn->prepare("UPDATE product_detail  SET brand_id = ?,  promotion = ?, barcode = ?,
+            name = ?, original_price = ?, sell_price = ? WHERE id = ?");
+            $stmt->bind_param("iiissii", $brand, $promotion, $barcode, $name, $original_price, $sell_price,$id);
+            $stmt->execute();
+            
+            if($stmt){
+                // process demo image 
+                foreach($_FILES['demo_image']['name'] as $key => $demo_name){
+                    $demo_ext = pathinfo($demo_name, PATHINFO_EXTENSION);
+                    $demo_filename = time() . '_' . $key . '.' . $demo_ext;
+                    move_uploaded_file($_FILES['demo_image']['tmp_name'][$key], $path . '/' . $demo_filename);
+                    $demo_images[] = $demo_filename;
+                }
+                // check demo_image
+                $demo_images_string = implode(',', $demo_images);            
+                // delete old image 
+                if(!empty($image)){
+                    $img_data = "SELECT * FROM product_image WHERE id = $id";
+                    $img_data_run = $conn->query($img_data);
+                    if($img_data_run->num_rows > 0){
+                        $img_query = $img_data_run->fetch_assoc()['image'];
+                        $img_path = $path . '/' . $img_query;
+                        // remove image from folder 
+                        if( $img_query != "default.jpg" && file_exists($img_path)){
+                            unlink($img_path);
+                        }
+                }
+                }
+                // end delete image
+                if(!empty($image)){
+                    $filename = time() . '.' . $image_ext;
+                }else{
+                    $filename = $old_image;
+                }
+
+                $stmt1 = $conn->prepare("UPDATE product_image SET specification = ?, 
+                        description = ?, image = ?, demo_image = ? WHERE product_id = ?");
+                $stmt1->bind_param("ssssi",$specification,$description,$filename,$demo_images_string,$id);
+                $stmt1->execute();
+                
+                if($stmt1){
+                    move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+                    redirect("category1.php","Data has updated!");
+                }else{
+                    redirect1("category.php","Something went wrong!");
+                }
+            }
+
+         }
     }
     else if(isset($_POST['change_password'])){
         $conn = new mysqli("localhost","root","","ecommerce_data");

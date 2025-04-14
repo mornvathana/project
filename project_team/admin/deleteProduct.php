@@ -102,6 +102,36 @@
                 echo 200;   
             }
             break;
+            case "deleteDimg":
+                $id = $_POST['id'];
+                $img = $_POST['img'];
+                $stmt = $conn->prepare("SELECT demo_image FROM product_image WHERE product_id = ?");
+                $stmt->bind_param("i",$id);
+                $stmt->execute();
+                $result = $stmt->get_result()->fetch_assoc();
+
+                $old_image = explode(",",$result['demo_image']);
+                $update_img = array_diff($old_image,[$img]);
+                $update_image = implode(',',$update_img);
+
+                // update image to database 
+                $update = $conn->prepare("UPDATE product_image SET demo_image = ? WHERE product_id = ? ");
+                $update->bind_param("si",$update_image,$id);
+
+                if($update->execute()){
+                    $path = '../uploads/category/'.$img;
+                    $full_path = realpath($path);
+                    if(file_exists($full_path)){
+                        unlink($full_path);
+                        echo 200; // Success
+                    }else{
+                        echo 404; // File not found
+                    }
+
+                }
+
+                
+            break;
             default;
             echo "invalid scrope";
         }
