@@ -1,111 +1,86 @@
-<?php include('includes/header.php')?>
-<!--  -->
-<div class = "h-full px-2 py-2 bg-blue-50">
-    <div class = "w-full bg-[#ffffff]   rounded-md p-5">
-        <div class = "w-full h-[20px] flex justify-between items-center">
-            <div class = "w-[10%] h-full">
-                <p class = "font-medium font-md ml-3">Report</p>
-            </div>
-            <div class = "w-[90%] h-full">
-
-            </div>  
+<?php include('includes/header.php') ?>
+<div class="h-full px-4 py-4 bg-blue-50 min-h-screen">
+    <div class="w-full bg-white rounded-xl p-6">
+        <div class="flex justify-between items-center mb-6">
+            <h2 class="text-xl font-semibold text-gray-700">📊 Report Overview</h2>
         </div>
-        <div class="w-full grid grid-cols-1 md:grid-cols-2">
-            <div class="">
-            <div class="grid gap-3 grid-cols-1 md:grid-cols-3 lg:grid-cols-3 mt-[30px]">
-                <div class="h-[70px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 flex justify-center items-center flex-col bg-gray-800 text-white font-medium text-sm rounded-sm">
-                    <p>Finish</p>
-                    <p>0</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Summary Cards -->
+            <div class="grid gap-4 grid-cols-1 sm:grid-cols-3">
+                <div class="bg-gray-800 text-white rounded-xl p-4 shadow hover:shadow-lg transition">
+                    <p class="text-sm">Finished</p>
+                    <p class="text-2xl font-bold mt-1">0</p>
                 </div>
-                <div class="h-[70px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 flex justify-center items-center flex-col bg-gray-800 text-white font-medium text-sm rounded-sm">
-                    <p>Processing</p>
-                    <p>0</p>
+                <div class="bg-gray-800 text-white rounded-xl p-4 shadow hover:shadow-lg transition">
+                    <p class="text-sm">Processing</p>
+                    <p class="text-2xl font-bold mt-1">0</p>
                 </div>
-                <div class="h-[70px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 flex justify-center items-center flex-col bg-gray-800 text-white font-medium text-sm rounded-sm">
-                    <p>Pedding</p>
-                    <p>0</p>
+                <div class="bg-gray-800 text-white rounded-xl p-4 shadow hover:shadow-lg transition">
+                    <p class="text-sm">Pending</p>
+                    <p class="text-2xl font-bold mt-1">0</p>
                 </div>
             </div>
-            </div>
-            <div class = "hidden md:block">
-                <div class = "w-[100%] h-full">
-                    <form action="" class = "w-full h-full flex justify-center gap-5 items-center">
-                        <div class = "w-[33%] h-[10px]">                      
-                            <div class="relative max-w-sm">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
-                            </div>
-                            <input datepicker id="default-datepicker-1" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Start Date">
-                            </div>
-                        </div>
-                        <div class = "w-[33%] h-[10px]">                      
-                            <div class="relative max-w-sm">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-                                <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-                                </svg>
-                            </div>
-                            <input datepicker id="default-datepicker-2" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="End Date">
-                            </div>
-                        </div>
-                        <div class="w-[33%] h-[10px] mt-3">
-                            <button class = "text-white font-medium px-5 bg-blue-900  rounded-sm text-sm py-1">Search</button>
-                        </div>
-                    </form>
+
+            <!-- Date Filter -->
+            <div class="hidden md:flex items-center justify-end gap-4">
+                <div class="relative w-full max-w-xs">
+                    <input datepicker id="default-datepicker-1" type="text"
+                        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm"
+                        placeholder="Start Date">
+                    <div class="absolute left-3 top-2.5 text-gray-400">
+                        <i class="fa-regular fa-calendar"></i>
+                    </div>
                 </div>
+                <div class="relative w-full max-w-xs">
+                    <input datepicker id="default-datepicker-2" type="text"
+                        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm"
+                        placeholder="End Date">
+                    <div class="absolute left-3 top-2.5 text-gray-400">
+                        <i class="fa-regular fa-calendar"></i>
+                    </div>
+                </div>
+                <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">Search</button>
             </div>
         </div>
-        <div class = "w-full h-full ">
-            <div class="grid gap-3 grid-cols-2 md:grid-cols-3 lg:grid-cols-5 mt-[30px]">
-                
-               <?php
-                  $order = getAll('orders');
-                  if($order->num_rows > 0){
-                    foreach($order as $item){
-                    ?>
-                     <div class="h-[150px] mx-2 border shadow-md border-gray-100 rounded-sm p-2 bg-blue-50">
-                    <div class="flex h-[25%] justify-between items-center">
-                        <span class = "text-[13px] font-medium text-[#515151]"><?= $item['first_name'] ?> <?= $item['last_name'] ?></span>
-                        <?php
-                        if($item['status'] == 1){
-                        ?>
-                        <span class = "text-red-500"><i class="fa-solid fa-circle"></i></span>
-                        <?php
-                        }else{
-                        ?>
-                        <span class = "text-green-500"><i class="fa-solid fa-circle"></i></span>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                    <hr>
-                    <div class="flex h-[25%] justify-between items-center">
-                        <span class = "text-[13px] font-medium text-[#515151]">ID</span>
-                        <span class = "text-[13px] text-[#515151]"><?= $item['id'] ?></span>
-                    </div>
-                    <hr>
-                    <div class="flex h-[25%] justify-between items-center">
-                        <span class = "text-[13px] font-medium text-[#515151]"><i class="fa-regular fa-clock"></i></span>
-                        <span class = "text-[13px] text-[#515151]"><?= $item['created_at'] ?></span>
-                    </div>
-                    <hr>
-                    <div class = "flex h-[25%] justify-between items-center">   
-                        <button class = "text-[13px] bg-green-500 text-white rounded-sm px-1 font-medium text-[#515151]">Verify</button>
-                        <button class = "text-[13px] bg-blue-500 text-white rounded-sm px-1 font-medium text-[#515151]">Check</button>
-                        <button class = "text-[13px] bg-red-500 text-white rounded-sm px-1 font-medium text-[#515151]"><i class="fa-solid fa-trash-can"></i></button>
-                    </div>
-                    </div>
-                    <?php
-                    }
-                  }
-               ?>
 
-            </div> 
+        <!-- Orders List -->
+        <div class="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+            <?php
+            $order = getAll('orders');
+            if ($order->num_rows > 0) {
+                foreach ($order as $item) {
+            ?>
+                <div class="bg-blue-100 border border-blue-200 rounded-xl shadow hover:shadow-lg p-4 space-y-2 transition">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-semibold text-gray-700 text-sm"><?= $item['first_name'] ?> <?= $item['last_name'] ?></h4>
+                        <?php if ($item['status'] == 1) { ?>
+                            <span class="text-red-500 text-xs"><i class="fa-solid fa-circle"></i></span>
+                        <?php } else { ?>
+                            <span class="text-green-500 text-xs"><i class="fa-solid fa-circle"></i></span>
+                        <?php } ?>
+                    </div>
+                    <hr>
+                    <div class="flex justify-between text-xs text-gray-600">
+                        <span>ID</span><span><?= $item['id'] ?></span>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-600">
+                        <span><i class="fa-regular fa-clock"></i></span>
+                        <span><?= $item['created_at'] ?></span>
+                    </div>
+                    <div class="flex justify-between mt-2 gap-1">
+                        <button class="bg-green-600 hover:bg-green-700 text-white text-xs px-2 py-1 rounded">Verify</button>
+                        <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1 rounded">Check</button>
+                        <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>
+            <?php
+                }
+            }
+            ?>
         </div>
     </div>
-           
-    </div>
-<!--  -->
-<?php include('includes/footer.php')?>
+</div>
+<?php include('includes/footer.php') ?>

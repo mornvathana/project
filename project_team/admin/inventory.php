@@ -8,57 +8,72 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
             <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
                 <div class = "w-full h-[10%] flex justify-between items-center">
                     <div>
-                        <h1 class = "font-medium">Product List</h1>
+                        <h1 class = "font-medium">Inventory</h1>
                     </div>
                     <div>
-                        <a href = "brand.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md">Create Brand<i class="fa-solid fa-plus pl-1"></i></a>
                     </div>
                 </div>
                 <div class="w-full h-[70%] mt-5 overflow-x-auto">
+                <div class = "w-full h-[40px] flex justify-between items-center mb-2">
+                <div>
+                    <ul class = "flex">
+                        <li class = "mx-1">
+                            <a href="" class = "text-[12px] px-2 py-1 border border-gray-200 rounded-md">Orders</a>
+                        </li>
+                        <li class = "mx-1">
+                            <a href="" class = "text-[12px] px-2 py-1 border border-gray-200 rounded-md">Payments</a>
+                        </li>
+                        <li class = "mx-1">
+                            <a href="" class = "text-[12px] px-2 py-1 border border-gray-200 rounded-md">Product</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                <ul class = "flex">
+                        <li class = "mx-1">
+                            <a href="" class = "text-[12px] px-2 py-1 border border-gray-200 rounded-md">EXCEL</a>
+                        </li>
+                        <li class = "mx-1">
+                            <a href="" class = "text-[12px] px-2 py-1 border border-gray-200 rounded-md">PDF</a>
+                        </li>
+                        <li class = "mx-1">
+                            <a href="" class = "text-[12px] px-2 py-1 border border-gray-200 rounded-md">PRINT</a>
+                        </li>
+                    </ul>
+                </div>
+                </div>
                 <table class = "text-center w-full table-auto">
-                    <thead>
+                    <thead class = "border-b border-gray-200">
                         <tr>
-                            <th width = "30" class = "py-2 text-[11px] md:text-[13px] border border-gray-200 font-medium">ID</th>
-                            <th width = "30" class = "py-2 text-[11px] md:text-[13px] border border-gray-200 font-medium">Barcode</th>
-                            <th width = "100" class = "py-2 text-[11px] md:text-[13px] border border-gray-200 font-medium">Name</th>
-                            <th width = "100" class = "py-2 text-[11px] md:text-[13px] border border-gray-200 font-medium">Brand</th>
-                            <th width = "60" class = "py-2 text-[11px] md:text-[13px] border border-gray-200 font-medium">Status</th>
-                            <th width = "60" class = "py-2 text-[11px] md:text-[13px] border border-gray-200 font-medium">Option</th>
+                            <th width = "30" class = "py-1 text-[11px] md:text-[13px] font-medium">Order #</th>
+                            <th width = "30" class = "py-1 text-[11px] md:text-[13px] font-medium">Customer</th>
+                            <th width = "100" class = "py-1 text-[11px] md:text-[13px] font-medium">Date</th>
+                            <th width = "100" class = "py-1 text-[11px] md:text-[13px] font-medium">Total</th>
+                            <th width = "60" class = "py-1 text-[11px] md:text-[13px] font-medium">Status</th>
+                            <th width = "60" class = "py-1 text-[11px] md:text-[13px] font-medium">Updated</th>
+                            <th width = "60" class = "py-1 text-[11px] md:text-[13px] font-medium">Action</th>
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                         $brand_title = getAll("brands");
+                         $brand_title = allProduct();
                          if(mysqli_num_rows($brand_title)){
                             foreach($brand_title as $brand){
                                 ?>
-                            <tr id = "brand-<?= $brand['id']?>">
-                            <td class = "text-[11px] md:text-[13px] py-2 border border-gray-200"><?= $brand['id']?></td>
-                            <td id = "brandName" class = "text-[11px] md:text-[13px] py-2 border border-gray-200 flex justify-center items-center">
-                            <img src="<?php echo $barcodeURL; ?>" class = "w-[100px] h-[40px]" alt="Barcode">
+                            <tr id = "brand-<?= $brand['id']?>" class = "border-b border-gray-200">
+                            <td class = "text-[11px] md:text-[13px] py-1"><?= $brand['id']?></td>
+                            <td id = "brandName" class = "text-[11px] md:text-[13px] py-1 flex justify-center items-center">
+                            124
                             </td>
-                            <td id = "brandName" class = "text-[11px] md:text-[13px] py-2 border border-gray-200"><?= $brand['name']?></td>
-                            <td id = "brandName" class = "text-[11px] md:text-[13px] py-2 border border-gray-200"><?= $brand['name']?></td>
-                            <td class = "border border-gray-200 text-[11px] md:text-[13px] py-2">
-                                <?php
-                                    if($brand['status'] == 1){
-                                    ?>
-                                    <form action = "code.php" method = "post" enctype = "multipart/form-data">
-                                        <input type="hidden" name="brand_id" value = "<?= $brand['id']?>">
-                                        <button type = "submit" name = "btn_active" class = "bg-green-500 text-white px-2 py-[1px] text-[11px] md:text-[13px]  rounded-md">Active</button>
-                                    </form>
-                                    <?php
-                                    }else{
-                                    ?>
-                                    <form action = "code.php" method = "post" enctype = "multipart/form-data">
-                                        <input type="hidden" name="brand_id" value = "<?= $brand['id']?>">
-                                        <button type = "submit" name = "btn_disable" class = "bg-red-500 text-white px-2 py-[1px] text-[11px] md:text-[13px]  rounded-md">Disable</button>
-                                    </form>
-                                    <?php
-                                    }
-                                ?>
+                            <td id = "brandName" class = "text-[11px] md:text-[13px] py-1"><?= $brand['name']?></td>
+                            <td id = "brandName" class = "text-[11px] md:text-[13px] py-1"><?= $brand['name']?></td>
+                            <td class =  "text-[11px] md:text-[13px] py-1">
+                                Paid
                             </td>
-                            <td class = "border border-gray-200 text-[11px] md:text-[13px] py-2 flex justify-center items-center gap-5">
+                            <td class =  "text-[11px] md:text-[13px] py-1">
+                                Paid
+                            </td>
+                            <td class =  "text-[11px] md:text-[13px] py-1 flex justify-center items-center gap-5">
                                 <form action = "brandedit.php?id=<?= $brand['id'] ?>" method = "post" enctype = "multipart/form-data">
                                     <input type="hidden" name="brand_id" value = "<?= $brand['id']?>">
                                     <button type = "submit" name = "btn_delete" class = "bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px]  rounded-md"><i class="fas fa-edit"></i></button>
