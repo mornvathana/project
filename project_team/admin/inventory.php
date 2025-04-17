@@ -32,28 +32,53 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                 <div>
                     <ul class="flex">
                         <li class="mx-1">
-                            <a class="text-[12px] px-2 py-1 border border-gray-500 rounded-md cursor-pointer">EXCEL</a>
+                            <a  class="text-[12px] px-2 py-1 border border-gray-500 rounded-md cursor-pointer"><button type = "button" id="exportExcelBtn" name = "button">EXCEL</button></a>
                         </li>
                         <li class="mx-1">
-                            <a class="text-[12px] px-2 py-1 border border-gray-500 rounded-md cursor-pointer">PDF</a>
-                        </li>
-                        <li class="mx-1">
-                            <a class="text-[12px] px-2 py-1 border border-gray-500 rounded-md cursor-pointer">PRINT</a>
+                            <a class="text-[12px] px-2 py-1 border border-gray-500 rounded-md cursor-pointer"><button type = "button" name = "button" id = "printBtn">PRINT</button></a>
                         </li>
                     </ul>
                 </div>
             </div>
 
+            <div id = "printArea">
             <table class="text-center w-full table-auto">
                 <thead class="border-b border-gray-200" id="displayHead"></thead>
                 <tbody id="displayData"></tbody>
             </table>
+            </div>
         </div>
     </div>
-
+    <!-- excel js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.2/xlsx.full.min.js"></script>
     <!-- jquery code -->
     <script>
         $(document).ready(function () {
+           $("#printBtn").click(function () {
+                const printContents = document.getElementById("printArea").innerHTML;
+                const printWindow = window.open('', '', 'height=600,width=900');
+
+                printWindow.document.write('<html><head><title>Report Information</title>');
+                printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid #ccc; padding: 5px; font-size: 12px;text-align: center; }</style>');
+                printWindow.document.write('</head><body>');
+                printWindow.document.write(printContents);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close(); // Close the document stream
+
+                // Introduce a small delay to ensure content is rendered
+                setTimeout(function () {
+                    printWindow.focus();
+                    printWindow.print();
+                    printWindow.close();
+                }, 250); // Adjust the delay (in milliseconds) as needed
+            });
+
+            $("#exportExcelBtn").click(function(){
+                const table = $("table");
+                const workbook = XLSX.utils.table_to_book(table[0], { sheet: "Sheet 1" });
+                XLSX.writeFile(workbook, "table_export.xlsx");
+            });
+            // excel export 
             $("#orders").click(function () {
                 const display = $("#displayData");
                 const head = `<tr>
