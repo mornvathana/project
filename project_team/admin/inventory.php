@@ -88,7 +88,6 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                     <th width="100" class="py-1 text-[11px] md:text-[13px] font-medium">Total</th>
                     <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Status</th>
                     <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Updated</th>
-                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Action</th>
                 </tr>`;
 
                 $.ajax({
@@ -110,18 +109,7 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                                     <td class="text-[11px] md:text-[13px] py-1">
                                         ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 0 ? '<span class="text-green-500">Success</span>' : '<span class="text-gray-500">Unknown</span>'}
                                     </td>
-                                    <td class="text-[11px] md:text-[13px] py-1">${item.user_id}</td>
-                                    <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center gap-5">
-                                        <form method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="brand_id" value="">
-                                            <button type="submit" name="btn_delete" class="bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i></button>
-                                        </form>
-                                        <form action="code.php" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="brand_id" value="">
-                                            <input type="hidden" name="image">
-                                            <button type="submit" name="btn_delete" class="bg-red-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-trash"></i></button>
-                                        </form>
-                                    </td>
+                                    <td class="text-[11px] md:text-[13px] py-1"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;
                             });
                             display.html(head + txt);
@@ -162,17 +150,9 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                                     <td class="text-[11px] md:text-[13px] py-1">
                                         ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 0 ? '<span class="text-green-500">Success</span>' : '<span class="text-gray-500">Unknown</span>'}
                                     </td>
-                                    <td class="text-[11px] md:text-[13px] py-1">${item.user_id}</td>
+                                    <td class="text-[11px] md:text-[13px] py-1"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                     <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center gap-5">
-                                        <form method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="brand_id" value="">
-                                            <button type="submit" name="btn_delete" class="bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i></button>
-                                        </form>
-                                        <form action="code.php" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="brand_id" value="">
-                                            <input type="hidden" name="image">
-                                            <button type="submit" name="btn_delete" class="bg-red-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-trash"></i></button>
-                                        </form>
+                                        <button type="submit" name="btn_delete" class="bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i></button>
                                     </td>
                                 </tr>`;
                             });
