@@ -187,54 +187,57 @@
     $(document).on('click',"#deleteProduct",function(e){
         e.preventDefault();
         var prod_id = $(this).data("cart");
-        $.ajax({
-            method:"POST",
-            url: "function/code.php",
-            data: {
-                "prod_id":prod_id,
-                "scrope":"delete"
-            },
-            success: function (response) {
-                if(response == 200){
-                    Swal.fire({
-                    icon: 'warning',
-                    title: '<span class="text-gray-800 font-semibold text-lg">Are you sure you want to delete?</span>',
-                    showCancelButton: true,
-                    cancelButtonText: 'Cancel',
-                    reverseButtons: true,
-                    background: '#fff',
-                    focusCancel: true,
-                    buttonsStyling: false,
-                    customClass: {
-                        popup: 'rounded-xl shadow-md p-6',
-                        confirmButton: 'bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 rounded-md ml-2',
-                        cancelButton: 'bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-4 py-2 rounded-md',
+        
+        Swal.fire({
+        icon: 'warning',
+        title: '<span class="text-gray-800 font-semibold text-lg">Are you sure you want to delete?</span>',
+        showCancelButton: true,
+        cancelButtonText: 'Cancel',
+        reverseButtons: true,
+        background: '#fff',
+        focusCancel: true,
+        buttonsStyling: false,
+        customClass: {
+            popup: 'rounded-xl shadow-md p-6',
+            confirmButton: 'bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 rounded-md ml-2',
+            cancelButton: 'bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-4 py-2 rounded-md',
+        },
+        didOpen: () => {
+            document.querySelector('.swal2-popup').style.width = '400px';
+        }
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    method:"POST",
+                    url: "function/code.php",
+                    data: {
+                        "prod_id":prod_id,
+                        "scrope":"delete"
                     },
-                    didOpen: () => {
-                        document.querySelector('.swal2-popup').style.width = '400px';
-                    }
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        $(`#mycart-${prod_id}`).remove();
-                        location.reload();
-                    } else if (result.dismiss === Swal.DismissReason.cancel) {
-                        console.log("Deletion cancelled.");
-                    }
-                });
-                }else if(response == 300){
-                 Swal.fire({
-                 icon: 'warning',
-                 title: 'Oops...',
-                 text: 'Product already added!',
-                 confirmButtonText: 'OK',
-                 customClass: {
-                 popup: 'custom-popup', 
-                }
-                });
+                    success: function (response) {
+                        if(response == 200){
+                            $(`#mycart-${prod_id}`).remove();
+                            location.reload();
+                        }else if(response == 300){
+                            Swal.fire({
+                            icon: 'warning',
+                            title: 'Oops...',
+                            text: 'Product already added!',
+                            confirmButtonText: 'OK',
+                            customClass: {
+                            popup: 'custom-popup', 
+                            }
+                            });
 
-                }
+                            }
+                    }
+                });
+                
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                console.log("Deletion cancelled.");
             }
         });
+
     });
     // start add project to carts
     $(document).on('click','.addToCart',function(e){

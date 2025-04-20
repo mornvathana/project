@@ -129,9 +129,17 @@
                     }
 
                 }
-
-                
-            break;         
+            break;     
+            case "deleteOrder":
+                $id = $_POST['id'];
+                $delete = $conn->prepare("DELETE FROM orders WHERE id = ?");
+                $delete->bind_param('i',$id);
+                if($delete->execute()){
+                    echo 202;
+                }else{
+                    echo 404;
+                }
+                break;
             default;
             echo "invalid scrope";
         }

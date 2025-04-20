@@ -51,7 +51,7 @@
             if ($order->num_rows > 0) {
                 foreach ($order as $item) {
             ?>
-                <div class="bg-blue-100 border border-blue-200 rounded-xl shadow hover:shadow-lg p-4 space-y-2 transition">
+                <div class="bg-blue-100 border border-blue-200 rounded-xl shadow hover:shadow-lg p-4 space-y-2 transition"  id = "order-<?= $item['id']?>">
                     <div class="flex justify-between items-center">
                         <h4 class="font-semibold text-gray-700 text-sm"><?= $item['first_name'] ?> <?= $item['last_name'] ?></h4>
                         <?php if ($item['status'] == 1) { ?>
@@ -70,8 +70,7 @@
                     </div>
                     <div class="flex justify-between mt-2 gap-1">
                         <button class="bg-green-600 hover:bg-green-700 text-white text-xs px-2 py-1 rounded" type="button" id = "btn_verify" data-id = "<?= $item['id'] ?>"  data-modal-target="crud-modal" data-modal-toggle="crud-modal">Verify</button>
-                        <button class="bg-blue-600 hover:bg-blue-700 text-white text-xs px-2 py-1 rounded">Check</button>
-                        <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded">
+                        <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded" id = "btn_delete" data-id = "<?= $item['id'] ?>">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
@@ -90,6 +89,59 @@
 <!-- script -->
  <script>
     $(document).ready(function(){
+        $(document).on("click","#btn_delete",function(){
+            let id = $(this).data("id");
+            Swal.fire({
+                    icon: 'warning',
+                    title: '<span class="text-gray-800 font-semibold text-lg">Are you sure you want to delete?</span>',
+                    showCancelButton: true,
+                    cancelButtonText: 'Cancel',
+                    reverseButtons: true,
+                    background: '#fff',
+                    focusCancel: true,
+                    buttonsStyling: false,
+                    customClass: {
+                        popup: 'rounded-xl shadow-md p-6',
+                        confirmButton: 'bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 rounded-md ml-2',
+                        cancelButton: 'bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-4 py-2 rounded-md',
+                    },
+                    didOpen: () => {
+                        document.querySelector('.swal2-popup').style.width = '400px';
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            method: "POST",
+                            url: "deleteProduct.php",
+                            data: {
+                                "id": id,
+                                "scrope": "deleteOrder",
+                            },
+                            success: function (response) {
+                                if(response == 202){
+                                    location.reload();
+                                    $(`#order-${id}`).remove();
+                                }else{
+                                    Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Oops...',
+                                    text: 'Product already added!',
+                                    confirmButtonText: 'OK',
+                                    customClass: {
+                                    popup: 'custom-popup', 
+                                    }
+                                    });
+                                }
+                            }
+                        });
+                        
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        console.log("Deletion cancelled.");
+                    }
+                });
+           
+        });
+        //    
         $(document).on("click","#btn_verify", function(){
             let id = $(this).data("id");
             const display = $("#display1");
