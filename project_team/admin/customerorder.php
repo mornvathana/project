@@ -11,43 +11,76 @@
             <div class="grid gap-4 grid-cols-1 sm:grid-cols-3">
                 <div class="bg-gray-800 text-white rounded-xl p-4 shadow hover:shadow-lg transition">
                     <p class="text-sm">Finished</p>
-                    <p class="text-2xl font-bold mt-1">0</p>
+                    <p class="text-2xl font-bold mt-1">
+                    <?php
+                    $number = countStatus("orders","3");
+                    ?>
+                    <?= $number?>
+                    <?php
+                    ?>
+                    </p>
                 </div>
                 <div class="bg-gray-800 text-white rounded-xl p-4 shadow hover:shadow-lg transition">
                     <p class="text-sm">Processing</p>
-                    <p class="text-2xl font-bold mt-1">0</p>
+                    <p class="text-2xl font-bold mt-1">
+                    <?php
+                    $number = countStatus("orders","2");
+                    ?>
+                    <?= $number?>
+                    <?php
+                    ?>
+                    </p>
                 </div>
                 <div class="bg-gray-800 text-white rounded-xl p-4 shadow hover:shadow-lg transition">
                     <p class="text-sm">Pending</p>
-                    <p class="text-2xl font-bold mt-1">0</p>
+                    <p class="text-2xl font-bold mt-1">
+                    <?php
+                    $number = countStatus("orders","1");
+                    ?>
+                    <?= $number?>
+                    <?php
+                    ?>
+                    </p>
                 </div>
             </div>
 
             <!-- Date Filter -->
-            <div class="hidden md:flex items-center justify-end gap-4">
-                <div class="relative w-full max-w-xs">
-                    <input datepicker id="default-datepicker-1" type="text"
-                        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm"
-                        placeholder="Start Date">
-                    <div class="absolute left-3 top-2.5 text-gray-400">
-                        <i class="fa-regular fa-calendar"></i>
-                    </div>
+            <div class = "flex justify-end items-center">
+            <form class="max-w-sm mx-2">
+            <select id="category_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full h-7 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Status</option>
+                <option value="1">Pedding</option>
+                <option value="2">Processing</option>
+                <option value="3">Completed</option>
+            </select>
+            </form>
+            <!--  -->
+            <div class="flex">
+                <!-- Previous Button -->
+                <a href="#" class="flex items-center justify-center px-2 h-7 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                    <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                    </svg>
+                    Previous
+                </a>
+                <a href="#" class="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 rounded-lg  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                    </svg>
+                    2 / 10
+                </a>
+                <a href="#" class="flex items-center justify-center px-2 h-7 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                    Next
+                    <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                </a>
                 </div>
-                <div class="relative w-full max-w-xs">
-                    <input datepicker id="default-datepicker-2" type="text"
-                        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 text-sm"
-                        placeholder="End Date">
-                    <div class="absolute left-3 top-2.5 text-gray-400">
-                        <i class="fa-regular fa-calendar"></i>
-                    </div>
-                </div>
-                <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition">Search</button>
             </div>
         </div>
         <!-- Orders List -->
-        <div class="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
+        <div class="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5" id = "displayDataStatus">
             <?php
-            $order = getAll('orders');
+            $order = getAllStatus('orders','1','2');
             if ($order->num_rows > 0) {
                 foreach ($order as $item) {
             ?>
@@ -56,9 +89,13 @@
                         <h4 class="font-semibold text-gray-700 text-sm"><?= $item['first_name'] ?> <?= $item['last_name'] ?></h4>
                         <?php if ($item['status'] == 1) { ?>
                             <span class="text-red-500 text-xs"><i class="fa-solid fa-circle"></i></span>
-                        <?php } else { ?>
+                        <?php } else if($item['status'] == 2) { ?>
+                            <span class="text-blue-500 text-xs"><i class="fa-solid fa-circle"></i></span>
+                        <?php }else{
+                            ?>
                             <span class="text-green-500 text-xs"><i class="fa-solid fa-circle"></i></span>
-                        <?php } ?>
+                            <?php
+                        } ?>
                     </div>
                     <hr>
                     <div class="flex justify-between text-xs text-gray-600">
@@ -69,7 +106,27 @@
                         <span><?= $item['created_at'] ?></span>
                     </div>
                     <div class="flex justify-between mt-2 gap-1">
-                        <button class="bg-green-600 hover:bg-green-700 text-white text-xs px-2 py-1 rounded" type="button" id = "btn_verify" data-id = "<?= $item['id'] ?>"  data-modal-target="crud-modal" data-modal-toggle="crud-modal">Verify</button>
+                    <?php
+                    $status = $item['status'];
+                    if ($status == 1) {
+                        $btnClass = 'bg-red-500';
+                    } elseif ($status == 2) {
+                        $btnClass = 'bg-blue-500';
+                    } else if ($status == 3) {
+                        $btnClass = 'bg-green-500'; 
+                    }
+                    ?>
+                        <button class="<?= $btnClass ?> hover:bg-green-700 text-white text-xs px-2 py-1 rounded" type="button" id = "btn_verify" data-id = "<?= $item['id'] ?>"  data-modal-target="crud-modal" data-modal-toggle="crud-modal">
+                            <?php
+                                if($item['status'] == 1){
+                                    echo 'Verify';
+                                }else if($item['status'] == 2){
+                                    echo 'Processing';
+                                }else if($item['status'] == 3){
+                                    echo 'Completed';
+                                }
+                            ?>
+                        </button>
                         <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded" id = "btn_delete" data-id = "<?= $item['id'] ?>">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
@@ -153,7 +210,7 @@
                 },
                 dataType: "json",
                 success: function (data) {
-                    if(data){
+                    if(data.length > 0){
                         let txt = "";
                         data.forEach(item => {
                             txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto addClss overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -173,19 +230,32 @@
                                                 </button>
                                             </div>
                                             <!-- Modal body -->
-                                            <form class="p-4 md:p-5">
+                                            <form class="p-4 md:p-5" >
                                                 <div class="grid gap-4 mb-4 grid-cols-2">
-                                                    <div class="col-span-2">
+                                                    <div class="col-span-1">
                                                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                                                        <input type="hidden" name="id" id="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.id}" readonly>
                                                         <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.first} ${item.last}" readonly>
                                                     </div>
-                                                     <div class="col-span-2">
+                                                    <div class="col-span-1">
+                                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barcode</label>
+                                                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.first} ${item.last}" readonly>
+                                                    </div>
+                                                     <div class="col-span-1">
                                                         <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email</label>
                                                         <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.email}" readonly>
                                                     </div>
-                                                    <div class="col-span-2">
+                                                    <div class="col-span-1">
                                                         <label for="total_price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Price</label>
                                                         <input type="text" name="total_price" id="total_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.total_price}" readonly>
+                                                    </div>
+                                                    <div class="col-span-2 sm:col-span-1">
+                                                        <label for="Model" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Model</label>
+                                                        <input type="text" name="Model" id="Model" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.province}" readonly>
+                                                    </div>
+                                                    <div class="col-span-2 sm:col-span-1">
+                                                        <label for="method_payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Method Payment</label>
+                                                        <input type="text" name="method_payment" id="method_payment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.city}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="province" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Province</label>
@@ -203,12 +273,12 @@
                                                         <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                                                         <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                             <option value="1" ${item.status == 1 ? 'selected' : ''} >Pedding</option>
-                                                            <option value="2" ${item.status == 2 ? 'selected' : ''} >Checking</option>
+                                                            <option value="2" ${item.status == 2 ? 'selected' : ''} >Processing</option>
                                                             <option value="3" ${item.status == 3 ? 'selected' : ''} >Completed</option>
                                                         </select>
                                                     </div>
                                                 </div>
-                                                <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <button id = "btn_save"  type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                     Save
                                                 </button>
                                             </form>
@@ -223,6 +293,114 @@
         });
         $(document).on("click","#closeX",function(){
             $(".addClss").addClass("hidden");
+        });
+        // btn_save
+        $(document).on("click","#btn_save",function(){
+            const status = $("#category").val();
+            const id = $("#id").val();
+            // 
+            $.ajax({
+                method: "POST",
+                url: "action/updateOrder.php",
+                data: {
+                    "status" : status,
+                    "id" : id,
+                },
+                dataType: "dataType",
+                success: function (response) {
+                    if(response == 202){
+                        Swal.fire({
+                        icon: 'success',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Successfully!</span>',
+                        showCancelButton: false,  
+                        showConfirmButton: false, 
+                        timer: 1000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                    }
+                }
+            });
+        });
+        $(document).on("change","#category_status",function(){
+            const status = $(this).val();
+            const display = $("#displayDataStatus");
+            $.ajax({
+                method: 'GET',
+                url: "action/getOrderStatus.php",
+                data: {
+                    "status": status,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if(data){
+                        let txt = "";
+                        data.forEach(item =>{
+                            let btnClass = "";
+                            let btnText = "";
+                            let statusIcon = "";
+
+                            if (item.status == 1) {
+                                btnClass = 'bg-red-500';
+                                btnText = 'Verify';
+                                statusIcon = `<span class="text-red-500 text-xs"><i class="fa-solid fa-circle"></i></span>`;
+                            } else if (item.status == 2) {
+                                btnClass = 'bg-blue-500';
+                                btnText = 'Processing';
+                                statusIcon = `<span class="text-blue-500 text-xs"><i class="fa-solid fa-circle"></i></span>`;
+                            } else {
+                                btnClass = 'bg-green-500';
+                                btnText = 'Completed';
+                                statusIcon = `<span class="text-green-500 text-xs"><i class="fa-solid fa-circle"></i></span>`;
+                            }
+
+                            txt += `
+                <div class="bg-blue-100 border border-blue-200 rounded-xl shadow hover:shadow-lg p-4 space-y-2 transition" id="order-${item.id}">
+                    <div class="flex justify-between items-center">
+                        <h4 class="font-semibold text-gray-700 text-sm">${item.first} ${item.last}</h4>
+                        ${statusIcon}
+                    </div>
+                    <hr>
+                    <div class="flex justify-between text-xs text-gray-600">
+                        <span>ID</span><span>${item.id}</span>
+                    </div>
+                    <div class="flex justify-between text-xs text-gray-600">
+                        <span><i class="fa-regular fa-clock"></i></span>
+                        <span>${item.created_at}</span>
+                    </div>
+                    <div class="flex justify-between mt-2 gap-1">
+                        <button
+                            class="${btnClass}  hover:bg-green-700 text-white text-xs px-2 py-1 rounded open-modal"
+                            type="button"
+                            id = "btn_verify"
+                            data-id="${item.id}"
+                            data-first="${item.first_name}"
+                            data-last="${item.last_name}"
+                            data-email="${item.email}"
+                            data-price="${item.total_price}"
+                            data-province="${item.province}"
+                            data-city="${item.city}"
+                            data-phone="${item.phone_number}"
+                            data-status="${item.status}">
+                            ${btnText}
+                        </button>
+                        <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded" id="btn_delete" data-id="${item.id}">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </div>
+                </div>`;
+                        });
+                        display.html(txt);
+                    }
+                }
+            });
         });
     });
  </script>

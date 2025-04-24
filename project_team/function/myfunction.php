@@ -28,6 +28,15 @@
         }
         return 0;
     }
+    function countStatus($table,$status){
+        global $conn;
+        $count = "SELECT COUNT(*) AS total FROM $table WHERE status = $status";
+        $count_run = mysqli_query($conn,$count);
+        if($count_run){
+            $result = mysqli_fetch_assoc($count_run);
+            return $result['total'];
+        }
+    }
     function countData($table, $selectName) {
         global $conn;
         $query = "SELECT COUNT(*) AS count FROM $table WHERE product_name = '$selectName'";
@@ -66,6 +75,11 @@
     function getAll($table){
         global $conn;
         $product = "SELECT * FROM $table";
+        return $product_run = mysqli_query($conn,$product);
+    }
+    function getAllStatus($table,$pedding,$checked){
+        global $conn;
+        $product = "SELECT * FROM $table WHERE status IN ($pedding,$checked)";
         return $product_run = mysqli_query($conn,$product);
     }
     function getAdmin($table){
