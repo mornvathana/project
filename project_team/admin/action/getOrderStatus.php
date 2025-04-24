@@ -5,8 +5,16 @@
     if(isset($_GET['status'])){
         $id = $_GET['status'];
     }
-    
-    $order1 = "SELECT * FROM orders WHERE status = $id";
+
+    if(isset($_GET['selectPage'])){
+        $num = $_GET['selectPage'];
+    }
+
+    if(isset($_GET['currentPage'])){
+        $start = $_GET['currentPage'] ? 0 : null;
+    }
+
+    $order1 = "SELECT * FROM orders WHERE status = $id LIMIT $start,$num";
     $order = $conn->query($order1);
     $Data = array();
     if ($order->num_rows > 0) {

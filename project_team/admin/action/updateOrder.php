@@ -4,7 +4,6 @@
 
     $id = $_POST['id'];
     $status = $_POST['status'];
-
     // 
     $stmt = $conn->prepare("UPDATE orders SET status = ? WHERE id = ?");
     $stmt->bind_param('ii',$status,$id);

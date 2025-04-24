@@ -5,8 +5,8 @@
     if(isset($_GET['id'])){
         $id = $_GET['id'];
     }
-    
-    $order1 = "SELECT * FROM orders WHERE id = $id";
+    $selectPage = $_GET['selectPage'];
+    $order1 = "SELECT * FROM orders WHERE id = $id LIMIT 0,$selectPage";
     $order = $conn->query($order1);
     $Data = array();
     if ($order->num_rows > 0) {

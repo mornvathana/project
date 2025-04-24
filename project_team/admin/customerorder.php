@@ -55,9 +55,18 @@
             </select>
             </form>
             <!--  -->
+            <form class="max-w-sm mx-2">
+            <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full h-7 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option value = "10" selected>Page</option>
+                <option value="1">20</option>
+                <option value="2">30</option>
+                <option value="50">50</option>
+            </select>
+            </form>
+            <!--  -->
             <div class="flex">
                 <!-- Previous Button -->
-                <a href="#" class="flex items-center justify-center px-2 h-7 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                <a href="#" class="flex items-center justify-center px-2 h-7 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" id = "back_btn">
                     <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                     </svg>
@@ -66,9 +75,9 @@
                 <a href="#" class="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 rounded-lg  dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                     </svg>
-                    2 / 10
+                    <span id = "startPage"></span> / <span id = "totalPage">10</span>
                 </a>
-                <a href="#" class="flex items-center justify-center px-2 h-7 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                <a href="#" class="flex items-center justify-center px-2 h-7 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" id = "next_btn">
                     Next
                     <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
@@ -146,6 +155,28 @@
 <!-- script -->
  <script>
     $(document).ready(function(){
+        let currentPage = 1;
+        let totalPage = 10;
+        let startPage = $("#startPage");
+        let selectPage = 0;
+
+        $("#next_btn").click(function(){
+            if(currentPage < totalPage){
+                currentPage++;
+            }
+            startPage.text(currentPage);
+            reload();
+
+        });
+
+        $("#back_btn").click(function(){
+            if(currentPage > 1){
+                currentPage--;
+            }
+            startPage.text(currentPage);
+            reload();
+        })
+
         $(document).on("click","#btn_delete",function(){
             let id = $(this).data("id");
             Swal.fire({
@@ -329,14 +360,30 @@
                 }
             });
         });
+
         $(document).on("change","#category_status",function(){
-            const status = $(this).val();
+            const status = $("#category_status").val();
+            reload(status);
+        });
+
+        $(document).on('click','#page_num',function(){
+            let num = $(this).val();
+            selectPage = num;
+            // 
+            let status = $("#category_status").val(); 
+            reload(status)
+        });
+
+        function reload(status){
+            const statusNum = status;
             const display = $("#displayDataStatus");
             $.ajax({
                 method: 'GET',
                 url: "action/getOrderStatus.php",
                 data: {
-                    "status": status,
+                    "status": statusNum,
+                    "selectPage" : selectPage,
+                    "currentPage" : currentPage,
                 },
                 dataType: "json",
                 success: function (data) {
@@ -401,7 +448,7 @@
                     }
                 }
             });
-        });
+        }
     });
  </script>
 <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
