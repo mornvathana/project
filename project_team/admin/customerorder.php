@@ -165,7 +165,9 @@
                 currentPage++;
             }
             startPage.text(currentPage);
-            reload();
+            // 
+            let status = $("#category_status").val(); 
+            reload(status)
 
         });
 
@@ -174,7 +176,10 @@
                 currentPage--;
             }
             startPage.text(currentPage);
-            reload();
+
+            let status = $("#category_status").val(); 
+            reload(status)
+            
         })
 
         $(document).on("click","#btn_delete",function(){
@@ -377,13 +382,14 @@
         function reload(status){
             const statusNum = status;
             const display = $("#displayDataStatus");
+            const offset = (currentPage - 1) * totalPage;
             $.ajax({
                 method: 'GET',
                 url: "action/getOrderStatus.php",
                 data: {
                     "status": statusNum,
                     "selectPage" : selectPage,
-                    "currentPage" : currentPage,
+                    "currentPage" : offset,
                 },
                 dataType: "json",
                 success: function (data) {
