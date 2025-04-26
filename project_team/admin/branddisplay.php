@@ -121,7 +121,7 @@
         }
 
         $("#next_btn").click(function(){
-
+            
             const totalPageValue = parseInt(totalPage.text())
 
             if(currentPage < totalPageValue){

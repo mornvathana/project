@@ -45,9 +45,9 @@
                 <form class="max-w-sm">
                     <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
                         <option value="10" selected>Page</option>
-                        <option value="20">20</option>
-                        <option value="30">30</option>
-                        <option value="50">50</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
                     </select>
                 </form>
 
@@ -73,50 +73,94 @@
 
         </div>
         <div class = "w-full h-full mt-5">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2">
-                <?php
-                    $item = allProduct();
-                    if($item->num_rows > 0){
-                        foreach($item as $category){
-                        ?>
-                        <div class = "h-[250px] border shadow-md border-gray-100 rounded-sm p-2">
-                    <div class = "w-full h-[60%]">
-                        <img src = "../uploads/category/<?= $category['image']?>" alt = "" class = "w-full h-full object-contain" />
-                    </div>
-                    <div class = "w-full h-[40%]">
-                        <div class = "w-full h-[70%]">
-                        <div class=" w-full h-[50%] justify-between items-center flex">
-                            <p class = "text-[12px] text-[#515151]">
-                                <?php
-                                    $name = whereProduct1($category['brand_id']);
-                                    if($name->num_rows > 0){
-                                        foreach($name as $name1){
-                                            ?>
-                                            <?= $name1['name'] ?>
-                                            <?php
-                                        }
-                                    }
-                                ?>
-                            </p>
-                            <p class = "text-[12px] text-[#515151]">$<?= $category['sell_price']?></p>
-                        </div>
-                        <div class=" w-full h-[50%] justify-center items-center flex">
-                            <p class = "text-[12px] text-[#515151]"><?= implode(' ', array_slice(explode(' ', $category['name']), 0, 5)) ?></p>
-                        </div>
-                        </div>
-                        <div class = " w-full h-[30%] flex justify-end items-center gap-2 text-sm">
-                        <i class="fa-solid fa-trash-can" id = "delete_category" data-category = "<?= $category['id']?>"></i>
-                        <a href="categoryEdit.php?id=<?= $category['id']?>"><i class="fa-solid fa-pen-to-square btn-edit" ></i></a>
-                        </div>
-                        </div>
-                        </div>
-                        <?php
-                        }
-                    }
-                ?>
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2" id = "displayData">
+                
             </div>
         </div>
     </div>
 </div>
 <!--  end  -->
+<script>
+    $(document).ready(function(){
+        let currentPage = 1;
+        let limit = 10;
+        let startPage = $("#startPage");
+        let totalPage = $("#totalPage");
+
+        $("#page_num").click(function(){
+            limit = parseInt($(this).val());
+            load(currentPage);
+        });
+
+
+        $("#next_btn").click(function(){
+            const totalPageValue = parseInt(totalPage.text());
+            if(currentPage < totalPageValue){
+                currentPage += 1;
+                load(currentPage);
+                startPage.text(currentPage);
+            }
+            
+            
+        });
+
+        $("#back_btn").click(function(){
+            if(currentPage > 1){
+                currentPage -= 1;
+                load(currentPage);
+                startPage.text(currentPage);
+            }
+            
+        });
+
+        // function 
+
+        function load(page){
+            const display = $("#displayData");
+            $.ajax({
+                method: "POST",
+                url: "action/selectPageCategory.php",
+                data: {
+                    "page": page,
+                    "limit": limit
+                },
+                dataType: "json",
+                success: function (data) {
+                    if(data){
+                        let txt = "";
+                        for(i in data){
+                            let item = data[i];
+                            const image = item.image ? `../uploads/category/${item.image} ` : '../uploads/default/default.jpg';
+                            txt += ` <div class = "h-[250px] border shadow-md border-gray-100 rounded-sm p-2">
+                                <div class = "w-full h-[60%]">
+                                    <img src = "${image}" alt = "" class = "w-full h-full object-contain" />
+                                </div>
+                                <div class = "w-full h-[40%]">
+                                    <div class = "w-full h-[70%]">
+                                    <div class=" w-full h-[50%] justify-between items-center flex">
+                                        <p class = "text-[12px] text-[#515151]">
+                                            ${item.brand}
+                                        </p>
+                                        <p class = "text-[12px] text-[#515151]">${item.name}</p>
+                                    </div>
+                                    <div class=" w-full h-[50%] justify-center items-center flex">
+                                        <p class = "text-[12px] text-[#515151]">$ ${item.price}</p>
+                                    </div>
+                                    </div>
+                                    <div class = " w-full h-[30%] flex justify-end items-center gap-2 text-sm">
+                                    <i class="fa-solid fa-trash-can" id = "delete_category" data-category = "${item.id}"></i>
+                                    <a href="categoryEdit.php?id=${item.id}"><i class="fa-solid fa-pen-to-square btn-edit" ></i></a>
+                                    </div>
+                                    </div>
+                                    </div>`;
+                        }
+                        totalPage.text(Math.ceil( data[0]['total'] / limit));
+                        display.html(txt);
+                    }
+                }
+            });
+        }
+        load(currentPage);
+    });
+</script>
 <?php include('includes/footer.php')?>
