@@ -13,7 +13,7 @@
                         <a href="index.php"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
                     </li>
                     <li class = "p-2 my-1 text-[12px] <?= $page == 'product1.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
-                        <a href="product1.php"><i class="fa-solid fa-box-open"></i> Main Product</a>
+                        <a href="product1.php"><i class="fa-solid fa-box-open"></i> Total Product</a>
                     </li>
                     <li class = "p-2 my-1 text-[12px] <?= $page == 'branddisplay.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
                         <a href="branddisplay.php"><i class="fa-solid fa-box-open"></i> Brands</a>

@@ -276,17 +276,25 @@ $(document).ready(function () {
     // Event handler for the delete button
     // Event handler for the delete button
     $(document).on('click', '#btn-delete', function(e) {
-        e.preventDefault(); // Prevent default action if necessary
+        e.preventDefault(); 
 
-        // Show confirmation alert using SweetAlert
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
-            icon: "warning",
+            icon: 'warning',
+            title: '<span class="text-gray-800 font-semibold text-lg">Are you sure you want to delete?</span>',
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            cancelButtonText: 'Cancel',
+            reverseButtons: true,
+            background: '#fff',
+            focusCancel: true,
+            buttonsStyling: false,
+            customClass: {
+                popup: 'rounded-xl shadow-md p-6',
+                confirmButton: 'bg-red-500 hover:bg-red-600 text-white font-medium px-4 py-2 rounded-md ml-2',
+                cancelButton: 'bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium px-4 py-2 rounded-md',
+            },
+            didOpen: () => {
+                document.querySelector('.swal2-popup').style.width = '400px';
+            }
         }).then((result) => {
             if (result.isConfirmed) {
                 const pid = $(this).data('id');
@@ -299,19 +307,16 @@ $(document).ready(function () {
                     },
                     success: function(response) {
                         if (response == 200) {
-                            // Show success alert
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            }).then(() => {
-                                $(`#product-${pid}`).remove(); 
-                            });
+                         $(`#product-${pid}`).remove(); 
                         } else {
                             Swal.fire({
-                                title: "Error!",
-                                text: "There was a problem deleting the product.",
-                                icon: "error"
+                            icon: 'warning',
+                            title: 'Oops...',
+                            text: 'Product already added!',
+                            confirmButtonText: 'OK',
+                            customClass: {
+                            popup: 'custom-popup', 
+                            }
                             });
                         }
                     },

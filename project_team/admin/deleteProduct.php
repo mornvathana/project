@@ -5,7 +5,7 @@
         switch($scrope){
             case "delete_pid":
                 $pid = $_POST['pid'];
-                $del_pd = "DELETE FROM product_database WHERE id = $pid";
+                $del_pd = "DELETE FROM brands WHERE id = $pid";
                 $del_pd_run = $conn->query($del_pd);
                 if($del_pd_run){
                     echo "200";

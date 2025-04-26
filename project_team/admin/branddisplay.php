@@ -35,15 +35,15 @@
             </div>
         </div>
 
-        <div class="w-full h-[70%] mt-5 overflow-x-auto">
+        <div class="w-full h-[70%] mt-5 overflow-x-auto rounded-md shadow-lg">
             <table class="text-center w-full table-auto">
                 <thead>
                     <tr>
-                        <th width="30" class="py-2 text-[11px] md:text-[13px] border border-gray-200 font-medium">ID</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] border border-gray-200 font-medium">Name</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] border border-gray-200 font-medium">Image</th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] border border-gray-200 font-medium">Status</th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] border border-gray-200 font-medium">Option</th>
+                        <th width="30" class="py-2 text-[11px] md:text-[13px] border-b-[2px] border-gray-900 font-medium">ID</th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] border-b-[2px] border-gray-900 font-medium">Name</th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] border-b-[2px] border-gray-900 font-medium">Image</th>
+                        <th width="60" class="py-2 text-[11px] md:text-[13px] border-b-[2px] border-gray-900 font-medium">Status</th>
+                        <th width="60" class="py-2 text-[11px] md:text-[13px] border-b-[2px] border-gray-900 font-medium">Option</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -53,14 +53,14 @@
                         foreach ($brand_title as $brand) {
                     ?>
                             <tr id="brand-<?= $brand['id'] ?>">
-                                <td class="text-[11px] md:text-[13px] py-2 border border-gray-200"><?= $brand['id'] ?></td>
-                                <td id="brandName" class="text-[11px] md:text-[13px] py-2 border border-gray-200"><?= $brand['name'] ?></td>
-                                <td class="flex justify-center items-center">
+                                <td class="text-[11px] md:text-[13px] py-2 border-b border-gray-900"><?= $brand['id'] ?></td>
+                                <td id="brandName" class="text-[11px] md:text-[13px] py-2 border-b border-gray-900"><?= $brand['name'] ?></td>
+                                <td class="text-[11px] md:text-[13px] py-2 border-b border-gray-900 flex justify-center items-center ">
                                     <img src="
                                         <?= !empty($brand['image']) ? '../uploads/brand/' . $brand['image'] : '../uploads/default/default.jpg'; ?>
-                                    " class="w-[60px] h-[60px]" alt="image" />
+                                    " class="w-[50px] h-[50px]" alt="image" />
                                 </td>
-                                <td class="border border-gray-200 text-[11px] md:text-[13px] py-2">
+                                <td class="border-b border-gray-900 text-[11px] md:text-[13px] py-2">
                                     <form action="code.php" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="brand_id" value="<?= $brand['id'] ?>">
                                         <?php if ($brand['status'] == 1) { ?>
@@ -70,7 +70,8 @@
                                         <?php } ?>
                                     </form>
                                 </td>
-                                <td class="border border-gray-200 text-[11px] md:text-[13px] py-2 flex justify-center items-center gap-5">
+                                <td class="border-b border-gray-900 text-[11px] md:text-[13px] py-2 ">
+                                    <div class = "flex justify-center items-center gap-5">
                                     <form action="brandedit.php?id=<?= $brand['id'] ?>" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="brand_id" value="<?= $brand['id'] ?>">
                                         <button type="submit" name="btn_delete" class="bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i></button>
@@ -80,6 +81,7 @@
                                         <input type="hidden" name="image" value="<?= $brand['image'] ?>">
                                         <button type="submit" name="btn_delete" class="bg-red-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-trash"></i></button>
                                     </form>
+                                    </div>
                                 </td>
                             </tr>
                     <?php

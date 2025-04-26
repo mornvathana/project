@@ -35,10 +35,9 @@
             <table class = "text-center w-full table-auto">
                     <thead>
                         <tr>
-                            <th width = "30" class = "py-1 text-[11px] md:text-[13px] border border-gray-200 font-medium">ID</th>
-                            <th width = "50" class = "py-1 text-[11px] md:text-[13px] border border-gray-200 font-medium">Name</th>
-                            <th width = "300" class = "py-1 text-[11px] md:text-[13px] border border-gray-200 font-medium">Total Category</th>
-                            <th width = "160" class = "py-1 text-[11px] md:text-[13px] border border-gray-200 font-medium">Option</th>
+                            <th  class = "py-1 text-[11px] md:text-[13px] border border-gray-200 font-medium">ID</th>
+                            <th  class = "py-1 text-[11px] md:text-[13px] border border-gray-200 font-medium">Name</th>
+                            <th  class = "py-1 text-[11px] md:text-[13px] border border-gray-200 font-medium">Total Category</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -58,10 +57,6 @@
                                 <?php
                                 ?>
                             </span></td>
-                            <td class = "border border-gray-200 text-[11px] md:text-[13px] py-1">
-                                <button class = "bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px]  rounded-md" id = "productEdit" data-id = "<?= $product['id']?>"><i class="fas fa-edit"></i></button>
-                                <button class = "bg-red-500 text-white px-2 py-[1px] text-[11px] md:text-[13px]  rounded-md" id = "btn-delete" data-id = "<?= $product['id']?>"><i class="fas fa-trash"></i></button>
-                            </td>
                             </tr>
                             <?php
                             }
