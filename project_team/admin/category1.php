@@ -87,8 +87,10 @@
         let startPage = $("#startPage");
         let totalPage = $("#totalPage");
 
-        $("#page_num").click(function(){
+        $("#page_num").change(function(){
             limit = parseInt($(this).val());
+            currentPage = 1;
+            startPage.text(currentPage);
             load(currentPage);
         });
 
@@ -100,7 +102,6 @@
                 load(currentPage);
                 startPage.text(currentPage);
             }
-            
             
         });
 
