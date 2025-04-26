@@ -21,7 +21,7 @@
 
                     <!-- Page Number -->
                     <a href="#" class="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 rounded-lg dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                        <span id="startPage">1</span> / <span id="totalPage">10</span>
+                        <span id="startPage">1</span> / <span id="totalPage"></span>
                     </a>
 
                     <!-- Next Button -->
@@ -46,48 +46,8 @@
                         <th width="60" class="py-2 text-[11px] md:text-[13px] border-b-[2px] border-gray-900 font-medium">Option</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <?php
-                    $brand_title = getAll("brands");
-                    if (mysqli_num_rows($brand_title)) {
-                        foreach ($brand_title as $brand) {
-                    ?>
-                            <tr id="brand-<?= $brand['id'] ?>">
-                                <td class="text-[11px] md:text-[13px] py-2 border-b border-gray-900"><?= $brand['id'] ?></td>
-                                <td id="brandName" class="text-[11px] md:text-[13px] py-2 border-b border-gray-900"><?= $brand['name'] ?></td>
-                                <td class="text-[11px] md:text-[13px] py-2 border-b border-gray-900 flex justify-center items-center ">
-                                    <img src="
-                                        <?= !empty($brand['image']) ? '../uploads/brand/' . $brand['image'] : '../uploads/default/default.jpg'; ?>
-                                    " class="w-[50px] h-[50px]" alt="image" />
-                                </td>
-                                <td class="border-b border-gray-900 text-[11px] md:text-[13px] py-2">
-                                    <form action="code.php" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="brand_id" value="<?= $brand['id'] ?>">
-                                        <?php if ($brand['status'] == 1) { ?>
-                                            <button type="submit" name="btn_active" class="bg-green-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">Active</button>
-                                        <?php } else { ?>
-                                            <button type="submit" name="btn_disable" class="bg-red-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">Disable</button>
-                                        <?php } ?>
-                                    </form>
-                                </td>
-                                <td class="border-b border-gray-900 text-[11px] md:text-[13px] py-2 ">
-                                    <div class = "flex justify-center items-center gap-5">
-                                    <form action="brandedit.php?id=<?= $brand['id'] ?>" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="brand_id" value="<?= $brand['id'] ?>">
-                                        <button type="submit" name="btn_delete" class="bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i></button>
-                                    </form>
-                                    <form action="code.php" method="post" enctype="multipart/form-data">
-                                        <input type="hidden" name="brand_id" value="<?= $brand['id'] ?>">
-                                        <input type="hidden" name="image" value="<?= $brand['image'] ?>">
-                                        <button type="submit" name="btn_delete" class="bg-red-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                    </div>
-                                </td>
-                            </tr>
-                    <?php
-                        }
-                    }
-                    ?>
+                <tbody id = "displayData">
+                    
                 </tbody>
             </table>
         </div>
@@ -97,14 +57,92 @@
 <script>
     $(document).ready(function(){
         let currentPage = 1;
-        let totalPage = 10;
+        let totalPage = $("#totalPage");
+        let startPage = $("#startPage");
+        let limit = 10;
+        const display = $("#displayData");
+
+        function load(page) {
+                $.ajax({
+                method: "POST",
+                url: "action/SelectPage.php",
+                data: {
+                    "page": page,
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data) {
+                        let txt = "";
+                        for (let i in data) {
+                            let item = data[i];
+                            const imagePath = item.image ? `../uploads/brand/${item.image}` : '../uploads/default/default.jpg';
+                            const isActive = item.status == 1;
+
+                            txt += `<tr id="brand-${item.id}">
+                                <td class="text-[11px] md:text-[13px] py-2 border-b border-gray-900">${item.id}</td>
+                                <td class="text-[11px] md:text-[13px] py-2 border-b border-gray-900">${item.name}</td>
+                                <td class="text-[11px] md:text-[13px] py-2 border-b border-gray-900 flex justify-center items-center">
+                                    <img src="${imagePath}" class="w-[50px] h-[50px]" alt="image" />
+                                </td>
+                                <td class="border-b border-gray-900 text-[11px] md:text-[13px] py-2">
+                                    <form action="code.php" method="post" enctype="multipart/form-data">
+                                        <input type="hidden" name="brand_id" value="${item.id}">
+                                        <button type="submit" name="${isActive ? 'btn_active' : 'btn_disable'}"
+                                            class="${isActive ? 'bg-green-500' : 'bg-red-500'} text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
+                                            ${isActive ? 'Active' : 'Disable'}
+                                        </button>
+                                    </form>
+                                </td>
+                                <td class="border-b border-gray-900 text-[11px] md:text-[13px] py-2">
+                                    <div class="flex justify-center items-center gap-5">
+                                        <form action="brandedit.php?id=${item.id}" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="brand_id" value="${item.id}">
+                                            <button type="submit" name="btn_edit" class="bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
+                                                <i class="fas fa-edit"></i>
+                                            </button>
+                                        </form>
+                                        <form action="code.php" method="post" enctype="multipart/form-data">
+                                            <input type="hidden" name="brand_id" value="${item.id}">
+                                            <input type="hidden" name="image" value="${item.image}">
+                                            <button type="submit" name="btn_delete" class="bg-red-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>`;
+                        }
+
+                        totalPage.text(Math.ceil(data[0]['total'] / limit));
+                        display.html(txt); 
+                    }
+                }
+            });
+        }
 
         $("#next_btn").click(function(){
-            if(currentPage < totalPage){
-                currentPage = currentPage + 1;
+
+            const totalPageValue = parseInt(totalPage.text())
+
+            if(currentPage < totalPageValue){
+                currentPage += 1;
+                load(currentPage);
+                startPage.text(currentPage);
             }
-            alert(currentPage);
+            
+
         });
+        
+        $("#back_btn").click(function(){
+            if(currentPage > 1){
+                currentPage -= 1;
+                load(currentPage);
+                startPage.text(currentPage);
+            };
+            
+        });
+
+        load(currentPage);
     });
 </script>
 <!--  -->
