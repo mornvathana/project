@@ -2,7 +2,17 @@
     session_start();
     include('../../config/dbcon.php');
 
-    $order1 = "SELECT * FROM orders ORDER BY id DESC";
+    $page = $_POST['page'];
+    $limit = $_POST['limit'];
+    $totalPage = ($page - 1) * $limit;
+
+    // total row 
+    $sql = "SELECT COUNT(*) as Total FROM orders";
+    $sTotal = $conn->query($sql);
+    $rTotal = $sTotal->fetch_array();
+    $total = $rTotal['0'];
+
+    $order1 = "SELECT * FROM orders ORDER BY id DESC LIMIT $totalPage,$limit";
     $order = $conn->query($order1);
     $Data = array();
     if ($order->num_rows > 0) {
@@ -20,6 +30,7 @@
                 "total" => $row[9],
                 "status" => $row[10],
                 "user_id" => $userName,
+                "total" => $total
             );
         }
         

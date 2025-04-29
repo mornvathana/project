@@ -42,7 +42,7 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                             <form class="max-w-sm">
                                 <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
                                     <option value="10" selected>Page</option>
-                                    <option value="20">20</option>
+                                    <option value="2">20</option>
                                     <option value="30">30</option>
                                     <option value="50">50</option>
                                 </select>
@@ -86,6 +86,40 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
     <!-- jquery code -->
     <script>
         $(document).ready(function () {
+
+        let currentPage = 1;
+        let limit = 10;
+        let startPage = $("#startPage");
+        let totalPage = $("#totalPage");
+        let activeSection = "orders";
+        
+        $("#page_num").change(function(){
+            limit = parseInt($(this).val());
+            currentPage = 1;
+            startPage.text(currentPage);
+            selectPage();
+        });
+
+
+        $("#next_btn").click(function(){
+        const totalPageValue = parseInt(totalPage.text());
+        if(currentPage < totalPageValue){
+            currentPage += 1;
+            startPage.text(currentPage);
+            selectPage();
+        }
+            
+        });
+
+        $("#back_btn").click(function(){
+            if(currentPage > 1){
+                currentPage -= 1;
+                startPage.text(currentPage);
+                selectPage();
+            }
+            
+        });
+        // end back button
            $("#printBtn").click(function () {
                 const printContents = document.getElementById("printArea").innerHTML;
                 const printWindow = window.open('', '', 'height=600,width=900');
@@ -112,6 +146,27 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
             });
             // excel export 
             $("#orders").click(function () {
+               activeSection = "orders";
+               currentPage = 1;
+               $("#startPage").text(currentPage);
+               order(currentPage);
+            });
+
+            $("#payments").click(function () {
+               activeSection = "payment";
+               currentPage = 1;
+               $("#startPage").text(currentPage);
+               payment(currentPage);
+            });
+
+            $("#products").click(function () {
+                activeSection = "product";
+                currentPage = 1;
+                $("#startPage").text(currentPage);
+                product(currentPage);
+            });
+
+            function order(page){
                 const display = $("#displayData");
                 const head = `<tr>
                     <th width="30" class="py-1 text-[11px] md:text-[13px] font-medium">Order #</th>
@@ -119,20 +174,22 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                     <th width="100" class="py-1 text-[11px] md:text-[13px] font-medium">Date</th>
                     <th width="100" class="py-1 text-[11px] md:text-[13px] font-medium">Total</th>
                     <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Status</th>
-                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Updated</th>
+                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Created By</th>
                 </tr>`;
 
                 $.ajax({
-                    method: "GET",
+                    method: "POST",
                     url: "action/getData.php",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
+                    data: {
+                        "page": page,
+                        "limit" : limit,
+                    },
                     dataType: "json",
                     success: function (data) {
                         if (data) {
                             let txt = "";
-                            data.forEach(item => {
+                            for(i in data){
+                                let item = data[i];
                                 txt += `<tr class="border-b border-gray-200">
                                     <td class="text-[11px] md:text-[13px] py-1">${item.id}</td>
                                     <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center">${item.firstName} ${item.lastName}</td>
@@ -143,7 +200,8 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                                     </td>
                                     <td class="text-[11px] md:text-[13px] py-1"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;
-                            });
+                            }
+                            totalPage.text(Math.ceil( data[0]['total'] / limit));
                             display.html(head + txt);
                         }
                     },
@@ -151,30 +209,31 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                         console.error("Error fetching orders:", error);
                     }
                 });
-            });
+            }
 
-            $("#payments").click(function () {
+            function payment(page){
                 const display = $("#displayData");
                 const head = `<tr>
                     <th width="30" class="py-1 text-[11px] md:text-[13px] font-medium">Order #</th>
                     <th width="30" class="py-1 text-[11px] md:text-[13px] font-medium">Customer</th>
                     <th width="100" class="py-1 text-[11px] md:text-[13px] font-medium">Cash</th>
                     <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Status</th>
-                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Updated</th>
-                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Action</th>
+                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Created By</th>
                 </tr>`;
 
                 $.ajax({
-                    method: "GET",
+                    method: "POST",
                     url: "action/getPayment.php",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
+                    data: {
+                        "page": page,
+                        "limit" : limit,
+                    },
                     dataType: "json",
                     success: function (data) {
                         if (data) {
                             let txt = "";
-                            data.forEach(item => {
+                            for(i in data){
+                                let item = data[i];
                                 txt += `<tr class="border-b border-gray-200">
                                     <td class="text-[11px] md:text-[13px] py-1">${item.id}</td>
                                     <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center">${item.firstName} ${item.lastName}</td>
@@ -183,11 +242,9 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                                         ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 0 ? '<span class="text-green-500">Success</span>' : '<span class="text-gray-500">Unknown</span>'}
                                     </td>
                                     <td class="text-[11px] md:text-[13px] py-1"><span class = 'text-blue-500'>${item.user_id}</span></td>
-                                    <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center gap-5">
-                                        <button type="submit" name="btn_delete" class="bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i></button>
-                                    </td>
                                 </tr>`;
-                            });
+                            }
+                            totalPage.text(Math.ceil( data[0]['total'] / limit));
                             display.html(head + txt);
                         }
                     },
@@ -195,47 +252,38 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                         console.error("Error fetching orders:", error);
                     }
                 });
-            });
+            }
 
-            $("#products").click(function () {
+            function product(page){
                 const display = $("#displayData");
                 const head = `<tr>
                     <th width="30" class="py-1 text-[11px] md:text-[13px] font-medium">ID #</th>
                     <th width="30" class="py-1 text-[11px] md:text-[13px] font-medium">Barcode</th>
                     <th width="100" class="py-1 text-[11px] md:text-[13px] font-medium">Name</th>
-                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Created_at</th>
-                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Action</th>
+                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Created By</th>
                 </tr>`;
 
                 $.ajax({
-                    method: "GET",
+                    method: "POST",
                     url: "action/getProducts.php",
-                    contentType: false,
-                    cache: false,
-                    processData: false,
+                    data: {
+                        "page": page,
+                        "limit": limit,
+                    },
                     dataType: "json",
                     success: function (data) {
                         if (data) {
                             let txt = "";
-                            data.forEach(item => {
+                            for(i in data){
+                                let item = data[i];
                                 txt += `<tr class="border-b border-gray-200">
                                     <td class="text-[11px] md:text-[13px] py-1">${item.id}</td>
                                     <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center">${item.barcode}</td>
                                     <td class="text-[11px] md:text-[13px] py-1">${item.name}</td>
-                                    <td class="text-[11px] md:text-[13px] py-1">${item.created}</td>
-                                    <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center gap-5">
-                                        <form method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="brand_id" value="">
-                                            <button type="submit" name="btn_delete" class="bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i></button>
-                                        </form>
-                                        <form action="code.php" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="brand_id" value="">
-                                            <input type="hidden" name="image">
-                                            <button type="submit" name="btn_delete" class="bg-red-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-trash"></i></button>
-                                        </form>
-                                    </td>
+                                    <td class="text-[11px] md:text-[13px] py-1"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;
-                            });
+                            }
+                            totalPage.text(Math.ceil( data[0]['total'] / limit));
                             display.html(head + txt);
                         }
                     },
@@ -243,7 +291,17 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                         console.error("Error fetching products:", error);
                     }
                 });
-            });
+            }
+            // handle page limit 
+            function selectPage(){
+            if(activeSection === "orders"){
+                order(currentPage);
+            }else if(activeSection === "payment"){
+                payment(currentPage);
+            }else if(activeSection === "product"){
+                product(currentPage);
+            }
+            }
         });
     </script>
 
