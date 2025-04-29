@@ -14,6 +14,12 @@
         $start = $_GET['currentPage'] ? 0 : null;
     }
 
+    $sql = "SELECT COUNT(*) as Total FROM orders";
+    $sTotal = $conn->query($sql);
+    $rTotal = $sTotal->fetch_array();
+    $total = $rTotal['0'];
+
+
     $order1 = "SELECT * FROM orders WHERE status = $id LIMIT $start,$num";
     $order = $conn->query($order1);
     $Data = array();
@@ -31,6 +37,7 @@
                 "total_price" => $row[9],
                 "status" => $row[10],
                 "created_at" => $row[11],
+                "total" => $total
             );
         }
         echo json_encode($Data);

@@ -1,7 +1,7 @@
 <?php include('includes/header.php') ?>
 <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
 <div class="h-full px-4 py-4 bg-blue-50 min-h-screen">
-    <div class="w-full bg-white rounded-xl p-6">
+    <div class="w-full h-[100vh] bg-white rounded-xl p-6">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-xl font-semibold text-gray-700">📊 Report Overview</h2>
         </div>
@@ -89,7 +89,7 @@
         <!-- Orders List -->
         <div class="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5" id = "displayDataStatus">
             <?php
-            $order = getAllStatus('orders','1','2');
+            $order = getAllStatus('orders','1');
             if ($order->num_rows > 0) {
                 foreach ($order as $item) {
             ?>
@@ -155,10 +155,12 @@
 <!-- script -->
  <script>
     $(document).ready(function(){
-        let currentPage = 1;
+        let currentPage = 2;
         let totalPage = 10;
         let startPage = $("#startPage");
         let selectPage = 0;
+
+        startPage.text(currentPage);
 
         $("#next_btn").click(function(){
             if(currentPage < totalPage){
@@ -237,7 +239,7 @@
         //    
         $(document).on("click","#btn_verify", function(){
             let id = $(this).data("id");
-            const display = $("#display1");
+            const display = $("#displayDataStatus");
             $.ajax({
                 method: "GET",
                 url: "action/orderGet.php",
@@ -248,7 +250,8 @@
                 success: function (data) {
                     if(data.length > 0){
                         let txt = "";
-                        data.forEach(item => {
+                        for(i in data){
+                            let item = data[i];
                             txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto addClss overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                     <div class="relative p-4 w-full max-w-md max-h-full">
                                         <!-- Modal content -->
@@ -321,7 +324,7 @@
                                         </div>
                                     </div>
                                 </div> `;
-                        });
+                        }
                        display.html(txt);
                     }
                 }
@@ -369,20 +372,26 @@
         $(document).on("change","#category_status",function(){
             const status = $("#category_status").val();
             reload(status);
+            pageNum(10);
         });
 
         $(document).on('click','#page_num',function(){
             let num = $(this).val();
+            pageNum(num);
+        });
+
+        function pageNum(num){
             selectPage = num;
             // 
             let status = $("#category_status").val(); 
             reload(status)
-        });
+        }
 
         function reload(status){
             const statusNum = status;
             const display = $("#displayDataStatus");
             const offset = (currentPage - 1) * totalPage;
+
             $.ajax({
                 method: 'GET',
                 url: "action/getOrderStatus.php",
@@ -395,8 +404,9 @@
                 success: function (data) {
                     if(data){
                         let txt = "";
-                        data.forEach(item =>{
-                            let btnClass = "";
+                        for(i in data){
+                          let item = data[i];
+                          let btnClass = "";
                             let btnText = "";
                             let statusIcon = "";
 
@@ -415,41 +425,33 @@
                             }
 
                             txt += `
-                <div class="bg-blue-100 border border-blue-200 rounded-xl shadow hover:shadow-lg p-4 space-y-2 transition" id="order-${item.id}">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-semibold text-gray-700 text-sm">${item.first} ${item.last}</h4>
-                        ${statusIcon}
-                    </div>
-                    <hr>
-                    <div class="flex justify-between text-xs text-gray-600">
-                        <span>ID</span><span>${item.id}</span>
-                    </div>
-                    <div class="flex justify-between text-xs text-gray-600">
-                        <span><i class="fa-regular fa-clock"></i></span>
-                        <span>${item.created_at}</span>
-                    </div>
-                    <div class="flex justify-between mt-2 gap-1">
-                        <button
-                            class="${btnClass}  hover:bg-green-700 text-white text-xs px-2 py-1 rounded open-modal"
-                            type="button"
-                            id = "btn_verify"
-                            data-id="${item.id}"
-                            data-first="${item.first_name}"
-                            data-last="${item.last_name}"
-                            data-email="${item.email}"
-                            data-price="${item.total_price}"
-                            data-province="${item.province}"
-                            data-city="${item.city}"
-                            data-phone="${item.phone_number}"
-                            data-status="${item.status}">
-                            ${btnText}
-                        </button>
-                        <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded" id="btn_delete" data-id="${item.id}">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                </div>`;
-                        });
+                    <div class="bg-blue-100 border border-blue-200 rounded-xl shadow hover:shadow-lg p-4 space-y-2 transition" id="order-${item.id}">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-semibold text-gray-700 text-sm">${item.first} ${item.last}</h4>
+                            ${statusIcon}
+                        </div>
+                        <hr>
+                        <div class="flex justify-between text-xs text-gray-600">
+                            <span>ID</span><span>${item.id}</span>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-600">
+                            <span><i class="fa-regular fa-clock"></i></span>
+                            <span>${item.created_at}</span>
+                        </div>
+                        <div class="flex justify-between mt-2 gap-1">
+                            <button
+                                class="${btnClass}  hover:bg-green-700 text-white text-xs px-2 py-1 rounded open-modal"
+                                id = "btn_verify"
+                                type="button"
+                                data-id="${item.id}">
+                                ${btnText}
+                            </button>
+                            <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded" id="btn_delete" data-id="${item.id}">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    </div>`;
+                        }
                         display.html(txt);
                     }
                 }
