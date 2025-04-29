@@ -5,7 +5,7 @@ include('includes/header.php');
  }
  if($_GET['id']){
     $brand_id = $_GET['id'];
-    $brand_data = getById("brands",$brand_id);
+    $brand_data = getById("product",$brand_id);
  }
 ?>
         <!-- end header -->
@@ -13,10 +13,10 @@ include('includes/header.php');
             <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
                 <div class = "w-full h-[10%] flex justify-between items-center">
                     <div>
-                        <h1 class = "font-medium">Edit Brand</h1>
+                        <h1 class = "font-medium">Edit Product</h1>
                     </div>
                     <div>
-                        <a href = "branddisplay.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i>Back</a>
+                        <a href = "menu.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i>Back</a>
                     </div>
                 </div>
                 <div class="w-full h-[70%] mt-5">
@@ -37,9 +37,9 @@ include('includes/header.php');
                                 <img src="
                                         <?php
                                             if(!empty($brand_item['image'])){
-                                                echo '../uploads/brand/' . $brand_item['image'];
+                                                echo '../uploads/product/' . $brand_item['image'];
                                             }else{
-                                                echo '../uploads/default/default.jpg';
+                                                echo 'assets/img/default/default.jpg';
                                             }
                                         ?>   
                                          " id = "showImage" class = "w-full h-full object-contain" alt="">
@@ -55,7 +55,7 @@ include('includes/header.php');
                         </div>
                         </div>
                         <div class="w-full mt-3 flex justify-end items-center pr-5">
-                        <button type = "submit" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md" name = "edit_brand">Submit</button>
+                        <button type = "submit" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md" name = "edit_product">Submit</button>
                         </div>
                     </form>
                     <?php

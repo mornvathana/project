@@ -1,12 +1,12 @@
 <?php include('includes/header.php')?>
 <!-- start  -->
 <div class = "h-full px-2 py-5 bg-blue-50">
-    <div class = "w-full bg-[#ffffff] rounded-md p-5">
+    <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
         <div class = "w-full flex justify-between items-center">
-            <div class="flex justify-between items-center w-[50%] ">
+            <div class="flex justify-between items-center w-[60%]">
                 <div class = "w-[35px] py-2 rounded-sm">
-                    <label  class = "text-[13px] font-medium text-[#515151]">Category</label>
-                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-[200px] py-1 font-medium text-[#515151] outline-none">
+                    <label  class = "text-[13px] font-medium text-[#515151]">Product</label>
+                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-[150px] py-1 font-medium text-[#515151] outline-none">
                     <option value = "" selected class = "text-[13px]">Select</option>
                     <?php
                     $product = getAll("product_detail");
@@ -22,7 +22,23 @@
                 </div>
                 <div class = "w-[35px] py-2 rounded-sm">
                     <label  class = "text-[13px] font-medium text-[#515151]">Brand</label>
-                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-[200px] py-1 font-medium text-[#515151] outline-none">
+                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-[150px] py-1 font-medium text-[#515151] outline-none">
+                    <option value = "" selected class = "text-[13px]">Select</option>
+                    <?php
+                    $product = getAll("brands");
+                    if(mysqli_num_rows($product) > 0){
+                        foreach($product as $productItem){
+                            ?>
+                            <option value="<?= $productItem['name']?>" class = "text-[14px]"><?= $productItem['name']?></option>
+                            <?php
+                            }
+                        }
+                    ?>
+                    </select>
+                </div>
+                <div class = "w-[35px] py-2 rounded-sm">
+                    <label  class = "text-[13px] font-medium text-[#515151]">Brand</label>
+                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-[150px] py-1 font-medium text-[#515151] outline-none">
                     <option value = "" selected class = "text-[13px]">Select</option>
                     <?php
                     $product = getAll("brands");
@@ -37,7 +53,6 @@
                     </select>
                 </div>
                 <div class = "mt-6 py-2 rounded-sm">
-                <a class = "bg-blue-500 text-white px-2 py-1 font-medium text-sm rounded-md" id = "filterData"><i class="fa-solid fa-filter"></i> Filter</a>
                 <a href = "category.php" class = "bg-blue-500 text-white px-2 py-1 font-medium text-sm rounded-md"><i class="fa-solid fa-filter"></i> Add Category</a>
                 </div>
             </div>  
@@ -132,7 +147,7 @@
                         for(i in data){
                             let item = data[i];
                             const image = item.image ? `../uploads/category/${item.image} ` : '../uploads/default/default.jpg';
-                            txt += ` <div class = "h-[250px] border shadow-md border-gray-100 rounded-sm p-2">
+                            txt += ` <div class = "h-[250px] border shadow-md border-gray-100 rounded-sm p-2" id = "category-${item.id}">
                                 <div class = "w-full h-[60%]">
                                     <img src = "${image}" alt = "" class = "w-full h-full object-contain" />
                                 </div>

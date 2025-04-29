@@ -371,15 +371,8 @@ $(document).ready(function () {
                         "scrope": "delete_category"
                     },
                     success: function(response) {
-                        if (response == 150) {
-                            // Show success alert
-                            Swal.fire({
-                                title: "Deleted!",
-                                text: "Your file has been deleted.",
-                                icon: "success"
-                            }).then(() => {
-                                $(`#category-${cid}`).remove(); 
-                            });
+                        if (response == 202) {
+                            $(`#category-${cid}`).remove(); 
                         } else {
                             Swal.fire({
                                 title: "Error!",

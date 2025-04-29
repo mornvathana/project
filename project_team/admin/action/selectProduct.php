@@ -7,12 +7,12 @@
     $totalPage = ($page -1 ) * $limit; 
 
     // get total page 
-    $sqlTotal = "SELECT COUNT(*) as Total FROM brands";
+    $sqlTotal = "SELECT COUNT(*) as Total FROM product";
     $resTotal = $conn->query($sqlTotal);
     $rowTotal = $resTotal->fetch_array();
     $total = $rowTotal['0'];
 
-    $stmt = $conn->prepare("SELECT * FROM brands LIMIT ?,?");
+    $stmt = $conn->prepare("SELECT * FROM product LIMIT ?,?");
     $stmt->bind_param("ii", $totalPage, $limit);
     $data = array();
     if($stmt->execute()){
@@ -20,9 +20,9 @@
         while($row = $result->fetch_array()){
             $data[] = array(
                 "id" => $row['0'],
-                "name" => $row['3'],
-                "image" => $row['4'],
-                "status" => $row['5'],
+                "name" => $row['2'],
+                "image" => $row['3'],
+                "status" => $row['4'],
                 "total" => $total,
             );
         }

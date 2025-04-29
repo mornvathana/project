@@ -15,6 +15,9 @@
                     <li class = "p-2 my-1 text-[12px] <?= $page == 'product1.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
                         <a href="product1.php"><i class="fa-solid fa-box-open"></i> Total Product</a>
                     </li>
+                    <li class = "p-2 my-1 text-[12px] <?= $page == 'product1.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
+                        <a href="menu.php"><i class="fa-solid fa-box-open"></i> Product</a>
+                    </li>
                     <li class = "p-2 my-1 text-[12px] <?= $page == 'branddisplay.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
                         <a href="branddisplay.php"><i class="fa-solid fa-box-open"></i> Brands</a>
                     </li>
@@ -32,6 +35,9 @@
                     </li>
                     <li class = "p-2 my-1 text-[12px] <?= $page == 'inventory.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
                         <a href="inventory.php"><i class="fas fa-warehouse"></i> Inventory</a>
+                    </li>
+                    <li class = "p-2 my-1 text-[12px] bg-red-500 text-white font-medium rounded-md hover:text-white">
+                        <a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
                     </li>
                 </ul>
             </div>

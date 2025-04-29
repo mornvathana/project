@@ -27,6 +27,7 @@
             $r = $q->fetch_assoc();
             $brand = $r['name'];
             $data[] = array(
+                "id" => $row[0],
                 "brand" => $brand,
                 "name" => $row['4'],
                 "price" => $row['6'],

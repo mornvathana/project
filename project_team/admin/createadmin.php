@@ -25,7 +25,7 @@ if(isset($_GET['id'])){
                     foreach($user_detail as $user){
                         ?>
                         <form action="code.php" method = "post" class = "body-circle" enctype = "multipart/form-data">
-                    <div class = "w-full md:flex ">
+                    <div class = "w-full md:flex gap-5 ">
                     <div class  = "w-full md:w-[50%]">
                     <div class = "w-full">
                         <input type="hidden" name = "userid" value = "<?= $user['id']?>" readonly>
@@ -48,6 +48,39 @@ if(isset($_GET['id'])){
                     </div>
                     <div class = "w-full md:w-[50%] h-[180px]">
                     <div class = "w-full">
+                        <label for="con_password" class = "block py-1 text-[15px]">Permission</label>
+                        <div class = "flex justify-between items-center">
+                            <div>
+                                <input type="checkbox" name = "con_password"  id = "con_password" >
+                                <label for="con_password" class = "py-1 text-[15px]">Dashboard</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name = "con_password"  id = "con_password" >
+                                <label for="con_password" class = "py-1 text-[15px]">Total Product</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name = "con_password"  id = "con_password" >
+                                <label for="con_password" class = "py-1 text-[15px]">Product</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name = "con_password"  id = "con_password" >
+                                <label for="con_password" class = "py-1 text-[15px]">Category</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name = "con_password"  id = "con_password" >
+                                <label for="con_password" class = "py-1 text-[15px]">Orders</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name = "con_password"  id = "con_password" >
+                                <label for="con_password" class = "py-1 text-[15px]">User</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name = "con_password"  id = "con_password" >
+                                <label for="con_password" class = "py-1 text-[15px]">Inventory</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "w-full mt-5">
                         <p class = "py-1 text-[15px] pl-3">Upload Image</p>
                     </div>
                     <div class = "w-full h-full flex">

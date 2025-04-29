@@ -4,9 +4,9 @@
     <div class="w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
         <div class="w-full h-[10%] flex justify-between items-center">
             <div>
-                <h1 class="font-medium">Brand List</h1>
-                <a href="brand.php" class="bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md">
-                    Create Brand <i class="fa-solid fa-plus pl-1"></i>
+                <h1 class="font-medium">Product List</h1>
+                <a href="createmenu.php" class="bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md">
+                    Create Product <i class="fa-solid fa-plus pl-1"></i>
                 </a>
             </div>
             <div>
@@ -65,7 +65,7 @@
         function load(page) {
                 $.ajax({
                 method: "POST",
-                url: "action/SelectPage.php",
+                url: "action/selectProduct.php",
                 data: {
                     "page": page,
                 },
@@ -87,7 +87,7 @@
                                 <td class="text-[11px] md:text-[13px] py-2">
                                     <form action="code.php" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="brand_id" value="${item.id}">
-                                        <button type="submit" name="${isActive ? 'btn_active' : 'btn_disable'}"
+                                        <button type="submit" name="${isActive ? 'btn_active1' : 'btn_disable1'}"
                                             class="${isActive ? 'bg-green-500' : 'bg-red-500'} text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
                                             ${isActive ? 'Active' : 'Disable'}
                                         </button>
@@ -95,7 +95,7 @@
                                 </td>
                                 <td class="text-[11px] md:text-[13px] py-2">
                                     <div class="flex justify-center items-center gap-5">
-                                        <form action="brandedit.php?id=${item.id}" method="post" enctype="multipart/form-data">
+                                        <form action="menuedit.php?id=${item.id}" method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="brand_id" value="${item.id}">
                                             <button type="submit" name="btn_edit" class="bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
                                                 <i class="fas fa-edit"></i>

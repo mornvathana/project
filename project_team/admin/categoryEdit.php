@@ -55,18 +55,18 @@
                                         <div class = "w-full h-full">
                                         <div class = "w-full">
                                             <label for="brand" class = "block py-1 text-[13px]">Brand</label>
+                                            <select id = "brand" name = "brand" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md">
                                             <?php
                                                 $brand = getAll('brands');
                                                 if($brand->num_rows > 0){
                                                 foreach($brand as $item1){
                                                 ?>
-                                                <select id = "brand" name = "brand" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md">
                                                 <option value="<?= $item1['id']?>"><?= $item1['name'] ?></option>
-                                                </select>
                                                 <?php
                                                 }
                                                 }
                                             ?>
+                                            </select>
                                         </div>
                                         <div class = "w-full">
                                             <label for="promotion" class = "block py-1 text-[13px]">Promotion</label>

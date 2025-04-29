@@ -1,6 +1,6 @@
 <?php include('includes/header.php')?>
-        <div class = "h-[1200px] px-2 py-2 bg-blue-50">
-                <div class = "w-full bg-[#ffffff] h-[100%] rounded-md p-5">
+        <div class = " px-2 py-2 bg-blue-50">
+                <div class = "w-full bg-[#ffffff] rounded-md p-5">
                 <div class = "w-full h-[5%] flex justify-between items-center">
                     <div>
                         <h1 class = "font-medium">Add Category</h1>
@@ -15,7 +15,6 @@
                         <div class = " w-full h-full">
                         <div class  = "w-full">
                         <div class = "w-full">
-                            <input type="hidden" name = "userid" value = "<?= $user['id']?>" readonly>
                             <input type="hidden" name="page_id" value = "<?= $user_id ?>">
                             <label for="barcode" class = "block py-1 text-[13px]">Barcode</label>
                             <input type="text" name = "barcode" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" id = "name" placeholder = "Barcode">
@@ -76,16 +75,8 @@
                         <div class = "w-full h-[170px] flex">
                         <div class = "w-[50%] flex justify-center items-center none">
                             <div class="w-[90%] border border-[1px] border-dashed border-blue-900 h-[100%] rounded-md">
-                                <img src="
-                                <?php
-                                    if(!empty($user['image'])){
-                                        echo '../uploads/admin/' . $user['image'];
-                                    }else{
-                                        echo '../uploads/default/default.jpg';
-                                    }
-                                ?>
-                                " id = "showImage" class = "w-full h-full object-contain" alt="">
-                                <input type="hidden" name="old_image" value = "<?= $user['image'] ?>" >
+                                <img src="../uploads/default/default.jpg" id = "showImage" class = "w-full h-full object-contain" alt="">
+                                <input type="hidden" name="old_image"  >
                             </div>
                         </div> 
                         <div class = "w-[50%] flex justify-center items-center relative">
@@ -105,75 +96,35 @@
                         <div class = "w-[50%] flex justify-center items-center none">
                             <div class="w-[90%] gap-2 grid grid-cols-3 h-[100%] rounded-md">
                                 <div class = " h-[50%]">
-                                <img src="
-                                <?php
-                                    if(!empty($user['image'])){
-                                        echo '../uploads/admin/' . $user['image'];
-                                    }else{
-                                        echo '../uploads/default/default.jpg';
-                                    }
-                                ?>
-                                " id = "showImage1" class = "w-full h-full object-contain" alt="">
+                                <img src="../uploads/default/default.jpg" id = "showImage1" class = "w-full h-full object-contain" alt="">
                                 <input type="checkbox" name="" id="">
-                                <input type="hidden" name="old_image" value = "<?= $user['image'] ?>" >
+                                <input type="hidden" name="old_image" >
                                 </div>
                                 <div class = " h-[50%]">
-                                <img src="
-                                <?php
-                                    if(!empty($user['image'])){
-                                        echo '../uploads/admin/' . $user['image'];
-                                    }else{
-                                        echo '../uploads/default/default.jpg';
-                                    }
-                                ?>
-                                " id = "showImage1" class = "w-full h-full object-contain" alt="">
+                                <img src="../uploads/default/default.jpg" id = "showImage1" class = "w-full h-full object-contain" alt="">
                                 <input type="checkbox" name="" id="">
-                                <input type="hidden" name="old_image" value = "<?= $user['image'] ?>" >
+                                <input type="hidden" name="old_image" >
                                 </div>
                                 <div class = " h-[50%]">
-                                <img src="
-                                <?php
-                                    if(!empty($user['image'])){
-                                        echo '../uploads/admin/' . $user['image'];
-                                    }else{
-                                        echo '../uploads/default/default.jpg';
-                                    }
-                                ?>
-                                " id = "showImage1" class = "w-full h-full object-contain" alt="">
+                                <img src="../uploads/default/default.jpg" id = "showImage1" class = "w-full h-full object-contain" alt="">
                                 <input type="checkbox" name="" id="">
-                                <input type="hidden" name="old_image" value = "<?= $user['image'] ?>" >
+                                <input type="hidden" name="old_image" >
                                 </div>
                                 <div class = " h-[50%]">
-                                <img src="
-                                <?php
-                                    if(!empty($user['image'])){
-                                        echo '../uploads/admin/' . $user['image'];
-                                    }else{
-                                        echo '../uploads/default/default.jpg';
-                                    }
-                                ?>
-                                " id = "showImage1" class = "w-full h-full object-contain" alt="">
+                                <img src="../uploads/default/default.jpg" id = "showImage1" class = "w-full h-full object-contain" alt="">
                                 <input type="checkbox" name="" id="">
-                                <input type="hidden" name="old_image" value = "<?= $user['image'] ?>" >
+                                <input type="hidden" name="old_image" >
                                 </div>
                                 <div class = " h-[50%]">
-                                <img src="
-                                <?php
-                                    if(!empty($user['image'])){
-                                        echo '../uploads/admin/' . $user['image'];
-                                    }else{
-                                        echo '../uploads/default/default.jpg';
-                                    }
-                                ?>
-                                " id = "showImage1" class = "w-full h-full object-contain" alt="">
+                                <img src="../uploads/default/default.jpg" id = "showImage1" class = "w-full h-full object-contain" alt="">
                                 <input type="checkbox" name="" id="">
-                                <input type="hidden" name="old_image" value = "<?= $user['image'] ?>" >
+                                <input type="hidden" name="old_image" >
                                 </div>
                             </div>
                         </div> 
                         <div class = "w-[50%] flex justify-center items-center relative">
                         <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
-                            <input type="file" name = "demo_image[]" id = "profile_image1" multiple accept="image/*" class = "w-full h-full hidden" required>
+                            <input type="file" name = "demo_image[]" id = "profile_image1" multiple accept="image/*" class = "w-full h-full hidden">
                         </div>
                         <label for="profile_image1" class = "absolute text-sm ">Demo Image <i class="fa-solid fa-image"></i></label>
                         </div> 

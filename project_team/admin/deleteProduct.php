@@ -15,10 +15,10 @@
             break;
             case "delete_category":
                 $cid = $_POST['cid'];
-                $del_cd = "DELETE FROM category_db WHERE id = $cid";
+                $del_cd = "DELETE FROM product_detail WHERE id = $cid";
                 $del_cd_run = $conn->query($del_cd);
                 if($del_cd_run){
-                    echo "150";
+                    echo "202";
                 }else{
                     echo "400";
                 }
