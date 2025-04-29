@@ -196,7 +196,7 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                                     <td class="text-[11px] md:text-[13px] py-1">${item.date}</td>
                                     <td class="text-[11px] md:text-[13px] py-1">${item.total}</td>
                                     <td class="text-[11px] md:text-[13px] py-1">
-                                        ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 0 ? '<span class="text-green-500">Success</span>' : '<span class="text-gray-500">Unknown</span>'}
+                                        ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 3 ? '<span class="text-green-500">Success</span>' : '<span class="text-blue-500">Pedding</span>'}
                                     </td>
                                     <td class="text-[11px] md:text-[13px] py-1"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;
@@ -239,7 +239,7 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                                     <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center">${item.firstName} ${item.lastName}</td>
                                     <td class="text-[11px] md:text-[13px] py-1">${item.total}</td>
                                     <td class="text-[11px] md:text-[13px] py-1">
-                                        ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 0 ? '<span class="text-green-500">Success</span>' : '<span class="text-gray-500">Unknown</span>'}
+                                        ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 3 ? '<span class="text-green-500">Success</span>' : '<span class="text-blue-500">Pedding</span>'}
                                     </td>
                                     <td class="text-[11px] md:text-[13px] py-1"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;

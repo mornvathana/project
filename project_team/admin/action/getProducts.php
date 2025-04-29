@@ -19,17 +19,16 @@
     $Data = array();
     if ($order->num_rows > 0) {
         while($row = $order->fetch_array()){
-            $id = $row[1];
-            $data = $conn->query("SELECT * FROM users WHERE id = $id");
-            foreach($data as $item){
+            $data = $conn->query("SELECT * FROM users WHERE id = 5");
+            foreach( $data as $item){
                 $userName = $item['name'];
             }
             $Data[] = array(
-                "id" => $row[0],
+                "id" => $row[1],
                 "barcode" => $row[3],
                 "name" => $row[4],
                 "total" => $total,
-                "user_id" => $userName,
+                "user_id" => $userName
             );
         }
         echo json_encode($Data);
