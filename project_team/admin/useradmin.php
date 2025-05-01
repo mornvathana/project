@@ -15,7 +15,15 @@
                     foreach($user as $userItem){
                     ?>
                     <div class = " flex flex-col justify-center items-center">
-                    <img src = "assets/img/unnamed.jpg" class = "w-[100px] h-[100px] rounded-full"/>
+                    <img src = "
+                            <?php
+                                if($userItem['image']){
+                                    echo "../uploads/admin/" . $userItem['image'];
+                                }else{
+                                    echo "assets/img/default.jpg";
+                                }
+                            ?>
+                                " class = "w-[100px] h-[100px] rounded-full"/>
                     <h1 class = "font-medium mt-3"><?= $userItem['name']?></h1>
                     </div>
                     <div class = "">
@@ -29,12 +37,12 @@
                                 <p class = " text-[10px] md:text-[13px] my-1"><?= $userItem['email']?></p>
                             </div>
                             <div class = "">
-                                <p class = " text-[10px] md:text-[13px] font-medium my-2">Created</p>
+                                <p class = " text-[10px] md:text-[13px] font-medium my-2">Created Date</p>
                                 <p class = " text-[10px] md:text-[13px] my-1"><?= $userItem['created_at']?></p>
                             </div>
                         </div>
                         <div class = "w-full h-[10%] px-5">
-                            <p class = " text-[10px] md:text-[13px] font-medium my-2">Projects</p>
+                            <p class = " text-[10px] md:text-[13px] font-medium my-2">Verify </p>
                         </div>
                         <hr>
                         <div class = "w-full h-[25%] flex justify-between items-center py-1 px-5">

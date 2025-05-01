@@ -8,6 +8,28 @@
         $query = "SELECT * FROM users where $selectCol = $property";
         return $query_run = mysqli_query($conn,$query);
     }
+
+    function permission($id){
+        global $conn;
+        $query = "SELECT * FROM permission WHERE user_id = $id" ;
+        $query_run = mysqli_query($conn,$query);
+        if(mysqli_num_rows($query_run) > 0){
+            return mysqli_fetch_assoc($query_run);
+        }
+        return null;
+    }
+
+    function getLastId($table) {
+        global $conn;
+        $query = "SELECT id FROM $table ORDER BY id DESC LIMIT 1";
+        $result = mysqli_query($conn, $query);
+        if ($result && mysqli_num_rows($result) > 0) {
+            $row = mysqli_fetch_assoc($result);
+            return $row['id'];
+        }
+        return 0;
+    }
+    
     function countCategoryItem($table,$value){
         global $conn;
         $query = "SELECT count(*) as count FROM $table WHERE id = $value";

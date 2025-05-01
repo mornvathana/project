@@ -5,6 +5,7 @@ if(isset($_GET['id'])){
     $user_id = $_GET['id'];
     $user_detail = getUser("id",$user_id);
 }
+$permission = permission($user_id);
 
 ?>
         <!-- end header -->
@@ -24,7 +25,7 @@ if(isset($_GET['id'])){
                             foreach($user_detail as $user){
                             ?>
                             <form action="code.php" method = "post" class = "body-circle" enctype = "multipart/form-data">
-                                <div class = "w-full flex ">
+                                <div class = "w-full flex gap-5 ">
                                 <div class  = "w-[50%]">
                                 <div class = "w-full">
                                     <input type="hidden" name = "userid" value = "<?= $user['id']?>" readonly>
@@ -45,7 +46,49 @@ if(isset($_GET['id'])){
                                     <input type="password" name = "con_password"  id = "con_password" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Enter your name">
                                 </div>
                                 </div>
-                                <div class = "w-[50%] h-[180px]">
+                                <div class = "w-full md:w-[50%] h-[180px]">
+                                <div class = "w-full">
+                                    <label for="" class = "block py-1 text-[13px] font-medium font-medium">Permission</label>
+                                    <div class = "flex justify-between items-center">
+                                    <input type="hidden" id = "userId" value = "<?= $user_id?>">
+                                        <div>
+                                            <input type="checkbox"   id = "dashboard" <?= $permission['dashboard'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Dashboard</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "total_product" <?= $permission['total_product'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Total </label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "product" <?= $permission['product'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Product</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "brands" <?= $permission['brands'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Brands</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "category" <?= $permission['category'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Category</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "orders" <?= $permission['orders'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Orders</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "users" <?= $permission['user'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">User</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "inventory" <?= $permission['inventory'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Inventory</label>
+                                            <?php
+                                                $data = getLastId("users");
+                                                echo '<input type="hidden" id = "table_id" value="' . ( $data + 1 ) . '">';                  
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class = "w-full">
                                     <p class = "py-1 text-[15px] pl-3">Upload Image</p>
                                 </div>
@@ -73,10 +116,11 @@ if(isset($_GET['id'])){
                                 </div> 
                                 </div>
                                 </div>
-                                </div>
                                 <div class="w-full mt-3 flex justify-end items-center pr-5">
-                                <button type = "submit" name = "change_password" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md">Submit</button>
+                                <button type = "submit" name = "change_password" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md">Update</button>
                                 </div>
+                                </div>
+                                
                                 </form>
                             <?php
                             }
@@ -84,37 +128,6 @@ if(isset($_GET['id'])){
                     ?>
                 </div>
             </div>
-            <!-- <div class = "box-circle">  
-                <div class = "header-circle">
-                    <p>Change Password</p>
-                    <p class = 'bg-blue-500 text-white px-1 h-7 text-center cursor-pointer rounded-md'><a href="useradmin.php">Back</a> <i class="fa-solid fa-arrow-right-to-bracket"></i></p>
-                </div>
-                <div class = "w-full">
-                <?php
-                if(mysqli_num_rows($user_detail) > 0){
-                    foreach($user_detail as $user){
-                        ?>
-                        <form action="code.php" method = "post" class = "body-circle" enctype = "multipart/form-data">
-                            <div class = "frm ">
-                                <label for="">Name</label>
-                                <input type="text" name = "cate_name" value = "<?= $user['name']?>" readonly>
-                                <input type="hidden" name = "userid" value = "<?= $user['id']?>" readonly>
-                                <input type="hidden" name="page_id" value = "<?= $user_id ?>">
-                                <label for="">Email</label>
-                                <input type="text" name = "cate_small_des" readonly value = "<?= $user['email']?>">
-                                <label for="">New Password</label>
-                                <input type="password" name = "new_password" required placeholder="Enter your new password...">
-                                <label for="">Confirm Password</label>
-                                <input type="password" name = "con_password" required placeholder="Enter your confirm password...">
-                                <button type = "submit" class = "px-3 py-1 rounded-sm shadow-sm text-md bg-blue-500 text-white mt-4" name = "change_password" >Submit</button>
-                            </div>
-                        </form>
-                        <?php
-                    }
-                }
-                ?>
-                </div>
-            </div> -->
         </div>
     <!--  -->
     <script>

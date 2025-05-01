@@ -41,12 +41,12 @@
                   <div class="relative mt-8">
                       <div class="range-container">
                           <div id="slider-track" class="track"></div>
-                          <input type="range" name="min-price" id="range-min" min="8" max="3000" value="<?= $_GET['min-price'] ?? 8 ?>" step="1" class="absolute left-0 z-10">
-                          <input type="range" name="max-price" id="range-max" min="8" max="3000" value="<?= $_GET['max-price'] ?? 3000 ?>" step="1" class="absolute right-0 z-10">
+                          <input type="range" name="min-price" id="range-min" min="0" max="3000" value="<?= $_GET['min-price'] ?? 8 ?>" step="1" class="absolute left-0 z-10">
+                          <input type="range" name="max-price" id="range-max" min="0" max="3000" value="<?= $_GET['max-price'] ?? 3000 ?>" step="1" class="absolute right-0 z-10">
                       </div>
                   </div>
                   <div class="mt-3 text-center font-[Poppins,hanuman,Sans-serif]">
-                      <span id="min-value" class="text-md md:text-lg font-normal text-gray-800"><?= $_GET['min-price'] ?? 8 ?></span> -
+                      <span id="min-value" class="text-md md:text-lg font-normal text-gray-800"><?= $_GET['min-price'] ?? 0 ?></span> -
                       <span id="max-value" class="text-md md:text-lg font-normal text-gray-800"><?= $_GET['max-price'] ?? 3000 ?></span>
                   </div>
               </div>
@@ -61,7 +61,7 @@
                 <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
                 <a href="viewdetail.php?id=<?= $item['id']?>" class="flex flex-col items-center space-y-2 w-full">
                     <div class="pro-img w-full overflow-hidden rounded-md">
-                        <img src="uploads/category/<?= $item['image']?>" alt="" class="w-full">a
+                        <img src="uploads/category/<?= $item['image']?>" alt="" class="w-full">
                     </div>
                     <div class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
                         <del class="dis-price opacity-50">$<?= $item['sell_price']?></del>

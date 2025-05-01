@@ -21,7 +21,15 @@
             VALUES ('$user_id', '$cart_id', '$first_name', '$last_name', '$city', '$province', '$email', '$phone_number', '$total_price')";
 
     if (mysqli_query($conn, $sql)) {
-        echo json_encode(['status' => 'success', 'message' => 'Order saved successfully']);
+        
+        $delete = $conn->query("DELETE FROM cart WHERE id = '$cart_id' AND user_id = '$user_id'");
+
+        if($delete){
+
+            echo json_encode(['status' => 'success', 'message' => 'Order saved successfully']);
+
+        }
+
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Failed to save order: ' . mysqli_error($conn)]);
     }

@@ -23,65 +23,74 @@ if(isset($_GET['id'])){
             <?php
                 if(mysqli_num_rows($user_detail) > 0){
                     foreach($user_detail as $user){
-                        ?>
-                        <form action="code.php" method = "post" class = "body-circle" enctype = "multipart/form-data">
+                    ?>
+                    <form action="code.php" method = "post" class = "body-circle" enctype = "multipart/form-data">
                     <div class = "w-full md:flex gap-5 ">
                     <div class  = "w-full md:w-[50%]">
                     <div class = "w-full">
-                        <input type="hidden" name = "userid" value = "<?= $user['id']?>" readonly>
+                        <input type="hidden" name = "userid" id = "userId" value = "<?= $user['id']?>" readonly>
                         <input type="hidden" name="page_id" >
-                        <label for="username" class = "block py-1 text-[15px]">Username</label>
+                        <label for="username" class = "block py-1 text-[13px] font-medium">Username</label>
                         <input type="text" name = "username" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" id = "username" placeholder = "Username">
                     </div>
                     <div class = "w-full">
-                        <label for="email" class = "block py-1 text-[15px]">Email</label>
+                        <label for="email" class = "block py-1 text-[13px] font-medium">Email</label>
                         <input type="email" name = "email" id = "email"  class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Email">
                     </div>
                     <div class = "w-full">
-                        <label for="password" class = "block py-1 text-[15px]">Password</label>
+                        <label for="password" class = "block py-1 text-[13px] font-medium">Password</label>
                         <input type="password" name = "new_password" id = "password" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Password">
                     </div>
                     <div class = "w-full">
-                        <label for="con_password" class = "block py-1 text-[15px]">Confirm Password</label>
+                        <label for="con_password" class = "block py-1 text-[13px] font-medium">Confirm Password</label>
                         <input type="password" name = "con_password"  id = "con_password" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Confirmed password">
                     </div>
                     </div>
                     <div class = "w-full md:w-[50%] h-[180px]">
                     <div class = "w-full">
-                        <label for="con_password" class = "block py-1 text-[15px]">Permission</label>
+                        <label for="" class = "block py-1 text-[13px] font-medium font-medium">Permission</label>
                         <div class = "flex justify-between items-center">
+                        <input type="hidden" id = "userId" value = "<?= $user_id?>">
                             <div>
-                                <input type="checkbox" name = "con_password"  id = "con_password" >
-                                <label for="con_password" class = "py-1 text-[15px]">Dashboard</label>
+                                <input type="checkbox"   id = "dashboard" >
+                                <label for="" class = "py-1 text-[13px]">Dashboard</label>
                             </div>
                             <div>
-                                <input type="checkbox" name = "con_password"  id = "con_password" >
-                                <label for="con_password" class = "py-1 text-[15px]">Total Product</label>
+                                <input type="checkbox"   id = "total_product" >
+                                <label for="" class = "py-1 text-[13px]">Total </label>
                             </div>
                             <div>
-                                <input type="checkbox" name = "con_password"  id = "con_password" >
-                                <label for="con_password" class = "py-1 text-[15px]">Product</label>
+                                <input type="checkbox"   id = "product" >
+                                <label for="" class = "py-1 text-[13px]">Product</label>
                             </div>
                             <div>
-                                <input type="checkbox" name = "con_password"  id = "con_password" >
-                                <label for="con_password" class = "py-1 text-[15px]">Category</label>
+                                <input type="checkbox"   id = "brands" >
+                                <label for="" class = "py-1 text-[13px]">Brands</label>
                             </div>
                             <div>
-                                <input type="checkbox" name = "con_password"  id = "con_password" >
-                                <label for="con_password" class = "py-1 text-[15px]">Orders</label>
+                                <input type="checkbox"   id = "category" >
+                                <label for="" class = "py-1 text-[13px]">Category</label>
                             </div>
                             <div>
-                                <input type="checkbox" name = "con_password"  id = "con_password" >
-                                <label for="con_password" class = "py-1 text-[15px]">User</label>
+                                <input type="checkbox"   id = "orders" >
+                                <label for="" class = "py-1 text-[13px]">Orders</label>
                             </div>
                             <div>
-                                <input type="checkbox" name = "con_password"  id = "con_password" >
-                                <label for="con_password" class = "py-1 text-[15px]">Inventory</label>
+                                <input type="checkbox"   id = "users" >
+                                <label for="" class = "py-1 text-[13px]">User</label>
+                            </div>
+                            <div>
+                                <input type="checkbox"   id = "inventory" >
+                                <label for="" class = "py-1 text-[13px]">Inventory</label>
+                                <?php
+                                    $data = getLastId("users");
+                                    echo '<input type="hidden" id = "table_id" value="' . ( $data + 1 ) . '">';                  
+                                ?>
                             </div>
                         </div>
                     </div>
                     <div class = "w-full mt-5">
-                        <p class = "py-1 text-[15px] pl-3">Upload Image</p>
+                        <p class = "py-1 text-[13px] pl-3 font-medium">Upload Image</p>
                     </div>
                     <div class = "w-full h-full flex">
                     <div class = "w-[50%] flex justify-center items-center none">
@@ -106,7 +115,7 @@ if(isset($_GET['id'])){
                     </div>
                     </div>
                     <div class="w-full mt-3 flex justify-end items-center pr-5">
-                    <button type = "submit" name = "create_admin" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md">Submit</button>
+                    <button type = "submit" id = "save_btn" name = "create_admin" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md">Submit</button>
                     </div>
                     </div>
                     </div>
@@ -128,6 +137,38 @@ if(isset($_GET['id'])){
                 }
                 readerView.readAsDataURL(e.target.files[0]);
             });
+            // permission 
+            $("#save_btn").click(function(){
+
+                const tableid = $("#table_id").val();
+                const userid = $("#userId").val();
+
+                const data = {
+                    tableId: tableid,
+                    userId: userid,
+                    dashboard: $('#dashboard').is(':checked') ? 1 : 0,
+                    total_product: $('#total_product').is(':checked') ? 1 : 0,
+                    product: $('#product').is(':checked') ? 1 : 0,
+                    brands: $('#brands').is(':checked') ? 1 : 0,
+                    category: $('#category').is(':checked') ? 1 : 0,
+                    orders: $('#orders').is(':checked') ? 1 : 0,
+                    users: $('#users').is(':checked') ? 1 : 0,
+                    inventory: $('#inventory').is(':checked') ? 1 : 0,
+                };
+                console.log(data);
+
+                $.ajax({
+                    method: "POST",
+                    url: "action/permission.php",
+                    data: data,
+                    success: function (data) {
+                        if(data == 202){
+                            alert("done");
+                        }
+                    }
+                });
+            });
+
         });
     </script>
 <?php include('includes/footer.php')?>

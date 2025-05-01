@@ -151,6 +151,8 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                $("#startPage").text(currentPage);
                order(currentPage);
             });
+            
+            order(currentPage);
 
             $("#payments").click(function () {
                activeSection = "payment";

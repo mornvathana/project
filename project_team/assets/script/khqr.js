@@ -43,12 +43,15 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     // auto save 
     function autoSaveData() {
+        const userId = $("#user_id").val();
+        const cartId = $("#cart_id").val();
+        console.log(cartId);
         const formData = {
             first_name: firstName.value,
             last_name: lastName.value,
             email: email.value,
-            userid: userId.value,
-            cartid: CartId.value,
+            userid: userId,
+            cartid: cartId,
             city: city.value,
             address: address.value,
             phone_number: phoneNumber.value,

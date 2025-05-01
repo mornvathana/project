@@ -291,9 +291,9 @@
                         $stmt = $conn->prepare("INSERT INTO users (name, email,image, password, role_as) VALUES (?, ?,? , ?, ?)");
                         $stmt->bind_param("ssisi", $username, $email, $filename, $hashedPassword, $role_as);
                         $register_run = $stmt->execute();
-                        
                         if($register_run){
                             move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+                            // update in permision user_Id 
                             redirect("useradmin.php","Register Successfully!");
                         }else{
                             redirect1("createadmin.php?id=$pageId","Something went wrong!");
