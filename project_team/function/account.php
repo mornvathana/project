@@ -22,10 +22,11 @@
                 'user_name' => $username,
                 'user_email' => $useremail,
             ];
+            $_SESSION['id'] = $userid;
             $_SESSION['role_as'] = $role_as;
 
             if ($role_as == 1) {
-                header('Location: ../admin/index.php');
+                redirect("../admin/index.php", "Welcome to Dashboard");
             } else {
                 redirect("../index.php", "You have logged in successfully");
             }

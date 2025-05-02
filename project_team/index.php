@@ -1,40 +1,6 @@
 <?php 
     include('includes/header.php');
-    // require __DIR__ . "/vendor/autoload.php";
-    
-    // $client = new Google\Client;
-    
-    // $client->setClientId("825786283493-ub18v7kqos3b4jevukrv7g2r3mv1pn7o.apps.googleusercontent.com");
-    // $client->setClientSecret("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");
-    // $client->setRedirectUri("http://localhost:8080/ecommerce_project_sarana/");
-    
-    // if (!isset($_SESSION['access_token'])) {
-
-    //     if (!isset($_GET['code'])) {
-    //         exit();
-    //     }
-    
-    //     $token = $client->fetchAccessTokenWithAuthCode($_GET['code']);
-    //     if (!isset($token['access_token'])) {
-    //         exit("Invalid or expired authorization code.");
-    //     }
-    //     $_SESSION['access_token'] = $token['access_token'];
-    // } else {
-    //     $client->setAccessToken($_SESSION['access_token']);
-    // }
-    
-    // $oauth = new Google\Service\Oauth2($client);
-    
-    // $userinfo = $oauth->userinfo->get();
-
-    // $_SESSION['user_email'] = $userinfo->email;
-    // $_SESSION['user_name'] = $userinfo->name;
-
-    // var_dump(
-    //     $_SESSION['user_email'],
-    //     $_SESSION['user_name']
-    // );
-    ?>
+?>
     <!-- end of main-slide -->
     <section class="main swiper mySwiper h-[30vh] sm:h-[60vh] md:h-[80vh] lg:h-[80vh] xl:h-[80vh] 2xl:h-[80vh]">
         <div class="wrapper swiper-wrapper">
@@ -1804,74 +1770,6 @@
 
         </div>
     </div>
-    <!-- end of new-arrival -->
-
-    <!-- apple-product -->
-    
-    <!-- end apple-product -->
-
-    <!-- samsung-product -->
-    <div class="samsung-product mt-5 md:mt-10 w-full">
-        <?php
-            $brand = getAll('brands');
-            if($brand->num_rows > 0){
-                foreach($brand as $item){
-                ?>
-                <div class="head p-3 sm:p-5">
-                    <h1
-                        class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-3xl text-[#2e3192] shadow-black">
-                        <?= $item['name'] ?></h1>
-                    <h3
-                        class="font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-gray-700 font-medium mt-2">
-                        Most popular products recommended to you</h3>
-                </div>
-                <div
-            class="product-box w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-3 p-1 sm:p-5">
-            <!-- box -->
-            <?php
-                $category = getBrandEach($item['id']);
-                if($category->num_rows > 0){
-                    foreach($category as $item){
-                    ?>
-                    <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
-                        <a href="viewdetail.php?id=<?= $item['id']?>" class="flex flex-col items-center space-y-2 w-full">
-                            <div class="pro-img w-full overflow-hidden rounded-md">
-                                <img src="uploads/category/<?= $item['image'] ?>" alt="" class="w-full">
-                            </div>
-                            <div
-                                class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
-                                <del class="dis-price opacity-50">$<?= $item['sell_price'] ?></del>
-                                <div class="full-price text-[#f34770!important]">$<?= $item['original_price']?></div>
-                            </div>
-                            <div
-                                class="pro-name text-center text-[13px] md:text-[15px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden"><?= $item['name']?></div>
-                            <button
-                                class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                                    class="fa-solid fa-cart-shopping"></i> Add to cart</button>
-                            <div class="line"></div>
-                        </a>
-                        </div>
-                    <?php
-                    }
-                }
-            ?>
-            <!-- end of product-box -->
-
-            <!-- see-more-btn -->
-            <div class="see-more-btn w-full p-5 sm:p-5 flex justify-end mt-0 sm:mt-0">
-                <button
-                    class="font-[Montserrat,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-[#2e3192] font-semibold"><a
-                        href="#">
-                        SEE MORE
-                        <span><i class="fa-solid fa-angle-right"></i></span>
-                    </a></button>
-            </div>
-                    <?php
-                    }
-                }
-            ?>
-        </div>
-        <!-- end samsung-product -->
 
     <!-- oppo-product -->
     <div class="oppo-product mt-5 md:mt-10 w-full">

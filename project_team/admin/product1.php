@@ -1,4 +1,10 @@
-<?php include('includes/header.php'); ?>
+<?php 
+
+include('includes/header.php');
+
+include('middleware/total_product.php');
+
+?>
 <!-- start -->
 <div class="h-full px-2 py-2 bg-blue-50">
     <div class="w-full h-[100vh] bg-[#ffffff] rounded-md p-5">

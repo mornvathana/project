@@ -1,4 +1,9 @@
-<?php include('includes/header.php')?>
+<?php 
+
+include('includes/header.php');
+include('middleware/category.php');
+
+?>
 <!-- start  -->
 <div class = "h-full px-2 py-5 bg-blue-50">
     <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">

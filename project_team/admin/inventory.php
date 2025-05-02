@@ -1,5 +1,6 @@
 <?php 
 include('includes/header.php');
+include('middleware/inventory.php');
 $barcodeData = "123456789"; // Your barcode value
 $barcodeType = "Code128"; // Barcode type (Code128, EAN13, UPC, etc.)
 $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$barcodeType&dpi=96";

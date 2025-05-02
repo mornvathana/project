@@ -1,4 +1,7 @@
-<?php include('includes/header.php') ?>
+<?php 
+include('includes/header.php');
+include('middleware/orders.php');
+?>
 <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
 <div class="h-full px-4 py-4 bg-blue-50 min-h-screen">
     <div class="w-full h-[100vh] bg-white rounded-xl p-6">

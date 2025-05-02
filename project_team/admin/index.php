@@ -1,6 +1,9 @@
 <?php
-include('includes/header.php');
- include('../middleware/adminAccess.php');
+    include('includes/header.php');
+
+    include('../middleware/adminAccess.php');
+
+    include('middleware/dashboard.php');
 ?>
         <!-- end header -->
         <div class="h-full px-5 py-5 overflow-y-auto bg-blue-50">
