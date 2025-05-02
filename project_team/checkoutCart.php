@@ -1,9 +1,11 @@
 <?php 
+ob_start();
 include('includes/header.php');
 include('authication.php');
 if($_SESSION['auth_user']){
     $user_id = $_SESSION['auth_user']['user_id'];
 }
+ob_end_flush();
 ?>
     <!-- start -->
     <div class="shopping-cart-block w-full p-3 sm:p-5 mt-10">
