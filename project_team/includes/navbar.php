@@ -34,7 +34,7 @@
         <div class="right hidden lg:flex items-center space-x-5">
             <button class="search-box w-[450px] flex items-center space-x-2 border rounded-full p-2 text-lg font-medium"
                 style="border: 2px solid #144194;">
-                <input type="text" placeholder="Search for product..." class="w-full h-fit outline-none">
+                <input type="text" id = "search" placeholder="Search for product..." class="w-full h-fit outline-none">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
             <button class="shopping-cart text-[#144194] text-xl relative">
@@ -80,102 +80,39 @@
             </button>
         </div>
     </div>
-    <!-- end of bottom header --
+    <!-- end of bottom header -->
 <nav class="px-5 py-0 lg:py-3 sticky top-0 bg-[#fff] z-40 shadow-sm">
     <!-- menu -->
     <ul class="menu font-[Montserrat,hanuman,Sans-serif] font-bold text-sm text-gray-800 hidden lg:flex justify-center items-center space-x-8 xl:space-x-10 relative z-10">
         <li class="text-[#144194]"><a href="index.php"><i class="fa-solid fa-house"></i> Home</a></li>
-        <li><a href="#">Brand <i class="fa-solid fa-angle-down"></i></a>
-            <!-- sub-menu -->
-            <ul class="sub-menu absolute grid-cols-2 gap-5 bg-gray-200 p-5 shadow-lg hidden text-gray-800 font-medium rounded-md">
-                <?php
-                    $navItem = getAll("brands");
-                    if(mysqli_num_rows($navItem) > 0){
-                    foreach( $navItem as $item){
+        <?php
+            $menu = getAll("product");
+            if(mysqli_num_rows($menu) > 0){
+                foreach($menu as $item){
                     ?>
-                    <li><a href="products.php?id=<?= $item['id'] ?>"><?= $item['name'] ?></a></li>
+                    <li>
+                        <a href="#"><?= $item['name'] ?> <i class="fa-solid fa-angle-down"></i></a>
+
+                        <?php
+                        $subMenu = menu($item['id']);
+                        if(mysqli_num_rows($subMenu) > 0){
+                            ?>
+                            <ul class="sub-menu absolute grid-cols-1 gap-5 bg-gray-200 p-5 shadow-lg hidden text-gray-800 font-medium rounded-md">
+                                <?php
+                                foreach($subMenu as $subItem){
+                                    ?>
+                                    <li><a href="products.php?id=<?= $subItem['id'] ?>"><?= $subItem['name']?></a></li>
+                                    <?php
+                                }
+                                ?>
+                            </ul>
+                            <?php
+                        }
+                        ?>
+                    </li>
                     <?php
-                    }
                 }
-                ?>
-            </ul>
-        </li>
-        <li><a href="#">Computer <i class="fa-solid fa-angle-down"></i></a>
-            <!-- sub-menu -->
-            <ul class="sub-menu absolute grid-cols-1 gap-5 bg-gray-200 p-5 shadow-lg hidden text-gray-800 font-medium rounded-md">
-                <li><a href="#">Macbook</a></li>
-                <li><a href="#">Huawei Laptop</a></li>
-                <li><a href="#">Micfrosoft surface</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Smartphone <i class="fa-solid fa-angle-down"></i></a>
-            <!-- sub-menu -->
-            <ul class="sub-menu absolute grid-cols-2 gap-5 bg-gray-200 p-5 shadow-lg hidden text-gray-800 font-medium rounded-md">
-                <li><a href="#">Apple</a></li>
-                <li><a href="#">Samsung</a></li>
-                <li><a href="#">Nothing</a></li>
-                <li><a href="#">Oppo</a></li>
-                <li><a href="#">Vivo</a></li>
-                <li><a href="#">Xoami</a></li>
-                <li><a href="#">Huawei</a></li>
-                <li><a href="#">Hornor</a></li>
-                <li><a href="#">Realme</a></li>
-                <li><a href="#">Techno</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Tablet <i class="fa-solid fa-angle-down"></i></a>
-            <!-- sub-menu -->
-            <ul class="sub-menu absolute grid-cols-1 gap-5 bg-gray-200 p-5 shadow-lg hidden text-gray-800 font-medium rounded-md">
-                <li><a href="#">Ipad</a></li>
-                <li><a href="#">Galaxy Tab</a></li>
-                <li><a href="#">Huawei Tablet</a></li>
-                <li><a href="#">Xoami Tablet</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Watch <i class="fa-solid fa-angle-down"></i></a>
-            <!-- sub-menu -->
-            <ul class="sub-menu absolute grid-cols-2 gap-5 bg-gray-200 p-5 shadow-lg hidden text-gray-800 font-medium rounded-md">
-                <li><a href="#">Apple Watch</a></li>
-                <li><a href="#">Samsung Watch</a></li>
-                <li><a href="#">Huawei Watch</a></li>
-                <li><a href="#">Xoami Watch</a></li>
-                <li><a href="#">Google Watch</a></li>
-                <li><a href="#">Amazfit Watch</a></li>
-                <li><a href="#">Oppo Watch</a></li>
-                <li><a href="#">Nokia</a></li>
-                <li><a href="#">Nubia</a></li>
-                <li><a href="#">Oneplus</a></li>
-            </ul>
-        </li>
-        <li><a href="#">Accessories <i class="fa-solid fa-angle-down"></i></a>
-            <!-- sub-menu -->
-            <ul class="sub-menu absolute grid-cols-2 gap-5 bg-gray-200 p-5 shadow-lg hidden text-gray-800 font-medium rounded-md">
-                <li><a href="#">Ipad &amp; Tablet case</a></li>
-                <li><a href="#">Phone case</a></li>
-                <li><a href="#">Other Case</a></li>
-                <li><a href="#">Car Charger</a></li>
-                <li><a href="#">Ear Phone</a></li>
-                <li><a href="#">Headphone</a></li>
-                <li><a href="#">Speaker</a></li>
-                <li><a href="#">Bluetooth Wireless</a></li>
-                <li><a href="#">Adapter &amp; Cable</a></li>
-                <li><a href="#">Powerbank &amp; Battery</a></li>
-            </ul>
-        </li>
-        <li><a href="#">2nd Hand <i class="fa-solid fa-angle-down"></i></a>
-            <!-- sub-menu -->
-            <ul class="sub-menu absolute grid-cols-2 gap-5 bg-gray-200 p-5 shadow-lg hidden text-gray-800 right-5 xl:right-0 font-medium rounded-md">
-                <li><a href="#">Used Iphone</a></li>
-                <li><a href="#">Used Samsung</a></li>
-                <li><a href="#">Used Oppo</a></li>
-                <li><a href="#">Used Vivo</a></li>
-                <li><a href="#">Used Anker</a></li>
-                <li><a href="#">Used Jbl</a></li>
-                <li><a href="#">Used Microsoft</a></li>
-                <li><a href="#">Used Nokia</a></li>
-                <li><a href="#">Used Nubia</a></li>
-                <li><a href="#">Used Oneplus</a></li>
-            </ul>
-        </li>
+            }
+            ?>
     </ul>
 </nav>

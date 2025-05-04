@@ -48,66 +48,17 @@
         <div class="head w-full h-[50px]">
             <h1 class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[18px] sm:text-3xl text-gray-800 text-center" id="text"></h1>
         </div>
-        <div
-            class="popular-brand w-full grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-9 2xl:grid-cols-9 gap-3 px-5 sm:px-10 mt-0 sm:mt-10">
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/apple-logo-1660278979YARnJ.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/samsung-logo-1660279193xqNqc.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/sony-logo-1660279321nrl38.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/xiaomi-logo-1660279429OwLtj.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/huawei-logo-1660277159Yszfi.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/oppo-logo-16602771672ADFa.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/google-logo-1660279566F6Mh0.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/oneplus-logo-1660277166nkJx7.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/asus-logo-1660279942ecjF1.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/hmd-logo-1714820443y6l58.png"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img
-                    src="https://soklyphone.com/storage/Brand_Logo/new_logo/infinix-phones-logo-1698301967Rfyhf.png"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/logo-tecno-1689567202AH5m9.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/nothing-logo-166028798852jow.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/zte-logo-1660286445l1leN.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/nokia-logo-1660279695hyoT4.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/logo-honor-1684557771ISZqr.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/vivo-logo-16602866285eomP.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/microsoft-logo-1660277163fLkns.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-
-            <a href="#"><img
-                    src="https://soklyphone.com/storage/Brand_Logo/new_logo/logo-motorola-2-1670554587lOVPS.jpg" alt=""
-                    class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/lenovo-logo-16602771627LCvP.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/garmin-logo-1660277156CEuCs.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/hohem-logo-1660277159zZzIr.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/coros-logo-1660277154Ukn1l.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/havit-logo-1660277158YV17O.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/chipolo-logo-1660287871LfYMn.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/monster-logo-16602771658TH9p.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
-            <a href="#"><img src="https://soklyphone.com/storage/Brand_Logo/new_logo/jbl-logo-1660286909h1Nfc.jpg"
-                    alt="" class="w-full shadow-md rounded-xl overflow-hidden"></a>
+        <div class="popular-brand w-full grid grid-cols-4 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-9 2xl:grid-cols-9 gap-3 px-5 sm:px-10 mt-0 sm:mt-10">
+            <?php
+                $image = getAll("brands");
+                if($image->num_rows > 0){
+                    foreach($image as $item){
+                    ?>
+                        <a href="products.php?id=<?= $item['id'] ?>"><img src="uploads/brand/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" class="w-full shadow-md rounded-xl overflow-hidden"></a>
+                    <?php
+                    }
+                }
+            ?>
         </div>
     </div>
     <!-- end of popular brand -->

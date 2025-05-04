@@ -53,6 +53,11 @@
                     , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.brand_id = $id";
         return $product1 = mysqli_query($conn,$product);
     }
+    function menu($id){
+        global $conn;
+        $menu = "SELECT name,id FROM brands WHERE product_id = $id";
+        return $menu1 = mysqli_query($conn,$menu);
+    }
     function getShipping($id){
         global $conn;
         $product1 = "SELECT * FROM shipping WHERE id = $id";

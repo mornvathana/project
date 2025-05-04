@@ -1,5 +1,8 @@
 <?php
-    $conn = new mysqli("localhost","root","","ecommerce_data");
+
+    session_start();
+    include('../../config/dbcon.php');
+    
     $product_title = $_POST['product_name'];
     $doubleName = "SELECT product_name FROM product_database WHERE product_name = '$product_title'";
     $double_run = mysqli_query($conn,$doubleName);
