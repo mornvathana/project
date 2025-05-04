@@ -1,16 +1,19 @@
 <?php
-     if($_SESSION['auth_user']){
+     if(isset($_SESSION['auth_user'])){
 
         $id = $_SESSION['auth_user']['user_id'];
 
     }
     
+    if(!empty($id)){
+
     $permission = permission($id);
 
     if($permission['total_product'] == 0){
 
-        header("Location: notfound.php");
-        exit();
+    header("Location: notfound.php");
+    exit();
 
+    }
     } 
 ?>

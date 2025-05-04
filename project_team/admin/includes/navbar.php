@@ -1,5 +1,5 @@
 <?php
-    if($_SESSION['auth_user']){
+    if(isset($_SESSION['auth_user'])){
         $id = $_SESSION['auth_user']['user_id'];
     }
 ?>
@@ -14,7 +14,8 @@
                 <div class = "flex items-center justify-center gap-5 cursor-pointer setting">
                     <div class = "flex items-center justify-center gap-2">
                         <?php
-                          $user = getById("users",$id);
+                          if(!empty($id)){
+                            $user = getById("users",$id);
                           if($user->num_rows > 0){
                             foreach($user as $item){
                             ?>
@@ -35,6 +36,7 @@
                             </div>
                             <?php
                             }
+                          }
                           }
                         ?>
                     </div>

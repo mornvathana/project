@@ -1,5 +1,6 @@
 <?php 
 include('includes/header.php');
+include('../middleware/adminAccess.php');
 include('middleware/menu.php');
 ?>
 <!-- end header -->
