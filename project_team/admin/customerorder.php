@@ -50,7 +50,7 @@ include('middleware/orders.php');
 
             <!-- Date Filter -->
             <div class = "flex justify-end items-center">
-            <form class="max-w-sm mx-2">
+            <form class="max-w-sm w-[110px] mx-2">
             <select id="category_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full h-7 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option selected>Status</option>
                 <option value="1">Pedding</option>
@@ -59,7 +59,7 @@ include('middleware/orders.php');
             </select>
             </form>
             <!--  -->
-            <form class="max-w-sm mx-2">
+            <form class="max-w-sm w-[70px] mx-2">
             <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full h-7 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option value = "10" selected>Page</option>
                 <option value="1">20</option>
@@ -140,7 +140,7 @@ include('middleware/orders.php');
                                 }
                             ?>
                         </button>
-                        <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded" id = "btn_delete" data-id = "<?= $item['id'] ?>">
+                        <button class="bg-red-100 text-red-500 border-[1px] border-red-500 text-white text-xs px-2 py-1 rounded" id = "btn_delete" data-id = "<?= $item['id'] ?>">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>
@@ -450,7 +450,7 @@ include('middleware/orders.php');
                                 data-id="${item.id}">
                                 ${btnText}
                             </button>
-                            <button class="bg-red-600 hover:bg-red-700 text-white text-xs px-2 py-1 rounded" id="btn_delete" data-id="${item.id}">
+                            <button class="bg-red-100 text-red-500 border-[1px] border-red-500  hover:bg-red-700 text-white text-xs px-2 py-1 rounded-sm " id="btn_delete" data-id="${item.id}">
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
                         </div>

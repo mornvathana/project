@@ -168,9 +168,9 @@ include('middleware/category.php');
                                         <p class = "text-[12px] text-[#515151]">$ ${item.price}</p>
                                     </div>
                                     </div>
-                                    <div class = " w-full h-[30%] flex justify-end items-center gap-2 text-sm">
-                                    <i class="fa-solid fa-trash-can" id = "delete_category" data-category = "${item.id}"></i>
-                                    <a href="categoryEdit.php?id=${item.id}"><i class="fa-solid fa-pen-to-square btn-edit" ></i></a>
+                                    <div class = " w-full h-[30%] flex justify-end items-center gap-2 text-sm ">
+                                    <i class="fa-solid fa-trash-can bg-red-100 border-[1px] border-red-500 text-red-500 p-1 rounded-sm" id = "delete_category" data-category = "${item.id}"></i>
+                                    <a href="categoryEdit.php?id=${item.id}"><i class="fa-solid fa-pen-to-square btn-edit bg-blue-100 border-[1px] border-blue-500 text-blue-500 p-1 rouded-sm" ></i></a>
                                     </div>
                                     </div>
                                     </div>`;
