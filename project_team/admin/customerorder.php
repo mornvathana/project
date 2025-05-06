@@ -5,7 +5,7 @@ include('middleware/orders.php');
 ?>
 <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
 <div class="h-full px-4 py-4 bg-blue-50 min-h-screen">
-    <div class="w-full bg-white rounded-xl p-6">
+    <div class="w-full bg-white h-full rounded-xl p-6">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-xl font-semibold text-gray-700">📊 Report Overview</h2>
         </div>

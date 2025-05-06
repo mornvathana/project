@@ -8,37 +8,40 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
 
 <div class="h-full px-2 py-2 bg-blue-50">
     <div class="w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
-        <div class="w-full h-[10%] flex justify-between items-center">
+        <div class="w-full h-[10%] flex justify-between items-center ">
             <div>
                 <h1 class="font-medium">Inventory</h1>
             </div>
-            <div></div>
+            <div>
+                <ul class = "flex">
+                    <li class = "mx-1">
+                        <a  class="bg-white text-[12px] border-[1px] border-gray-500 text-white px-2 py-2 font-medium rounded-md"><button type = "button" class = "text-[#646a7a]" id="exportExcelBtn" name = "button"><span><i class="fas fa-download"></i></span> <span>Download Excel</span></button></a>
+                    </li>
+                    <li class = "mx-1">
+                        <a class="bg-white text-[12px] border-[1px] border-gray-500 text-white px-2 py-2 font-medium rounded-md"><button type = "button" name = "button" class = "text-[#646a7a]" id = "printBtn"><span><i class="fas fa-print"></i></span> <span>Print Document</span></button></a>
+                    </li>
+                </ul>
+            </div>
         </div>
 
         <div class="w-full h-[70%] mt-5 overflow-x-auto">
             <div class="w-full h-[40px] flex justify-between items-center mb-2">
                 <div>
                     <ul class="flex">
-                        <li class="mx-1" id="orders">
-                            <a class="text-[12px] px-2 py-1 border border-gray-500 rounded-md cursor-pointer">Orders</a>
+                        <li id="orders">
+                            <a class="w-[100px] cursor-pointer font-medium text-[#646a7a] pl-2 pr-5 py-2 text-[14px] border-b-[2px] border-blue-500"><span class = "text-blue-500">Orders</span> <span id = "totalOrders">1</span></a>
                         </li>
-                        <li class="mx-1" id="payments">
-                            <a class="text-[12px] px-2 py-1 border border-gray-500 rounded-md cursor-pointer">Payments</a>
+                        <li id="payments">
+                            <a class="w-[100px] cursor-pointer font-medium text-[#646a7a] pl-2 pr-5 py-2 text-[14px]"><span>Payments</span> <span id = "totalPayments"></span></a>
                         </li>
-                        <li class="mx-1" id="products">
-                            <a class="text-[12px] px-2 py-1 border border-gray-500 rounded-md cursor-pointer">Product</a>
-                        </li>
-                        <li class="mx-1">
-                            <a  class="text-[12px] px-2 py-1 border border-gray-500 rounded-md cursor-pointer"><button type = "button" id="exportExcelBtn" name = "button">EXCEL</button></a>
-                        </li>
-                        <li class="mx-1">
-                            <a class="text-[12px] px-2 py-1 border border-gray-500 rounded-md cursor-pointer"><button type = "button" name = "button" id = "printBtn">PRINT</button></a>
+                        <li id="products">
+                            <a class="w-[100px] cursor-pointer font-medium text-[#646a7a] pl-2 pr-5 py-2 text-[14px]"><span>Product</span> <span id = "totalProduct"></span></a>
                         </li>
                     </ul>
                 </div>
                 <div>
                     <ul class="flex">
-                        <li class = "mx-1">
+                        <li class = "">
                         <div class="flex items-center gap-2">
                             <form class="max-w-sm">
                                 <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
@@ -93,6 +96,14 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
         let startPage = $("#startPage");
         let totalPage = $("#totalPage");
         let activeSection = "orders";
+
+        $("ul.flex > li").click(function(){
+            $("ul.flex > li a").removeClass("border-b-[2px] border-blue-500");
+            $("ul.flex > li a span:first-child").removeClass("text-blue-500");
+            // add class to click button 
+            $(this).find("a").addClass("border-b-[2px] border-blue-500");
+            $(this).find("span:first-child").addClass("text-blue-500");
+        });
         
         $("#page_num").change(function(){
             limit = parseInt($(this).val());
@@ -204,6 +215,7 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;
                             }
+                            $("#totalOrders").text(data[0]['total']);
                             totalPage.text(Math.ceil( data[0]['total'] / limit));
                             display.html(head + txt);
                         }
@@ -247,6 +259,7 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;
                             }
+                            $("#totalPayments").text(data[0]['total']);
                             totalPage.text(Math.ceil( data[0]['total'] / limit));
                             display.html(head + txt);
                         }
@@ -286,6 +299,7 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;
                             }
+                            $("#totalProducts").text(data[0]['total']);
                             totalPage.text(Math.ceil( data[0]['total'] / limit));
                             display.html(head + txt);
                         }
