@@ -140,7 +140,7 @@ include('middleware/orders.php');
                                 }
                             ?>
                         </button>
-                        <button class="bg-red-100 text-red-500 border-[1px] border-red-500 text-white text-xs px-2 py-1 rounded" id = "btn_delete" data-id = "<?= $item['id'] ?>">
+                        <button class="bg-red-100 text-red-500 border-[1px] border-red-500 text-xs px-2 py-1 rounded" id = "btn_delete" data-id = "<?= $item['id'] ?>">
                             <i class="fa-solid fa-trash-can"></i>
                         </button>
                     </div>

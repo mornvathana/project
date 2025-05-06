@@ -7,8 +7,8 @@
     }
 ?>
 <!--  -->
-<div class = "h-full px-2 py-5">
-    <div class = "w-full bg-[#ffffff] rounded-md p-5">
+<div class = "h-full px-2 py-5 bg-blue-50">
+    <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
         <div class = "w-full lg:w-[70%] shadow-md h-[50%] bg-[#ffffff] grid grid-cols-1 md:grid-cols-[250px_1fr] ">
             <?php
                 $user = getById("users",$user_id);
