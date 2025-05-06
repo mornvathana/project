@@ -4,12 +4,12 @@ include('../middleware/adminAccess.php');
 include('middleware/menu.php');
 ?>
 <!-- end header -->
-<div class="h-full px-2 py-2 bg-blue-50">
-    <div class="w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
+<div class="h-full px-2 py-2 bg-blue-100">
+    <div class="w-full bg-[#ffffff] rounded-md p-5">
         <div class="w-full h-[10%] flex justify-between items-center">
             <div>
                 <h1 class="font-medium">Product List</h1>
-                <a href="createmenu.php" class="bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md">
+                <a href="createmenu.php" class="bg-[#111729] text-[12px] text-white px-2 py-1 font-medium rounded-md">
                     Create Product <i class="fa-solid fa-plus pl-1"></i>
                 </a>
             </div>
@@ -39,15 +39,15 @@ include('middleware/menu.php');
             </div>
         </div>
 
-        <div class="w-full h-[70%] mt-5 overflow-x-auto rounded-md shadow-lg">
+        <div class="w-full h-[100vh] mt-5 overflow-x-auto rounded-md shadow-md">
             <table class="text-center w-full table-auto">
-                <thead>
+                <thead class = "bg-[#f6f8fa]">
                     <tr>
-                        <th width="30" class="py-2 text-[11px] md:text-[13px] border-b-[2px] border-gray-900 font-medium">ID</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] border-b-[2px] border-gray-900 font-medium">Name</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] border-b-[2px] border-gray-900 font-medium">Image</th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] border-b-[2px] border-gray-900 font-medium">Status</th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] border-b-[2px] border-gray-900 font-medium">Option</th>
+                        <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">ID</th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Name</th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Image</th>
+                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Status</th>
+                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Option</th>
                     </tr>
                 </thead>
                 <tbody id = "displayData">
@@ -83,32 +83,32 @@ include('middleware/menu.php');
                             const isActive = item.status == 1;
 
                             txt += `<tr id="brand-${item.id}">
-                                <td class="text-[11px] md:text-[13px] py-2">${item.id}</td>
-                                <td class="text-[11px] md:text-[13px] py-2">${item.name}</td>
-                                <td class="text-[11px] md:text-[13px] py-2 flex justify-center items-center">
+                                <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.id}</td>
+                                <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.name}</td>
+                                <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1 flex justify-center items-center">
                                     <img src="${imagePath}" class="w-[50px] h-[50px]" alt="image" />
                                 </td>
-                                <td class="text-[11px] md:text-[13px] py-2">
+                                <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">
                                     <form action="code.php" method="post" enctype="multipart/form-data">
                                         <input type="hidden" name="brand_id" value="${item.id}">
                                         <button type="submit" name="${isActive ? 'btn_active1' : 'btn_disable1'}"
-                                            class="${isActive ? 'bg-green-500' : 'bg-red-500'} text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
+                                            class="${isActive ? 'bg-green-100 text-green-500 border-[1px] border-green-500' : 'bg-red-100 text-red-500 border-[1px] border-red-500'}  px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
                                             ${isActive ? 'Active' : 'Disable'}
                                         </button>
                                     </form>
                                 </td>
-                                <td class="text-[11px] md:text-[13px] py-2">
+                                <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">
                                     <div class="flex justify-center items-center gap-5">
                                         <form action="menuedit.php?id=${item.id}" method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="brand_id" value="${item.id}">
-                                            <button type="submit" name="btn_edit" class="bg-blue-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
+                                            <button type="submit" name="btn_edit" class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
                                                 <i class="fas fa-edit"></i>
                                             </button>
                                         </form>
                                         <form action="code.php" method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="brand_id" value="${item.id}">
                                             <input type="hidden" name="image" value="${item.image}">
-                                            <button type="submit" name="btn_delete" class="bg-red-500 text-white px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
+                                            <button type="submit" name="btn_delete" class="bg-red-100 border-[1px] border-red-500 text-red-500 px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>

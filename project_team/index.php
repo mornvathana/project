@@ -349,11 +349,17 @@
                 <ul class="page-menu flex items-center gap-[8px] sm:gap-[13px] md:space-y-0 md:text-xl mt-5 lg:mt-0 font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-gray-700 font-medium"
                     style="flex-wrap: wrap;">
                     <li class="active" style="background-color: #dddfe4; border-radius: 20px; padding: 5px 20px;">All</li>
-                    <li class="" style="background-color: #dddfe4; border-radius: 20px; padding: 5px 20px;">Mobile</li>
-                    <li class="" style="background-color: #dddfe4; border-radius: 20px; padding: 5px 20px;">Tablet</li>
-                    <li class="" style="background-color: #dddfe4; border-radius: 20px; padding: 5px 20px;">Watch</li>
-                    <li class="" style="background-color: #dddfe4; border-radius: 20px; padding: 5px 20px;">Laptop</li>
-                    <li class="" style="background-color: #dddfe4; border-radius: 20px; padding: 5px 20px;">Accessories</li>
+
+                    <?php
+                        $menu = getAll("product");
+                        if($menu->num_rows > 0){
+                            foreach($menu as $name){
+                            ?>
+                                <li class="active" style="background-color: #dddfe4; border-radius: 20px; padding: 5px 20px;"><?= $name['name']?></li>
+                            <?php
+                            }
+                        }
+                    ?>
                 </ul>
             </div>
 

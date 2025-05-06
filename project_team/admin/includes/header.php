@@ -30,6 +30,10 @@ ob_clean();
             font-style: normal;
             font-variation-settings: "wdth" 100;
         }
+        .shadow-style {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
     </style>
 </head>
 <body>
