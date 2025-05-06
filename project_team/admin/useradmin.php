@@ -35,11 +35,11 @@
                         <div class = "w-full h-[25%] flex justify-between items-center py-1 px-5">
                             <div class = "">
                                 <p class = " text-[10px] md:text-[13px] font-medium my-2">Email</p>
-                                <p class = " text-[10px] md:text-[13px] my-1"><?= $userItem['email']?></p>
+                                <p class = "text-[#646a7a] text-[10px] md:text-[13px] my-1"><?= $userItem['email']?></p>
                             </div>
                             <div class = "">
                                 <p class = " text-[10px] md:text-[13px] font-medium my-2">Created Date</p>
-                                <p class = " text-[10px] md:text-[13px] my-1"><?= $userItem['created_at']?></p>
+                                <p class = "text-[#646a7a] text-[10px] md:text-[13px] my-1"><?= $userItem['created_at']?></p>
                             </div>
                         </div>
                         <div class = "w-full h-[10%] px-5">
@@ -49,11 +49,11 @@
                         <div class = "w-full h-[25%] flex justify-between items-center py-1 px-5">
                             <div class = "">
                                 <p class = " text-[10px] md:text-[13px] font-medium my-2">Status</p>
-                                <p class = " text-[10px] md:text-[13px] my-1"><?= $userItem['status'] == 1 ? 'active' : 'underfine' ?></p>
+                                <p class = "text-[#646a7a] text-[10px] md:text-[13px] my-1"><?= $userItem['status'] == 1 ? 'active' : 'underfine' ?></p>
                             </div>
                             <div class = "">
                                 <p class = " text-[10px] md:text-[13px] font-medium my-2">Email Verify</p>
-                                <p class = " text-[10px] md:text-[13px] my-1"><?= $userItem['created_at']?></p>
+                                <p class = "text-[#646a7a] text-[10px] md:text-[13px] my-1"><?= $userItem['created_at']?></p>
                             </div>
                         </div>
                         <hr>
@@ -73,13 +73,13 @@
         </div>
         <div class = "w-full h-[50%] bg-[#ffffff] shadow-md mt-5 overflow-x-auto ">
         <table class = "text-center w-full table-auto">
-            <thead> 
+            <thead class = "bg-[#f6f8fa]"> 
                 <tr>
-                    <th class = " text-[10px] md:text-[12px] py-1 border-b-[2px] border-black font-medium whitespace-nowrap">Username</th>
-                    <th class = " text-[10px] md:text-[12px] py-1 border-b-[2px] border-black font-medium whitespace-nowrap">EMAIL</th>
-                    <th class = " text-[10px] md:text-[12px] py-1 border-b-[2px] border-black font-medium whitespace-nowrap">Status</th>
-                    <th class = " text-[10px] md:text-[12px] py-1 border-b-[2px] border-black font-medium whitespace-nowrap">Created_at</th>
-                    <th class = " text-[10px] md:text-[12px] py-1 border-b-[2px] border-black font-medium whitespace-nowrap">Action</th>
+                    <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Username</th>
+                    <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">EMAIL</th>
+                    <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Status</th>
+                    <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Created at</th>
+                    <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -101,15 +101,15 @@
                                         <?php
                                     }else{
                                         ?>
-                                         <button class = "text-red-500 border border-red-500 rounded-sm px-1 mx-1" id = "delete_user" data-id = "<?= $userItem['id'] ?>">Delete</button>
+                                         <button class = "text-red-500 border-[1px]  border-red-500 rounded-md px-1 mx-1" id = "delete_user" data-id = "<?= $userItem['id'] ?>">Delete</button>
                                          <?php
                                          if($userItem['status'] == 0){
                                             ?>
-                                            <a href = "" class = "text-red-500 border border-red-500 rounded-sm px-1 mx-1" id = "open_active" data-id = "<?= $userItem['id'] ?>"  >Disabled</a>
+                                            <a href = "" class = "text-red-500 border-[1px]  border-red-500 rounded-md px-1 mx-1" id = "open_active" data-id = "<?= $userItem['id'] ?>"  >Disabled</a>
                                             <?php
                                          }else{
                                             ?>
-                                            <a href = "" class = "text-green-500 border border-green-500 rounded-sm px-1 mx-1" id = "close_active" data-id = "<?= $userItem['id'] ?>"  >Active</button>
+                                            <a href = "" class = "text-green-500 border b-[1px] border-green-500 rounded-md px-1 mx-1" id = "close_active" data-id = "<?= $userItem['id'] ?>"  >Active</button>
                                             <?php
                                          }
                                          ?>

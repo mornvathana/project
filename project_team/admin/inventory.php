@@ -74,9 +74,9 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                 </div>
             </div>
 
-            <div id = "printArea">
+            <div id = "printArea" class = "shadow-md">
             <table class="text-center w-full table-auto">
-                <thead class="border-b border-gray-200" id="displayHead"></thead>
+                <thead id="displayHead"></thead>
                 <tbody id="displayData"></tbody>
             </table>
             </div>
@@ -171,13 +171,13 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
 
             function order(page){
                 const display = $("#displayData");
-                const head = `<tr>
-                    <th width="30" class="py-1 text-[11px] md:text-[13px] font-medium">Order #</th>
-                    <th width="30" class="py-1 text-[11px] md:text-[13px] font-medium">Customer</th>
-                    <th width="100" class="py-1 text-[11px] md:text-[13px] font-medium">Date</th>
-                    <th width="100" class="py-1 text-[11px] md:text-[13px] font-medium">Total</th>
-                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Status</th>
-                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Created By</th>
+                const head = `<tr class = "bg-[#f6f8fa]">
+                    <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">#</th>
+                    <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Customer</th>
+                    <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Date</th>
+                    <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Total</th>
+                    <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Status</th>
+                    <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Created By</th>
                 </tr>`;
 
                 $.ajax({
@@ -194,14 +194,14 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                             for(i in data){
                                 let item = data[i];
                                 txt += `<tr class="border-b border-gray-200">
-                                    <td class="text-[11px] md:text-[13px] py-1">${item.id}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${item.id}</td>
                                     <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center">${item.firstName} ${item.lastName}</td>
-                                    <td class="text-[11px] md:text-[13px] py-1">${item.date}</td>
-                                    <td class="text-[11px] md:text-[13px] py-1">${item.total}</td>
-                                    <td class="text-[11px] md:text-[13px] py-1">
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${item.date}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">$ ${item.total}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">
                                         ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 3 ? '<span class="text-green-500">Success</span>' : '<span class="text-blue-500">Pedding</span>'}
                                     </td>
-                                    <td class="text-[11px] md:text-[13px] py-1"><span class = 'text-blue-500'>${item.user_id}</span></td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;
                             }
                             totalPage.text(Math.ceil( data[0]['total'] / limit));
@@ -216,12 +216,12 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
 
             function payment(page){
                 const display = $("#displayData");
-                const head = `<tr>
-                    <th width="30" class="py-1 text-[11px] md:text-[13px] font-medium">Order #</th>
-                    <th width="30" class="py-1 text-[11px] md:text-[13px] font-medium">Customer</th>
-                    <th width="100" class="py-1 text-[11px] md:text-[13px] font-medium">Cash</th>
-                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Status</th>
-                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Created By</th>
+                const head = `<tr class = "bg-[#f6f8fa]">
+                    <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Order #</th>
+                    <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Customer</th>
+                    <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Cash</th>
+                    <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Status</th>
+                    <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Created By</th>
                 </tr>`;
 
                 $.ajax({
@@ -238,13 +238,13 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                             for(i in data){
                                 let item = data[i];
                                 txt += `<tr class="border-b border-gray-200">
-                                    <td class="text-[11px] md:text-[13px] py-1">${item.id}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${item.id}</td>
                                     <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center">${item.firstName} ${item.lastName}</td>
-                                    <td class="text-[11px] md:text-[13px] py-1">${item.total}</td>
-                                    <td class="text-[11px] md:text-[13px] py-1">
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">$ ${item.total}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">
                                         ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 3 ? '<span class="text-green-500">Success</span>' : '<span class="text-blue-500">Pedding</span>'}
                                     </td>
-                                    <td class="text-[11px] md:text-[13px] py-1"><span class = 'text-blue-500'>${item.user_id}</span></td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;
                             }
                             totalPage.text(Math.ceil( data[0]['total'] / limit));
@@ -259,11 +259,11 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
 
             function product(page){
                 const display = $("#displayData");
-                const head = `<tr>
-                    <th width="30" class="py-1 text-[11px] md:text-[13px] font-medium">ID #</th>
-                    <th width="30" class="py-1 text-[11px] md:text-[13px] font-medium">Barcode</th>
-                    <th width="100" class="py-1 text-[11px] md:text-[13px] font-medium">Name</th>
-                    <th width="60" class="py-1 text-[11px] md:text-[13px] font-medium">Created By</th>
+                const head = `<tr class = "bg-[#f6f8fa]">
+                    <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">ID #</th>
+                    <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Barcode</th>
+                    <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Name</th>
+                    <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Created By</th>
                 </tr>`;
 
                 $.ajax({
@@ -280,10 +280,10 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                             for(i in data){
                                 let item = data[i];
                                 txt += `<tr class="border-b border-gray-200">
-                                    <td class="text-[11px] md:text-[13px] py-1">${item.id}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${item.id}</td>
                                     <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center">${item.barcode}</td>
-                                    <td class="text-[11px] md:text-[13px] py-1">${item.name}</td>
-                                    <td class="text-[11px] md:text-[13px] py-1"><span class = 'text-blue-500'>${item.user_id}</span></td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${item.name}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;
                             }
                             totalPage.text(Math.ceil( data[0]['total'] / limit));
