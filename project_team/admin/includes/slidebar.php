@@ -20,7 +20,7 @@
                 <i class="cursor-pointer fa-solid fa-arrow-left"></i>
             </div>
             <!-- end title siide-left -->
-            <div class = "fixed flex h-full px-5 bg-white shadow-sm w-100 top-10">
+            <div class = "fixed flex h-full w-[150px] px-5 bg-white shadow-sm w-100 top-10">
                 <ul>
                     <?php if(!empty($permission['dashboard']) == 1): ?>
                     <li class = "p-2 my-1 <?= $page == 'index.php' ? 'bg-gray-200' : ''; ?> text-[12px] font-medium rounded-md hover:text-white hover:bg-blue-500">

@@ -5,8 +5,8 @@ include('middleware/brands.php');
 
 ?>
 <!-- end header -->
-<div class="h-full px-2 py-2 bg-blue-50">
-    <div class="w-full bg-[#ffffff] rounded-md p-5">
+<div class="h-full px-2 py-2">
+    <div class="w-full bg-[#f3f5f7] rounded-md p-5">
         <div class="w-full h-[10%] flex justify-between items-center">
             <div>
                 <h1 class="font-medium">Brand List</h1>
@@ -40,7 +40,7 @@ include('middleware/brands.php');
             </div>
         </div>
 
-        <div class="w-full h-[100vh] mt-5 overflow-x-auto rounded-md shadow-lg">
+        <div class="w-full h-[100vh] mt-5 overflow-x-auto rounded-md shadow-lg bg-[#ffffff]">
             <table class="text-center w-full table-auto">
                 <thead class = "bg-[#f6f8fa]">
                     <tr>

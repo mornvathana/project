@@ -1,6 +1,6 @@
 <?php include('includes/header.php')?>
-        <div class = "h-[1200px] px-2 py-2 bg-blue-50">
-                <div class = "w-full bg-[#ffffff] h-[100%] rounded-md p-5">
+        <div class = "h-[1200px] px-2 py-2">
+                <div class = "w-full bg-[#f3f5f7] h-[100%] rounded-md p-5">
                 <div class = "w-full h-[5%] flex justify-between items-center">
                     <div>
                         <h1 class = "font-medium">Edit Category</h1>
@@ -9,7 +9,7 @@
                         <a href = "category1.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i>Back</a>
                     </div>
                 </div>
-                <div class="w-full h-[92%] mt-5">
+                <div class="w-full h-[92%] mt-5 bg-[#ffffff] p-4 rounded-md">
                     <?php
                         if(isset($_GET['id'])){
                             $id = $_GET['id'];

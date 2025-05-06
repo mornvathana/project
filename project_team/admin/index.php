@@ -6,7 +6,7 @@
     include('middleware/dashboard.php');
 ?>
         <!-- end header -->
-        <div class="h-full px-5 py-5 overflow-y-auto bg-blue-50">
+        <div class="h-full px-5 py-5 overflow-y-auto bg-[#f3f5f7] ">
     <div class="grid w-full grid-cols-2 gap-5 md:grid-cols-4 lg:gap-12">
         <div class="overflow-hidden border shadow-md rounded-xl">
             <!-- Box Header -->

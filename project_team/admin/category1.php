@@ -5,7 +5,7 @@ include('middleware/category.php');
 
 ?>
 <!-- start  -->
-<div class = "h-full px-2 py-5 bg-blue-50">
+<div class = "h-full px-2 py-5 bg-[#f3f5f7]">
     <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
         <div class = "w-full flex justify-between items-center">
             <div class="flex justify-between items-center w-[60%]">

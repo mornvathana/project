@@ -9,8 +9,8 @@ $permission = permission($user_id);
 
 ?>
         <!-- end header -->
-        <div class = "h-full px-2 py-2 bg-blue-50">
-        <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
+        <div class = "h-full px-2 py-2 bg-[#f3f5f7]">
+        <div class = "w-full h-[100vh] rounded-md p-5">
                 <div class = "w-full h-[8%] flex justify-between items-center">
                     <div>
                         <h1 class = "font-medium">Change Information</h1>
@@ -19,7 +19,7 @@ $permission = permission($user_id);
                         <a href = "useradmin.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i>Back</a>
                     </div>
                 </div>
-                <div class="w-full h-[92%] mt-5">
+                <div class="w-full h-[92%] mt-5 bg-[#ffffff] p-4 rounded-md">
                     <?php
                         if(mysqli_num_rows($user_detail) > 0){
                             foreach($user_detail as $user){
@@ -49,7 +49,7 @@ $permission = permission($user_id);
                                 <div class = "w-full md:w-[50%] h-[180px]">
                                 <div class = "w-full">
                                     <label for="" class = "block py-1 text-[13px] font-medium font-medium">Permission</label>
-                                    <div class = "flex justify-between items-center">
+                                    <div class = "flex justify-between items-center grid grid-cols-3">
                                     <input type="hidden" id = "userId" value = "<?= $user_id?>">
                                         <div>
                                             <input type="checkbox"   id = "dashboard" <?= $permission['dashboard'] == 1 ? 'checked' : ''?> >
