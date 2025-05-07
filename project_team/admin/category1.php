@@ -7,11 +7,11 @@ include('middleware/category.php');
 <!-- start  -->
 <div class = "h-full px-2 py-5 bg-[#f3f5f7]">
     <div class = "w-full bg-[#ffffff] h-[100vh] rounded-md p-5">
-        <div class = "w-full flex justify-between items-center">
-            <div class="flex justify-between items-center w-[60%]">
-                <div class = "w-[35px] py-2 rounded-sm">
+        <div class = "w-full flex justify-between grid grid-cols-1 md:grid-cols-[1fr_400px] items-center">
+            <div class="flex justify-between items-center w-[100%] md:w-full gap-2 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
+                <div class = "w-[100%] md:w-[35px] py-1 md:py-2 rounded-sm">
                     <label  class = "text-[13px] font-medium text-[#515151]">Product</label>
-                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-[150px] py-1 font-medium text-[#515151] outline-none">
+                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-full md:w-[100px] xl:w-[120px] py-1 font-medium text-[#515151] outline-none">
                     <option value = "" selected class = "text-[13px]">Select</option>
                     <?php
                     $product = getAll("product_detail");
@@ -25,9 +25,9 @@ include('middleware/category.php');
                     ?>
                     </select>
                 </div>
-                <div class = "w-[35px] py-2 rounded-sm">
+                <div class = "w-[100%] md:w-[35px] py-1 md:py-2 rounded-sm">
                     <label  class = "text-[13px] font-medium text-[#515151]">Brand</label>
-                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-[150px] py-1 font-medium text-[#515151] outline-none">
+                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-full md:w-[100px] xl:w-[120px] py-1 font-medium text-[#515151] outline-none">
                     <option value = "" selected class = "text-[13px]">Select</option>
                     <?php
                     $product = getAll("brands");
@@ -41,9 +41,9 @@ include('middleware/category.php');
                     ?>
                     </select>
                 </div>
-                <div class = "w-[35px] py-2 rounded-sm">
+                <div class = "w-[100%] md:w-[35px] py-1 md:py-2 rounded-sm">
                     <label  class = "text-[13px] font-medium text-[#515151]">Brand</label>
-                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-[150px] py-1 font-medium text-[#515151] outline-none">
+                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-full md:w-[100px] xl:w-[120px] py-1 font-medium text-[#515151] outline-none">
                     <option value = "" selected class = "text-[13px]">Select</option>
                     <?php
                     $product = getAll("brands");
@@ -57,11 +57,11 @@ include('middleware/category.php');
                     ?>
                     </select>
                 </div>
-                <div class = "mt-6 py-2 rounded-sm">
+                <div class = "md:mt-6 py-2 rounded-sm">
                 <a href = "category.php" class = "bg-blue-500 text-white px-2 py-1 font-medium text-sm rounded-md"><i class="fa-solid fa-filter"></i> Add Category</a>
                 </div>
             </div>  
-            <div class="flex items-center gap-2">
+            <div class="flex items-start md:justify-end gap-2">
                 <form class="max-w-sm">
                     <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
                         <option value="10" selected>Page</option>
@@ -93,7 +93,7 @@ include('middleware/category.php');
 
         </div>
         <div class = "w-full h-full mt-5">
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2" id = "displayData">
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-2" id = "displayData">
                 
             </div>
         </div>
@@ -152,7 +152,7 @@ include('middleware/category.php');
                         for(i in data){
                             let item = data[i];
                             const image = item.image ? `../uploads/category/${item.image} ` : '../uploads/default/default.jpg';
-                            txt += ` <div class = "h-[250px] border shadow-md border-gray-100 rounded-sm p-2" id = "category-${item.id}">
+                            txt += ` <div class = "h-[230px] border shadow-md border-gray-100 rounded-sm p-2" id = "category-${item.id}">
                                 <div class = "w-full h-[60%]">
                                     <img src = "${image}" alt = "" class = "w-full h-full object-contain" />
                                 </div>

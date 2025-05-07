@@ -33,10 +33,10 @@
                                         <div class = "w-[60%] h-full flex justify-start items-center">
                                             <ul>
                                                 <li>
-                                                    <a href="" class = "text-md font-medium"><?= $userItem['name']?></a>
+                                                    <a href="" class = "text-sm md:text-md font-medium"><?= $userItem['name']?></a>
                                                 </li>
                                                 <li>
-                                                    <a href="" class = "text-[#646a7a] text-sm">Admin</a>
+                                                    <a href="" class = "text-[#646a7a] text-sm md:text-sm">Admin</a>
                                                 </li>
                                                 <li>
                                                     <a href="" class = "text-sm">Vathana</a>
@@ -49,48 +49,48 @@
                                     <div class = "w-[95%] h-full items-center bg-[#ffffff] rounded-md shadow-sm px-5 py-1">
                                         <div class = "w-full h-[30%]  flex justify-between items-center">  
                                             <div>
-                                                <h1 class = "text-md font-medium">Personal Information</h1>
+                                                <h1 class = "text-sm md:text-md font-medium flex"><span class = "hidden md:block pr-1">Personal</span> <span>information</span></h1>
                                             </div>
                                             <div>
                                                 <ul class = "flex gap-5">
                                                     <li>
-                                                        <a href="changeinfor.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i> Change Password</button></a>
+                                                        <a href="changeinfor.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[10px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i> <span>Change Password</span></button></a>
                                                     </li>
                                                     <li>
-                                                        <a href="createadmin.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[11px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i> Create Admin</button></a>
+                                                        <a href="createadmin.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[10px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i> <span>Create Admin</span></button></a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
                                         <!--  -->
                                         <div class = "w-full h-[70%] flex justify-start items-center">
-                                            <div class = "w-[60%] h-full">
+                                            <div class = "w-full lg:w-[60%] h-full">
                                                 <div class = "w-full h-[50%] grid grid-cols-3">
                                                     <ul>
-                                                        <li class = "text-[13px] text-[#646a7a]">First Name</li>
-                                                        <li class = "text-[12px]">Morn</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">First Name</li>
+                                                        <li class = "text-[10px] md:text-[12px]">Morn</li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[13px] text-[#646a7a]">Last Name</li>
-                                                        <li class = "text-[12px]">Morn</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Last Name</li>
+                                                        <li class = "text-[10px] md:text-[12px]">Morn</li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[13px] text-[#646a7a]">Create Date</li>
-                                                        <li class = "text-[12px]"><?= $userItem['created_at']?></li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Create Date</li>
+                                                        <li class = "text-[10px] md:text-[12px]"><?= $userItem['created_at']?></li>
                                                     </ul>
                                                 </div>
                                                 <div class = "w-full h-[50%] grid grid-cols-3">
                                                     <ul>
-                                                        <li class = "text-[13px] text-[#646a7a]">Email Address</li>
-                                                        <li class = "text-[12px]"><?= $userItem['email']?></li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Email Address</li>
+                                                        <li class = "text-[10px] md:text-[12px]"><?= $userItem['email']?></li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[13px] text-[#646a7a]">Email Verify</li>
-                                                        <li class = "text-[12px]">Morn</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Email Verify</li>
+                                                        <li class = "text-[10px] md:text-[12px]">Morn</li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[13px] text-[#646a7a]">User role</li>
-                                                        <li class = "text-[12px]">Admin</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">User role</li>
+                                                        <li class = "text-[10px] md:text-[12px]">Admin</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -133,15 +133,15 @@
                                                     <?php
                                                 }else{
                                                     ?>
-                                                    <button class = "text-red-500 border-[1px]  border-red-500 rounded-md px-1 mx-1" id = "delete_user" data-id = "<?= $userItem['id'] ?>">Delete</button>
+                                                    <button class = "text-red-500 border-[1px] mb-1  border-red-500 rounded-md px-1 mx-1" id = "delete_user" data-id = "<?= $userItem['id'] ?>">Delete</button>
                                                     <?php
                                                     if($userItem['status'] == 0){
                                                         ?>
-                                                        <a href = "" class = "text-red-500 border-[1px]  border-red-500 rounded-md px-1 mx-1" id = "open_active" data-id = "<?= $userItem['id'] ?>"  >Disabled</a>
+                                                        <button  class = "text-red-500 border-[1px]  border-red-500 rounded-md px-1 mx-1 " id = "open_active" data-id = "<?= $userItem['id'] ?>"  >Disabled</button>
                                                         <?php
                                                     }else{
                                                         ?>
-                                                        <a href = "" class = "text-green-500 border b-[1px] border-green-500 rounded-md px-1 mx-1" id = "close_active" data-id = "<?= $userItem['id'] ?>"  >Active</button>
+                                                        <button  class = "text-green-500 border-[1px] border-green-500 rounded-md px-1 mx-1"  id = "close_active" data-id = "<?= $userItem['id'] ?>"  >Active</button>
                                                         <?php
                                                     }
                                                     ?>
