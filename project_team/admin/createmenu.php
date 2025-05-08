@@ -46,23 +46,6 @@ include('middleware/menu.php');
                     </form>
                 </div>
             </div>
-            <!-- <div class = "box-circle">  
-                <div class = "header-circle">
-                    <p>Create Brands</p>
-                    <p class = 'bg-blue-500 text-white px-1 h-7 text-center cursor-pointer rounded-md'><a href="category1.php">Back</a> <i class="fa-solid fa-arrow-right-to-bracket"></i></p>
-                </div>
-                <form action="code.php" method = "post" class = "body-circle" enctype = "multipart/form-data">
-                    <div class = "frm">
-                        <label for="">Name</label>
-                        <input type="text" name = "cate_name" placeholder="Enter your name...">
-                    </div>
-                    <div class = "frm">
-                        <label for="">Image</label>
-                        <input type="file" name = "cate_image" >
-                    </div>
-                    <input type="submit" value = "save" name = "category_save" class = "bg-blue-500 font-bold px-5 text-white rounded-md">
-                </form>
-            </div> -->
         </div>
     <!--  -->
     <script>

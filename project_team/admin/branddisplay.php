@@ -52,7 +52,7 @@ include('middleware/brands.php');
                         <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Option</th>
                     </tr>
                 </thead>
-                <tbody id = "displayData">
+                <tbody id = "displayData" class = "relative">
                     
                 </tbody>
             </table>

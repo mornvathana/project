@@ -52,7 +52,7 @@ include('middleware/orders.php');
             <div class = "flex justify-end items-center">
             <form class="max-w-sm w-[110px] mx-2">
             <select id="category_status" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full h-7 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected>Status</option>
+                <option value = "" selected>Status</option>
                 <option value="1">Pedding</option>
                 <option value="2">Processing</option>
                 <option value="3">Completed</option>
@@ -61,7 +61,7 @@ include('middleware/orders.php');
             <!--  -->
             <form class="max-w-sm w-[70px] mx-2">
             <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full h-7 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option value = "10" selected>Page</option>
+                <option selected>Page</option>
                 <option value="1">20</option>
                 <option value="2">30</option>
                 <option value="50">50</option>
@@ -91,64 +91,8 @@ include('middleware/orders.php');
             </div>
         </div>
         <!-- Orders List -->
-        <div class="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5" id = "displayDataStatus">
-            <?php
-            $order = getAllStatus('orders','1');
-            if ($order->num_rows > 0) {
-                foreach ($order as $item) {
-            ?>
-                <div class="bg-blue-100 border border-blue-200 rounded-xl shadow hover:shadow-lg p-4 space-y-2 transition"  id = "order-<?= $item['id']?>">
-                    <div class="flex justify-between items-center">
-                        <h4 class="font-semibold text-gray-700 text-sm"><?= $item['first_name'] ?> <?= $item['last_name'] ?></h4>
-                        <?php if ($item['status'] == 1) { ?>
-                            <span class="text-red-500 text-xs"><i class="fa-solid fa-circle"></i></span>
-                        <?php } else if($item['status'] == 2) { ?>
-                            <span class="text-blue-500 text-xs"><i class="fa-solid fa-circle"></i></span>
-                        <?php }else{
-                            ?>
-                            <span class="text-green-500 text-xs"><i class="fa-solid fa-circle"></i></span>
-                            <?php
-                        } ?>
-                    </div>
-                    <hr>
-                    <div class="flex justify-between text-xs text-gray-600">
-                        <span>ID</span><span><?= $item['id'] ?></span>
-                    </div>
-                    <div class="flex justify-between text-xs text-gray-600">
-                        <span><i class="fa-regular fa-clock"></i></span>
-                        <span><?= $item['created_at'] ?></span>
-                    </div>
-                    <div class="flex justify-between mt-2 gap-1">
-                    <?php
-                    $status = $item['status'];
-                    if ($status == 1) {
-                        $btnClass = 'bg-red-500';
-                    } elseif ($status == 2) {
-                        $btnClass = 'bg-blue-500';
-                    } else if ($status == 3) {
-                        $btnClass = 'bg-green-500'; 
-                    }
-                    ?>
-                        <button class="<?= $btnClass ?> hover:bg-green-700 text-white text-xs px-2 py-1 rounded" type="button" id = "btn_verify" data-id = "<?= $item['id'] ?>"  data-modal-target="crud-modal" data-modal-toggle="crud-modal">
-                            <?php
-                                if($item['status'] == 1){
-                                    echo 'Verify';
-                                }else if($item['status'] == 2){
-                                    echo 'Processing';
-                                }else if($item['status'] == 3){
-                                    echo 'Completed';
-                                }
-                            ?>
-                        </button>
-                        <button class="bg-red-100 text-red-500 border-[1px] border-red-500 text-xs px-2 py-1 rounded" id = "btn_delete" data-id = "<?= $item['id'] ?>">
-                            <i class="fa-solid fa-trash-can"></i>
-                        </button>
-                    </div>
-                </div>
-            <?php
-                }
-            }
-            ?>
+        <div class="mt-8 grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 relative" id = "displayDataStatus">
+            
         </div>
     </div>
 </div>

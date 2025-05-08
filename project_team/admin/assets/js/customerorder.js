@@ -3,6 +3,7 @@
         let totalPage = 10;
         let startPage = $("#startPage");
         let selectPage = 0;
+        const status = $("#category_status").val();
 
         startPage.text(currentPage);
 
@@ -214,7 +215,6 @@
         });
 
         $(document).on("change","#category_status",function(){
-            const status = $("#category_status").val();
             reload(status);
             pageNum(10);
         });
@@ -245,6 +245,9 @@
                     "currentPage" : offset,
                 },
                 dataType: "json",
+                beforeSend: function(){
+                    display.html(`<span class="loader absolute left-[50%]"></span>`);
+                },
                 success: function (data) {
                     if(data){
                         let txt = "";

@@ -1,6 +1,7 @@
 <?php 
 include('includes/header.php');
 include('../middleware/adminAccess.php');
+include('middleware/users.php');
 if(isset($_GET['id'])){
     $user_id = $_GET['id'];
     $user_detail = getUser("id",$user_id);
@@ -13,7 +14,7 @@ $permission = permission($user_id);
         <div class = "w-full h-[100vh] rounded-md p-5">
                 <div class = "w-full h-[8%] flex justify-between items-center">
                     <div>
-                        <h1 class = "font-medium">Change Information</h1>
+                        <h1 class = "font-medium">Edit Admin</h1>
                     </div>
                     <div>
                         <a href = "useradmin.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i>Back</a>
@@ -47,6 +48,48 @@ $permission = permission($user_id);
                                 </div>
                                 </div>
                                 <div class = "w-full md:w-[50%] h-[170px]">
+                                <div class = "w-full">
+                                    <label for="" class = "block py-1 text-[13px] font-medium font-medium">Permission</label>
+                                    <div class = "flex justify-between items-center grid grid-cols-3">
+                                    <input type="hidden" id = "userId" value = "<?= $user_id?>">
+                                        <div>
+                                            <input type="checkbox"   id = "dashboard" <?= $permission['dashboard'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Dashboard</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "total_product" <?= $permission['total_product'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Total </label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "product" <?= $permission['product'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Product</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "brands" <?= $permission['brands'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Brands</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "category" <?= $permission['category'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Category</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "orders" <?= $permission['orders'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Orders</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "users" <?= $permission['user'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">User</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "inventory" <?= $permission['inventory'] == 1 ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Inventory</label>
+                                            <?php
+                                                $data = getLastId("users");
+                                                echo '<input type="hidden" id = "table_id" value="' . ( $data + 1 ) . '">';                  
+                                            ?>
+                                        </div>
+                                    </div>
+                                </div>
                                 <div class = "w-full">
                                     <p class = "py-1 text-[15px] pl-3">Upload Image</p>
                                 </div>

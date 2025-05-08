@@ -169,7 +169,6 @@
          }
     }
     else if(isset($_POST['change_password'])){
-        $conn = new mysqli("localhost","root","","ecommerce_data");
         $pageId = $_POST['page_id'];
         $userId = $_POST['userid'];
         $username = $_POST['username'];

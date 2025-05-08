@@ -83,7 +83,7 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
             <div id = "printArea" class = "shadow-md">
             <table class="text-center w-full table-auto">
                 <thead id="displayHead"></thead>
-                <tbody id="displayData"></tbody>
+                <tbody id="displayData" class = "relative"></tbody>
             </table>
             </div>
             <div>
