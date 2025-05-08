@@ -1,4 +1,8 @@
-<?php include('includes/header.php')?>
+<?php 
+include('includes/header.php');
+include('../middleware/adminAccess.php');
+include('middleware/category.php');
+?>
         <div class = "h-[1200px] px-2 py-2">
                 <div class = "w-full bg-[#f3f5f7] h-[100%] rounded-md p-5">
                 <div class = "w-full h-[5%] flex justify-between items-center">

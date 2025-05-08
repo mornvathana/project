@@ -1,5 +1,6 @@
 <?php 
     include('includes/header.php');
+    include('../middleware/adminAccess.php');
     include('middleware/users.php');
     if($_SESSION['auth_user']){
         $user_id = $_SESSION['auth_user']['user_id'];

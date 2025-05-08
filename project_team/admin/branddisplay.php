@@ -1,6 +1,7 @@
 <?php 
 
 include('includes/header.php');
+include('../middleware/adminAccess.php');
 include('middleware/brands.php');
 
 ?>

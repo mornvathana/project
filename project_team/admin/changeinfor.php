@@ -1,6 +1,6 @@
 <?php 
 include('includes/header.php');
-
+include('../middleware/adminAccess.php');
 if(isset($_GET['id'])){
     $user_id = $_GET['id'];
     $user_detail = getUser("id",$user_id);
