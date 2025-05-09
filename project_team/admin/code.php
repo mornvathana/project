@@ -1,6 +1,11 @@
 <?php
     include('../config/dbcon.php');
     include('../function/myfunction.php');
+    if(isset($_SESSION['auth_user'])){
+        $user_id = $_SESSION['auth_user']['user_id'];
+    }
+    // handle ip
+    $ip = getUserIP();
 
     if(isset($_POST['product_add'])){
         $pd_name = $_POST['product_name'];
@@ -76,6 +81,11 @@
                 $stmt1->execute();
                 
                 if($stmt1){
+                    // 
+                    $id = $conn->insert_id;
+                    $text = "Create category ID : ". $id;
+                    activity_log($user_id,$text,$ip);
+
                     move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
                     redirect("category1.php","Data has created!");
                 }else{
@@ -159,6 +169,10 @@
                 $stmt1->execute();
                 
                 if($stmt1){
+                    // 
+                    $text = "Edit Category ID : ". $id;
+                    activity_log($user_id,$text,$ip);
+
                     move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
                     redirect("category1.php","Data has updated!");
                 }else{
@@ -230,6 +244,10 @@
                     $update_pass = "UPDATE users SET name = '$username',email = '$email', image = '$filename', password = '$hashedPassword'  WHERE id = $userId";
                     $update_pass_run = $conn->query($update_pass);
                     if($update_pass_run){
+                        // 
+                        $text = "Update information Admin ID : ". $userId;
+                        activity_log($user_id,$text,$ip);
+
                         move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
                         redirect("useradmin.php","Update password sucessfully!");
                     }else{
@@ -291,6 +309,11 @@
                         $stmt->bind_param("ssisi", $username, $email, $filename, $hashedPassword, $role_as);
                         $register_run = $stmt->execute();
                         if($register_run){
+                            // 
+                            $id = $conn->insert_id;
+                            $text = "Create Admin ID : ". $id;
+                            activity_log($user_id,$text,$ip);
+
                             move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
                             // update in permision user_Id 
                             redirect("useradmin.php","Register Successfully!");
@@ -320,6 +343,11 @@
             $brand = "INSERT INTO brands (user_id,product_id,name,image) VALUES($userId,$productId,'$name','$filename')";
             $brand_run = $conn->query($brand);
             if($brand_run){
+                // 
+                $id = $conn->insert_id;
+                $text = "Create brand ID : ". $id;
+                activity_log($user_id,$text,$ip);
+
                 move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
                 redirect("branddisplay.php","Data added successfully!");
             }else{
@@ -358,6 +386,10 @@
         $img_path = $path . '/' . $old_image;
 
         if($brand_run){
+            // 
+            $text = "Delete product ID : ". $brand_id;
+            activity_log($user_id,$text,$ip);
+
             unlink($img_path);
             redirect("branddisplay.php","Brand deleted successfully!");
         }else{
@@ -391,6 +423,10 @@
             $stmt->bind_param("ssi", $name, $filename, $userId);
             $brand_run = $stmt->execute();
             if($brand_run){
+                // 
+                $text = "Edit brand ID : ". $userId;
+                activity_log($user_id,$text,$ip);
+
                 move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
                 redirect("branddisplay.php","Data edited successfully!");
             }else{
@@ -413,6 +449,11 @@
             $brand = "INSERT INTO product (user_id,name,image) VALUES($userId,'$name','$filename')";
             $brand_run = $conn->query($brand);
             if($brand_run){
+                // user activity log 
+                $id = $conn->insert_id;
+                $text = "Create product ID : ". $id;
+                activity_log($user_id,$text,$ip);
+
                 move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
                 redirect("menu.php","Data added successfully!");
             }else{
@@ -438,6 +479,25 @@
 
         if($status_run){
             redirect("menu.php","Status updated successfully!");
+        }else{
+            redirect1("menu.php","Something went wrong!");
+        }
+    }else if(isset($_POST['product_delete'])){
+        $product_id = $_POST['product_id'];
+        $product = "DELETE FROM product WHERE id = $product_id";
+        $brand_run = $conn->query($product);
+        // image
+        $old_image = $_POST['image'];
+        $path = '../uploads/product';
+        $img_path = $path . '/' . $old_image;
+
+        if($brand_run){
+            // 
+            $text = "Delete product ID : ". $product_id;
+            activity_log($user_id,$text,$ip);
+
+            unlink($img_path);
+            redirect("menu.php","Product deleted successfully!");
         }else{
             redirect1("menu.php","Something went wrong!");
         }
@@ -469,6 +529,10 @@
             $stmt->bind_param("ssi", $name, $filename, $userId);
             $brand_run = $stmt->execute();
             if($brand_run){
+                // 
+                $text = "Edit product ID : ". $userId;
+                activity_log($user_id,$text,$ip);
+
                 move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
                 redirect("menu.php","Data edited successfully!");
             }else{

@@ -1,6 +1,29 @@
 <?php
     include("../config/dbcon.php");
     session_start();
+
+    // get ip computer 
+    function getUserIP() {
+
+        if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+            return $_SERVER['HTTP_CLIENT_IP'];
+        } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+            $ip = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
+            return trim($ip[0]);
+        } else {
+            return $_SERVER['REMOTE_ADDR'];
+        }
+
+    }
+
+
+    function activity_log($id,$message,$ip){
+        global $conn;
+        $stmt = $conn->prepare("INSERT INTO admin_logs (admin_id,action,ip_address) VALUES (?,?,?)");
+        $stmt->bind_param("isi",$id,$message,$ip);
+        $stmt->execute();
+        $stmt->close();
+    }
     
     // get user
     function getUser($selectCol,$property){

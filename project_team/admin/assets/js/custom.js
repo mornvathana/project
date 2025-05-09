@@ -340,9 +340,8 @@ $(document).ready(function () {
         });
     });
     // detete category
-    $(document).on('click','#delete_category',function(e){
-        e.preventDefault(); // Prevent default action if necessary
-        // Show confirmation alert using SweetAlert
+    $(document).on('click','#delete_category',function(){
+
         Swal.fire({
             icon: 'warning',
             title: '<span class="text-gray-800 font-semibold text-lg">Are you sure you want to delete?</span>',
@@ -370,8 +369,8 @@ $(document).ready(function () {
                         "cid": cid, 
                         "scrope": "delete_category"
                     },
-                    success: function(response) {
-                        if (response == 202) {
+                    success: function(data) {
+                        if (data == 202) {
                             $(`#category-${cid}`).remove(); 
                         } else {
                             Swal.fire({
@@ -381,14 +380,6 @@ $(document).ready(function () {
                             });
                         }
                     },
-                    error: function() {
-                        // Handle AJAX errors
-                        Swal.fire({
-                            title: "Error!",
-                            text: "There was an error processing your request.",
-                            icon: "error"
-                        });
-                    }
                 });
             }
         });

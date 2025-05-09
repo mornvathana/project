@@ -32,7 +32,7 @@ if(isset($_GET['id'])){
                         <input type="hidden" name = "userid" id = "userId" value = "<?= $user['id']?>" readonly>
                         <input type="hidden" name="page_id" >
                         <label for="username" class = "block py-1 text-[13px] font-medium">Username</label>
-                        <input type="text" name = "username" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" id = "username" placeholder = "Username" required>
+                        <input type="text" name = "username" id = "username" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Username" required>
                     </div>
                     <div class = "w-full">
                         <label for="email" class = "block py-1 text-[13px] font-medium">Email</label>
@@ -98,11 +98,7 @@ if(isset($_GET['id'])){
                         <div class="w-[90%] border border-[1px] border-dashed border-blue-900 h-[70%] md:h-[100%] rounded-md">
                             <img src="
                             <?php
-                                if(!empty($user['image'])){
-                                    echo '../uploads/admin/' . $user['image'];
-                                }else{
-                                    echo '../uploads/default/default.jpg';
-                                }
+                                echo 'assets/img/default.jpg';
                             ?>
                             " id = "showImage" class = "w-full h-full object-contain" alt="">
                             <input type="hidden" name="old_image" value = "<?= $user['image'] ?>" >
@@ -110,7 +106,7 @@ if(isset($_GET['id'])){
                     </div> 
                     <div class = "w-[50%] flex justify-center items-center relative">
                     <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[70%] md:h-[100%] rounded-md">
-                        <input type="file" name = "image" id = "profile_image" accept="image/*" class = "w-full h-full hidden" required>
+                        <input type="file" name = "image" id = "profile_image" accept="image/*" class = "w-full h-full hidden">
                     </div>
                     <label for="profile_image" class = "absolute text-sm ">Select Image <i class="fa-solid fa-image"></i></label>
                     </div>

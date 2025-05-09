@@ -48,9 +48,9 @@
                                             </button>
                                         </form>
                                         <form action="code.php" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="brand_id" value="${item.id}">
+                                            <input type="hidden" name="product_id" value="${item.id}">
                                             <input type="hidden" name="image" value="${item.image}">
-                                            <button type="submit" name="btn_delete" class="bg-red-100 border-[1px] border-red-500 text-red-500 px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
+                                            <button type="submit" name="product_delete" class="bg-red-100 border-[1px] border-red-500 text-red-500 px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>

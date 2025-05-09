@@ -8,9 +8,18 @@
             });
             // permission 
             $("#save_btn").click(function(){
-
+                const username = $("#username").val().trim();
+                const email = $("#email").val().trim();
+                const password = $("#password").val().trim();
+                const con_password = $("#con_password").val().trim();
+                
                 const tableid = $("#table_id").val();
                 const userid = $("#userId").val();
+
+                if(username == '' || email == '' || password == '' || con_password == ''){
+                    alert("Please fill in all required fields!");
+                    return; 
+                }
 
                 const data = {
                     tableId: tableid,

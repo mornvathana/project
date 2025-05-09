@@ -55,6 +55,9 @@
                                             <div>
                                                 <ul class = "flex gap-5">
                                                     <li>
+                                                        <a href="activitylog.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[10px] md:text-[13px] rounded-md"><i class="fas fa-user"></i> <span>Activity Logs</span></button></a>
+                                                    </li>
+                                                    <li>
                                                         <a href="changeinfor.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[10px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i> <span>Change Password</span></button></a>
                                                     </li>
                                                     <li>

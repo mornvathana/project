@@ -1,5 +1,16 @@
 <?php
-    $conn = new mysqli("localhost","root","","ecommerce_data");
+    include('../config/dbcon.php');
+    include('../function/myfunction.php');
+    if(isset($_SESSION['auth_user'])){
+        $user_id = $_SESSION['auth_user']['user_id'];
+    }
+    // handle ip
+    $ip = getUserIP();
+
+    if(isset($_SESSION['auth_user'])){
+        $user_id = $_SESSION['auth_user']['user_id'];
+    } 
+
     if(isset($_POST['scrope'])){
         $scrope = $_POST['scrope'];
         switch($scrope){
@@ -18,9 +29,13 @@
                 $del_cd = "DELETE FROM product_detail WHERE id = $cid";
                 $del_cd_run = $conn->query($del_cd);
                 if($del_cd_run){
-                    echo "202";
+                    // 
+                    $text = "Delete Category ID : ". $cid;
+                    activity_log($user_id,$text,$ip);
+
+                    echo 202;
                 }else{
-                    echo "400";
+                    echo 400;
                 }
             break;
             case "delete_user":
