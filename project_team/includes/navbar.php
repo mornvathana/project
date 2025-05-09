@@ -32,11 +32,32 @@
         </div>
 
         <div class="right hidden lg:flex items-center space-x-5">
-            <button class="search-box w-[450px] flex items-center space-x-2 border rounded-full p-2 text-lg font-medium"
+            
+            <!-- Search Box -->
+            <div class="w-[450px] mx-auto">
+            <div class="relative">
+            <!-- Search Input -->
+            <input 
+                type="text" 
+                placeholder="Search products..." 
+                id="searchInput"
+                class="searchInput w-full p-2 pl-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:border-transparent shadow-sm text-[17px]"
+                autocomplete="off"
                 style="border: 2px solid #144194;">
-                <input type="text" id = "search" placeholder="Search for product..." class="w-full h-fit outline-none">
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
+            <!-- Search Icon -->
+            <div class="absolute right-3 top-[15px] text-gray-400">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                </svg>
+            </div>
+            
+            <!-- Autocomplete Dropdown with Images -->
+            <div id="autocompleteResults" class="autocompleteResults hidden absolute z-[150] mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto">
+                <!-- Suggestions with images will be inserted here by JavaScript -->
+            </div>
+            </div>
+            </div>
+
             <button class="shopping-cart text-[#144194] text-xl relative">
                 <a href="checkoutCart.php"><i class="fa-solid fa-bag-shopping">
                     <div class="cart-number bg-red-500 w-[20px] h-[20px] rounded-full absolute top-[-3px] left-3 text-white text-[15px] flex justify-center items-center p-2">1</div>
