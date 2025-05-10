@@ -3,17 +3,18 @@
     include('../../config/dbcon.php');
     // 
     $page = $_POST['page'];
+    $num = $_POST['value'];
     $limit = 10;
     $totalPage = ($page -1 ) * $limit; 
 
     // get total page 
-    $sqlTotal = "SELECT COUNT(*) as Total FROM admin_logs";
+    $sqlTotal = "SELECT COUNT(*) as Total FROM admin_logs WHERE admin_id = $num";
     $resTotal = $conn->query($sqlTotal);
     $rowTotal = $resTotal->fetch_array();
     $total = $rowTotal['0'];
 
-    $stmt = $conn->prepare("SELECT * FROM admin_logs ORDER BY id DESC LIMIT ?,? ");
-    $stmt->bind_param("ii", $totalPage, $limit);
+    $stmt = $conn->prepare("SELECT * FROM admin_logs WHERE admin_id = ? ORDER BY id DESC LIMIT ?,? ");
+    $stmt->bind_param("iii",$num,$totalPage, $limit);
     $data = array();
     if($stmt->execute()){
         $result = $stmt->get_result();

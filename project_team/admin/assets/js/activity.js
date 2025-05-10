@@ -2,8 +2,52 @@
         let currentPage = 1;
         let totalPage = $("#totalPage");
         let startPage = $("#startPage");
+        let value = 1;
         let limit = 10;
         const display = $("#displayData");
+
+        startPage.text(currentPage);
+        // start select name 
+        $("#page_num").click(function(){
+            let num = $(this).val();
+            value = num;
+            load(currentPage);
+        });
+        // start search 
+        $(document).on("keyup","#search",function(){
+        const product = $(this).val();
+        const display = $("#displayData");
+        $.ajax({
+            method: "POST",
+            url: "action/searchActivity.php",
+            data: {
+                "name" : product,
+                "num" : value
+            },
+            dataType: "json",
+            success: function (data) {
+                if(data){
+                   let txt = "";
+                    for (let i in data) {
+                        let item = data[i];
+                        const ip = item.ipaddress ? item.ipaddress : 'unknown';
+                        txt += `<tr id="brand-${item.id}">
+                            <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.id}</td>
+                            <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.name}</td>
+                            <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.action}</td>
+                            <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${ip}</td>
+                            <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.created}</td>
+                        </tr>`;
+                    }
+                    console.log(txt);
+                    display.html(txt); 
+                }else{
+                    alert("No Data");
+                    }
+                }
+            });
+        });
+        // end search
 
         function load(page) {
                 $.ajax({
@@ -11,6 +55,7 @@
                 url: "action/getActivity.php",
                 data: {
                     "page": page,
+                    "value" : value
                 },
                 dataType: 'json',
                 beforeSend: function(){

@@ -14,7 +14,7 @@
         toastr.success("<?= $_SESSION['message'] ?>");
         <?php unset($_SESSION['message']); ?>
     <?php endif; ?>
-    </scr>
+    </script>
      <script>
     <?php if (isset($_SESSION['message1'])): ?>
         toastr.warning("<?= $_SESSION['message1'] ?>");
