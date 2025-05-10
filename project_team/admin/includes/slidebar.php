@@ -34,6 +34,11 @@
                     <?php endif;?>
                     <?php if(!empty($permission['product']) == 1): ?>
                     <li class = "p-2 my-1 text-[12px] <?= $page == 'product1.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
+                        <a href="webinfo.php"><i class="fa-solid fa-box-open"></i> Web Info</a>
+                    </li>
+                    <?php endif;?>
+                    <?php if(!empty($permission['product']) == 1): ?>
+                    <li class = "p-2 my-1 text-[12px] <?= $page == 'product1.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
                         <a href="menu.php"><i class="fa-solid fa-box-open"></i> Product</a>
                     </li>
                     <?php endif;?>

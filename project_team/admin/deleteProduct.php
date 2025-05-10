@@ -144,7 +144,35 @@
                     }
 
                 }
-            break;     
+            break;    
+            case "deleteDimgInfo":
+                $id = 1;
+                $img = $_POST['img'];
+                $stmt = $conn->prepare("SELECT slide_image FROM information_website WHERE id = ?");
+                $stmt->bind_param("i",$id);
+                $stmt->execute();
+                $result = $stmt->get_result()->fetch_assoc();
+
+                $old_image = explode(",",$result['slide_image']);
+                $update_img = array_diff($old_image,[$img]);
+                $update_image = implode(',',$update_img);
+
+                // update image to database 
+                $update = $conn->prepare("UPDATE information_website SET slide_image = ? WHERE id = ? ");
+                $update->bind_param("si",$update_image,$id);
+
+                if($update->execute()){
+                    $path = '../uploads/webinfo/'.$img;
+                    $full_path = realpath($path);
+                    if(file_exists($full_path)){
+                        unlink($full_path);
+                        echo 200; // Success
+                    }else{
+                        echo 404; // File not found
+                    }
+
+                }
+            break;   
             case "deleteOrder":
                 $id = $_POST['id'];
                 $delete = $conn->prepare("DELETE FROM orders WHERE id = ?");

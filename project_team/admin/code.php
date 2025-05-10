@@ -539,5 +539,86 @@
                 redirect1("menuedit.php?id=$userId","Something went wrong!");
             }
         }
+    }else if(isset($_POST['updateweb'])){
+        $phonenumber = $_POST['phonenumber'];
+        $telegram = $_POST['telegram'];
+        $address = $_POST['address'];
+        $id = 1;
+
+        $old_image = $_POST['old_image'];
+        $old_demo = $_POST['demo_image'];
+
+        $size = $_FILES['image']['size'];
+        $image = $_FILES['image']['name'];
+
+        $path = "../uploads/webinfo";  
+        $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+
+        $demo_image = $_FILES['image']['demo_image']; 
+        $valid = true;
+        $demo_images = [];
+
+        foreach($_FILES['demo_image']['size'] as $key => $demo_size){
+            if($demo_size > 100 * 1024){
+                $valid = false;
+                break;
+            }
+        }
+
+         if($size > 100 * 1024 || !$valid){
+            redirect1("webinfo.php","Please upload new image!");
+         }else{
+        // process demo image 
+        foreach($_FILES['demo_image']['name'] as $key => $demo_name){
+            $demo_ext = pathinfo($demo_name, PATHINFO_EXTENSION);
+            $demo_filename = time() . '_' . $key . '.' . $demo_ext;
+            move_uploaded_file($_FILES['demo_image']['tmp_name'][$key], $path . '/' . $demo_filename);
+            $demo_images[] = $demo_filename;
+        }
+        // check demo_image
+        $demo_images_string = implode(',', $demo_images);            
+        // delete old image 
+        if(!empty($image)){
+            $img_data = "SELECT * FROM information_website WHERE id = $id";
+            $img_data_run = $conn->query($img_data);
+            if($img_data_run->num_rows > 0){
+                $img_query = $img_data_run->fetch_assoc()['logo'];
+                $img_path = $path . '/' . $img_query;
+                // remove image from folder 
+                if( $img_query != "default.jpg" && file_exists($img_path)){
+                    unlink($img_path);
+                }
+        }
+        }
+        // end delete image
+        if(!empty($image)){
+            $filename = time() . '.' . $image_ext;
+        }else{
+            $filename = $old_image;
+        }
+
+        if(!empty($demo_image)){
+            $Dimg = $demo_images_string;
+        }else{
+            $Dimg = $old_demo;
+        }
+
+        $stmt = $conn->prepare("UPDATE information_website  SET phone_number = ?, telegram_number = ?, logo = ?,
+        slide_image = ?, address = ? WHERE id = ?");
+        $stmt->bind_param("iisssi", $phonenumber, $telegram, $filename,$Dimg,$address,$id);
+        $stmt->execute();
+        
+        if($stmt){
+            // 
+            $text = "Update information web";
+            activity_log($user_id,$text,$ip);
+
+            move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+            redirect("webinfo.php","Data has updated!");
+        }else{
+            redirect1("webinfo.php","Something went wrong!");
+        }
+
+        }
     }
 ?>
