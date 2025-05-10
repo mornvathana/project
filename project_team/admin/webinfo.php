@@ -57,7 +57,7 @@ include('../middleware/adminAccess.php');
                             <div class = "w-full h-[150px] flex">
                             <div class = "w-[50%] flex justify-center items-center none">
                                 <div class="w-[90%] gap-2 grid grid-cols-3 h-[100%] rounded-md">
-                                    <input type = "hidden" name = "demo_image" value = "<?= $data['slide_image']?>">
+                                    <input type = "hidden" name = "item_demo" value = "<?= $data['slide_image']?>">
                                     <?php
                                     $image = $data['slide_image'];
                                     $image_array = explode(',', $image);

@@ -546,7 +546,7 @@
         $id = 1;
 
         $old_image = $_POST['old_image'];
-        $old_demo = $_POST['demo_image'];
+        $item_demo = $_POST['item_demo'];
 
         $size = $_FILES['image']['size'];
         $image = $_FILES['image']['name'];
@@ -554,7 +554,7 @@
         $path = "../uploads/webinfo";  
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
 
-        $demo_image = $_FILES['image']['demo_image']; 
+        $demo_image = $_FILES['demo_image']; 
         $valid = true;
         $demo_images = [];
 
@@ -575,8 +575,8 @@
             move_uploaded_file($_FILES['demo_image']['tmp_name'][$key], $path . '/' . $demo_filename);
             $demo_images[] = $demo_filename;
         }
-        // check demo_image
-        $demo_images_string = implode(',', $demo_images);            
+        $demo_images_string = implode(',', $demo_images);  
+              
         // delete old image 
         if(!empty($image)){
             $img_data = "SELECT * FROM information_website WHERE id = $id";
@@ -588,7 +588,7 @@
                 if( $img_query != "default.jpg" && file_exists($img_path)){
                     unlink($img_path);
                 }
-        }
+            }
         }
         // end delete image
         if(!empty($image)){
@@ -597,15 +597,31 @@
             $filename = $old_image;
         }
 
-        if(!empty($demo_image)){
-            $Dimg = $demo_images_string;
+        if(!empty($_FILES['demo_image']['name'][0])){
+
+            $img_data = "SELECT * FROM information_website WHERE id = $id";
+            $img_data_run = $conn->query($img_data);
+            if($img_data_run->num_rows > 0){
+                
+                $image_string = $img_data_run->fetch_assoc()['slide_image'];
+                $image_array = explode(",",$image_string);
+                foreach($image_array as $img){
+                    $img_path = $path . '/' . $img;
+
+                    if( $img != "default.jpg" && file_exists($img_path)){
+                    unlink($img_path);
+                }
+                }
+            }
+                
+            $demo = $demo_images_string;
         }else{
-            $Dimg = $old_demo;
-        }
+            $demo = $item_demo;
+        }    
 
         $stmt = $conn->prepare("UPDATE information_website  SET phone_number = ?, telegram_number = ?, logo = ?,
         slide_image = ?, address = ? WHERE id = ?");
-        $stmt->bind_param("iisssi", $phonenumber, $telegram, $filename,$Dimg,$address,$id);
+        $stmt->bind_param("iisssi", $phonenumber, $telegram, $filename,$demo,$address,$id);
         $stmt->execute();
         
         if($stmt){
