@@ -58,8 +58,8 @@
                     </li>
                     <?php endif;?>
                     <?php if(!empty($permission['user']) == 1): ?>
-                    <li class = "p-2 my-1 text-[12px] <?= $page == 'useradmin.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
-                        <a href="useradmin.php"><i class="fa-solid fa-user"></i> User</a>
+                    <li class = "p-2 my-1 text-[12px] <?= $page == 'userclient.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
+                        <a href="userclient.php"><i class="fa-solid fa-user"></i> User</a>
                     </li>
                     <?php endif;?>
                     <?php if(!empty($permission['inventory']) == 1): ?>
@@ -67,9 +67,6 @@
                         <a href="inventory.php"><i class="fas fa-warehouse"></i> Inventory</a>
                     </li>
                     <?php endif;?>
-                    <li class = "p-2 my-1 text-[12px] bg-red-500 text-white font-medium rounded-md hover:text-white">
-                        <a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
-                    </li>
                 </ul>
             </div>
         </div>
