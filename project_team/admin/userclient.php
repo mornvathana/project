@@ -1,7 +1,6 @@
 <?php 
 include('includes/header.php');
 include('../middleware/adminAccess.php');
-include('middleware/menu.php');
 ?>
 <!-- end header -->
 <div class="h-full px-2 py-2 ">
@@ -10,9 +9,6 @@ include('middleware/menu.php');
              <div class = "w-full h-[8%] flex justify-between items-center">
                 <div>
                     <h1 class = "font-medium">User Management</h1>
-                </div>
-                <div>
-                    <a href = "useradmin.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i>Back</a>
                 </div>
             </div>
         </div>
@@ -32,21 +28,6 @@ include('middleware/menu.php');
                 </form>
             </div>
             <div class = "flex">
-                <form class="max-w-sm mx-2">
-                <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full h-7 px-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>Page</option>
-                    <?php
-                        $user = getAll("users");
-                        if($user->num_rows > 0){
-                            foreach($user as $name){
-                                ?>
-                                <option value = "<?= $name['id']?>"><?= $name['name']?></option>
-                                <?php
-                            }
-                        }
-                    ?>
-                </select>
-                </form>
                 <div class="flex">
                     <!-- Previous Button -->
                     <a href="#" class="flex items-center justify-center px-2 h-7 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" id = "back_btn">
@@ -79,9 +60,11 @@ include('middleware/menu.php');
                     <tr>
                         <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">ID</th>
                         <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Name</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Action</th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">IP Address</th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Email</th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Email Verify</th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Status</th>
                         <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Created at</th>
+                         <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Action</th>
                     </tr>
                 </thead>
                 <tbody id = "displayData" class = "relative">
@@ -92,6 +75,6 @@ include('middleware/menu.php');
     </div>
 </div>
 <!--  -->
-<script src = "assets/js/activity.js"></script>
+<script src = "assets/js/userclient.js"></script>
 <!--  -->
 <?php include('includes/footer.php') ?>

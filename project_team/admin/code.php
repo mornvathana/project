@@ -636,5 +636,46 @@
         }
 
         }
+    }else if(isset($_POST['btn_active_user'])){
+        $status = 0;
+        $brand_id = $_POST['brand_id'];
+        $status = "UPDATE users SET status = '$status' WHERE id = $brand_id";
+        $status_run = $conn->query($status);
+
+        if($status_run){
+            $text = "Disable User ID : ". $brand_id;
+            activity_log($user_id,$text,$ip);
+            redirect("userclient.php","Status updated successfully!");
+        }else{
+            redirect1("userclient.php","Something went wrong!");
+        }
+    }else if(isset($_POST['btn_disable_user'])){
+        $status = 1;
+        $brand_id = $_POST['brand_id'];
+        $status = "UPDATE users SET status = '$status' WHERE id = $brand_id";
+        $status_run = $conn->query($status);
+
+        if($status_run){
+            $text = "Active User ID : ". $brand_id;
+            activity_log($user_id,$text,$ip);
+
+            redirect("userclient.php","Status updated successfully!");
+        }else{
+            redirect1("userclient.php","Something went wrong!");
+        }
+    }else if(isset($_POST['product_delete_user'])){
+        $product_id = $_POST['product_id'];
+        $product = "DELETE FROM users WHERE id = $product_id";
+        $brand_run = $conn->query($product);
+
+        if($brand_run){
+            // 
+            $text = "Delete product ID : ". $product_id;
+            activity_log($user_id,$text,$ip);
+
+            redirect("userclient.php","Users deleted successfully!");
+        }else{
+            redirect1("userclient.php","Something went wrong!");
+        }
     }
 ?>

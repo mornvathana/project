@@ -105,6 +105,11 @@
         $query = "SELECT * FROM $table where $selectCol = '$property'";
         return $query_run = mysqli_query($conn,$query);
     }
+    function whereOrders($table,$selectCol,$property){
+        global $conn;
+        $query = "SELECT * FROM $table where $selectCol = $property LIMIT 2,3";
+        return $query_run = mysqli_query($conn,$query);
+    }
     // matching brand 
     function whereProduct1($property){
         global $conn;

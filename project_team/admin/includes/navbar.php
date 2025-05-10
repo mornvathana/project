@@ -14,7 +14,8 @@
             <div class = "flex items-center justify-center gap-5 cursor-pointer setting">
             <div class = "flex items-center justify-center gap-2">
             <?php
-                $user = getById("users",$id);
+               if(!empty($id)){
+                 $user = getById("users",$id);
                 if($user->num_rows > 0){
                     foreach($user as $data){
                     ?>
@@ -51,6 +52,7 @@
                     <?php
                     }
                 }
+               }
             ?>
         </div>
     </div>
