@@ -19,11 +19,13 @@
                         <div class = "h-full px-2 py-5 bg-[#f3f5f7]">
                             <div class = "w-full h-[100%] flex flex-col gap-5">
                                 <div class = "h-[5%] flex justify-center items-center">
-                                    <div class = "w-[95%] h-full">
+                                    <div class = "w-[95%] h-full flex justify-between items-center">
+                                    <div>
                                         <h1 class = "text-md font-medium">User Profile</h1>
                                     </div>
                                     <div>
                                         <a href = "userclient.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i>Back</a>
+                                    </div>
                                     </div>
                                 </div>
                                 <div class = "h-[25%] w-full  flex justify-center items-start">
@@ -53,15 +55,16 @@
                                     </div>
                                 </div>
                                 <div class = "h-[40%] w-full  flex justify-center items-start">
-                                    <div class = "w-[95%] h-full items-center bg-[#ffffff] rounded-md shadow-sm px-5 py-1">
-                                        <div class = "w-full h-[30%]  flex justify-between items-center">  
+                                    <div class = "w-[95%] grid grid-cols-1 md:grid-cols-2 h-full rounded-md shadow-sm  gap-5 py-1">
+                                        <div class = " bg-[#ffffff] px-5 ">
+                                           <div class = "w-full h-[30%]  flex justify-between items-center">  
                                             <div>
                                                 <h1 class = "text-sm md:text-md font-medium flex"><span class = "hidden md:block pr-1">Personal</span> <span>information</span></h1>
                                             </div>
                                         </div>
                                         <!--  -->
                                         <div class = "w-full h-[70%] flex justify-start items-center">
-                                            <div class = "w-full lg:w-[60%] h-full">
+                                            <div class = "w-full lg:w-[100%] h-full">
                                                 <div class = "w-full h-[50%] grid grid-cols-3">
                                                     <ul>
                                                         <li class = "text-[10px] md:text-[13px] text-[#646a7a]">First Name</li>
@@ -91,6 +94,47 @@
                                                     </ul>
                                                 </div>
                                             </div>
+                                        </div>
+                                        </div>
+                                        <div class = " bg-[#ffffff] px-5 ">
+                                            <div class = "w-full h-[30%]  flex justify-between items-center">  
+                                            <div>
+                                                <h1 class = "text-sm md:text-md font-medium flex"><span class = "hidden md:block pr-1">Personal</span> <span>Product</span></h1>
+                                            </div>
+                                        </div>
+                                        <!--  -->
+                                        <div class = "w-full h-[70%] flex justify-start items-center">
+                                            <div class = "w-full lg:w-[100%] h-full">
+                                                <div class = "w-full h-[50%] grid grid-cols-3">
+                                                    <ul>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Finished</li>
+                                                        <li class = "text-[10px] md:text-[12px]">Morn</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Pedding</li>
+                                                        <li class = "text-[10px] md:text-[12px]">Morn</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Completed</li>
+                                                        <li class = "text-[10px] md:text-[12px]"><?= $userItem['created_at']?></li>
+                                                    </ul>
+                                                </div>
+                                                <div class = "w-full h-[50%] grid grid-cols-3">
+                                                    <ul>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Total Price</li>
+                                                        <li class = "text-[10px] md:text-[12px]"><?= $userItem['email']?></li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Score</li>
+                                                        <li class = "text-[10px] md:text-[12px]">Morn</li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">User role</li>
+                                                        <li class = "text-[10px] md:text-[12px]"><?= $userItem['role_as'] == 0 ? 'User' : 'Admin'?></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
                                         </div>
                                     </div>  
                                 </div>
