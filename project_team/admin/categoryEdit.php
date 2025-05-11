@@ -78,6 +78,52 @@ include('middleware/category.php');
                                                 <option value="1">1</option>
                                             </select>
                                         </div>
+                                        <!--  -->
+                                        <div class = "w-full my-2">
+                                        <label for="" class = "block py-1 text-[13px] font-medium font-medium">Product Choise</label>
+                                        <div class = "flex justify-between items-center grid grid-cols-3">
+                                        <input type="hidden" id = "userId" value = "<?= $user_id?>">
+                                            <?php
+                                                $data = whereOrders("product_option","product_id",$item['id']);
+                                                if($data->num_rows > 0){
+                                                    foreach($data as $num){
+                                                    ?>
+                                                    <div>
+                                                        <input type="checkbox" name = "option[]" value = "popular" <?= $num['popular_pd'] == 1 ? 'checked' : ''?>  id = "popular" >
+                                                        <label for="" class = "py-1 text-[13px]">Popular</label>
+                                                    </div>
+                                                    <?php
+                                                    }
+                                                }
+                                            ?>
+                                            <?php
+                                                $data = whereOrders("product_option","product_id",$item['id']);
+                                                if($data->num_rows > 0){
+                                                    foreach($data as $num){
+                                                    ?>
+                                                    <div>
+                                                        <input type="checkbox" name = "option[]" <?= $num['used_pd'] == 1 ? 'checked' : ''?> value = "used"  id = "used" >
+                                                        <label for="" class = "py-1 text-[13px]">Used Product</label>
+                                                    </div>
+                                                    <?php
+                                                    }
+                                                }
+                                            ?>
+                                            <?php
+                                                $data = whereOrders("product_option","product_id",$item['id']);
+                                                if($data->num_rows > 0){
+                                                    foreach($data as $num){
+                                                    ?>
+                                                    <div>
+                                                        <input type="checkbox" name = "option[]" value = "new" <?= $num['new_pd'] == 1 ? 'checked' : ''?>   id = "new" >
+                                                        <label for="" class = "py-1 text-[13px]">New product</label>
+                                                    </div>
+                                                    <?php
+                                                    }
+                                                }
+                                            ?>
+                                        </div>
+                                        <!--  -->
                                         <div class = "w-full bg-white mt-2">
                                         <div class = "w-full">
                                         <div class = "w-full">

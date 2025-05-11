@@ -2,6 +2,22 @@
     include("../config/dbcon.php");
     session_start();
 
+    function updatePdOption($product,$used,$new,$id){
+        global $conn;
+        $stmt = $conn->prepare("UPDATE product_option SET popular_pd = ? , used_pd = ? , new_pd = ? WHERE product_id = ?");
+        $stmt->bind_param('iiii',$product,$used,$new,$id);
+        $stmt->execute();
+        $stmt->close();
+    }
+
+    function storeData($id,$product,$used,$new,$userId){
+        global $conn;
+        $stmt = $conn->prepare("INSERT INTO product_option (product_id,popular_pd,used_pd,new_pd,updated_by) VALUES(?,?,?,?,?)");
+        $stmt->bind_param('iiiii',$id,$product,$used,$new,$userId);
+        $stmt->execute();
+        $stmt->close();
+    }
+
     // get ip computer 
     function getUserIP() {
 
@@ -107,7 +123,7 @@
     }
     function whereOrders($table,$selectCol,$property){
         global $conn;
-        $query = "SELECT * FROM $table where $selectCol = $property LIMIT 2,3";
+        $query = "SELECT * FROM $table where $selectCol = $property LIMIT 0,3";
         return $query_run = mysqli_query($conn,$query);
     }
     // matching brand 

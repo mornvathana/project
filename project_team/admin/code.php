@@ -36,7 +36,11 @@
         $brand = $_POST['brand'];
         $promotion = $_POST['promotion'];
 
-        $demo_image = $_FILES['image']['demo_image']; 
+        $popular = in_array('popular',$_POST['option']) ? 1 : 0;
+        $used = in_array('used',$_POST['option']) ? 1 : 0;
+        $new = in_array('new',$_POST['option']) ? 1 : 0;
+
+        $demo_image = ['demo_image']; 
 
         $size = $_FILES['image']['size'];
         $path = "../uploads/category"; 
@@ -86,6 +90,8 @@
                     $text = "Create category ID : ". $id;
                     activity_log($user_id,$text,$ip);
 
+                    storeData($id,$popular,$used,$new,$user_id);
+
                     move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
                     redirect("category1.php","Data has created!");
                 }else{
@@ -107,6 +113,10 @@
         $brand = $_POST['brand'];
         $promotion = $_POST['promotion'];
 
+        $popular = in_array('popular',$_POST['option']) ? 1 : 0;
+        $used = in_array('used',$_POST['option']) ? 1 : 0;
+        $new = in_array('new',$_POST['option']) ? 1 : 0;
+
         $old_image = $_POST['old_image'];
         $size = $_FILES['image']['size'];
         $image = $_FILES['image']['name'];
@@ -114,7 +124,7 @@
         $path = "../uploads/category";  
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
 
-        $demo_image = $_FILES['image']['demo_image']; 
+        $demo_image = ['demo_image']; 
         $valid = true;
         $demo_images = [];
 
@@ -172,6 +182,8 @@
                     // 
                     $text = "Edit Category ID : ". $id;
                     activity_log($user_id,$text,$ip);
+
+                    updatePdOption($popular,$used,$new,$id);
 
                     move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
                     redirect("category1.php","Data has updated!");

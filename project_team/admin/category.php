@@ -71,6 +71,25 @@ include('middleware/category.php');
                                 <option value="1">1</option>
                             </select>
                         </div>
+                        <!--  -->
+                        <div class = "w-full my-2">
+                        <label for="" class = "block py-1 text-[13px] font-medium font-medium">Product Choise</label>
+                        <div class = "flex justify-between items-center grid grid-cols-3">
+                        <input type="hidden" id = "userId" value = "<?= $user_id?>">
+                            <div>
+                                <input type="checkbox" name = "option[]" value = "popular"   id = "popular" >
+                                <label for="" class = "py-1 text-[13px]">Popular</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name = "option[]" value = "used"   id = "used" >
+                                <label for="" class = "py-1 text-[13px]">Used Product</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" name = "option[]" value = "new"   id = "new" >
+                                <label for="" class = "py-1 text-[13px]">New product</label>
+                            </div>
+                        </div>
+                        <!--  -->
                         <div class = "w-full bg-white mt-2">
                         <div class = "w-full">
                         <div class = "w-full">
