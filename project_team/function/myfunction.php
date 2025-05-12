@@ -2,6 +2,27 @@
     include("../config/dbcon.php");
     session_start();
 
+    function sumPrice($table,$id){
+        global $conn;
+        $query = "SELECT SUM(total_price) as total FROM $table WHERE user_id = $id" ;
+        $query_run = mysqli_query($conn,$query);
+        if(mysqli_num_rows($query_run) > 0){
+            return mysqli_fetch_assoc($query_run);
+        }
+        return null;
+    }
+
+    function countStatusUser($table,$status,$id){
+         global $conn;
+        $query = "SELECT count(*) as count FROM $table WHERE status = $status AND user_id = $id";
+        $query_run = mysqli_query($conn,$query);
+        if($query_run){
+            $result = mysqli_fetch_assoc($query_run);
+                return $result['count'];
+        }
+        return 0;
+    }
+
     function updatePdOption($product,$used,$new,$id){
         global $conn;
         $stmt = $conn->prepare("UPDATE product_option SET popular_pd = ? , used_pd = ? , new_pd = ? WHERE product_id = ?");

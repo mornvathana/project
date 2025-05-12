@@ -145,9 +145,9 @@
                                                         <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Total Price</li>
                                                         <li class = "text-[10px] md:text-[12px]">
                                                             <?php
-                                                                $price = sumPrice("orders","user_id",$id);
+                                                                $price = sumPrice("orders",$id);
                                                                 ?>
-                                                                <?= $price?>
+                                                                <?= $price['total']?>
                                                                 <?php
                                                             ?>
                                                         </li>
