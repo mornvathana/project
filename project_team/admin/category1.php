@@ -43,11 +43,11 @@ include('middleware/category.php');
                     </select>
                 </div>
                 <div class = "w-[100%] md:w-[35px] py-1 md:py-2 rounded-sm">
-                    <label  class = "text-[13px] font-medium text-[#515151]">Brand</label>
+                    <label  class = "text-[13px] font-medium text-[#515151]">Product</label>
                     <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-full md:w-[100px] xl:w-[120px] py-1 font-medium text-[#515151] outline-none">
                     <option value = "" selected class = "text-[13px]">Select</option>
                     <?php
-                    $product = getAll("brands");
+                    $product = getAll("product");
                     if(mysqli_num_rows($product) > 0){
                         foreach($product as $productItem){
                             ?>
