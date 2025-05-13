@@ -59,9 +59,11 @@
                              <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.product}</td>
                             <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.price}</td>
                             <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.created}</td>
+                             <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1"><a href= "action/invoice.php?id=${item.id}" target = "_blank"><i class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a></td>
                             </tr>`;
                         }
                         totalPage.text(Math.ceil( data[0]['total'] / limit));
+
                         display.html(txt);
                     }else{
                         display.html(`<tr><td colspan = "6">No Data</td></tr>`);

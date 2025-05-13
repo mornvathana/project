@@ -22,9 +22,9 @@
 
     if (mysqli_query($conn, $sql)) {
         
-        $delete = $conn->query("DELETE FROM cart WHERE id = '$cart_id' AND user_id = '$user_id'");
+        $update = $conn->query("UPDATE cart SET status = 0 WHERE id = '$cart_id' AND user_id = '$user_id'");
 
-        if($delete){
+        if($update){
 
             echo json_encode(['status' => 'success', 'message' => 'Order saved successfully']);
 
