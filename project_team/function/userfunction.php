@@ -17,7 +17,7 @@
     }
     function getProductUser($table,$id){
         global $conn;
-        $product = "SELECT * FROM $table WHERE user_id = $id ORDER BY id DESC";
+        $product = "SELECT * FROM $table WHERE user_id = $id AND status = 1 ORDER BY id DESC";
         return $product_run = mysqli_query($conn,$product);
     }
     function getShipping1($id){
