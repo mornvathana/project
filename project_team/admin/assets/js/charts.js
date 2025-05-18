@@ -1,106 +1,80 @@
-var options = {
-    series: [{
-    name: 'Inflation',
-    data: [2.3, 3.1, 4.0, 10.1, 4.0, 3.6, 3.2, 2.3, 1.4, 0.8, 0.5, 0.2]
-  }],
+// Set up the chart
+const chart = new Highcharts.Chart({
     chart: {
-    height: 350,
-    type: 'bar',
-  },
-  plotOptions: {
-    bar: {
-      borderRadius: 10,
-      dataLabels: {
-        position: 'top', // top, center, bottom
-      },
-    }
-  },
-  dataLabels: {
-    enabled: true,
-    formatter: function (val) {
-      return val + "%";
-    },
-    offsetY: -20,
-    style: {
-      fontSize: '12px',
-      colors: ["#304758"]
-    }
-  },
-  
-  xaxis: {
-    categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    position: 'top',
-    axisBorder: {
-      show: false
-    },
-    axisTicks: {
-      show: false
-    },
-    crosshairs: {
-      fill: {
-        type: 'gradient',
-        gradient: {
-          colorFrom: '#D8E3F0',
-          colorTo: '#BED1E6',
-          stops: [0, 100],
-          opacityFrom: 0.4,
-          opacityTo: 0.5,
+        renderTo: 'container',
+        type: 'column',
+        options3d: {
+            enabled: true,
+            alpha: 15,
+            beta: 15,
+            depth: 50,
+            viewDistance: 25
         }
-      }
+    },
+    xAxis: {
+        type: 'category'
+    },
+    yAxis: {
+        title: {
+            enabled: false
+        }
     },
     tooltip: {
-      enabled: true,
-    }
-  },
-  yaxis: {
-    axisBorder: {
-      show: false
+        headerFormat: '<b>{point.key}</b><br>',
+        pointFormat: 'Cars sold: {point.y}'
     },
-    axisTicks: {
-      show: false,
+    title: {
+        text: 'Sold passenger cars in Norway by brand, May 2024'
     },
-    labels: {
-      show: false,
-      formatter: function (val) {
-        return val + "%";
-      }
-    }
-  
-  },
-  title: {
-    text: 'Monthly Inflation in Argentina, 2002',
-    floating: true,
-    offsetY: 330,
-    align: 'center',
-    style: {
-      color: '#444'
-    }
-  }
-  };
+    subtitle: {
+        text: 'Source: ' +
+            '<a href="https://ofv.no/registreringsstatistikk"' +
+            'target="_blank">OFV</a>'
+    },
+    legend: {
+        enabled: false
+    },
+    plotOptions: {
+        column: {
+            depth: 25
+        }
+    },
+    series: [{
+        data: [
+            ['Toyota', 1795],
+            ['Volkswagen', 1242],
+            ['Volvo', 1074],
+            ['Tesla', 832],
+            ['Hyundai', 593],
+            ['MG', 509],
+            ['Skoda', 471],
+            ['BMW', 442],
+            ['Ford', 385],
+            ['Nissan', 371]
+        ],
+        colorByPoint: true
+    }]
+});
 
-  var chart = new ApexCharts(document.querySelector("#chart"), options);
-  chart.render();
+function showValues() {
+    document.getElementById(
+        'alpha-value'
+    ).innerHTML = chart.options.chart.options3d.alpha;
+    document.getElementById(
+        'beta-value'
+    ).innerHTML = chart.options.chart.options3d.beta;
+    document.getElementById(
+        'depth-value'
+    ).innerHTML = chart.options.chart.options3d.depth;
+}
 
-//   
-var options = {
-    series: [44, 55, 13, 43, 22],
-    chart: {
-    width: 380,
-    type: 'pie',
-  },
-  labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-  responsive: [{
-    breakpoint: 480,
-    options: {
-      chart: {
-        width: 200
-      },
-      legend: {
-        position: 'bottom'
-      }
-    }
-  }]
-  };
+// Activate the sliders
+document.querySelectorAll(
+    '#sliders input'
+).forEach(input => input.addEventListener('input', e => {
+    chart.options.chart.options3d[e.target.id] = parseFloat(e.target.value);
+    showValues();
+    chart.redraw(false);
+}));
 
-  var chart = new ApexCharts(document.querySelector("#chart1"), options);
-  chart.render();
+showValues();
