@@ -33,6 +33,7 @@
                 "product" => $row['4'],
                 "price" => $row['9'],
                 "created" => $row['1'],
+                "cartId" => $row['2'],
                 "total" => $total,
             );
         }

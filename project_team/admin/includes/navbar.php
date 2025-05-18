@@ -13,6 +13,15 @@
             </div>
             <div class = "flex items-center justify-center gap-5 cursor-pointer setting">
             <div class = "flex items-center justify-center gap-2">
+            
+            <form class="max-w-sm mx-auto mr-3" method = "GET">
+            <select onchange="this.form.submit()" name = "lang" id="countries" class=" outline-none border-b text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option selected>Choose Langauge</option>
+                <option value="eng">English</option>
+                <option value="kh">Khmer</option>
+            </select>
+            </form>
+
             <?php
                if(!empty($id)){
                  $user = getById("users",$id);

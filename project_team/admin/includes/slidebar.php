@@ -12,6 +12,8 @@
     if($id !== null){
         $permission = permission($id);
     }
+
+    include("lang.php");
     
 ?>
 <div class = "hidden w-full shadow-sm h-full lg:block " id = "slide-bar">
@@ -24,27 +26,27 @@
                 <ul>
                     <?php if(!empty($permission['dashboard']) == 1): ?>
                     <li class = "p-2 my-1 <?= $page == 'index.php' ? 'bg-gray-200' : ''; ?> text-[12px] font-medium rounded-md hover:text-white hover:bg-blue-500">
-                        <a href="index.php"><i class="fa-solid fa-table-cells-large"></i> Dashboard</a>
+                        <a href="index.php"><i class="fa-solid fa-table-cells-large"></i> <?php echo $text['dashboard'] ?></a>
                     </li>
                     <?php endif;?>
                     <?php if(!empty($permission['total_product']) == 1): ?>
                     <li class = "p-2 my-1 text-[12px] <?= $page == 'product1.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
-                        <a href="product1.php"><i class="fa-solid fa-box-open"></i> Total Product</a>
+                        <a href="product1.php"><i class="fa-solid fa-box-archive"></i> Total Product</a>
                     </li>
                     <?php endif;?>
-                    <?php if(!empty($permission['product']) == 1): ?>
-                    <li class = "p-2 my-1 text-[12px] <?= $page == 'product1.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
+                    <?php if(!empty($permission['web_infor']) == 1): ?>
+                    <li class = "p-2 my-1 text-[12px] <?= $page == 'webinfo.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
                         <a href="webinfo.php"><i class="fa-solid fa-box-open"></i> Web Info</a>
                     </li>
                     <?php endif;?>
                     <?php if(!empty($permission['product']) == 1): ?>
-                    <li class = "p-2 my-1 text-[12px] <?= $page == 'product1.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
+                    <li class = "p-2 my-1 text-[12px] <?= $page == 'menu.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
                         <a href="menu.php"><i class="fa-solid fa-box-open"></i> Product</a>
                     </li>
                     <?php endif;?>
                     <?php if(!empty($permission['brands']) == 1): ?>
                     <li class = "p-2 my-1 text-[12px] <?= $page == 'branddisplay.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
-                        <a href="branddisplay.php"><i class="fa-solid fa-box-open"></i> Brands</a>
+                        <a href="branddisplay.php"><i class="fa-solid fa-square-plus"></i> Brands</a>
                     </li>
                     <?php endif;?>
                     <?php if(!empty($permission['category']) == 1): ?>

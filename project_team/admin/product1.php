@@ -25,16 +25,16 @@ include('middleware/total_product.php');
             </div>
         </div>
 
-        <div class="w-full h-full mt-5 overflow-x-auto">
-            <table class="min-w-full border-collapse rounded-md overflow-hidden shadow-sm bg-white">
-                <thead class="bg-gray-100 text-gray-700">
+        <div class="w-full h-[100vh] mt-5 overflow-x-auto rounded-md bg-[#ffffff] shadow-md">
+            <table class="text-center w-full table-auto">
+                <thead class = "bg-[#f6f8fa]">
                     <tr>
-                        <th class="py-3 px-4 text-xs md:text-sm border-b border-gray-200 font-semibold text-left">ID</th>
-                        <th class="py-3 px-4 text-xs md:text-sm border-b border-gray-200 font-semibold text-left">Name</th>
-                        <th class="py-3 px-4 text-xs md:text-sm border-b border-gray-200 font-semibold text-left">Total Category</th>
+                        <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">ID</th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Name</th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Total Category</th>
                     </tr>
                 </thead>
-                <tbody class="text-gray-700">
+                <tbody class = "relative">
                     <?php
                     $product_title = getAll('brands');
                     if (mysqli_num_rows($product_title)) {
