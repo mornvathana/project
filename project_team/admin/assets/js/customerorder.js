@@ -283,7 +283,7 @@
                         </div>
                         <div class="flex justify-between text-xs text-gray-600">
                             <span><i class="fa-regular fa-clock"></i></span>
-                            <span>${item.created_at}</span>
+                            <span>${formatDate(item.created_at)}</span>
                         </div>
                         <div class="flex justify-between mt-2 gap-1">
                             <button
@@ -303,5 +303,17 @@
                     }
                 }
             });
+        }
+        // date 
+        function formatDate(dateString) {
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+
+        return `${day}-${month}-${year}`;
         }
     });

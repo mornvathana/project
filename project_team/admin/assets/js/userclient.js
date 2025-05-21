@@ -65,6 +65,19 @@
                     }
             });
         });
+
+        function formatDate(dateString) {
+        const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                        "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+        const date = new Date(dateString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = months[date.getMonth()];
+        const year = date.getFullYear();
+
+        return `${day}-${month}-${year}`;
+        }
+
         // end search
 
         function load(page) {
@@ -99,7 +112,7 @@
                                     </button>
                                 </form>
                             </td>
-                            <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.created}</td>
+                            <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${formatDate(item.created)}</td>
                             <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">
                                 <div class="flex justify-center items-center gap-5">
                                         <form action="userprofile.php?id=${item.id}" method="post" enctype="multipart/form-data">
@@ -148,6 +161,5 @@
             };
             
         });
-
         load(currentPage);
     });

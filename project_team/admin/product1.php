@@ -9,7 +9,7 @@
                 <h1 class="font-medium">Product Report</h1>
             </div>
         </div>
-        <div class = "w-full h-[250px] grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class = "w-full md:h-[245px] lg:h-[250px] grid grid-cols-1 md:grid-cols-2 gap-5">
             <div id = "container1" class = "w-full rounded-md">
             </div>
             <div class = "w-full h-[250px] shadow-md bg-white ">
@@ -23,12 +23,29 @@
                 </div>
                 <!--  -->
                 <div class = "w-full h-[90%] grid grid-cols-2 my-2">
-                  <div class = "text-center">
-                    <span class = "text-sm">Name</span>
-                  </div>
-                   <div class = "text-center">
-                    <span class = "text-sm">Name</span>
-                  </div>
+                  <?php
+                   $data = [];
+                    $item = getAll("brands");
+                    if($item->num_rows > 0){
+                      foreach($item as $name){
+                        ?>
+                        <div class = "text-center">
+                          <span class = "text-sm"><?= $name['name']?></span>
+                        </div>
+                        <?php
+                          $count = countProduct("product_detail",$name['id']);
+                          $data[] = [$name['name'],(int)$count];
+                          ?>
+                          <div class = "text-center">
+                                <span class = "text-sm"><?= $count ?></span>
+                              </div>
+                          <?php
+                        ?>
+                        <?php
+                      }
+                    }
+                    $jsonData = json_encode($data);
+                  ?>
                 </div>
             </div>
         </div>
@@ -39,7 +56,7 @@
                     <a  class="bg-white text-[12px] border-[1px] border-gray-500 text-white px-1 py-1 lg:px-2 lg:py-2 font-medium rounded-md"><button type = "button" class = "text-[#646a7a]" id="exportExcelBtn" name = "button"><span><i class="fas fa-download"></i></span> <span>Excel</span></button></a>
                 </li>
                 <li class = "mx-1">
-                    <a class="bg-white text-[12px] border-[1px] border-gray-500 text-white px-1 py-1 md:px-2 md:py-2 font-medium rounded-md"><button type = "button" name = "button" class = "text-[#646a7a]" id = "printBtn"><span><i class="fas fa-print"></i></span> <span>Print</span></button></a>
+                    <a class="bg-white text-[12px] border-[1px] border-gray-500 text-white px-1 py-1 lg:px-2 lg:py-2 font-medium rounded-md"><button type = "button" name = "button" class = "text-[#646a7a]" id = "printBtn"><span><i class="fas fa-print"></i></span> <span>Print</span></button></a>
                 </li>
             </ul>
             </div>
@@ -47,14 +64,6 @@
                <ul class="flex">
                         <li class = "">
                         <div class="flex items-center gap-2">
-                            <form class="max-w-sm hidden md:block">
-                                <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-[10px] md:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
-                                    <option value="10" selected>Page</option>
-                                    <option value="2">20</option>
-                                    <option value="30">30</option>
-                                    <option value="50">50</option>
-                                </select>
-                                </form>
                                   <!-- Pagination Buttons -->
                                   <a href="#" class="flex items-center justify-center px-2 h-7 me-3 text-[10px] md:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="back_btn">
                                       <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -78,26 +87,16 @@
                     </ul>
             </div>
         </div>
-        <div class = "bg-white h-[50%] w-full mt-2">
-          <table class="text-center w-full table-auto bg-white">
-                <thead>
-                    <tr>
-                        <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">ID</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Name</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Image</th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Status</th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Option</th>
-                    </tr>
-                </thead>
-                <tbody id = "displayData" class = "relative">
-                    
-                </tbody>
+        <div class = "bg-white h-[50%] w-full mt-2" id = "printArea">
+          <table class="text-center w-full table-auto bg-white relative" id = "displayData">
             </table>
         </div>
     </div>
 </div>
-<script src = "assets/js/menu.js"></script>
+<script src = "assets/js/product.js"></script>
+ <script src="assets/js/excel.js"></script>
   <script>
+    const chartData = <?= $jsonData ?>;
     Highcharts.chart('container1', {
       chart: {
         type: 'pie',
@@ -130,21 +129,11 @@
         }
       },
        title: {
-        text: 'ទំនិញលក់ល្អ'
+        text: 'ទំនិញសរុប'
       },
       series: [{
         name: 'Medals',
-        data: [
-          ['Norway', 16],
-          ['Germany', 12],
-          ['USA', 8],
-          ['Sweden', 8],
-          ['Netherlands', 8],
-          ['ROC', 6],
-          ['Austria', 7],
-          ['Canada', 4],
-          ['Japan', 3]
-        ]
+        data: chartData,
       }]
     });
   </script>

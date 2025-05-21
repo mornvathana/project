@@ -119,7 +119,7 @@
                                 txt += `<tr class="border-b border-gray-200">
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${item.id}</td>
                                     <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center">${item.firstName} ${item.lastName}</td>
-                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${item.date}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${formatDate(item.date)}</td>
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">$ ${item.total}</td>
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">
                                         ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 3 ? '<span class="text-green-500">Success</span>' : '<span class="text-blue-500">Pedding</span>'}
@@ -236,5 +236,17 @@
             }else if(activeSection === "product"){
                 product(currentPage);
             }
+            }
+            
+            function formatDate(dateString) {
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = months[date.getMonth()];
+            const year = date.getFullYear();
+
+            return `${day}-${month}-${year}`;
             }
         });

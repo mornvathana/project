@@ -110,6 +110,16 @@
         }
         return 0;
     }
+    function countProduct($table,$id){
+        global $conn;
+        $query = "SELECT COUNT(*) AS count FROM $table WHERE brand_id = $id";
+        $query_run = mysqli_query($conn,$query);
+        if($query_run){
+            $result = mysqli_fetch_assoc($query_run);
+                return $result['count'];
+        }
+        return 0;
+    }
     function countStatus($table,$status){
         global $conn;
         $count = "SELECT COUNT(*) AS total FROM $table WHERE status = $status";

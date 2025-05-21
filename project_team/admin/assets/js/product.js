@@ -1,0 +1,126 @@
+ $(document).ready(function () {
+
+        let currentPage = 1;
+        let limit = 10;
+        let startPage = $("#startPage");
+        let totalPage = $("#totalPage");
+        let activeSection = "orders";
+
+        $("ul.flex > li").click(function(){
+            $("ul.flex > li a").removeClass("border-b-[2px] border-blue-500");
+            $("ul.flex > li a span:first-child").removeClass("text-blue-500");
+            // add class to click button 
+            $(this).find("a").addClass("border-b-[2px] border-blue-500");
+            $(this).find("span:first-child").addClass("text-blue-500");
+        });
+        
+        $("#page_num").change(function(){
+            limit = parseInt($(this).val());
+            currentPage = 1;
+            startPage.text(currentPage);
+            selectPage();
+        });
+
+
+        $("#next_btn").click(function(){
+        const totalPageValue = parseInt(totalPage.text());
+        if(currentPage < totalPageValue){
+            currentPage += 1;
+            startPage.text(currentPage);
+            selectPage();
+        }
+            
+        });
+
+        $("#back_btn").click(function(){
+            if(currentPage > 1){
+                currentPage -= 1;
+                startPage.text(currentPage);
+                selectPage();
+            }
+            
+        });
+        // end back button
+           $("#printBtn").click(function () {
+                const printContents = document.getElementById("printArea").innerHTML;
+                const printWindow = window.open('', '', 'height=600,width=900');
+
+                printWindow.document.write('<html><head><title>Report Information</title>');
+                printWindow.document.write('<style>table { width: 100%; border-collapse: collapse; } th, td { border: 1px solid #ccc; padding: 5px; font-size: 12px;text-align: center; }</style>');
+                printWindow.document.write('</head><body>');
+                printWindow.document.write(printContents);
+                printWindow.document.write('</body></html>');
+                printWindow.document.close(); // Close the document stream
+
+                // Introduce a small delay to ensure content is rendered
+                setTimeout(function () {
+                    printWindow.focus();
+                    printWindow.print();
+                    printWindow.close();
+                }, 250); // Adjust the delay (in milliseconds) as needed
+            });
+
+            $("#exportExcelBtn").click(function(){
+                const table = $("table");
+                const workbook = XLSX.utils.table_to_book(table[0], { sheet: "Sheet 1" });
+                XLSX.writeFile(workbook, "table_export.xlsx");
+            });
+            // excel export 
+            
+            product(currentPage);
+
+            function product(page){
+                const display = $("#displayData");
+                const head = `<tr class = "bg-[#f6f8fa]">
+                    <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">ID #</th>
+                    <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Barcode</th>
+                    <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Name</th>
+                    <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Created</th>
+                </tr>`;
+
+                $.ajax({
+                    method: "POST",
+                    url: "action/getProducts.php",
+                    data: {
+                        "page": page,
+                        "limit": limit,
+                    },
+                    dataType: "json",
+                    beforeSend: function(){
+                    display.html(`<span class="loader absolute left-[50%] top-[50%]"></span>`);
+                    },
+                    success: function (data) {
+                        if (data) {
+                            let txt = "";
+                            for(i in data){
+                                let item = data[i];
+                                txt += `<tr class="border-b border-gray-200">
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${item.id}</td>
+                                    <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center">${item.barcode}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${item.name}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${formatDate(item.date)}</td>
+                                </tr>`;
+                            }
+                            $("#totalProducts").text(data[0]['total']);
+                            totalPage.text(Math.ceil( data[0]['total'] / limit));
+                            display.html(head + txt);
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        console.error("Error fetching products:", error);
+                    }
+                });
+            }
+
+            function formatDate(dateString) {
+            const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", 
+                            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+            const date = new Date(dateString);
+            const day = String(date.getDate()).padStart(2, '0');
+            const month = months[date.getMonth()];
+            const year = date.getFullYear();
+
+            return `${day}-${month}-${year}`;
+            }
+        });

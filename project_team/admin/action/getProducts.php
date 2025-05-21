@@ -13,7 +13,7 @@
     $total = $rTotal['0'];
 
     $order1 = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
-              , i.specification,i.description,i.image,i.demo_image 
+              , i.specification,i.description,i.image,i.demo_image,i.created_at 
               FROM product_detail d JOIN product_image i on d.id = i.product_id LIMIT $totalPage,$limit";
     $order = $conn->query($order1);
     $Data = array();
@@ -28,6 +28,7 @@
                 "barcode" => $row[3],
                 "name" => $row[4],
                 "total" => $total,
+                "date" => $row[11],
                 "user_id" => $userName
             );
         }
