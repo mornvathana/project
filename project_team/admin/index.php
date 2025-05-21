@@ -4,6 +4,8 @@
     include('../middleware/adminAccess.php');
 
     include('middleware/dashboard.php');
+
+    include("lang.php");
 ?>
  <script src="https://code.highcharts.com/highcharts.js"></script>
   <script src="https://code.highcharts.com/highcharts-3d.js"></script>
@@ -13,7 +15,7 @@
         <div class="overflow-hidden border shadow-md rounded-xl">
             <!-- Box Header -->
             <div class="flex items-center w-full h-8 pl-5 bg-white">
-                <small><span class="font-bold">Sale</span>/Today</small>
+                <small><span class="font-bold"><?php echo $text['sale']?></span>/<?php echo $text['today']?></small>
             </div>
             <div class="flex items-center h-[60px] bg-white justify-evenly">
                 <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-50">
@@ -22,14 +24,14 @@
                 <!-- Stats -->
                 <div class="flex flex-col space-y-1">
                     <strong>145</strong>
-                    <small><span class="font-bold text-green-500">12%</span> increase</small>
+                    <small><span class="font-bold text-green-500">12%</span> <?php echo $text['increase']?></small>
                 </div>
             </div>
         </div>
         <div class="overflow-hidden border shadow-md rounded-xl">
             <!-- Box Header -->
             <div class="flex items-center w-full h-8 pl-5 bg-white">
-                <small><span class="font-bold">Revenue</span>/Today</small>
+                <small><span class="font-bold">Revenue</span>/<?php echo $text['today']?></small>
             </div>
             <div class="flex items-center h-[60px] bg-white justify-evenly">
                 <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-50">
@@ -38,14 +40,14 @@
                 <!-- Stats -->
                 <div class="flex flex-col space-y-1">
                     <strong>$3,246</strong>
-                    <small><span class="font-bold text-green-500">7%</span> increase</small>
+                    <small><span class="font-bold text-green-500">7%</span> <?php echo $text['increase']?></small>
                 </div>
             </div>
         </div>
         <div class="overflow-hidden border shadow-md rounded-xl">
             <!-- Box Header -->
             <div class="flex items-center w-full h-8 pl-5 bg-white">
-                <small><span class="font-bold">Customer</span>/Today</small>
+                <small><span class="font-bold"><?php echo $text['customer']?></span>/<?php echo $text['today']?></small>
             </div>
             <div class="flex items-center h-[60px] bg-white justify-evenly">
                 <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-50">
@@ -54,14 +56,14 @@
                 <!-- Stats -->
                 <div class="flex flex-col space-y-1">
                     <strong>1,244</strong>
-                    <small><span class="font-bold text-red-500">11%</span> decrease</small>
+                    <small><span class="font-bold text-red-500">11%</span> <?php echo $text['decrease']?></small>
                 </div>
             </div>
         </div>
         <div class="overflow-hidden border shadow-md rounded-xl">
             <!-- Box Header -->
             <div class="flex items-center w-full h-8 pl-5 bg-white">
-                <small><span class="font-bold">Sale</span>/Today</small>
+                <small><span class="font-bold"><?php echo $text['sale']?></span>/<?php echo $text['today']?></small>
             </div>
             <div class="flex items-center h-[60px] bg-white justify-evenly">
                 <div class="flex items-center justify-center w-10 h-10 rounded-full bg-blue-50">
@@ -70,7 +72,7 @@
                 <!-- Stats -->
                 <div class="flex flex-col space-y-1">
                     <strong>145</strong>
-                    <small><span class="font-bold text-green-500">12%</span> increase</small>
+                    <small><span class="font-bold text-green-500">12%</span> <?php echo $text['increase']?></small>
                 </div>
             </div>
         </div>
@@ -82,123 +84,99 @@
      </div>
 </div>  
 <script>
-    const chart = new Highcharts.Chart({
-      chart: {
-        renderTo: 'container',
-        type: 'column',
-        options3d: {
-          enabled: true,
-          alpha: 15,
-          beta: 15,
-          depth: 50,
-          viewDistance: 25
-        }
-      },
-      xAxis: {
-        type: 'category'
-      },
-      yAxis: {
+    Highcharts.chart('container', {
+        chart: {
+            type: 'column'
+        },
         title: {
-          enabled: false
-        }
-      },
-      tooltip: {
-        headerFormat: '<b>{point.key}</b><br>',
-        pointFormat: 'Cars sold: {point.y}'
-      },
-      title: {
-        text: 'Top Sell Report'
-      },
-      legend: {
-        enabled: false
-      },
-      plotOptions: {
-        column: {
-          depth: 25
-        }
-      },
-      series: [{
-        data: [
-          ['Toyota', 1795],
-          ['Volkswagen', 1242],
-          ['Volvo', 1074],
-          ['Tesla', 832],
-          ['Hyundai', 593],
-          ['MG', 509],
-          ['Skoda', 471],
-          ['BMW', 442],
-          ['Ford', 385],
-          ['Nissan', 371]
-        ],
-        colorByPoint: true
-      }]
-    });
-
-    function showValues() {
-      document.getElementById('alpha-value').innerText = chart.options.chart.options3d.alpha;
-      document.getElementById('beta-value').innerText = chart.options.chart.options3d.beta;
-      document.getElementById('depth-value').innerText = chart.options.chart.options3d.depth;
-    }
-
-    document.querySelectorAll('#sliders input').forEach(input => {
-      input.addEventListener('input', e => {
-        chart.options.chart.options3d[e.target.id] = parseFloat(e.target.value);
-        showValues();
-        chart.redraw(false);
-      });
-    });
-
-    showValues();
-  </script>
-   <script>
-    Highcharts.chart('container1', {
-      chart: {
-        type: 'pie',
-        backgroundColor: 'transparent',
-        options3d: {
-          enabled: true,
-          alpha: 45,
-          beta: 0
-        }
-      },
-      title: { text: null },
-      subtitle: { text: null },
-      credits: { enabled:true },
-      tooltip: {
-        pointFormat: '<b>{point.name}</b>: {point.y} medals'
-      },
-      plotOptions: {
-        pie: {
-          innerSize: 100,
-          depth: 45,
-          dataLabels: {
-            enabled: true,
-            format: '{point.name}: {point.y}',
-            style: {
-              fontSize: '12px',
-              color: 'black',
+            text: 'ទិន្នន័យការលក់'
+        },
+        xAxis: {
+            categories: ['USA', 'China', 'Brazil', 'EU', 'Argentina', 'India'],
+            crosshair: true,
+            accessibility: {
+                description: 'Countries'
             }
-          }
-        }
-      },
-       title: {
-        text: 'Best Item Sell Report'
-      },
-      series: [{
-        name: 'Medals',
-        data: [
-          ['Norway', 16],
-          ['Germany', 12],
-          ['USA', 8],
-          ['Sweden', 8],
-          ['Netherlands', 8],
-          ['ROC', 6],
-          ['Austria', 7],
-          ['Canada', 4],
-          ['Japan', 3]
+        },
+        tooltip: {
+            valueSuffix: ' (1000 MT)'
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [
+            {
+                name: 'Corn',
+                data: [387749, 280000, 129000, 64300, 54000, 34300]
+            },
+            {
+                name: 'Wheat',
+                data: [45321, 140000, 10000, 140500, 19500, 113500]
+            }
         ]
-      }]
     });
-  </script>
+</script>
+<script>
+    Highcharts.chart('container1', {
+        title: {
+            text: 'Growth of Internet Users Worldwide (logarithmic scale)'
+        },
+
+        accessibility: {
+            point: {
+                valueDescriptionFormat:
+                    '{xDescription}{separator}{value} million(s)'
+            }
+        },
+
+        xAxis: {
+            title: {
+                text: 'Year'
+            },
+            categories: [1995, 2000, 2005, 2010, 2015, 2020, 2023]
+        },
+
+        yAxis: {
+            type: 'logarithmic',
+            title: {
+                text: 'Number of Internet Users (in millions)'
+            }
+        },
+
+        tooltip: {
+            headerFormat: '<b>{series.name}</b><br />',
+            pointFormat: '{point.y} million(s)'
+        },
+
+        series: [{
+            name: 'Internet Users',
+            keys: ['y', 'color'],
+            data: [
+                [16, '#0000ff'],
+                [361, '#8d0073'],
+                [1018, '#ba0046'],
+                [2025, '#d60028'],
+                [3192, '#eb0014'],
+                [4673, '#fb0004'],
+                [5200, '#ff0000']
+            ],
+            color: {
+                linearGradient: {
+                    x1: 0,
+                    x2: 0,
+                    y1: 1,
+                    y2: 0
+                },
+                stops: [
+                    [0, '#0000ff'],
+                    [1, '#ff0000']
+                ]
+            }
+        }]
+    });
+</script>
 <?php include('includes/footer.php')?>
       

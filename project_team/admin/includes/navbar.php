@@ -2,6 +2,7 @@
     if(isset($_SESSION['auth_user'])){
         $id = $_SESSION['auth_user']['user_id'];
     }
+    include("lang.php");
 ?>
     <div class = "w-full h-full">
         <div class = "header w-full sticky top-0 z-10 bg-white h-[50px] px-5 py-5 shadow-sm flex items-center justify-between">
@@ -16,9 +17,9 @@
             
             <form class="max-w-sm mx-auto mr-3" method = "GET">
             <select onchange="this.form.submit()" name = "lang" id="countries" class=" outline-none border-b text-gray-900 text-sm  focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected>Choose Langauge</option>
-                <option value="eng">English</option>
-                <option value="kh">Khmer</option>
+                <option selected><?php echo  $text['chooseLanguage']?></option>
+                <option value="eng"><?php echo $text['usa']?></option>
+                <option value="kh"><?php echo $text['kh']?></option>
             </select>
             </form>
 
@@ -48,13 +49,10 @@
                     </div>
                     <ul class="py-2" aria-labelledby="user-menu-button">
                     <li>
-                        <a href="useradmin.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profile</a>
+                        <a href="useradmin.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><?php echo $text['profile']?></a>
                     </li>
                     <li>
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-                    </li>
-                    <li>
-                        <a href="logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Sign out</a>
+                        <a href="logout.php" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"><?php echo $text['signout']?></a>
                     </li>
                     </ul>
                     </div>

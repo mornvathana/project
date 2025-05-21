@@ -1,65 +1,153 @@
-<?php 
-
-include('includes/header.php');
-
-include('middleware/total_product.php');
-
+<?php
+    include("includes/header.php");
+    include('../middleware/adminAccess.php');
 ?>
-<!-- start -->
-<div class="h-full px-2 py-2 bg-blue-50">
-    <div class="w-full h-[100vh] bg-[#ffffff] rounded-md p-5">
-        <div class="w-full h-[140px] md:h-[70px] grid grid-cols-2 sm:grid-cols-5 sm:h-[70px] md:grid-cols-6 gap-5">
-            <div class="bg-gray-800 h-full flex justify-center items-center flex-col text-white rounded-md sm:text-[11px] text-[10px]">
-                <p>Total Brand</p>
-                <?php
-                $count = countTable("brands");
-                ?>
-                <p><?= $count ?></p>
-            </div>
-            <div class="bg-gray-800 h-full flex justify-center items-center flex-col text-white rounded-md sm:text-[11px] text-[10px]">
-                <p>Total Sub Category</p>
-                <?php
-                $count = countTable("product_detail");
-                ?>
-                <p><?= $count ?></p>
+<div class="h-full px-2 py-2 bg-[#f3f5f7]">
+    <div class="w-full h-[100vh] rounded-md p-5">
+        <div class="w-full h-[10%] flex justify-between items-center">
+            <div>
+                <h1 class="font-medium">Product Report</h1>
             </div>
         </div>
+        <div class = "w-full h-[250px] grid grid-cols-1 md:grid-cols-2 gap-5">
+            <div id = "container1" class = "w-full rounded-md">
+            </div>
+            <div class = "w-full h-[250px] shadow-md bg-white ">
+                <div class = "w-full h-[15%] bg-[#eee] grid grid-cols-2">
+                  <div class = "flex justify-center gap-1 items-center">
+                    <span class = "font-medium text-md">Name</span>
+                  </div>
+                   <div class = "flex justify-center items-center">
+                    <span class = "font-medium text-md">Total</span>
+                  </div>
+                </div>
+                <!--  -->
+                <div class = "w-full h-[90%] grid grid-cols-2 my-2">
+                  <div class = "text-center">
+                    <span class = "text-sm">Name</span>
+                  </div>
+                   <div class = "text-center">
+                    <span class = "text-sm">Name</span>
+                  </div>
+                </div>
+            </div>
+        </div>
+        <div class = "h-[8%] w-full flex justify-between items-center mt-3">
+          <div>
+            <ul class = "flex">
+                <li class = "mx-1">
+                    <a  class="bg-white text-[12px] border-[1px] border-gray-500 text-white px-1 py-1 lg:px-2 lg:py-2 font-medium rounded-md"><button type = "button" class = "text-[#646a7a]" id="exportExcelBtn" name = "button"><span><i class="fas fa-download"></i></span> <span>Excel</span></button></a>
+                </li>
+                <li class = "mx-1">
+                    <a class="bg-white text-[12px] border-[1px] border-gray-500 text-white px-1 py-1 md:px-2 md:py-2 font-medium rounded-md"><button type = "button" name = "button" class = "text-[#646a7a]" id = "printBtn"><span><i class="fas fa-print"></i></span> <span>Print</span></button></a>
+                </li>
+            </ul>
+            </div>
+            <div>
+               <ul class="flex">
+                        <li class = "">
+                        <div class="flex items-center gap-2">
+                            <form class="max-w-sm hidden md:block">
+                                <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-[10px] md:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
+                                    <option value="10" selected>Page</option>
+                                    <option value="2">20</option>
+                                    <option value="30">30</option>
+                                    <option value="50">50</option>
+                                </select>
+                                </form>
+                                  <!-- Pagination Buttons -->
+                                  <a href="#" class="flex items-center justify-center px-2 h-7 me-3 text-[10px] md:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="back_btn">
+                                      <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                                      </svg>
+                                      Previous
+                                  </a>
 
-        <div class="w-full h-[100vh] mt-5 overflow-x-auto rounded-md bg-[#ffffff] shadow-md">
-            <table class="text-center w-full table-auto">
-                <thead class = "bg-[#f6f8fa]">
+                                  <a href="#" class="flex items-center justify-center px-3 h-8 me-3 text-[10px] md:text-sm font-medium text-gray-500 rounded-lg">
+                                      <span id="startPage">1</span> / <span id="totalPage">10</span>
+                                  </a>
+
+                                  <a href="#" class="flex items-center justify-center px-2 h-7 text-[10px] md:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="next_btn">
+                                      Next
+                                      <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                                      </svg>
+                                  </a>
+                              </div>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+        <div class = "bg-white h-[50%] w-full mt-2">
+          <table class="text-center w-full table-auto bg-white">
+                <thead>
                     <tr>
                         <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">ID</th>
                         <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Name</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Total Category</th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Image</th>
+                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Status</th>
+                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Option</th>
                     </tr>
                 </thead>
-                <tbody class = "relative">
-                    <?php
-                    $product_title = getAll('brands');
-                    if (mysqli_num_rows($product_title)) {
-                        foreach ($product_title as $product) {
-                    ?>
-                            <tr id="product-<?= $product['id'] ?>" class="hover:bg-blue-50 transition-all">
-                                <td class="py-2 px-4 text-xs md:text-sm border-b border-gray-100"><?= $product['id'] ?></td>
-                                <td id="productName" class="py-2 px-4 text-xs md:text-sm border-b border-gray-100"><?= $product['name'] ?></td>
-                                <td class="py-2 px-4 text-xs md:text-sm border-b border-gray-100">
-                                    <span id="circle">
-                                        <?php
-                                        $count = countCategoryItem("product_detail", $product['id']);
-                                        ?>
-                                        <?= $count ?>
-                                    </span>
-                                </td>
-                            </tr>
-                    <?php
-                        }
-                    }
-                    ?>
+                <tbody id = "displayData" class = "relative">
+                    
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-<!-- end start -->
-<?php include('includes/footer.php') ?>
+<script src = "assets/js/menu.js"></script>
+  <script>
+    Highcharts.chart('container1', {
+      chart: {
+        type: 'pie',
+        backgroundColor: '#ffffff',
+        height: 250,
+        options3d: {
+          enabled: true,
+          alpha: 45,
+          beta: 0
+        }
+      },
+      title: { text: null },
+      subtitle: { text: null },
+      credits: { enabled:true },
+      tooltip: {
+        pointFormat: '<b>{point.name}</b>: {point.y} medals'
+      },
+      plotOptions: {
+        pie: {
+          innerSize: 100,
+          depth: 45,
+          dataLabels: {
+            enabled: true,
+            format: '{point.name}: {point.y}',
+            style: {
+              fontSize: '12px',
+              color: 'black',
+            }
+          }
+        }
+      },
+       title: {
+        text: 'ទំនិញលក់ល្អ'
+      },
+      series: [{
+        name: 'Medals',
+        data: [
+          ['Norway', 16],
+          ['Germany', 12],
+          ['USA', 8],
+          ['Sweden', 8],
+          ['Netherlands', 8],
+          ['ROC', 6],
+          ['Austria', 7],
+          ['Canada', 4],
+          ['Japan', 3]
+        ]
+      }]
+    });
+  </script>
+<?php
+    include("includes/footer.php");
+?>

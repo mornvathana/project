@@ -13,8 +13,8 @@ ob_clean();
     <script src = "assets/js/fontawesome.css"></script>
     <script src = "assets/js/jquery.min.js"></script>
      <script src="https://code.highcharts.com/highcharts.js"></script>
-  <!-- Then load 3D module -->
-  <script src="https://code.highcharts.com/highcharts-3d.js"></script>
+    <!-- Then load 3D module -->
+    <script src="https://code.highcharts.com/highcharts-3d.js"></script>
     <!-- toastr alert -->
     <link rel="stylesheet" href="assets/css/toastr.min.css">
     <!-- sweet alert -->
@@ -60,52 +60,73 @@ ob_clean();
             }
             }
             #container {
-                margin-bottom: 30px;
-                height: 400px;
-                }
-                #sliders {
-                display: flex;
-                flex-direction: column;
-                gap: 10px;
-                width: 300px;
-                }
-                .slider-group {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                }
-                label {
-                width: 60px;
-                }
-                input[type="range"] {
-                flex: 1;
-                }
-                .chart-card {
-      border-radius: 20px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-      padding: 30px;
-      max-width: 600px;
-      width: 100%;
-    }
+            margin-bottom: 30px;
+            height: 400px;
+            }
+            #sliders {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            width: 300px;
+            }
+            .slider-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            }
+            label {
+            width: 60px;
+            }
+            input[type="range"] {
+            flex: 1;
+            }
+            .chart-card {
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 600px;
+            width: 100%;
+          }
 
-    .chart-title {
-      font-size: 22px;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 5px;
-      text-align: center;
-    }
+          .chart-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+            text-align: center;
+          }
 
-    .chart-subtitle {
-      font-size: 14px;
-      color: #666;
-      margin-bottom: 20px;
-      text-align: center;
-    }
+          .chart-subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 20px;
+            text-align: center;
+          }
 
-    #container1 {
-      height: 400px;
-    }
+          #container1 {
+            height: 400px;
+          }
+          #container2 {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            margin: 50px auto;
+          }
+          #container3 {
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            margin: 50px auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+          h1 {
+              text-align: center;
+              color: #333;
+          }
     </style>
 </head>
 <body>
