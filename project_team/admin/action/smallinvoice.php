@@ -32,7 +32,7 @@
                 $pdf->Cell(59,7,"",0,1);
 
                 $pdf->SetFillColor(50,55,57);
-                $pdf->Rect(0,30,90,1,'F');
+                $pdf->Rect(0,30,90,0,'F');
                 // 
                 $pdf->SetFont("Arial","B",6);
                 $pdf->Cell(-3,3,"",0,0);
@@ -67,7 +67,7 @@
                 // 
 
                 $pdf->SetFillColor(50,55,57);
-                $pdf->Rect(0,45,90,1,'F');
+                $pdf->Rect(0,45,90,0,'F');
 
                 $pdf->SetFont("Arial","B",6);
                 $pdf->Cell(-3,0,"",0,0);
@@ -90,7 +90,7 @@
                 $pdf->Cell(59,0,"",0,1);
 
                 $pdf->SetFillColor(50,55,57);
-                $pdf->Rect(0,51,90,1,'F');
+                $pdf->Rect(0,51,90,0,'F');
 
                 // body
 
@@ -136,7 +136,7 @@
 
 
                 $pdf->SetFillColor(50,55,57);
-                $pdf->Rect(0,100,80,1,'F');
+                $pdf->Rect(0,100,80,0,'F');
                 // end body
                 $pdf->SetFont("Arial","",6);
                 $pdf->Cell(-3,0,"",0,0);
@@ -185,7 +185,7 @@
                 $pdf->Cell(59,1,"",0,1);
 
                 $pdf->SetFillColor(50,55,57);
-                $pdf->Rect(0,130,80,1,'F');
+                $pdf->Rect(0,130,80,0,'F');
 
                 $pdf->SetFillColor(36, 62, 85);
                 $pdf->Rect(52, 137, 30, 7, 'F');
