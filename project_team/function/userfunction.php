@@ -5,6 +5,16 @@
         $query = "SELECT * FROM $table where $selectCol = '$property'";
         return $query_run = mysqli_query($conn,$query);
     }
+    function getPrice($id,$userid){
+        global $conn;
+        $product = "SELECT * FROM orders WHERE cart_id = $id AND user_id = $userid";
+        return $product1 = mysqli_query($conn,$product);
+    }
+    function getOrders($id){
+        global $conn;
+        $product = "SELECT * FROM cart WHERE user_id = $id AND status = 0";
+        return $product1 = mysqli_query($conn,$product);
+    }
     function getCategory($selectCol,$property){
         global $conn;
         $query = "SELECT * FROM category_db where $selectCol = $property";
@@ -34,6 +44,12 @@
         global $conn;
         $sql = "SELECT * FROM $table WHERE id = $id";
         return $sql_run = mysqli_query($conn,$sql);
+    }
+    function getCartOrders($userId,$cartId,$orderId){
+        global $conn;
+        $product = "SELECT d.id,d.category_id,d.user_id,d.shipping_id,d.barcode,d.product_name,d.product_price,d.specification,d.product_image,d.product_qty,d.total_price 
+                    , i.user_id,i.cart_id,i.first_name,i.last_name,i.city,i.province,i.email,i.phone_number,i.total_price,i.created_at FROM cart d JOIN orders i on d.id = i.cart_id where i.cart_id = $cartId AND i.user_id = $userId AND i.id = $orderId";
+        return $product1 = mysqli_query($conn,$product);
     }
     function getProduct($id,$min,$max){
         global $conn;

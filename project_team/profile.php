@@ -101,26 +101,40 @@
                                 </tr>
                             </thead> -->
                             <tbody class="font-normal">
-                                <tr class="border-b-2">
-                                    <td><a href="#"><img
-                                                src="https://shunliphone.com/wp-content/uploads/2024/09/iphone16.plus_.green_-300x300.png"
-                                                alt="Product Image"></a></td>
-                                    <td>iPhone 16 Plus – Non active</td>
-                                    <td>$1000</td>
-                                    <td><input type="number" id="inputValue" value="0" min="0" step="1"
-                                            class="w-[70px] text-center border border-gray-300 rounded-lg" disabled></td>
-                                    <td>$2000</td>
-                                </tr>
-                                <tr class="border-b-2">
-                                    <td><a href="#"><img
-                                                src="https://shunliphone.com/wp-content/uploads/2024/09/iphone16pro.max_.gold_-300x300.png"
-                                                alt="Product Image"></a></td>
-                                    <td>iPhone 16 Pro Max ធានា១ឆ្នាំ</td>
-                                    <td>$15.00</td>
-                                    <td><input type="number" id="inputValue" value="0" min="0" step="1"
-                                            class="w-[70px] text-center border border-gray-300 rounded-lg" disabled></td>
-                                    <td>$15.00</td>
-                                </tr>
+                                <?php
+                                    $cart = getOrders($id);
+                                    if($cart->num_rows > 0){
+                                        foreach($cart as $item){
+                                        ?>
+                                        <tr class="border-b-2">
+                                            <td><a href="#"><img
+                                                        src="https://shunliphone.com/wp-content/uploads/2024/09/iphone16.plus_.green_-300x300.png"
+                                                        alt="Product Image"></a></td>
+                                            <td><?= $item['product_name']?></td>
+                                            <td><?= $item['product_price']?></td>
+                                            <td><input type="number" readonly id="inputValue" value="<?= $item['product_qty']?>" min="0" step="1"
+                                                    class="w-[70px] text-center border border-gray-300 rounded-lg" disabled></td>
+                                            <td>
+                                                <?php
+                                                    $idorder = 0;
+                                                    $price = getPrice($item['id'],$id);
+                                                    if($price->num_rows > 0){
+                                                        foreach($price as $num){
+                                                        $idorder = $num['id'];
+                                                        ?>
+                                                            <?= $num['total_price']?>
+                                                        <?php
+                                                        }
+                                                    }
+                                                ?>
+                                            </td>
+                                             <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1"><a href= "action/invoice.php?cartId=<?= $item['id']?>&orderid=<?= $idorder?>&userid=<?= $item['user_id']?>" target = "_blank"><i class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a></td>
+                                              <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1"><a href= "action/smallinvoice.php?cartId=<?= $item['id']?>&orderid=<?= $idorder?>&userid=<?= $item['user_id']?>" target = "_blank"><i class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a></td>
+                                        </tr>
+                                        <?php
+                                        }
+                                    }
+                                ?>
                             </tbody>
                         </table>
                         <button class="mt-5 bg-blue-500 text-white rounded-lg p-2 font-semibold text-sm"><a href="#"><i
