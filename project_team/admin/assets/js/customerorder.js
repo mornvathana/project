@@ -177,6 +177,9 @@
         });
         $(document).on("click","#closeX",function(){
             $(".addClss").addClass("hidden");
+            
+            let status = $("#category_status").val(); 
+            reload(status);
         });
         // btn_save
         $(document).on("click","#btn_save",function(){
