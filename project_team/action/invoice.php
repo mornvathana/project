@@ -1,49 +1,48 @@
 <?php
     session_start();
-    include("../fpdf/fpdf.php");
+    include('../fpdf/fpdf.php');
     include('../config/dbcon.php');
-    
-    if(isset($_GET['id']) && isset($_GET['cartId'])){
-        
-        $id = $_GET['id'];
+    include('../function/userfunction.php');
+
+    if(isset($_GET['cartId']) || isset($_GET['orderid']) || isset($_GET['userid'])){
+
         $cartId = $_GET['cartId'];
+        $orderId = $_GET['orderid'];
+        $userId = $_GET['userid'];
 
-        $stmt = $conn->prepare("SELECT 
-                                    orders.id,
-                                    orders.first_name,
-                                    orders.last_name,
-                                    orders.phone_number,
-                                    orders.total_price,
-                                    cart.product_name,
-                                    cart.product_qty,
-                                    cart.product_price,
-                                    cart.shipping_id,
-                                    cart.barcode FROM orders INNER JOIN cart ON cart.id  = orders.cart_id WHERE orders.cart_id = ? ");
-        $stmt->bind_param("i",$cartId);
-        
-        if($stmt->execute() > 0){
-            $result = $stmt->get_result();
-            while( $row = $result->fetch_assoc()){
-                $id = $row['id'];
-                $shippingId = 3;
-                $firstNamme = $row['first_name'];
-                $lastName = $row['last_name'];
-                $phone = $row['phone_number'];
-                $qty = $row['product_qty'];
-                $productName = $row['product_name'];
-                $product_price = $row['product_price'];
-                $barcode = $row['barcode'];
-                $total_price = $row['total_price'];
-                // handle shipping 
-                $stmt = $conn->prepare("SELECT shipping_price FROM shipping WHERE id = ?");
-                $stmt->bind_param("i", $shippingId);
-                $stmt->execute();
-                $result = $stmt->get_result();
+        // body
+        $order = getCartOrders($userId,$cartId,$orderId);
 
-                if ($result->num_rows > 0) {
-                    $shippingMethod = $result->fetch_assoc()['shipping_price'];
+        if($order->num_rows > 0){
+            foreach($order as $data){
+
+                $numId = $data['id'];
+                $name = $data['product_name'];
+                $firstName = $data['first_name'];
+                $lastName = $data['last_name'];
+                $phoneNumber = $data['phone_number'];
+                $date = $data['created_at'];
+                $qty = $data['product_qty'];
+                $productPrice = $data['product_price'];
+                $city = $data['city'];
+                $province = $data['province'];
+                $shippingValue = 0;
+                $totalPrice = $data['total_price'];
+
+                $methodPayment = '';
+
+                if(!empty($totalPrice)){
+                    $methodPayment = 'Bank';
+                }else{
+                    $methodPayment = 'On Delivery';
                 }
 
+                $shipping = getShipping1($data['shipping_id']);
+                if($shipping->num_rows > 0){
+                    foreach($shipping as $num){
+                        $shippingValue = $num['shipping_price'];
+                    }
+                }
                 $pdf = new FPDF("P","mm","A4");
 
                 $pdf->AddPage();
@@ -124,17 +123,17 @@
 
                 $pdf->SetFont("Arial","",9);
                 $pdf->Cell(130,8,"",0,0);
-                $pdf->Cell(59,-20,": Morn sovathana",0,0);    
+                $pdf->Cell(59,-20,$firstName . ' ' . $lastName,0,0);    
                 $pdf->Cell(59,8,"",0,1);
 
                 $pdf->SetFont("Arial","B",9);
                 $pdf->Cell(96,0,"",0,0);
-                $pdf->Cell(59,-27,"Date",0,0);    
+                $pdf->Cell(59,-27,"Date ",0,0);    
                 $pdf->Cell(59,0,"",0,1);
 
                 $pdf->SetFont("Arial","",9);
                 $pdf->Cell(130,0,"",0,0);
-                $pdf->Cell(59,-27,": 23/02/2025 10:00",0,0);    
+                $pdf->Cell(59,-27,$date,0,0);    
                 $pdf->Cell(59,0,"",0,1);
 
                 $pdf->SetFont("Arial","B",9);
@@ -144,7 +143,7 @@
 
                 $pdf->SetFont("Arial","",9);
                 $pdf->Cell(130,0,"",0,0);
-                $pdf->Cell(59,-18,": Finished",0,0);    
+                $pdf->Cell(59,-18,"Finished",0,0);    
                 $pdf->Cell(59,0,"",0,1);
 
                 // table 
@@ -160,25 +159,28 @@
 
                 $pdf->SetFont("Arial","",9);
                 $pdf->Cell(5);
-                $pdf->Cell(30,6,$id,1,0,'L');
-                $pdf->Cell(30,6,$shippingMethod,1,0,'L');
+                $pdf->Cell(30,6,$numId,1,0,'L');
+                $pdf->Cell(30,6,$shippingValue,1,0,'L');
                 $pdf->Cell(30,6,$qty,1,0,'R');
-                $pdf->Cell(30,6,$product_price,1,0,'R');
-                $pdf->Cell(30,6,'Bank',1,0,'R');
-                $pdf->Cell(30,6,$total_price,1,1,'R');
+                $pdf->Cell(30,6,'$' . $productPrice,1,0,'R');
+                $pdf->Cell(30,6,$methodPayment,1,0,'R');
+                $pdf->Cell(30,6,'$' . $totalPrice,1,1,'R');
 
                 // 
                 $pdf->SetFont("Arial","B",9);
                 $pdf->Cell(125,6,'',0,0);
                 $pdf->Cell(30,6,"Subtotal",0,0,'C');
-                $pdf->Cell(30,6,$total_price,1,0,'R');
+                $pdf->Cell(30,6,'$' . $totalPrice,1,0,'R');
                 
 
                 $pdf->Output();
+
             }
         }
-       
-
+        
     }
+ 
+
+    
 
 ?>
