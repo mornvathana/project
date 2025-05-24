@@ -70,41 +70,40 @@
             Now we have 2 Official Facebook Page, please help like and follow our page to get latest update of product
             information. "Angkor Meas Phone Shop in Cambodia" "Angkor Meas Mobile"</marquee>
     </div>
-    <!-- end text-slide -->
 
     <!-- popular-product -->
-    <div class="popular-product mt-10 md:mt-20 w-full">
-        <div class="head p-3 sm:p-5">
-            <h1
-                class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-3xl text-[#2e3192] shadow-black">
-                FEATURED PRODUCTS</h1>
-            <h3
-                class="font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-gray-700 font-medium mt-2">
-                Most popular products recommended to you</h3>
-        </div>
-        <!-- product-box -->
-        <div
-            class="product-box w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-3 p-1 sm:p-5">
             <!-- box -->
             <?php
                 $item = getPopularProduct("popular_pd",1);
                 if($item->num_rows > 0){
                     foreach($item as $data){
                     ?>
+                    <div class="popular-product mt-10 md:mt-20 w-full">
+                    <div class="head p-3 sm:p-5">
+                        <h1
+                            class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-3xl text-[#2e3192] shadow-black">
+                            FEATURED PRODUCTS</h1>
+                        <h3
+                            class="font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-gray-700 font-medium mt-2">
+                            Most popular products recommended to you</h3>
+                    </div>
+                    <!-- product-box -->
+                    <div
+                        class="product-box w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-3 p-1 sm:p-5">
                     <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
-                        <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <a href="viewdetail.php?id=<?= $data['id']?>" class="flex flex-col items-center space-y-2 w-full">
                             <div class="pro-img w-full overflow-hidden rounded-md">
-                                <img src="https://soklyphone.com/storage/Apple/iPad/iPad-Mini-7/purple-1732616452hOIaG.png"
+                                <img src="uploads/category/<?= $data['image'] ?>"
                                     alt="" class="w-full">
                             </div>
                             <div
                                 class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
-                                <del class="dis-price opacity-50">$999</del>
-                                <div class="full-price text-[#f34770!important]">$1,155</div>
+                                <del class="dis-price opacity-50">$<?= $data['sell_price'] ?></del>
+                                <div class="full-price text-[#f34770!important]">$<?= $data['original_price'] ?></div>
                             </div>
                             <div
                                 class="pro-name text-center text-[13px] md:text-[15px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
-                                Galaxy Ring Silver (Size10)</div>
+                                <?= $data['description'] ?></div>
                             <button
                                 class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
                                     class="fa-solid fa-cart-shopping"></i> Add to cart</button>
@@ -159,7 +158,7 @@
 
                             <!-- box -->
                             <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
-                                <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                                <a href="viewdetail.php?id=<?= $data['id']?>" class="flex flex-col items-center space-y-2 w-full">
                                     <div class="pro-img w-full overflow-hidden rounded-md">
                                         <img src="uploads/category/<?= $data['image']?>"
                                             alt="" class="w-full">
@@ -212,7 +211,7 @@
                     foreach($item as $data1){
                     ?>
                      <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
-                        <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <a href="viewdetail.php?id=<?= $data1['id']?>" class="flex flex-col items-center space-y-2 w-full">
                             <div class="pro-img w-full overflow-hidden rounded-md">
                                 <img src="uploads/category/<?= $data1['image']?>"
                                     alt="" class="w-full">
