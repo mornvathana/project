@@ -25,7 +25,6 @@ $(document).ready(function(){
                     }
                     display.html(txt);
                 }else{
-                    alert("No Data");
                 }
             }
         });

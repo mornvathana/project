@@ -71,12 +71,6 @@
 
             function product(page){
                 const display = $("#displayData");
-                const head = `<tr class = "bg-[#f6f8fa]">
-                    <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">ID #</th>
-                    <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Barcode</th>
-                    <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Name</th>
-                    <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Created</th>
-                </tr>`;
 
                 $.ajax({
                     method: "POST",
@@ -103,7 +97,7 @@
                             }
                             $("#totalProducts").text(data[0]['total']);
                             totalPage.text(Math.ceil( data[0]['total'] / limit));
-                            display.html(head + txt);
+                            display.html(txt);
                         }
                     },
                     error: function (xhr, status, error) {

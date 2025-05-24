@@ -2,15 +2,16 @@
 include('includes/header.php');
 include('../middleware/adminAccess.php');
 include('middleware/category.php');
+include("lang.php");
 ?>
         <div class = " px-2 py-2 ">
                 <div class = "w-full bg-[#f3f5f7] rounded-md p-5">
                 <div class = "w-full h-[5%] flex justify-between items-center">
                     <div>
-                        <h1 class = "font-medium">Add Category</h1>
+                        <h1 class = "font-medium"><?php echo $text['addcategory']?></h1>
                     </div>
                     <div>
-                        <a href = "category1.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i>Back</a>
+                        <a href = "category1.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i><?php echo $text['back']?></a>
                     </div>
                 </div>
                 <div class="w-full h-[92%] mt-5 bg-[#ffffff] p-4 rounded-md">
@@ -20,29 +21,29 @@ include('middleware/category.php');
                         <div class  = "w-full">
                         <div class = "w-full">
                             <input type="hidden" name="page_id" value = "<?= $user_id ?>">
-                            <label for="barcode" class = "block py-1 text-[13px]">Barcode</label>
+                            <label for="barcode" class = "block py-1 text-[13px]"><?php echo $text['barcode']?></label>
                             <input type="text" name = "barcode" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" id = "name" placeholder = "Barcode">
                         </div>
                         <div class = "w-full">
-                        <label for="name" class = "block py-1 text-[13px]">Name</label>
+                        <label for="name" class = "block py-1 text-[13px]"><?php echo $text['name']?></label>
                         <input type="text" name = "name" id = "name" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Name">
                         </div>
                         <div class = "w-full">
-                            <label for="price" class = "block py-1 text-[13px]">Original Price</label>
+                            <label for="price" class = "block py-1 text-[13px]"><?php echo $text['originalprice']?></label>
                             <input type="text" name = "original_price" id = "price" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Original price">
                         </div>
                         <div class = "w-full">
-                            <label for="sell_price" class = "block py-1 text-[13px]">Sell Price</label>
+                            <label for="sell_price" class = "block py-1 text-[13px]"><?php echo $text['sellprice']?></label>
                             <input type="text" name = "sell_price" id = "sell_price" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Original price">
                         </div>
                         <div class = "w-full">
-                            <p class = "py-1 text-[13px] pl-0">Specification</p>
+                            <p class = "py-1 text-[13px] pl-0"><?php echo $text['specification']?></p>
                         </div>
                         <div class = "w-full h-full flex ">
                         <textarea name="specification" id="editor1" class = "w-full h-[50px] border border-gray-300 outline-none rounded-md text-[12px] pl-2"  ></textarea>
                         </div>
                         <div class = "w-full">
-                            <p class = "py-1 text-[13px] pl-0">Description</p>
+                            <p class = "py-1 text-[13px] pl-0"><?php echo $text['description']?></p>
                         </div>
                         <div class = "w-full h-full flex ">
                         <textarea name="description" id="editor" class = "w-full h-[50px] border border-gray-300 outline-none rounded-md text-[12px] pl-2"  ></textarea>
@@ -51,7 +52,7 @@ include('middleware/category.php');
                         </div>
                         <div class = "w-full h-full">
                         <div class = "w-full">
-                            <label for="brand" class = "block py-1 text-[13px]">Brand</label>
+                            <label for="brand" class = "block py-1 text-[13px]"><?php echo $text['brand']?></label>
                             <select id = "brand" name = "brand" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md">
                             <?php
                                 $brand = getAll('brands');
@@ -65,35 +66,29 @@ include('middleware/category.php');
                             ?>
                             </select>
                         </div>
-                        <div class = "w-full">
-                            <label for="promotion" class = "block py-1 text-[13px]">Promotion</label>
-                            <select id = "promotion" name = "promotion" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md">
-                                <option value="1">1</option>
-                            </select>
-                        </div>
                         <!--  -->
                         <div class = "w-full my-2">
-                        <label for="" class = "block py-1 text-[13px] font-medium font-medium">Product Choise</label>
+                        <label for="" class = "block py-1 text-[13px] font-medium w-full"><?php echo $text['productchoise']?></label>
                         <div class = "flex justify-between items-center grid grid-cols-3">
                         <input type="hidden" id = "userId" value = "<?= $user_id?>">
                             <div>
                                 <input type="checkbox" name = "option[]" value = "popular"   id = "popular" >
-                                <label for="" class = "py-1 text-[13px]">Popular</label>
+                                <label for="" class = "py-1 text-[13px]"><?php echo $text['popular']?></label>
                             </div>
                             <div>
                                 <input type="checkbox" name = "option[]" value = "used"   id = "used" >
-                                <label for="" class = "py-1 text-[13px]">Used Product</label>
+                                <label for="" class = "py-1 text-[13px]"><?php echo $text['usedproduct']?></label>
                             </div>
                             <div>
                                 <input type="checkbox" name = "option[]" value = "new"   id = "new" >
-                                <label for="" class = "py-1 text-[13px]">New product</label>
+                                <label for="" class = "py-1 text-[13px]"><?php echo $text['newproduct']?></label>
                             </div>
                         </div>
                         <!--  -->
                         <div class = "w-full bg-white mt-2">
                         <div class = "w-full">
                         <div class = "w-full">
-                            <p class = "py-1 text-[13px] pl-3">Upload Image</p>
+                            <p class = "py-1 text-[13px] pl-3"><?php echo $text['uploads']?></p>
                         </div>
                         <div class = "w-full h-[170px] flex">
                         <div class = "w-[50%] flex justify-center items-center none">
@@ -106,14 +101,14 @@ include('middleware/category.php');
                         <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
                             <input type="file" name = "image" id = "profile_image" accept="image/*" class = "w-full h-full hidden" required>
                         </div>
-                        <label for="profile_image" class = "absolute text-sm ">Select Image <i class="fa-solid fa-image"></i></label>
+                        <label for="profile_image" class = "absolute left-[30%] text-sm w-full "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
                         </div> 
                         </div>
                         </div>
                         </div>
                         <div class = "w-full">
                         <div class = "w-full">
-                            <p class = "py-1 text-[13px] pl-3">Demo Image</p>
+                            <p class = "py-1 text-[13px] pl-3"><?php echo $text['demoimage']?></p>
                         </div>
                         <div class = "w-full h-[150px] flex">
                         <div class = "w-[50%] flex justify-center items-center none">
@@ -149,7 +144,7 @@ include('middleware/category.php');
                         <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
                             <input type="file" name = "demo_image[]" id = "profile_image1" multiple accept="image/*" class = "w-full h-full hidden">
                         </div>
-                        <label for="profile_image1" class = "absolute text-sm ">Demo Image <i class="fa-solid fa-image"></i></label>
+                        <label for="profile_image1" class = "absolute text-sm left-[30%] w-full "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
                         </div> 
                         </div>
                         </div>

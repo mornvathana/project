@@ -98,7 +98,7 @@
                         for(i in data){
                             let item = data[i];
                             txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto addClss overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                    <div class="relative p-4 w-full max-w-md max-h-full">
+                                    <div class="relative p-4 w-[950px]  max-h-full">
                                         <!-- Modal content -->
                                         <div class="relative bg-[#fff] rounded-lg shadow-lg dark:bg-gray-700">
                                             <!-- Modal header -->
@@ -114,8 +114,11 @@
                                                 </button>
                                             </div>
                                             <!-- Modal body -->
-                                            <form class="p-4 md:p-5" >
-                                                <div class="grid gap-4 mb-4 grid-cols-2">
+                                            <form class="p-4 md:p-5 grid-cols-1 md:grid-cols-2 grid gap-4" >
+                                                <div class="flex-shrink-0">
+                                                    <img src="../uploads/category/${item.image}" alt="Product Image" class="w-[400px] h-[300px] object-cover rounded-lg border" />
+                                                </div>
+                                                <div class=" mb-4 grid grid-cols-2 gap-5 ">
                                                     <div class="col-span-1">
                                                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                                                         <input type="hidden" name="id" id="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.id}" readonly>
@@ -126,11 +129,11 @@
                                                         <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.first} ${item.last}" readonly>
                                                     </div>
                                                      <div class="col-span-1">
-                                                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">email</label>
+                                                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
                                                         <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.email}" readonly>
                                                     </div>
                                                     <div class="col-span-1">
-                                                        <label for="total_price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Total Price</label>
+                                                        <label for="total_price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
                                                         <input type="text" name="total_price" id="total_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.total_price}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
@@ -138,7 +141,7 @@
                                                         <input type="text" name="Model" id="Model" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.province}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
-                                                        <label for="method_payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Method Payment</label>
+                                                        <label for="method_payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Payment</label>
                                                         <input type="text" name="method_payment" id="method_payment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.city}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
@@ -150,7 +153,7 @@
                                                         <input type="text" name="city" id="city" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.city}" readonly>
                                                     </div>
                                                      <div class="col-span-2 sm:col-span-1">
-                                                        <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone Number</label>
+                                                        <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone</label>
                                                         <input type="text" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.phone_number}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
@@ -161,10 +164,11 @@
                                                             <option value="3" ${item.status == 3 ? 'selected' : ''} >Completed</option>
                                                         </select>
                                                     </div>
-                                                </div>
-                                                <button id = "btn_save"  type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                <div></div>
+                                                <button id = "btn_save"  type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-20 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                                     Save
                                                 </button>
+                                                </div>
                                             </form>
                                         </div>
                                     </div>
