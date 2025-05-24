@@ -40,7 +40,7 @@
             <input 
                 type="text" 
                 placeholder="Search products..." 
-                id="searchInput"
+                id="search"
                 class="searchInput w-full p-2 pl-4 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:border-transparent shadow-sm text-[17px]"
                 autocomplete="off"
                 style="border: 2px solid #144194;">
@@ -52,8 +52,8 @@
             </div>
             
             <!-- Autocomplete Dropdown with Images -->
-            <div id="autocompleteResults" class="autocompleteResults hidden absolute z-[150] mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto">
-                <!-- Suggestions with images will be inserted here by JavaScript -->
+            <div id="autocompleteResults" class="autocompleteResults absolute z-[150] mt-1 w-full bg-white rounded-lg shadow-lg border border-gray-200 max-h-96 overflow-y-auto">
+                
             </div>
             </div>
             </div>
