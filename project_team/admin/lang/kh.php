@@ -78,7 +78,7 @@ return [
     "status" => "ស្ថានភាព",
     "option" => "ជម្រើស",
     "createbrand" => "បង្កើតម៉ាក",
-    "selectimage" => "ជ្រើសរើសរូបភាព",
+    "selectimage" => "រូបភាព",
     "barcode" => "កូដបារកូដ",
     "originalprice" => "តម្លៃដើម",
     "sellprice" => "តម្លៃលក់",

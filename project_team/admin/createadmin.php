@@ -44,7 +44,7 @@ if(isset($_GET['id'])){
                         <input type="password" name = "new_password" id = "password" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "<?php echo $text['password']?>" required>
                     </div>
                     <div class = "w-full">
-                        <label for="con_password" class = "block py-1 text-[13px] font-medium"><?php echo $text['conpassword']?></label>
+                        <label for="con_password" class = "block py-1 text-[13px] w-full font-medium"><?php echo $text['conpassword']?></label>
                         <input type="password" name = "con_password"  id = "con_password" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "<?php echo $text['conpassword']?>" required>
                     </div>
                     </div>
