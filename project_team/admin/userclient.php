@@ -1,6 +1,7 @@
 <?php 
 include('includes/header.php');
 include('../middleware/adminAccess.php');
+include("lang.php");
 ?>
 <!-- end header -->
 <div class="h-full px-2 py-2 ">
@@ -8,7 +9,7 @@ include('../middleware/adminAccess.php');
         <div class="w-full h-[10%] flex justify-between items-center">
              <div class = "w-full h-[8%] flex justify-between items-center">
                 <div>
-                    <h1 class = "font-medium">User Management</h1>
+                    <h1 class = "font-medium"><?php echo $text['usermanagement']?></h1>
                 </div>
                 <div>
                 <div class = "flex md:none">
@@ -18,7 +19,7 @@ include('../middleware/adminAccess.php');
                         <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                         </svg>
-                        Back
+                        <?php echo $text['previous']?>
                     </a>
                     <a href="#" class="flex items-center justify-center px-2 h-5 me-3 text-[13px] font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
@@ -26,7 +27,7 @@ include('../middleware/adminAccess.php');
                         <span id = "startPage"></span> / <span id = "totalPage">10</span>
                     </a>
                     <a href="#" class="flex items-center justify-center px-2 h-5 me-3 text-[13px] font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white" id = "next_btn">
-                        Next
+                        <?php echo $text['next']?>
                         <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                         </svg>
@@ -40,7 +41,7 @@ include('../middleware/adminAccess.php');
         <div class = "w-full h-[30px] mt-5 flex justify-center md:justify-between items-center">
             <div>
                 <form class="max-w-md mx-auto w-[300px] lg:w-[400px]">   
-                    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                    <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"><?php echo $text['search']?></label>
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                             <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
@@ -60,13 +61,13 @@ include('../middleware/adminAccess.php');
             <table class="text-center w-full table-auto">
                 <thead class = "bg-[#f6f8fa]">
                     <tr>
-                        <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">ID</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Name</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Email</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Email Verify</th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Status</th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Created at</th>
-                         <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Action</th>
+                        <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['id']?></th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['name']?></th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['email']?></th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['emailverify']?></th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['status']?></th>
+                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['created']?></th>
+                         <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['option']?></th>
                     </tr>
                 </thead>
                 <tbody id = "displayData" class = "relative">

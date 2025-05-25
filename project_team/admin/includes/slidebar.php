@@ -60,7 +60,7 @@
                     </li>
                     <?php endif;?>
                     <?php if(!empty($permission['user']) == 1): ?>
-                    <li class = "p-2 my-1 text-[12px] <?= $page == 'userclient.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
+                    <li class = "p-2 my-1 text-[12px] <?= $page == 'userprofile.php' ? 'bg-gray-200' : ''; ?> <?= $page == 'userclient.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
                         <a href="userclient.php"><i class="fa-solid fa-user"></i> <?php echo $text['user']?></a>
                     </li>
                     <?php endif;?>

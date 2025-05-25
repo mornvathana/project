@@ -2,6 +2,7 @@
     include('includes/header.php');
     include('../middleware/adminAccess.php');
     include('middleware/users.php');
+    include("lang.php");
     if($_SESSION['auth_user']){
         $user_id = $_SESSION['auth_user']['user_id'];
         $user_name = $_SESSION['auth_user']['user_name'];
@@ -21,10 +22,10 @@
                                 <div class = "h-[5%] flex justify-center items-center">
                                     <div class = "w-[95%] h-full flex justify-between items-center">
                                     <div>
-                                        <h1 class = "text-md font-medium">User Profile</h1>
+                                        <h1 class = "text-md font-medium"><?php echo $text['userprofile']?></h1>
                                     </div>
                                     <div>
-                                        <a href = "userclient.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i>Back</a>
+                                        <a href = "userclient.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i><?php echo $text['back']?></a>
                                     </div>
                                     </div>
                                 </div>
@@ -67,29 +68,29 @@
                                             <div class = "w-full lg:w-[100%] h-full">
                                                 <div class = "w-full h-[50%] grid grid-cols-3">
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">First Name</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['firstName']?></li>
                                                         <li class = "text-[10px] md:text-[12px]">Morn</li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Last Name</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['lastName']?></li>
                                                         <li class = "text-[10px] md:text-[12px]">Morn</li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Create Date</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['created']?></li>
                                                         <li class = "text-[10px] md:text-[12px]"><?= $userItem['created_at']?></li>
                                                     </ul>
                                                 </div>
                                                 <div class = "w-full h-[50%] grid grid-cols-3">
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Email Address</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['email']?></li>
                                                         <li class = "text-[10px] md:text-[12px]"><?= $userItem['email']?></li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Email Verify</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['emailverify']?></li>
                                                         <li class = "text-[10px] md:text-[12px]">Morn</li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">User role</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['userrole']?></li>
                                                         <li class = "text-[10px] md:text-[12px]">Admin</li>
                                                     </ul>
                                                 </div>
@@ -99,7 +100,7 @@
                                         <div class = " bg-[#ffffff] px-5 ">
                                             <div class = "w-full h-[30%]  flex justify-between items-center">  
                                             <div>
-                                                <h1 class = "text-sm md:text-md font-medium flex"><span class = "hidden md:block pr-1">Personal</span> <span>Product</span></h1>
+                                                <h1 class = "text-sm md:text-md font-medium flex"><span class = "hidden md:block pr-1"><?php echo $text['userdetail']?></span></h1>
                                             </div>
                                         </div>
                                         <!--  -->
@@ -107,7 +108,7 @@
                                             <div class = "w-full lg:w-[100%] h-full">
                                                 <div class = "w-full h-[50%] grid grid-cols-3">
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Finished</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['finish']?></li>
                                                         <li class = "text-[10px] md:text-[12px]">
                                                             <?php
                                                                 $number = countStatusUser("orders","3",$id);
@@ -118,7 +119,7 @@
                                                         </li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Pedding</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['processing']?></li>
                                                         <li class = "text-[10px] md:text-[12px]">
                                                             <?php
                                                                 $number = countStatusUser("orders","2",$id);
@@ -129,7 +130,7 @@
                                                         </li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Not Checked</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['pedding']?></li>
                                                         <li class = "text-[10px] md:text-[12px]">
                                                             <?php
                                                                 $number = countStatusUser("orders","1",$id);
@@ -142,7 +143,7 @@
                                                 </div>
                                                 <div class = "w-full h-[50%] grid grid-cols-3">
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Total Price</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['totalprice']?></li>
                                                         <li class = "text-[10px] md:text-[12px]">
                                                             <?php
                                                                 $price = sumPrice("orders",$id);
@@ -153,12 +154,8 @@
                                                         </li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">Score</li>
-                                                        <li class = "text-[10px] md:text-[12px]">Morn</li>
-                                                    </ul>
-                                                    <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]">User role</li>
-                                                        <li class = "text-[10px] md:text-[12px]"><?= $userItem['role_as'] == 0 ? 'User' : 'Admin'?></li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['userrole']?></li>
+                                                        <li class = "text-[10px] md:text-[12px]"><?= $userItem['role_as'] == 0 ? 'User'  : 'Admin'?></li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -174,7 +171,7 @@
             <div class = "h-[5%] flex justify-center items-center">
                 <div class = "w-[95%] h-full flex justify-between items-center">
                 <div>
-                    <h1 class = "text-md font-medium">Report</h1>
+                    <h1 class = "text-md font-medium"><?php echo $text['report']?></h1>
                     <input type="hidden" name="userId" id="userId" value = "<?= $id?>">
                 </div>
                 <div>
@@ -182,10 +179,10 @@
                     <div class="flex items-start md:justify-end gap-2">
                     <form class="max-w-sm">
                         <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
-                            <option value = "1" selected>Status</option>
-                            <option value="1">Not Read</option>
-                            <option value="2">Pedding</option>
-                            <option value="3">Completed</option>
+                            <option value = "1" selected><?php echo $text['status']?></option>
+                            <option value="1"><?php echo $text['pedding']?></option>
+                            <option value="2"><?php echo $text['processing']?></option>
+                            <option value="3"><?php echo $text['finish']?></option>
                         </select>
                     </form>
 
@@ -194,7 +191,7 @@
                         <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
                         </svg>
-                        Previous
+                        <?php echo $text['previous']?>
                     </a>
 
                     <a href="#" class="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 rounded-lg">
@@ -202,7 +199,7 @@
                     </a>
 
                     <a href="#" class="flex items-center justify-center px-2 h-7 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="next_btn">
-                        Next
+                        <?php echo $text['back']?>
                         <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
                         </svg>
@@ -218,12 +215,12 @@
                     <table class = "text-center w-full table-auto">
                         <thead class = "bg-[#f6f8fa]"> 
                             <tr>
-                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">ID</th>
-                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Username</th>
-                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Product</th>
-                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Total</th>
-                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Created at</th>
-                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">Action</th>
+                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['id']?></th>
+                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['name']?></th>
+                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['product']?></th>
+                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['total']?></th>
+                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['created']?></th>
+                                <th class = "py-1 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['option']?></th>
                             </tr>
                         </thead>
                         <tbody id = "displayData">

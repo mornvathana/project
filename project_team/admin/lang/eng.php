@@ -48,6 +48,16 @@ return [
     "createadmin" => "Create Admin",
 
     // Newly translated items
+    "permission" => "Permission",
+    "conpassword" => "Confirm Password",
+    "password" => "Password",
+    "changeinformation" => "Change information",
+    "userdetail" => "User Detail",
+    "userrole" => "User role",
+    "email" => "Email",
+    "emailverify" => "Email Verify", 
+    "search" => "Search",
+    "edit" => "Edit Category",
     "page" => "Page",
     "select" => "Select",
     "editbrand" => "Edit Brand",

@@ -26,7 +26,7 @@
             },
             dataType: "json",
             success: function (data) {
-                if(data){
+                if(data,length > 0){
                    let txt = "";
                     for (let i in data) {
                         let item = data[i];
@@ -42,8 +42,8 @@
                     console.log(txt);
                     display.html(txt); 
                 }else{
-                    alert("No Data");
-                    }
+                    display.html(`<tr><td colspan = "6">No Data</td></tr>`);
+                }
                 }
             });
         });
@@ -79,7 +79,7 @@
                         totalPage.text(Math.ceil(data[0]['total'] / limit));
                         display.html(txt); 
                     }else{
-                        display.html("<tr><td>No Data</td></tr>");
+                        display.html(`<tr><td colspan = "6">No Data</td></tr>`);
                     }
                 }
             });
@@ -107,5 +107,5 @@
             
         });
 
-        load(currentPage);
+        load(0);
     });

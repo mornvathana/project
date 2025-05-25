@@ -48,6 +48,16 @@ return [
     "createadmin" => "បង្កើតអ្នកគ្រប់គ្រង",
 
     // Newly translated items
+    "permission" => "ការអនុញ្ញាត",
+    "conpassword" => "បញ្ជាក់ពាក្យសម្ងាត់",
+    "password" => "ពាក្យសម្ងាត់",
+    "changeinformation" => "ផ្លាស់ប្តូរព័ត៌មាន",
+   "userdetail" => "ព័ត៌មានអតិថិជន",
+   "userrole" => "តួនាទី", 
+    "email" => "អុីម៉ែល",
+    "emailverify" => "ផ្ទៀងផ្ទាត់អុីម៉ែល", 
+    "search" => "ស្វែងរក",
+    "edit" => "កែលម្អទិន្នន័យ",
     "page" => "ទំព័រ",
     "select" => "ជ្រើសរើស",
     "editbrand" => "កែម៉ាក",
