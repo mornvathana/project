@@ -5,7 +5,6 @@ if($_SESSION['auth_user']){
   $user_id = $_SESSION['auth_user']['user_id'];
 }
 ?>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
 <div class="shopping-checkout-block w-full p-3 sm:p-5 mt-10">
         <div class="head">
             <h1 class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-2xl text-[#2e3192] shadow-black">
@@ -185,36 +184,50 @@ if($_SESSION['auth_user']){
               
                 <!-- Checkout Button -->
                 <div class="mt-6 text-center text-sm"  >
-                  <button id = "checkout" data-total = "<?= $finalTotal ?>" data-bs-toggle="modal" data-bs-target="#qrCodeModal" type = "button" class="w-full hidden py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400"  >
+                  <button id = "checkout" data-total = "<?= $finalTotal ?>" data-modal-target="qrCodeModal" data-modal-toggle="qrCodeModal" type = "button" class="w-full hidden py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400"  >
                     Proceed to Checkout
                   </button>
                 </div>
                 </div>
             </form>
-            <!-- end -->
-            <div class="modal fade" id="qrCodeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Payment QR</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <canvas id="qrCodeCanvas"></canvas>
-                    </div>
-                    <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
+            <!-- start popup -->
+             <div id="qrCodeModal" tabindex="-1" aria-hidden="true"
+              class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-modal md:h-full">
+              <div class="relative w-full h-full max-w-md md:h-auto">
+                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                  <!-- Modal header -->
+                  <div class="flex items-start justify-between p-4 border-b rounded-t dark:border-gray-600">
+                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                      Payment QR
+                    </h3>
+                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ml-auto inline-flex justify-center items-center"
+                      data-modal-hide="qrCodeModal">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M6 18L18 6M6 6l12 12"></path>
+                      </svg>
+                    </button>
+                  </div>
+                  <!-- Modal body -->
+                  <div class="p-6 space-y-6 text-center">
+                    <canvas id="qrCodeCanvas" class="mx-auto"></canvas>
+                  </div>
+                  <!-- Modal footer -->
+                  <div class="flex items-center justify-end p-6 space-x-2 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button data-modal-hide="qrCodeModal" type="button"
+                      class="text-white bg-gray-500 hover:bg-gray-600 font-medium rounded-lg text-sm px-5 py-2.5">
+                      Close
+                    </button>
+                  </div>
                 </div>
-                </div>
+              </div>
             </div>
-            <!-- end -->
+            <!-- end popup -->
         </div>
         </div>
     </div>
     <script src="https://github.com/davidhuotkeo/bakong-khqr/releases/download/bakong-khqr-1.0.6/khqr-1.0.6.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src = "assets/script/khqr.js"></script>
     <!-- end of shopping-cart-block -->
 <?php include('includes/footer.php')?>
