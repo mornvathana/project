@@ -146,6 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     
     // Fetch transaction status
+    let transition = false;
     const fetchTransactionStatus = (md5) => {
         const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiZjNkMDc4M2EyOTY4NDExYSJ9LCJpYXQiOjE3NDE3OTg1MzEsImV4cCI6MTc0OTU3NDUzMX0.PqTaMkbpl68zKI_6G9ApsnRmoAQjUF_IfEo2LfVKH8M'; // Replace with your actual token
         const url = 'https://api-bakong.nbc.gov.kh/v1/check_transaction_by_md5';
@@ -162,9 +163,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .then(data => {
                 if (data.responseMessage === 'Success') {
                     clearInterval(checkTransactionInterval);
-                    // save data function 
-                    autoSaveData();
-                    window.location.href = 'http://localhost:8080/project/project_team/profile.php';
                     // for telegram message
                     const token_telegram = "7948926578:AAH13fuvJf_wUOFr2fNo8YGFIZzJvuUvSX0";
                     const chat_id = "1985070836";
@@ -201,11 +199,14 @@ document.addEventListener("DOMContentLoaded", function () {
                             console.error("Fetch error:", error);
                         }
                     };
-                    
-                    // Call the function to send the message
-                    sendMessage();
 
-
+                    if(!transition){
+                        transition = true;
+                        autoSaveData();
+                        window.location.href = 'http://localhost:8080/project/project_team/profile.php';
+                        sendMessage();
+                    }
+            
 
                 } else {
                     console.log("Transaction status unknown.");
