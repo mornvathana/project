@@ -57,6 +57,11 @@
         $product = "SELECT * FROM $table ORDER BY id DESC";
         return $product_run = mysqli_query($conn,$product);
     }
+    function getWebInfo($table,$select){
+        global $conn;
+        $product = "SELECT $select FROM $table WHERE id = 1";
+        return $product_run = mysqli_query($conn,$product);
+    }
     function getProductUser($table,$id){
         global $conn;
         $product = "SELECT * FROM $table WHERE user_id = $id AND status = 1 ORDER BY id DESC";
@@ -76,6 +81,16 @@
         global $conn;
         $sql = "SELECT * FROM $table WHERE id = $id";
         return $sql_run = mysqli_query($conn,$sql);
+    }
+    function countStatusUser($table,$status,$id){
+        global $conn;
+        $query = "SELECT count(*) as count FROM $table WHERE status = $status AND user_id = $id";
+        $query_run = mysqli_query($conn,$query);
+        if($query_run){
+            $result = mysqli_fetch_assoc($query_run);
+                return $result['count'];
+        }
+        return 0;
     }
     function getCartOrders($userId,$cartId,$orderId){
         global $conn;

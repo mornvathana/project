@@ -1,16 +1,38 @@
-<!-- header -->
+
 <header class="header">
         <div
             class="top-header w-[100%] bg-[#144194] hidden sm:flex justify-between px-5 py-2 font-[Hanuman,Sans-serif] text-[#fff] sticky top-0 text-[13px]">
             <div class="flex space-x-5 items-center">
                 <div class="phone-contact flex items-center space-x-2">
                     <i class="fa-solid fa-phone"></i>
-                    <p>0963904112</p>
+                    <p>
+                        <?php
+                            $item = getWebInfo("information_website","phone_number");
+                            if($item->num_rows > 0){
+                                foreach($item as $data){
+                                ?>
+                                <?= $data['phone_number']?>
+                                <?php
+                                }
+                            }
+                        ?>
+                    </p>
                 </div>
 
                 <div class="email-contact flex items-center space-x-2">
                     <i class="fa-solid fa-envelope"></i>
-                    <p>Enrathana@gmail.com</p>
+                    <p>
+                        <?php
+                            $item = getWebInfo("information_website","email");
+                            if($item->num_rows > 0){
+                                foreach($item as $data){
+                                ?>
+                                <?= $data['email']?>
+                                <?php
+                                }
+                            }
+                        ?>
+                    </p>
                 </div>
             </div>
             <div class="">
@@ -60,7 +82,16 @@
 
             <button class="shopping-cart text-[#144194] text-xl relative">
                 <a href="checkoutCart.php"><i class="fa-solid fa-bag-shopping">
-                    <div class="cart-number bg-red-500 w-[20px] h-[20px] rounded-full absolute top-[-3px] left-3 text-white text-[15px] flex justify-center items-center p-2">1</div>
+                    <?php
+                    if(isset($_SESSION['auth_user'])){
+                        $userId =  $_SESSION['auth_user']['user_id'];
+                        $item = countStatusUser("cart","1",$userId);
+                        ?>
+                        <div class="cart-number bg-red-500 w-[20px] h-[20px] rounded-full absolute top-[-3px] left-3 text-white text-[15px] flex justify-center items-center p-2"><?= $item ?></div>
+                        <?php
+                    }
+                     
+                    ?>
                 </i>
                 </a>
             </button>
