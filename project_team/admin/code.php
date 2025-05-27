@@ -129,13 +129,13 @@
         $demo_images = [];
 
         foreach($_FILES['demo_image']['size'] as $key => $demo_size){
-            if($demo_size > 100 * 1024){
+            if($demo_size > 1000 * 1024){
                 $valid = false;
                 break;
             }
         }
 
-         if($size > 100 * 1024 || !$valid){
+         if($size > 1000 * 1024 || !$valid){
             redirect1("category.php","Please upload new image!");
          }else{
             $stmt = $conn->prepare("UPDATE product_detail  SET brand_id = ?,  promotion = ?, barcode = ?,
@@ -208,7 +208,7 @@
         $path = "../uploads/admin";  
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
 
-        if($size > 100 * 1024){
+        if($size > 1000 * 1024){
 
             redirect1("changeinfor.php?id=$pageId","Please upload new image!");
 
@@ -284,7 +284,7 @@
         $path = "../uploads/admin";  
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
 
-        if($size > 100 * 1024){
+        if($size > 1000 * 1024){
             redirect1("createadmin.php?id=$pageId","Please input image less than 10KB");
         }else{
             if(strlen($newPassword) < 8){
@@ -349,7 +349,7 @@
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
         $filename = time() . '.' . $image_ext;
 
-        if($size > 100 * 1204){
+        if($size > 1000 * 1204){
             redirect1("brand.php","Please upload new image!");
         }else{
             $brand = "INSERT INTO brands (user_id,product_id,name,image) VALUES($userId,$productId,'$name','$filename')";
@@ -418,7 +418,7 @@
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
         $img_path = $path . '/' . $old_image;
 
-        if($size > 100 * 1204){
+        if($size > 1000 * 1204){
             redirect1("brandedit.php?id=$userId","Please upload new image!");
         }else{
             // delete old image 
@@ -455,7 +455,7 @@
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
         $filename = time() . '.' . $image_ext;
 
-        if($size > 100 * 1204){
+        if($size > 1000 * 1204){
             redirect1("menu.php","Please upload new image!");
         }else{
             $brand = "INSERT INTO product (user_id,name,image) VALUES($userId,'$name','$filename')";
@@ -524,7 +524,7 @@
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
         $img_path = $path . '/' . $old_image;
 
-        if($size > 100 * 1204){
+        if($size > 1000 * 1204){
             redirect1("menuedit.php?id=$userId","Please upload new image!");
         }else{
             // delete old image 
@@ -578,7 +578,7 @@
             }
         }
 
-         if($size > 100 * 1024 || !$valid){
+         if($size > 1000 * 1024 || !$valid){
             redirect1("webinfo.php","Please upload new image!");
          }else{
         // process demo image 

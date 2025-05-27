@@ -107,7 +107,7 @@
     <ul class="menu font-[Montserrat,hanuman,Sans-serif] font-bold text-sm text-gray-800 hidden lg:flex justify-center items-center space-x-8 xl:space-x-10 relative z-10">
         <li class="text-[#144194]"><a href="index.php"><i class="fa-solid fa-house"></i> Home</a></li>
         <?php
-            $menu = getAll("product");
+            $menu = getMenu("product");
             if(mysqli_num_rows($menu) > 0){
                 foreach($menu as $item){
                     ?>
@@ -118,7 +118,7 @@
                         $subMenu = menu($item['id']);
                         if(mysqli_num_rows($subMenu) > 0){
                             ?>
-                            <ul class="sub-menu absolute grid-cols-1 gap-5 bg-gray-200 p-5 shadow-lg hidden text-gray-800 font-medium rounded-md">
+                            <ul class="sub-menu absolute grid-cols-2 gap-3 bg-gray-200 p-5 shadow-lg hidden text-gray-800 font-medium rounded-md">
                                 <?php
                                 foreach($subMenu as $subItem){
                                     ?>
@@ -137,3 +137,199 @@
             ?>
     </ul>
 </nav>
+
+<!-- responsive-navbar -->
+    <nav class="block lg:hidden">
+        <ul class="menu w-full flex md:hidden justify-center flex-col space-y-3 p-3 left-0 font-[Montserrat,hanuman,Sans-serif] font-medium text-md text-gray-700 bg-white z-30 border-t-2 shadow-xl fixed top-[63px]"
+            id="menu">
+            <li class="w-full"><a href="#">Home</a></li>
+
+            <!-- computer -->
+            <?php
+            $menu = getMenuwithID("product",17);
+            if(mysqli_num_rows($menu) > 0){
+                foreach($menu as $item){
+                    ?>
+            <li id="btnSubMenu1"><a href="#"><?= $item['name'] ?></a> <i class="fa-solid fa-angle-down"></i>
+                <?php
+                    $subMenu = menu($item['id']);
+                    if(mysqli_num_rows($subMenu) > 0){
+                    ?>
+                <ul class="sub-menu  grid-cols-1 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu1">
+                    <?php
+                        foreach($subMenu as $subItem){
+                        ?>
+                    <li><a href="products.php?id=<?= $subItem['id'] ?>"><?= $subItem['name']?></a></li>
+                    <?php
+                        }
+                    ?>
+                </ul>
+                <?php
+                    }
+                ?>
+            </li>
+            <?php
+                }
+            }
+            ?>
+            </li>
+
+            <!-- smartphone -->
+            <?php
+            $menu = getMenuwithID("product",16);
+            if(mysqli_num_rows($menu) > 0){
+                foreach($menu as $item){
+                    ?>
+            <li id="btnSubMenu2"><a href="#"><?= $item['name'] ?></a> <i class="fa-solid fa-angle-down"></i>
+                <?php
+                    $subMenu = menu($item['id']);
+                    if(mysqli_num_rows($subMenu) > 0){
+                    ?>
+                <ul class="sub-menu  grid-cols-2 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu2">
+                    <?php
+                        foreach($subMenu as $subItem){
+                        ?>
+                    <li><a href="products.php?id=<?= $subItem['id'] ?>"><?= $subItem['name']?></a></li>
+                    <?php
+                        }
+                    ?>
+                </ul>
+                <?php
+                    }
+                ?>
+            </li>
+            <?php
+                }
+            }
+            ?>
+            </li>
+
+            <!-- tablet -->
+            <?php
+            $menu = getMenuwithID("product",15);
+            if(mysqli_num_rows($menu) > 0){
+                foreach($menu as $item){
+                    ?>
+            <li id="btnSubMenu3"><a href="#"><?= $item['name'] ?></a> <i class="fa-solid fa-angle-down"></i>
+                <?php
+                    $subMenu = menu($item['id']);
+                    if(mysqli_num_rows($subMenu) > 0){
+                    ?>
+                <ul class="sub-menu  grid-cols-2 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu3">
+                    <?php
+                        foreach($subMenu as $subItem){
+                        ?>
+                    <li><a href="products.php?id=<?= $subItem['id'] ?>"><?= $subItem['name']?></a></li>
+                    <?php
+                        }
+                    ?>
+                </ul>
+                <?php
+                    }
+                ?>
+            </li>
+            <?php
+                }
+            }
+            ?>
+            </li>
+
+            <!-- watch -->
+            <?php
+            $menu = getMenuwithID("product",14);
+            if(mysqli_num_rows($menu) > 0){
+                foreach($menu as $item){
+                    ?>
+            <li id="btnSubMenu4"><a href="#"><?= $item['name'] ?></a> <i class="fa-solid fa-angle-down"></i>
+                <?php
+                    $subMenu = menu($item['id']);
+                    if(mysqli_num_rows($subMenu) > 0){
+                    ?>
+                <ul class="sub-menu  grid-cols-2 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu4">
+                    <?php
+                        foreach($subMenu as $subItem){
+                        ?>
+                    <li><a href="products.php?id=<?= $subItem['id'] ?>"><?= $subItem['name']?></a></li>
+                    <?php
+                        }
+                    ?>
+                </ul>
+                <?php
+                    }
+                ?>
+            </li>
+            <?php
+                }
+            }
+            ?>
+            </li>
+
+            <!-- accessories -->
+            <?php
+            $menu = getMenuwithID("product",13);
+            if(mysqli_num_rows($menu) > 0){
+                foreach($menu as $item){
+                    ?>
+            <li id="btnSubMenu5"><a href="#"><?= $item['name'] ?></a> <i class="fa-solid fa-angle-down"></i>
+                <?php
+                    $subMenu = menu($item['id']);
+                    if(mysqli_num_rows($subMenu) > 0){
+                    ?>
+                <ul class="sub-menu  grid-cols-2 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu5">
+                    <?php
+                        foreach($subMenu as $subItem){
+                        ?>
+                    <li><a href="products.php?id=<?= $subItem['id'] ?>"><?= $subItem['name']?></a></li>
+                    <?php
+                        }
+                    ?>
+                </ul>
+                <?php
+                    }
+                ?>
+            </li>
+            <?php
+                }
+            }
+            ?>
+            </li>
+
+             <!-- 2nd product -->
+            <?php
+            $menu = getMenuwithID("product",12);
+            if(mysqli_num_rows($menu) > 0){
+                foreach($menu as $item){
+                    ?>
+            <li id="btnSubMenu6"><a href="#"><?= $item['name'] ?></a> <i class="fa-solid fa-angle-down"></i>
+                <?php
+                    $subMenu = menu($item['id']);
+                    if(mysqli_num_rows($subMenu) > 0){
+                    ?>
+                <ul class="sub-menu  grid-cols-2 bg-gray-200 gap-3 text-gray-800 w-full p-3 grid bg-opacity-50 text-sm"
+                    id="sub-menu6">
+                    <?php
+                        foreach($subMenu as $subItem){
+                        ?>
+                    <li><a href="products.php?id=<?= $subItem['id'] ?>"><?= $subItem['name']?></a></li>
+                    <?php
+                        }
+                    ?>
+                </ul>
+                <?php
+                    }
+                ?>
+            </li>
+            <?php
+                }
+            }
+            ?>
+            </li>
+
+        </ul>
+    </nav>
+    <!-- end of responsive-navbar -->

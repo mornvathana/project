@@ -133,6 +133,7 @@ $(document).ready(function () {
       "display": "grid"
     });
   })
+
 })
 
 // pro-detail-img slider

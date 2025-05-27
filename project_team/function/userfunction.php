@@ -26,6 +26,12 @@
 
     }
 
+    function getBrandTitle($table,$id){
+        global $conn;
+        $query = "SELECT * FROM $table WHERE id = $id";
+        return $query_run = mysqli_query($conn,$query);
+    }
+
     function whereProduct($table,$selectCol,$property){
         global $conn;
         $query = "SELECT * FROM $table where $selectCol = '$property'";
@@ -114,5 +120,32 @@
         $_SESSION['message1'] = $message1;
         header('Location: '.$url);
         exit();
+    }
+
+    function getPopularFeatured($select,$limit){
+        global $conn;
+        $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
+                            , i.specification,i.description,i.image,i.demo_image 
+                            , p.product_id, p.popular_pd, p.used_pd , p.new_pd
+                            FROM product_detail d 
+                            JOIN product_image i on d.id = i.product_id 
+                            JOIN product_option p ON d.id = p.product_id
+                            where p.$select = 1 LIMIT $limit";
+        return $product1 = mysqli_query($conn,$product);
+
+    }
+
+    function getMenu($table){
+        global $conn;
+        // select index in sql
+        $query = "SELECT * FROM $table  ORDER BY id DESC LIMIT 1,7";
+        return mysqli_query($conn,$query);
+    }
+
+    function getMenuwithID($table,$id){
+        global $conn;
+        // select index in sql
+        $query = "SELECT * FROM $table WHERE id = $id";
+        return mysqli_query($conn,$query);
     }
 ?>

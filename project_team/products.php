@@ -42,7 +42,7 @@
                       <div class="range-container">
                           <div id="slider-track" class="track"></div>
                           <input type="range" name="min-price" id="range-min" min="0" max="3000" value="<?= $_GET['min-price'] ?? 8 ?>" step="1" class="absolute left-0 z-10">
-                          <input type="range" name="max-price" id="range-max" min="0" max="3000" value="<?= $_GET['max-price'] ?? 3000 ?>" step="1" class="absolute right-0 z-10">
+                          <input type="range" name="max-price" id="range-max" min="0" max="3000" value="<?= $_GET['max-price'] ?? 3000 ?>" step="1" class="absolute right-0 z-11">
                       </div>
                   </div>
                   <div class="mt-3 text-center font-[Poppins,hanuman,Sans-serif]">
@@ -51,6 +51,27 @@
                   </div>
               </div>
           </form>
+
+          <!-- ui slider range -->
+            <div class="flex items-center justify-center">
+                <div class="rounded-xl w-full">    
+                    <!-- Range Slider -->
+                    <div class="relative mt-8">
+                        <div class="range-container">
+                            <div id="slider-track" class="track"></div>
+                            <input type="range" id="range-min" min="8" max="1000" value="8" step="1" class="absolute left-0 z-10">
+                            <input type="range" id="range-max" min="8" max="1000" value="1000" step="1" class="absolute right-0 z-10">
+                        </div>
+                    </div>
+            
+                    <!-- Display current min and max value -->
+                    <div class="mt-3 text-center font-[Poppins,hanuman,Sans-serif]">
+                        <span id="min-value" class="text-md md:text-lg font-normal text-gray-800">8</span> -
+                        <span id="max-value" class="text-md md:text-lg font-normal text-gray-800">1000</span>
+                    </div>
+                </div>
+            
+            </div>
             <!-- product-box -->
             <div class="product-box w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-4 gap-3 mt-5">
             <!-- box -->
@@ -60,14 +81,14 @@
                 ?>
                 <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
                 <a href="viewdetail.php?id=<?= $item['id']?>" class="flex flex-col items-center space-y-2 w-full">
-                    <div class="pro-img w-full overflow-hidden rounded-md">
-                        <img src="uploads/category/<?= $item['image']?>" alt="" class="w-full">
+                    <div class="pro-img w-auto overflow-hidden rounded-md">
+                        <img src="uploads/category/<?= $item['image']?>" alt="" class="w-full 2xl:h-[145px] xl:h-[145px] lg:h-[145px] md:h-[145px] sm:h-[155px] h-[145px]">
                     </div>
                     <div class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
                         <del class="dis-price opacity-50">$<?= $item['sell_price']?></del>
                         <div class="full-price text-[#f34770!important]">$<?= $item['original_price']?></div>
                     </div>
-                    <div class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden"><?= $item['description']?></div>
+                    <div class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden"><?= $item['name']?></div>
                     <button class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-cart-shopping"></i> Add to cart</button>
                     <div class="line"></div>
                 </a>

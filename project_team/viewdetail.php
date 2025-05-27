@@ -12,7 +12,7 @@ include('includes/header.php');
           <main class="max-w-[90%] sm:max-w-[90%] md:max-w-[90%] lg:max-w-[90%] xl:max-w-[80%] 2xl:max-w-[80%] m-auto grid grid-cols-[100%] lg:grid-cols-[350px,1fr] gap-[2rem] lg:gap-[5rem] items-start">
           <div class="pro-img-detail static lg:sticky top-[5rem] w-full">
             <div class="main-img overflow-hidden rounded-xl w-full">
-              <img src="uploads/category/<?= $item['image']?>" alt="" class="w-full lg:w-[500px] h-auto lg:h-[300px]" id="zoom">
+              <img src="uploads/category/<?= $item['image']?>" alt="" class="w-full lg:w-[500px] h-auto lg:h-[350px]" id="zoom">
             </div>
             
             <!-- pro-detail-slider -->
@@ -24,8 +24,8 @@ include('includes/header.php');
                       $imageArray = explode(',', $imageString);
                       foreach ($imageArray as $img) {
                     ?>
-                        <div class="active-box-img child-img swiper-slide">
-                          <img src="uploads/category/<?php echo htmlspecialchars($img); ?>" alt="" class="card-img">
+                        <div class="active-box-img child-img swiper-slide h-[100px] w-[100px] sm:h-[120px] sm:w-[120px] md:h-[150px] md:w-[150px] lg:h-[90px] lg:w-[180px] xl:h-[200px] xl:w-[200px] 2xl:h-[200px] 2xl:w-[200px] overflow-hidden rounded-lg">
+                          <img src="uploads/category/<?php echo htmlspecialchars($img); ?>" alt="" class="card-img w-full h-full">
                         </div>
                     <?php
                       }
@@ -60,7 +60,6 @@ include('includes/header.php');
                   <input type="hidden" name = "" id = "prod_id" value = "<?= $item['id']?>">
                   <input type="hidden" id = "product_name" value = "<?= $item['name']?>">
                   <input type="hidden" id = "product_barcode" value = "<?= $item['barcode']?>">
-                  <input type="hidden" id = "specification" value = "<?= $item['specification']?>">
                   <input type="hidden" id = "product_price" value ="<?= $item['sell_price']?>">
                   <input type="hidden" id = "product_image" value = "<?= $item['image']?>">
                   <button type = "submit" class="bg-blue-500 text-white py-1 sm:py-2 px-3 sm:px-5 rounded-full font-semibold addToCart" id = "add_checkout"><i class="fa-solid fa-cart-shopping"></i> Add to cart</button>
