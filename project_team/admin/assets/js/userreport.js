@@ -59,7 +59,8 @@
                              <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.product}</td>
                             <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.price}</td>
                             <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.created}</td>
-                             <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1"><a href= "action/invoice.php?cartId=${item.cartId}&id=${item.id}" target = "_blank"><i class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a></td>
+                            <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1"><a href= "action/invoice.php?cartId=${item.cartId}&id=${item.id}" target = "_blank"><i class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a></td>
+                            <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1"><a href= "action/smallinvoice.php?cartid=${item.cartId}&orderid=${item.id}&userid=${item.userId}" target = "_blank"><i class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a></td>
                             </tr>`;
                         }
                         totalPage.text(Math.ceil( data[0]['total'] / limit));

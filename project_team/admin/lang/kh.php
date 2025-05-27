@@ -48,6 +48,8 @@ return [
     "createadmin" => "បង្កើតអ្នកគ្រប់គ្រង",
 
     // Newly translated items
+    "bigreceipt" => "បង្កាន់ដៃធំ",
+    "smallreceipt" => "បង្កាន់ដៃតូច",
     "permission" => "ការអនុញ្ញាត",
     "conpassword" => "បញ្ជាក់ពាក្យសម្ងាត់",
     "password" => "ពាក្យសម្ងាត់",

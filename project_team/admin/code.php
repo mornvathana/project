@@ -34,7 +34,7 @@
         $specification = $_POST['specification'];
         $description = $_POST['description'];
         $brand = $_POST['brand'];
-        $promotion = $_POST['promotion'];
+        $promotion = 1;
 
         $popular = in_array('popular',$_POST['option']) ? 1 : 0;
         $used = in_array('used',$_POST['option']) ? 1 : 0;
@@ -53,13 +53,13 @@
         $demo_images = [];
 
         foreach($_FILES['demo_image']['size'] as $key => $demo_size){
-            if($demo_size > 100 * 1024){
+            if($demo_size > 1000 * 1024){
                 $valid = false;
                 break;
             }
         }
 
-         if($size > 100 * 1024 || !$valid){
+         if($size > 1000 * 1024 || !$valid){
             redirect1("category.php","Please upload new image!");
          }else{
             $category = "INSERT INTO product_detail (brand_id, promotion, barcode, name, original_price, sell_price) 

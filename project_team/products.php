@@ -67,7 +67,7 @@
                         <del class="dis-price opacity-50">$<?= $item['sell_price']?></del>
                         <div class="full-price text-[#f34770!important]">$<?= $item['original_price']?></div>
                     </div>
-                    <div class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden"><?= $item['name']?></div>
+                    <div class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden"><?= $item['description']?></div>
                     <button class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-cart-shopping"></i> Add to cart</button>
                     <div class="line"></div>
                 </a>

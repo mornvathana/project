@@ -48,6 +48,8 @@ return [
     "createadmin" => "Create Admin",
 
     // Newly translated items
+    "bigreceipt" => "Receipt",
+    "smallreceipt" => "Small Receipt",
     "permission" => "Permission",
     "conpassword" => "Confirm Password",
     "password" => "Password",

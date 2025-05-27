@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 return;
             }
 
-            showModal(); // Show modal after QR generated
+            showModal(); 
             const md5Value = individual?.data?.md5;
             if (md5Value) startQrCodeScanner(md5Value);
         });
@@ -147,24 +147,50 @@ document.addEventListener("DOMContentLoaded", function () {
             if (data.responseMessage === 'Success') {
                 clearInterval(checkTransactionInterval);
 
-                const telegramToken = "7948926578:AAH13fuvJf_wUOFr2fNo8YGFIZzJvuUvSX0";
+                const token_telegram = "7948926578:AAH13fuvJf_wUOFr2fNo8YGFIZzJvuUvSX0";
                 const chat_id = "1985070836";
-                const order_number = "7777";
+                const order_number = "7777"; 
                 const imageUrl = "https://cdn.vectorstock.com/i/500p/25/50/order-now-modern-web-banner-with-package-icon-vector-31212550.jpg";
-
+                
+                const url = `https://api.telegram.org/bot${token_telegram}/sendPhoto`;
+                
                 const payload = {
                     chat_id: chat_id,
                     photo: imageUrl,
                     caption: `🚨 *New Order Alert* 🚨 \n\n🆔 *Order ID:* ${order_number}\n👤 *Customer Name:* ${firstName.value} ${lastName.value}\n📧 *Email:* ${email.value}\n\n📦*Order Detail*\n\n💵 *Total Price*: $${totalPrice}\n🏠 *Delivery Address*: ${address.value}, ${city.value}\n📱 *Contact Number*: ${phoneNumber.value}\n✅ *Thank you for your purchase*`,
                     parse_mode: "Markdown"
                 };
+                let message = false;
+                const sendMessage = async () => {
+                    if(message) return;
+                    message = true;
+                    try {
+                        const response = await fetch(url, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json"
+                            },
+                            body: JSON.stringify(payload)
+                        });
+                
+                        const data = await response.json();
+                        
+                        if (data.ok) {
+                            console.log("Message sent successfully!");
+                        }
+                    } catch (error) {
+                        console.error("Fetch error:", error);
+                    }
+                };
 
-                if (!transition) {
+                if(!transition){
                     transition = true;
                     autoSaveData();
-                    sendTelegram(payload, telegramToken);
                     window.location.href = 'http://localhost:8080/project/project_team/profile.php';
+                    sendMessage();
                 }
+            
+            
             } else {
                 console.log("Transaction pending...");
             }
@@ -174,24 +200,4 @@ document.addEventListener("DOMContentLoaded", function () {
             clearInterval(checkTransactionInterval);
         });
     };
-
-    async function sendTelegram(payload, token) {
-        const url = `https://api.telegram.org/bot${token}/sendPhoto`;
-        try {
-            const response = await fetch(url, {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify(payload)
-            });
-
-            const data = await response.json();
-            if (data.ok) {
-                console.log("Telegram message sent.");
-            } else {
-                console.error("Telegram error:", data);
-            }
-        } catch (err) {
-            console.error("Telegram fetch error:", err);
-        }
-    }
 });

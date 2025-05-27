@@ -30,6 +30,7 @@
             $data[] = array(
                 "id" => $row[0],
                 "name" => $name,
+                "userId" => $row['1'],
                 "product" => $row['4'],
                 "price" => $row['9'],
                 "created" => $row['1'],
