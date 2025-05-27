@@ -48,6 +48,7 @@ return [
     "createadmin" => "Create Admin",
 
     // Newly translated items
+    "equal" => "Equal",
     "sellproduct" => "Sell product",
     "Revenue" => "Revenue",
     "bigreceipt" => "Receipt",

@@ -13,11 +13,6 @@
   <script src="https://code.highcharts.com/highcharts-3d.js"></script>
         <!-- end header -->
     <div class="h-full px-5 py-5 overflow-y-auto bg-[#f3f5f7] ">
-    <?php
-     $data = getAll("orders");
-     if($data->num_rows > 0){
-        foreach($data as $item){
-        ?>
             <div class="grid w-full grid-cols-2 gap-5 md:grid-cols-4 lg:gap-12">
             <div class="overflow-hidden border shadow-md rounded-xl">
                 <!-- Box Header -->
@@ -42,7 +37,7 @@
                             ?>
                         </strong>
                             <?php
-                                $yesterday = date('Y-m-d', strtotime('-1 day'));
+                                $yesterday = date('Y-m-d', strtotime('-1day'));
                                 $sql = "SELECT COUNT(*) as yes_orders FROM orders WHERE DATE(created_at) = '$yesterday'";
                                 $result = mysqli_query($conn,$sql);
                                 $data = mysqli_fetch_assoc($result);
@@ -54,16 +49,19 @@
 
                                 if($data1['today_orders'] > $data['yes_orders']){
 
-                                    $customer = (($data1['today_orders'] - $data['yes_orders']) / $data['yes_orders']) * 100;
-                                    $percent = round($customer,2);
-                                    ?>
-                                    <small><span class="font-bold text-green-500"><?= $percent ?>%</span> <?php echo $text['increase']?></small>
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+                                                        ?>
+                                    <small><span class="font-bold text-green-500"><?= $customer ?></span> <?php echo $text['increase']?></small>
                                     <?php
                                 }else if($data1['today_orders'] < $data['yes_orders']){
-                                    $customer = (($data1['today_orders'] - $data['yes_orders']) / $data['yes_orders']) * 100;
-                                    $percent = round($customer,2);
-                                    ?>
-                                     <small><span class="font-bold text-red-500"><?= $percent ?>%</span> <?php echo $text['decrease']?></small>
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+                                                        ?>
+                                     <small><span class="font-bold text-red-500"><?= $customer ?></span> <?php echo $text['decrease']?></small>
+                                    <?php
+                                }else if($data1['today_orders'] == $data['yes_orders']){
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+                                                        ?>
+                                     <small><sp class="font-bold text-green-500"><?php echo $text['equal']?></small>
                                     <?php
                                 }
                             ?>
@@ -85,7 +83,7 @@
                         <strong>
                             <?php
                                 $today = date('Y-m-d');
-                                $sql = "SELECT SUM(total_price) AS revenue FROM orders WHERE DATE(created_at) = '$today'";
+                                $sql = "SELECT SUM(total_price) as revenue FROM orders WHERE DATE(created_at) = '$today'";
                                 $result = mysqli_query($conn,$sql);
                                 $data = mysqli_fetch_assoc($result);
                                 ?>
@@ -106,15 +104,22 @@
 
                                 if($data1['today_orders'] > $data['yes_orders']){
 
-                                    $customer = (($data1['today_orders'] - $data['yes_orders']) / $data['yes_orders']) * 100;
-                                    $percent = round($customer,2);
-                                    
-                                    if(!empty($percent)){}
-                                }else if($data1['today_orders'] < $data['yes_orders']){
-                                    $customer = (($data1['today_orders'] - $data['yes_orders']) / $data['yes_orders']) * 100;
-                                    $percent = round($customer,2);
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+                    
                                     ?>
-                                     <small><span class="font-bold text-red-500"><?= $percent ?>%</span> <?php echo $text['decrease']?></small>
+                                     <small><span class="font-bold text-green-500">$<?= $customer ?></span> <?php echo $text['increase']?></small>
+                                    <?php
+
+                                }else if($data1['today_orders'] < $data['yes_orders']){
+
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+                                                        ?>
+                                     <small><span class="font-bold text-red-500"><?= $customer ?></span> <?php echo $text['decrease']?></small>
+                                    <?php
+                                }else if($data1['today_orders'] == $data['yes_orders']){
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+                                                        ?>
+                                     <small><sp class="font-bold text-green-500"><?php echo $text['equal']?></small>
                                     <?php
                                 }
                             ?>
@@ -156,15 +161,21 @@
 
                                 if($data1['today_orders'] > $data['yes_orders']){
 
-                                    $customer = (($data1['today_orders'] - $data['yes_orders']) / $data['yes_orders']) * 100;
-                                    $percent = round($customer,2);
-                                    
-                                    if(!empty($percent)){}
-                                }else if($data1['today_orders'] < $data['yes_orders']){
-                                    $customer = (($data1['today_orders'] - $data['yes_orders']) / $data['yes_orders']) * 100;
-                                    $percent = round($customer,2);
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+
                                     ?>
-                                     <small><span class="font-bold text-red-500"><?= $percent ?>%</span> <?php echo $text['decrease']?></small>
+                                     <small><span class="font-bold text-green-500"><?= $customer ?></span> <?php echo $text['increase']?></small>
+                                    <?php
+
+                                }else if($data1['today_orders'] < $data['yes_orders']){
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+                                    ?>
+                                     <small><span class="font-bold text-red-500"><?= $customer ?></span> <?php echo $text['decrease']?></small>
+                                    <?php
+                                }else if($data1['today_orders'] == $data['yes_orders']){
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+                                                        ?>
+                                     <small><sp class="font-bold text-green-500"><?php echo $text['equal']?></small>
                                     <?php
                                 }
                             ?>
@@ -206,15 +217,22 @@
 
                                 if($data1['today_orders'] > $data['yes_orders']){
 
-                                    $customer = (($data1['today_orders'] - $data['yes_orders']) / $data['yes_orders']) * 100;
-                                    $percent = round($customer,2);
-                                    
-                                    if(!empty($percent)){}
-                                }else if($data1['today_orders'] < $data['yes_orders']){
-                                    $customer = (($data1['today_orders'] - $data['yes_orders']) / $data['yes_orders']) * 100;
-                                    $percent = round($customer,2);
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+
                                     ?>
-                                     <small><span class="font-bold text-red-500"><?= $percent ?>%</span> <?php echo $text['decrease']?></small>
+                                     <small><span class="font-bold text-green-500"><?= $customer ?></span> <?php echo $text['increase']?></small>
+                                    <?php
+                                                        
+                                    
+                                }else if($data1['today_orders'] < $data['yes_orders']){
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+                                    ?>
+                                     <small><span class="font-bold text-red-500"><?= $customer ?></span> <?php echo $text['decrease']?></small>
+                                    <?php
+                                }else if($data1['today_orders'] == $data['yes_orders']){
+                                    $customer = $data1['today_orders'] - $data['yes_orders'];
+                                    ?>
+                                     <small><sp class="font-bold text-green-500"><?php echo $text['equal']?></small>
                                     <?php
                                 }
                             ?>
@@ -222,96 +240,133 @@
                 </div>
             </div>
         </div>
-        <?php
-        }
-     }
-    ?>
     <!-- end Card -->
      <div class = "grid grid-cols-1 md:grid-cols-2 xl:grid-cols-2 gap-5 my-8">
         <div id="container" class = "bg-white rounded-md shadow-md"></div>
         <div id = "container1" class = "bg-white rounded-md shadow-md"></div>
      </div>
-</div>  
+     <?php
+        $data = [];
+        $sql = "SELECT DATE_FORMAT(created_at,'%M') as month, SUM(total_price) as total 
+                FROM orders 
+                WHERE YEAR(created_at) = YEAR(CURDATE()) 
+                GROUP BY MONTH(created_at) 
+                ORDER BY MONTH(created_at)";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data[] = [$row['month'], (float)$row['total']];
+        }
+        $jsonData = json_encode($data);
+        ?>
+        <?php
+        $data1 = [];
+        $sql = "SELECT DATE_FORMAT(created_at,'%M') as month, COUNT(cart_id) as total 
+                FROM orders 
+                WHERE YEAR(created_at) = YEAR(CURDATE()) 
+                GROUP BY MONTH(created_at) 
+                ORDER BY MONTH(created_at)";
+        $result = mysqli_query($conn, $sql);
+        while ($row = mysqli_fetch_assoc($result)) {
+            $data1[] = [$row['month'], (float)$row['total']];
+        }
+        $jsonData1 = json_encode($data1);
+        ?>
+
+</div> 
 <script>
-    Highcharts.chart('container', {
-        chart: {
-            type: 'column'
-        },
-        title: {
-            text: 'ទិន្នន័យការលក់'
-        },
-        xAxis: {
-            categories: ['USA', 'China', 'Brazil', 'EU', 'Argentina', 'India'],
-            crosshair: true,
-            accessibility: {
-                description: 'Countries'
-            }
-        },
-        tooltip: {
-            valueSuffix: ' (1000 MT)'
-        },
-        plotOptions: {
-            column: {
-                pointPadding: 0.2,
-                borderWidth: 0
-            }
-        },
-        series: [
-            {
-                name: 'Corn',
-                data: [387749, 280000, 129000, 64300, 54000, 34300]
+    const chartData = <?= $jsonData ?>;
+        const chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container',
+                type: 'column',
+                options3d: {
+                    enabled: true,
+                    alpha: 15,
+                    beta: 15,
+                    depth: 50,
+                    viewDistance: 25
+                }
             },
-            {
-                name: 'Wheat',
-                data: [45321, 140000, 10000, 140500, 19500, 113500]
-            }
-        ]
-    });
-</script>
+            title: {
+                text: 'Monthly Sales Report for ' + new Date().getFullYear()
+            },
+            subtitle: {
+                text: ''
+            },
+            xAxis: {
+                type: 'category'
+            },
+            yAxis: {
+                title: {
+                    enabled: false
+                }
+            },
+            tooltip: {
+                headerFormat: '<b>{point.key}</b><br>',
+                pointFormat: 'Total Sales: ${point.y:.2f}'
+            },
+            legend: {
+                enabled: false
+            },
+            plotOptions: {
+                column: {
+                    depth: 25
+                }
+            },
+            series: [{
+                data: chartData,
+                colorByPoint: true
+            }]
+        });
+
+        function showValues() {
+            document.getElementById('alpha-value').innerHTML = chart.options.chart.options3d.alpha;
+            document.getElementById('beta-value').innerHTML = chart.options.chart.options3d.beta;
+            document.getElementById('depth-value').innerHTML = chart.options.chart.options3d.depth;
+        }
+
+        document.querySelectorAll('#sliders input').forEach(input =>
+            input.addEventListener('input', e => {
+                chart.options.chart.options3d[e.target.id] = parseFloat(e.target.value);
+                showValues();
+                chart.redraw(false);
+            })
+        );
+
+        showValues();
+</script> 
 <script>
+    const chartData1 = <?= $jsonData1 ?>;
+
     Highcharts.chart('container1', {
         title: {
-            text: 'Growth of Internet Users Worldwide (logarithmic scale)'
+            text: 'Monthly Order Count (logarithmic scale)'
         },
-
         accessibility: {
             point: {
                 valueDescriptionFormat:
-                    '{xDescription}{separator}{value} million(s)'
+                    '{xDescription}{separator}{value} order(s)'
             }
         },
-
         xAxis: {
             title: {
-                text: 'Year'
+                text: 'Month'
             },
-            categories: [1995, 2000, 2005, 2010, 2015, 2020, 2023]
+            categories: chartData1.map(item => item[0])
         },
-
         yAxis: {
             type: 'logarithmic',
             title: {
-                text: 'Number of Internet Users (in millions)'
+                text: ''
             }
         },
-
         tooltip: {
             headerFormat: '<b>{series.name}</b><br />',
-            pointFormat: '{point.y} million(s)'
+            pointFormat: '{point.y} order(s)'
         },
-
         series: [{
-            name: 'Internet Users',
-            keys: ['y', 'color'],
-            data: [
-                [16, '#0000ff'],
-                [361, '#8d0073'],
-                [1018, '#ba0046'],
-                [2025, '#d60028'],
-                [3192, '#eb0014'],
-                [4673, '#fb0004'],
-                [5200, '#ff0000']
-            ],
+            name: 'Orders',
+            data: chartData1.map(item => item[1]),
             color: {
                 linearGradient: {
                     x1: 0,
@@ -327,5 +382,6 @@
         }]
     });
 </script>
+
 <?php include('includes/footer.php')?>
       
