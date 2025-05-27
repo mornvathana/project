@@ -555,6 +555,7 @@
         $phonenumber = $_POST['phonenumber'];
         $telegram = $_POST['telegram'];
         $address = $_POST['address'];
+        $email = $_POST['email'];
         $id = 1;
 
         $old_image = $_POST['old_image'];
@@ -571,7 +572,7 @@
         $demo_images = [];
 
         foreach($_FILES['demo_image']['size'] as $key => $demo_size){
-            if($demo_size > 100 * 1024){
+            if($demo_size > 1000 * 1024){
                 $valid = false;
                 break;
             }
@@ -631,9 +632,9 @@
             $demo = $item_demo;
         }    
 
-        $stmt = $conn->prepare("UPDATE information_website  SET phone_number = ?, telegram_number = ?, logo = ?,
+        $stmt = $conn->prepare("UPDATE information_website  SET phone_number = ?, telegram_number = ?, email = ?, logo = ?,
         slide_image = ?, address = ? WHERE id = ?");
-        $stmt->bind_param("iisssi", $phonenumber, $telegram, $filename,$demo,$address,$id);
+        $stmt->bind_param("iissssi", $phonenumber, $telegram,$email, $filename,$demo,$address,$id);
         $stmt->execute();
         
         if($stmt){

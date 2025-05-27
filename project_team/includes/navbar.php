@@ -10,7 +10,7 @@
 
                 <div class="email-contact flex items-center space-x-2">
                     <i class="fa-solid fa-envelope"></i>
-                    <p>mrounit83@gmail.com</p>
+                    <p>Enrathana@gmail.com</p>
                 </div>
             </div>
             <div class="">

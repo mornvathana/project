@@ -28,6 +28,10 @@ include('../middleware/adminAccess.php');
                                         <input type="text" name = "telegram" id = "telegram"  value = "<?= $data['telegram_number']?>" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "telegram">
                                     </div>
                                     <div class = "w-full">
+                                        <label for="email" class = "block py-1 text-[13px]">Email</label>
+                                        <input type="text" name = "email" id = "email"  value = "<?= $data['email']?>" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "email">
+                                    </div>
+                                    <div class = "w-full">
                                         <label for="address" class = "block py-1 text-[13px]">address</label>
                                         <input type="text" name = "address" id = "address" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" value = "<?= $data['address']?>" placeholder = "address">
                                     </div>

@@ -48,6 +48,7 @@ return [
     "createadmin" => "បង្កើតអ្នកគ្រប់គ្រង",
 
     // Newly translated items
+    "webinfo" => "ព័ត៌មានវេបសាយ",
     "equal" => "ស្មើរតុល្យភាព",
     "sellproduct" => "ទំនិញលក់",
     "revenue" => "ចំណូល",
