@@ -4,7 +4,7 @@ include('../middleware/adminAccess.php');
 include('middleware/category.php');
 include("lang.php");
 ?>
-        <div class = "h-[1200px] px-2 py-2">
+        <div class = "h-[1200px] px-2 py-2 overflow-hidden">
                 <div class = "w-full bg-[#f3f5f7] h-[100%] rounded-md p-5">
                 <div class = "w-full h-[5%] flex justify-between items-center">
                     <div>
@@ -67,6 +67,21 @@ include("lang.php");
                                                 foreach($brand as $item1){
                                                 ?>
                                                 <option value="<?= $item1['id']?>"><?= $item1['name'] ?></option>
+                                                <?php
+                                                }
+                                                }
+                                            ?>
+                                            </select>
+                                        </div>
+                                        <div class = "w-full">
+                                            <label for="slug" class = "block py-1 text-[13px]">Slug</label>
+                                            <select id = "slug" name = "slug" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md">
+                                            <?php
+                                                $slug = getAll('product');
+                                                if($slug->num_rows > 0){
+                                                foreach($slug as $item1){
+                                                ?>
+                                                <option value="<?= $item1['name']?>" <?= $item['slug'] == $item1['name'] ? 'selected' : '' ?>><?= $item1['name'] ?></option>
                                                 <?php
                                                 }
                                                 }
@@ -136,7 +151,7 @@ include("lang.php");
                                         <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
                                             <input type="file" name = "image"  id = "profile_image" accept="image/*" class = "w-full h-full hidden">
                                         </div>
-                                        <label for="profile_image" class = "absolute text-sm w-full left-[30%] "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
+                                        <label for="profile_image" class = "absolute text-sm w-full left-[40%] "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
                                         </div> 
                                         </div>
                                         </div>
@@ -174,7 +189,7 @@ include("lang.php");
                                         <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
                                             <input type="file" name = "demo_image[]" id = "profile_image1"  multiple accept="image/*" class = "w-full h-full hidden">
                                         </div>
-                                        <label for="profile_image1" class = "absolute text-sm left-[30%] w-full "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
+                                        <label for="profile_image1" class = "absolute text-sm left-[40%] w-full "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
                                         </div> 
                                         </div>
                                         </div>

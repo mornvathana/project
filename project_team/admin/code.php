@@ -29,6 +29,7 @@
     }else if(isset($_POST['add_category'])){
         $barcode = $_POST['barcode'];
         $name = $_POST['name'];
+        $slug = $_POST['name'];
         $original_price = $_POST['original_price'];
         $sell_price = $_POST['sell_price'];
         $specification = $_POST['specification'];
@@ -62,10 +63,10 @@
          if($size > 1000 * 1024 || !$valid){
             redirect1("category.php","Please upload new image!");
          }else{
-            $category = "INSERT INTO product_detail (brand_id, promotion, barcode, name, original_price, sell_price) 
+            $category = "INSERT INTO product_detail (brand_id, slug, barcode, name, original_price, sell_price) 
              VALUES (?, ?, ?, ?, ?, ?)";
             $stmt = $conn->prepare($category);
-            $stmt->bind_param("iiissi", $brand, $promotion, $barcode, $name, $original_price, $sell_price);
+            $stmt->bind_param("isissi", $brand, $slug, $barcode, $name, $original_price, $sell_price);
             $stmt->execute();
             
             if($stmt){
@@ -111,11 +112,11 @@
         $specification = $_POST['specification'];
         $description = $_POST['description'];
         $brand = $_POST['brand'];
-        $promotion = $_POST['promotion'];
+        $slug = $_POST['slug'];
 
-        $popular = in_array('popular',$_POST['option']) ? 1 : 0;
-        $used = in_array('used',$_POST['option']) ? 1 : 0;
-        $new = in_array('new',$_POST['option']) ? 1 : 0;
+        $popular = $_POST['option'] ? 1 : 0;
+        $used = $_POST['option'] ? 1 : 0;
+        $new = $_POST['option'] ? 1 : 0;
 
         $old_image = $_POST['old_image'];
         $size = $_FILES['image']['size'];
@@ -138,9 +139,9 @@
          if($size > 1000 * 1024 || !$valid){
             redirect1("category.php","Please upload new image!");
          }else{
-            $stmt = $conn->prepare("UPDATE product_detail  SET brand_id = ?,  promotion = ?, barcode = ?,
+            $stmt = $conn->prepare("UPDATE product_detail  SET brand_id = ?,  slug = ?, barcode = ?,
             name = ?, original_price = ?, sell_price = ? WHERE id = ?");
-            $stmt->bind_param("iiissii", $brand, $promotion, $barcode, $name, $original_price, $sell_price,$id);
+            $stmt->bind_param("isissii", $brand, $slug, $barcode, $name, $original_price, $sell_price,$id);
             $stmt->execute();
             
             if($stmt){
@@ -181,6 +182,7 @@
                 if($stmt1){
                     // 
                     $text = "Edit Category ID : ". $id;
+
                     activity_log($user_id,$text,$ip);
 
                     updatePdOption($popular,$used,$new,$id);

@@ -188,13 +188,13 @@
     // join table 
     function allProduct(){
         global $conn;
-        $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
+        $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
                     , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id";
         return $product1 = mysqli_query($conn,$product);
     }
     function getProduct($id){
         global $conn;
-        $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
+        $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
                     , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.id = '$id'";
         return $product1 = mysqli_query($conn,$product);
     }
