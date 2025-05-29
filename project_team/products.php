@@ -2,9 +2,10 @@
 <?php
   	$min = isset($_GET['min-price']) ? (int)$_GET['min-price'] : 8;
     $max = isset($_GET['max-price']) ? (int)$_GET['max-price'] : 3000;
-    if(isset($_GET{'id'})){
+    if(isset($_GET{'id'}) && isset($_GET['slug'])){
         $product = $_GET['id'];
-         $product_item = getProduct($product,$min,$max);
+        $slug = $_GET['slug'];
+        $product_item = getProduct($product,$min,$max,$slug);
     }
 ?>
 <!-- start proudct -->

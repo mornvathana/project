@@ -3,7 +3,7 @@
 
     function getPopularProduct($select,$id){
         global $conn;
-        $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
+        $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
                             , i.specification,i.description,i.image,i.demo_image 
                             , p.product_id, p.popular_pd, p.used_pd , p.new_pd
                             FROM product_detail d 
@@ -15,7 +15,7 @@
     }
     function getProductByBrand($select,$id){
         global $conn;
-        $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
+        $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
                             , i.specification,i.description,i.image,i.demo_image 
                             , p.product_id, p.popular_pd, p.used_pd , p.new_pd
                             FROM product_detail d 
@@ -98,27 +98,27 @@
                     , i.user_id,i.cart_id,i.first_name,i.last_name,i.city,i.province,i.email,i.phone_number,i.total_price,i.created_at FROM cart d JOIN orders i on d.id = i.cart_id where i.cart_id = $cartId AND i.user_id = $userId AND i.id = $orderId";
         return $product1 = mysqli_query($conn,$product);
     }
-    function getProduct($id,$min,$max){
+    function getProduct($id,$min,$max,$slug){
         global $conn;
-        $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
-                    , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.brand_id = $id AND d.sell_price BETWEEN $min AND $max";
+        $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
+                    , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.brand_id = $id AND d.slug = '$slug' AND d.sell_price BETWEEN $min AND $max ";
         return $product1 = mysqli_query($conn,$product);
     }
     function getProductEach($id){
         global $conn;
-        $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
+        $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
                     , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.id = '$id'";
         return $product1 = mysqli_query($conn,$product);
     }
     function getBrandEach($id){
         global $conn;
-        $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
+        $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
                     , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.brand_id = $id";
         return $product1 = mysqli_query($conn,$product);
     }
     function menu($id){
         global $conn;
-        $menu = "SELECT name,id FROM brands WHERE product_id = $id";
+        $menu = "SELECT name,id FROM brands WHERE id = $id";
         return $menu1 = mysqli_query($conn,$menu);
     }
     function getShipping($id){
@@ -139,7 +139,7 @@
 
     function getPopularFeatured($select,$limit){
         global $conn;
-        $product = "SELECT d.id,d.brand_id,d.promotion,d.barcode,d.name,d.original_price,d.sell_price 
+        $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
                             , i.specification,i.description,i.image,i.demo_image 
                             , p.product_id, p.popular_pd, p.used_pd , p.new_pd
                             FROM product_detail d 
