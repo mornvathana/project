@@ -10,7 +10,6 @@
             <ul class="space-y-3 font-medium text-[15px] p-5 font-[Poppins,hanuman,Sans-serif] text-gray-800" id="righ_button">
                 <li class="active"><a href="#"><i class="fa-regular fa-user"></i> Profile</a></li>
                 <li class=""><a href="#"><i class="fa-solid fa-cart-shopping"></i> My Orders</a></li>
-                <li class=""><a href="#"><i class="fa-solid fa-heart"></i> My Favorites</a></li>
                 <li class=""><a href="#"><i class="fa-solid fa-truck"></i> Order Tracking</a></li>
             </ul>
         </div>
@@ -90,16 +89,17 @@
 
                         <!-- table of product-cart -->
                         <table class="">
-                            <!-- <thead class="">
+                             <thead class="">
                                 <tr class="font-normal text-md">
                                     <td class="invisible"></td>
                                     <th>Image</th>
-                                    <th>Product Name</th>
+                                    <th>Price</th>
                                     <th>Price</th>
                                     <th>Quantity</th>
-                                    <th>Subtotal</th>
+                                    <th>A4 Receipt</th>
+                                    <th>Small Receipt</th>
                                 </tr>
-                            </thead> -->
+                            </thead>
                             <tbody class="font-normal">
                                 <?php
                                     $cart = getOrders($id);
@@ -137,8 +137,6 @@
                                 ?>
                             </tbody>
                         </table>
-                        <button class="mt-5 bg-blue-500 text-white rounded-lg p-2 font-semibold text-sm"><a href="#"><i
-                                    class="fa-regular fa-pen-to-square"></i> Shopping</a></button>
                     </form>
                 </div>
                 </div>

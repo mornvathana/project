@@ -12,6 +12,10 @@ ob_clean();
     <script src = "assets/js/tailwindcss.js"></script>
     <script src = "assets/js/fontawesome.css"></script>
     <script src = "assets/js/jquery.min.js"></script>
+    <!-- Datatable -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    
      <script src="https://code.highcharts.com/highcharts.js"></script>
     <!-- Then load 3D module -->
     <script src="https://code.highcharts.com/highcharts-3d.js"></script>

@@ -65,8 +65,7 @@
                 const workbook = XLSX.utils.table_to_book(table[0], { sheet: "Sheet 1" });
                 XLSX.writeFile(workbook, "table_export.xlsx");
             });
-            // excel export 
-            
+
             product(currentPage);
 
             function product(page){

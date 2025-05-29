@@ -572,13 +572,13 @@
         $demo_images = [];
 
         foreach($_FILES['demo_image']['size'] as $key => $demo_size){
-            if($demo_size > 1000 * 1024){
+            if($demo_size > 10000 * 1024){
                 $valid = false;
                 break;
             }
         }
 
-         if($size > 1000 * 1024 || !$valid){
+         if($size > 10000 * 1024 || !$valid){
             redirect1("webinfo.php","Please upload new image!");
          }else{
         // process demo image 

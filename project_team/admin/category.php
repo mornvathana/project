@@ -66,6 +66,21 @@ include("lang.php");
                             ?>
                             </select>
                         </div>
+                         <div class = "w-full">
+                            <label for="brand" class = "block py-1 text-[13px]">Slug</label>
+                            <select id = "brand" name = "brand" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md">
+                            <?php
+                                $brand = getAll('product');
+                                if($brand->num_rows > 0){
+                                foreach($brand as $item){
+                                ?>
+                                <option value="<?= $item['name']?>"><?= $item['name'] ?></option>
+                                <?php
+                                }
+                                }
+                            ?>
+                            </select>
+                        </div>
                         <!--  -->
                         <div class = "w-full my-2">
                         <label for="" class = "block py-1 text-[13px] font-medium w-full"><?php echo $text['productchoise']?></label>

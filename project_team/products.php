@@ -52,26 +52,7 @@
               </div>
           </form>
 
-          <!-- ui slider range -->
-            <div class="flex items-center justify-center">
-                <div class="rounded-xl w-full">    
-                    <!-- Range Slider -->
-                    <div class="relative mt-8">
-                        <div class="range-container">
-                            <div id="slider-track" class="track"></div>
-                            <input type="range" id="range-min" min="8" max="1000" value="8" step="1" class="absolute left-0 z-10">
-                            <input type="range" id="range-max" min="8" max="1000" value="1000" step="1" class="absolute right-0 z-10">
-                        </div>
-                    </div>
-            
-                    <!-- Display current min and max value -->
-                    <div class="mt-3 text-center font-[Poppins,hanuman,Sans-serif]">
-                        <span id="min-value" class="text-md md:text-lg font-normal text-gray-800">8</span> -
-                        <span id="max-value" class="text-md md:text-lg font-normal text-gray-800">1000</span>
-                    </div>
-                </div>
-            
-            </div>
+         
             <!-- product-box -->
             <div class="product-box w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-4 gap-3 mt-5">
             <!-- box -->

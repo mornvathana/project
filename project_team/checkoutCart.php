@@ -195,7 +195,7 @@ ob_end_flush();
                             foreach($shipping as $item){
                             ?>
                             <div class="flex items-center mt-3 space-x-1">
-                                <input type="radio" name="shipping" value = "<?= $item['id'] ?>" id="shipping" class = 'shipping-radio' <?= ($item['id'] == $current_shipping_id) ? 'checked' : ''?>>
+                                <input type="radio" name="shipping" value = "<?= $item['id'] ?>" id="shipping" class = 'shipping-radio'  <?= ($item['id'] == $current_shipping_id) ? 'checked' : ''?>>
                                 <label for="shipping"><?= $item['shipping_option'] ?></label>
                             </div>
                             <?php
@@ -228,7 +228,7 @@ ob_end_flush();
 
                 <div class="flex flex-col space-y-2 mt-5">
                     <button class="w-full p-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-yellow-400 text-sm">
-                        <a href="payment.php"><i class="fa-solid fa-credit-card"></i> Proceed to Checkout</a>
+                        <a href="payment.php"><i class="fa-solid fa-credit-card disabled"></i> Proceed to Checkout</a>
                     </button>
                     <button class="w-full p-3 bg-gray-200 text-gray-600 font-semibold rounded-md hover:bg-gray-300 text-sm">
                         <a href="index.php"><i class="fa-solid fa-cart-shopping"></i> Continue Shopping</a>

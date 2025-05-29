@@ -4,13 +4,13 @@
     include("lang.php");
 ?>
 <div class="h-full px-2 py-2 bg-[#f3f5f7]">
-    <div class="w-full h-[100vh] rounded-md p-5">
+    <div class="w-full rounded-md p-5">
         <div class="w-full h-[10%] flex justify-between items-center">
             <div>
                 <h1 class="font-medium"><?php echo $text['productreport']?></h1>
             </div>
         </div>
-        <div class = "w-full md:h-[245px] lg:h-[250px] grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class = "w-full  grid grid-cols-1 md:grid-cols-2 gap-5">
             <div id = "container1" class = "w-full rounded-md">
             </div>
             <div class = "w-full h-[250px] shadow-md bg-white ">
@@ -31,14 +31,12 @@
                       foreach($item as $name){
                         ?>
                         <div class = "text-center">
-                          <span class = "text-sm"><?= $name['name']?></span>
                         </div>
                         <?php
                           $count = countProduct("product_detail",$name['id']);
                           $data[] = [$name['name'],(int)$count];
                           ?>
                           <div class = "text-center">
-                                <span class = "text-sm"><?= $count ?></span>
                               </div>
                           <?php
                         ?>
@@ -89,9 +87,9 @@
             </div>
         </div>
         <div class = "bg-white h-[50%] w-full mt-2" id = "printArea">
-          <table class="text-center w-full table-auto bg-white relative">
+          <table class="text-center w-full table-auto bg-white relative" id = "myTable">
                 <thead>
-                    <tr class = "bg-[#f6f8fa]">
+                    <tr class = "bg-[#f6f8fa] text-center">
                       <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">​<?php echo $text['id']?></th>
                       <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">​<?php echo $text['barcode']?></th>
                       <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium">​<?php echo $text['name']?></th>
