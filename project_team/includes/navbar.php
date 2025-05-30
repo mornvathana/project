@@ -146,17 +146,20 @@
                         <a href="#"><?= $item['name'] ?> <i class="fa-solid fa-angle-down"></i></a>
                         <ul class="sub-menu absolute grid-cols-2 gap-3 bg-gray-200 p-5 shadow-lg hidden text-gray-800 font-medium rounded-md">
                         <?php
+                            $show_name = [];
                             $data = whereProduct("product_detail","slug",$item['name']);
                             if($data->num_rows > 0){
                              foreach($data as $row){
                              $sub = menu($row['brand_id']);
                              if($sub->num_rows > 0){
                                 $name = $sub->fetch_assoc();
-                                ?>
                                 
+                                if(!in_array($name['name'],$show_name)){
+                                $show_name[] = $name['name'];
+                                ?>
                                 <li><a href="products.php?id=<?= $name['id'] ?>&slug=<?= $item['name']?>"><?= $name['name']?></a></li>
-                               
                                 <?php
+                                }
                              }
                              }
                             }
