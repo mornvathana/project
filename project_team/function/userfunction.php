@@ -101,7 +101,8 @@
     function getProduct($id,$min,$max,$slug){
         global $conn;
         $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
-                    , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id where d.brand_id = $id AND d.slug = '$slug' AND d.sell_price BETWEEN $min AND $max ";
+                    , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id 
+                    WHERE d.brand_id = $id AND d.slug = '$slug' AND d.sell_price BETWEEN $min AND $max ";
         return $product1 = mysqli_query($conn,$product);
     }
     function getProductEach($id){

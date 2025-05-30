@@ -38,6 +38,7 @@
             <!-- ui slider range -->
             <form method="GET" action="" class="flex items-center justify-center">
               <input type="hidden" name="id" value="<?= $_GET['id'] ?? '' ?>">
+              <input type="hidden" name="slug" value="<?= $_GET['slug'] ?>">
               <div class="rounded-xl w-full">
                   <div class="relative mt-8">
                       <div class="range-container">

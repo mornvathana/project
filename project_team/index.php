@@ -40,7 +40,7 @@
                 if($image->num_rows > 0){
                     foreach($image as $item){
                     ?>
-                        <a href="products.php?id=<?= $item['id'] ?>"><img src="uploads/brand/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" class="w-full shadow-md rounded-xl overflow-hidden"></a>
+                        <a href="products.php?id=<?= $item['id'] ?>&slug=Smartphone"><img src="uploads/brand/<?= $item['image'] ?>" alt="<?= $item['name'] ?>" class="w-full shadow-md rounded-xl overflow-hidden"></a>
                     <?php
                     }
                 }
