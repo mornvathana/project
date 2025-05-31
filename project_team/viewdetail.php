@@ -24,7 +24,7 @@ include('includes/header.php');
                       $imageArray = explode(',', $imageString);
                       foreach ($imageArray as $img) {
                     ?>
-                        <div class="active-box-img child-img swiper-slide h-[100px] w-[100px] sm:h-[120px] sm:w-[120px] md:h-[150px] md:w-[150px] lg:h-[90px] lg:w-[180px] xl:h-[200px] xl:w-[200px] 2xl:h-[200px] 2xl:w-[200px] overflow-hidden rounded-lg">
+                        <div class="active-box-img child-img swiper-slide h-[100px] w-[100px] sm:h-[120px] sm:w-[120px] md:h-[150px] md:w-[150px] lg:h-[90px] lg:w-[180px] xl:h-[90px] xl:w-[200px] 2xl:h-[100px] 2xl:w-[200px] overflow-hidden rounded-lg">
                           <img src="uploads/category/<?php echo htmlspecialchars($img); ?>" alt="" class="card-img w-full h-full">
                         </div>
                     <?php
