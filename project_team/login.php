@@ -1,20 +1,4 @@
 <?php 
-//  session_start();
-//  if(isset($_SESSION['auth'])){
-//      header('Location: index.php');
-//      $_SESSION['message'] = "You already login!";
-//      exit();
-//  }
-// include('includes/header.php');
-//     require __DIR__ . "/vendor/autoload.php";
-//     $client = new Google\Client;
-//     $client->setClientId("");
-//     $client->setClientSecret("");
-//     $client->setRedirectUri("http://localhost:8080/ecommerce_project_sarana/");
-//     $client->addScope("email");
-//     $client->addScope("profile");
-
-//     $url = $client->createAuthUrl();
 include('includes/header.php');
 ?>
     <!-- start -->
