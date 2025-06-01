@@ -57,7 +57,18 @@
         <div class="w-[100%] lg:w-[78%]">
 
             <div class="product-head flex justify-between items-center px-3 sm:px-3 py-2 border rounded-sm">
-                <h1 class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-3xl text-[#2e3192] shadow-black">APPLE</h1>
+                <h1 class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-3xl text-[#2e3192] shadow-black">
+                    <?php
+                        $name = getBrandTitle("brands",$product);
+                        if($name->num_rows > 0){
+                            foreach($name as $data){
+                            ?>
+                            <?= $data['name']?>
+                            <?php
+                            }
+                        }
+                    ?>
+                </h1>
                 <div class="sort-box font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-gray-700 font-medium">
                     <select name="" id="" class="border bg-[#fff] p-2 sm:p-2 rounded-md">
                         <option value="">Default</option>

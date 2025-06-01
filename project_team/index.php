@@ -217,7 +217,7 @@
                     <div class="see-more-btn w-full p-5 sm:p-5 flex justify-end mt-0 sm:mt-0">
                         <button
                             class="font-[Montserrat,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-[#2e3192] font-semibold"><a
-                                href="#">
+                                href="products.php?id=<?= $data1['brand_id']?>&slug=<?= $data1['slug']?>">
                                 SEE MORE
                                 <span><i class="fa-solid fa-angle-right"></i></span>
                             </a></button>
@@ -280,7 +280,7 @@
                     <div class="see-more-btn w-full p-5 sm:p-5 flex justify-end mt-0 sm:mt-0">
                         <button
                             class="font-[Montserrat,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-[#2e3192] font-semibold"><a
-                                href="#">
+                                href="products.php?id=<?= $data1['brand_id']?>&slug=<?= $data1['slug']?>">
                                 SEE MORE
                                 <span><i class="fa-solid fa-angle-right"></i></span>
                             </a></button>
@@ -343,7 +343,7 @@
                     <div class="see-more-btn w-full p-5 sm:p-5 flex justify-end mt-0 sm:mt-0">
                         <button
                             class="font-[Montserrat,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-[#2e3192] font-semibold"><a
-                                href="#">
+                                href="products.php?id=<?= $data1['brand_id']?>&slug=<?= $data1['slug']?>">
                                 SEE MORE
                                 <span><i class="fa-solid fa-angle-right"></i></span>
                             </a></button>
@@ -406,7 +406,7 @@
                     <div class="see-more-btn w-full p-5 sm:p-5 flex justify-end mt-0 sm:mt-0">
                         <button
                             class="font-[Montserrat,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-[#2e3192] font-semibold"><a
-                                href="#">
+                                href="products.php?id=<?= $data1['brand_id']?>&slug=<?= $data1['slug']?>">
                                 SEE MORE
                                 <span><i class="fa-solid fa-angle-right"></i></span>
                             </a></button>
@@ -469,7 +469,7 @@
                     <div class="see-more-btn w-full p-5 sm:p-5 flex justify-end mt-0 sm:mt-0">
                         <button
                             class="font-[Montserrat,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-[#2e3192] font-semibold"><a
-                                href="#">
+                                href="products.php?id=<?= $data1['brand_id']?>&slug=<?= $data1['slug']?>">
                                 SEE MORE
                                 <span><i class="fa-solid fa-angle-right"></i></span>
                             </a></button>
@@ -498,7 +498,7 @@
             <div class="bg-[#fff] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-3 rounded-md overflow-hidden">
                 <?php foreach ($item as $data) { ?>
                     <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg bg-[#fff]">
-                        <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <a href="viewdetail.php?id=<?= $data['id']?>" class="flex flex-col items-center space-y-2 w-full">
                             <div class="pro-img w-full overflow-hidden rounded-md">
                                 <img src="uploads/category/<?= $data['image']; ?>" alt="" class="w-full">
                             </div>
@@ -521,7 +521,7 @@
     <?php } ?>
     <div class="see-more-btn w-full p-5 sm:p-5 flex justify-end mt-0 sm:mt-0">
         <button class="font-[Montserrat,hanuman,sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-[#fff] font-semibold">
-            <a href="#">
+            <a href="products.php?id=<?= $data['brand_id']?>&slug=<?= $data['slug']?>">
                 SEE MORE <span><i class="fa-solid fa-angle-right"></i></span>
             </a>
         </button>
