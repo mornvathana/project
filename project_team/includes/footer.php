@@ -250,7 +250,6 @@
         var prod_price = $('#product_price').val();
         var prod_image = $('#product_image').val();
         var prod_barcode = $('#product_barcode').val();
-        var prod_specification = $('#specification').val();
         $.ajax({
             method:"POST",
             url: "function/code.php",
@@ -261,7 +260,6 @@
                 "prod_price":prod_price,
                 "prod_image":prod_image,
                 "prod_qty":qty,
-                "prod_specification": prod_specification,
                 "scrope":"add"
             },
             success: function (response) {
@@ -271,7 +269,7 @@
                     title: '<span class="text-gray-800 font-semibold text-lg">Product added to Cart!</span>',
                     showCancelButton: false,  
                     showConfirmButton: false, 
-                    timer: 1000,  
+                    timer: 3000,  
                     background: '#fff',
                     focusCancel: true,
                     buttonsStyling: false,
@@ -288,9 +286,9 @@
                     Swal.fire({
                     icon: 'warning',
                     title: '<span class="text-gray-800 font-semibold text-lg">Product already added!</span>',
-                    showCancelButton: false,  // Remove Cancel button
-                    showConfirmButton: false,  // Remove OK button
-                    timer: 1000,  // Auto-close after 3 seconds (3000 milliseconds)
+                    showCancelButton: false, 
+                    showConfirmButton: false, 
+                    timer: 3000,  
                     background: '#fff',
                     focusCancel: true,
                     buttonsStyling: false,
@@ -305,10 +303,10 @@
                 }
             }
         });
-    });
+        });
     });
 
-    </script>
+ </script>
 </body>
 
 </html>

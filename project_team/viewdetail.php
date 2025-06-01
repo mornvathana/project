@@ -56,13 +56,13 @@ include('includes/header.php');
               </div>
               <div class="btn mt-5 flex items-center space-x-5 product_qty">
                 <div><input type="number" id="inputValue" value="1" min="1" step="1" class="input-qty w-[70px] text-center border border-gray-300 rounded-lg p-1 sm:p-2 font-semibold"></div>
-                <form action="" method = "post" class = "upl">
-                  <input type="hidden" name = "" id = "prod_id" value = "<?= $item['id']?>">
+                <form method = "post" class = "upl">
+                  <input type="hidden" id = "prod_id" value = "<?= $item['id']?>">
                   <input type="hidden" id = "product_name" value = "<?= $item['name']?>">
                   <input type="hidden" id = "product_barcode" value = "<?= $item['barcode']?>">
                   <input type="hidden" id = "product_price" value ="<?= $item['sell_price']?>">
                   <input type="hidden" id = "product_image" value = "<?= $item['image']?>">
-                  <button type = "submit" class="bg-blue-500 text-white py-1 sm:py-2 px-3 sm:px-5 rounded-full font-semibold addToCart" id = "add_checkout"><i class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                  <button type = "submit" class="bg-blue-500 text-white py-1 sm:py-2 px-3 sm:px-5 rounded-full font-semibold addToCart" ><i class="fa-solid fa-cart-shopping"></i> Add to cart</button>
                 </form>
             </div>
               <div class="category font-[Poppins,hanuman,Sans-serif] flex items-baseline lg:items-center space-x-3 mt-5 w-full">

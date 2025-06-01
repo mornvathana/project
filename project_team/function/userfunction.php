@@ -46,7 +46,7 @@
                             FROM product_detail d 
                             JOIN product_image i on d.id = i.product_id 
                             JOIN product_option p ON d.id = p.product_id
-                            where d.slug = '$property'LIMIT 1 ";
+                            where d.slug = '$property' LIMIT 1 ";
         return $query_run = mysqli_query($conn,$product);
     }
 
