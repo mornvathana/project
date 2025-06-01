@@ -17,14 +17,10 @@
         if($stmt->execute()){
             
             $result = $stmt->get_result();
-            while($row = $result->fetch_array()){
-                $data[] = array(
-                    "id" => $row[1],
-                    "name" => $row[4],
-                    "image" => $row[9],
-                    "sell_price" => $row[6],
-                );
-            };
+
+            while($row = $result->fetch_assoc()){
+                $data[] = $row;
+            }
 
             echo json_encode($data);
         }
