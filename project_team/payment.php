@@ -6,11 +6,32 @@ if($_SESSION['auth_user']){
 }
 ?>
 <div class="shopping-checkout-block w-full p-3 sm:p-5 mt-10">
-        <div class="head">
-            <h1 class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-2xl text-[#2e3192] shadow-black">
-                CheckOut</h1>
-            <div class="line w-full h-[2px] bg-[#144194] mt-3"></div>
+        <div class="head flex justify-between items-center">
+            <h1 class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-2xl text-[#2e3192] shadow-black">CheckOut</h1>
+            <div class = "w-[400px] flex">
+            <div class = "w-[20%] h-full">
+
+            </div>
+            <div class = "w-[40%] h-full flex justify-center items-center flex-col relative">
+                <div class = "w-[50px] h-[50px] text-white font-medium bg-green-500 rounded-full flex justify-center items-center">
+                  1
+                </div>
+                <div class = "w-full h-[100%] text-center">
+                  <p class = "text-sm font-bold">information</p>
+                </div>
+                <div class = "absolute w-[62px] h-[10px] right-0 top-[32%] p-1 bg-green-500 "></div>
+            </div>
+              <div class = "w-[40%] h-full flex justify-center items-center flex-col">
+                  <div class = "w-[50px] text-white font-medium h-[50px] bg-red-500 rounded-full flex justify-center items-center">
+                    2
+                  </div>
+                  <div class = "w-full h-[100%] text-center">
+                    <p class = "text-sm font-bold">Payment</p>
+                  </div>
+              </div>
+          </div>
         </div>
+        <div class="line w-full h-[2px] bg-[#144194] mt-3"></div>
         <div class="cart-block w-full mt-5">
             <!-- cart-box-noresponsive -->
             <div class="w-full chechout-box">
