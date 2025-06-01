@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             setTimeout(function () {
                 alert("Please make payment!");
                 btncheckout.style.display = "block";
-            }, 5000);
+            }, 1000);
         }
     });
 
