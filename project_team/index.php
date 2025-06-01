@@ -59,7 +59,7 @@
         <div class="head p-3 sm:p-5">
             <h1
                 class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-3xl text-[#2e3192] shadow-black">
-                FEATURED PRODUCTS</h1>
+                SPECIAL OFFER</h1>
             <h3
                 class="font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-gray-700 font-medium mt-2">
                 Most popular products recommended to you</h3>

@@ -18,13 +18,12 @@
                     Be the first to know about our latest stock and price, like our Facebook page or join our telegram
                     channel </p>
             </div>
-            <div class="btn space-x-0 xl:space-x-2 space-y-3">
-                <button
-                    class="fb-btn text-gray-800 font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] font-medium bg-[#fff] rounded-full p-2"><i
-                        class="fa-brands fa-facebook"></i> Like Facebook</button>
-                <button
-                    class="tele-btn text-gray-800 font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] font-medium bg-[#fff] rounded-full p-2"><i
-                        class="fa-brands fa-telegram"></i> Join Telegram</button>
+            <div class="btn space-x-2 space-y-3 md:space-y-0 flex flex-col md:flex-row items-center">
+                <a href="https://t.me/your_username" target="_blank"
+                    class="tele-btn text-gray-800 font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] font-medium bg-[#fff] rounded-full p-2 flex items-center overflow-hidden">
+                     <img src="https://static.vecteezy.com/system/resources/previews/023/986/613/original/facebook-logo-facebook-logo-transparent-facebook-icon-transparent-free-free-png.png" alt="" class="w-[30px] h-[30px]">
+                     <p>Like Facebook</p>
+                </a>
             </div>
         </div>
         <div class="bottom-footer bg-[#06090c] w-[100%] py-2">
@@ -35,7 +34,7 @@
                 </a>
                 <p
                     class="font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px] 2xl:text-[15px] text-[#fff] font-medium text-center">
-                    ShunLi Phone Shop, your trusted phone shop in Phnom Penh selling and buying all kinds of new or used
+                    En Lin Phone Shop, your trusted phone shop in Phnom Penh selling and buying all kinds of new or used
                     phones, tablets, smart watches, electronic devices, and accessories.</p>
             </div>
             <div class="line w-full h-[2px] bg-[#fff] mt-10 md:mt-10"></div>
@@ -43,7 +42,7 @@
                 <div class="text-[#fff] w-[100%] md:w-[35%]">
                     <h1
                         class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-2xl text-[#fff] shadow-black">
-                        Meas Mom Phone Shop</h1>
+                         En Lin Phone Shop</h1>
                     <div
                         class="address font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[14px] md:text-[14px] lg:text-[14px] xl:text-[14px] 2xl:text-[14px] text-[#fff] font-medium mt-5 leading-10">
                         <i class="fa-solid fa-location-dot"></i> ផ្ទះលេខ​​ ២៩៨E0, មហាវិថី​ ម៉ៅសេទុង (St,245)
@@ -63,21 +62,9 @@
                     <h1
                         class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-2xl text-[#fff] shadow-black">
                         Payment With</h1>
-                    <div class="bank mt-5 flex flex-wrap gap-3">
-                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/KHQR-available-here-logo-with-bg-1024x422-1.png"
-                            alt="" class="w-[90px] h-[45px]">
-                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/ABA.png" alt=""
-                            class="w-[50px] h-[45px]">
-                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/Hattha.png" alt=""
-                            class="w-[50px] h-[45px]">
-                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/Huione.png" alt=""
-                            class="w-[50px] h-[45px]">
-                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/Acleda.png" alt=""
-                            class="w-[150px] h-[40px]">
-                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/Chipmong.png" alt=""
-                            class="w-[150px] h-[40px]">
-                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/Wing.png" alt=""
-                            class="w-[150px] h-[40px]">
+                    <div class="bank mt-5 flex flex-wrap gap-3 w-[180px] h-[100px] rounded-lg overflow-hidden">
+                        <img src="https://blog.millionero.com/wp-content/uploads/2023/11/millionero_digital_currency_system_bakong_service_national_bank_of_cambodia.jpg"
+                            alt="" class="w-full h-full">
                     </div>
                 </div>
 
@@ -102,7 +89,7 @@
             <!-- <div class="line w-[100%] bg-[#fff] h-[1px] mx-auto"></div> -->
             <div
                 class="copy-right font-[Poppins,hanuman,Sans-serif] text-[10px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[12px] font-medium text-center text-[#fff] mt-0 md:mt-5 border-t-2 w-[100%] lg:w-[35%] mx-auto p-2">
-                Copyright © 2024 Angkor Meas Mobile Shop | Website by Azis Web</div>
+                Copyright © 2024 En Lin Mobile Shop | Website by Azis Web</div>
         </div>
     </footer>
      
