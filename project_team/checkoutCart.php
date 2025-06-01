@@ -227,7 +227,7 @@ ob_end_flush();
                 </div>
 
                 <div class="flex flex-col space-y-2 mt-5">
-                    <button class="w-full p-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-yellow-400 text-sm">
+                    <button class="w-full hidden p-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-yellow-400 text-sm" id = "buttoncheckout">
                         <a href="payment.php"><i class="fa-solid fa-credit-card disabled"></i> Proceed to Checkout</a>
                     </button>
                     <button class="w-full p-3 bg-gray-200 text-gray-600 font-semibold rounded-md hover:bg-gray-300 text-sm">
@@ -244,4 +244,18 @@ ob_end_flush();
      <!-- end -->
     <!-- javascript -->
      <script src = "assets/script/custom.js"></script>
+     <script>
+        $(document).ready(function(){
+            $("#shipping").on("change",function(){
+                if($('#shipping:checked').length > 0){
+                    $("#buttoncheckout").css("display","block");
+                }
+            });
+
+            // if input already checked 
+            if($('#shipping:checked').length > 0){
+                $("#buttoncheckout").css("display","block");
+            }
+        });
+     </script>
 <?php include('includes/footer.php')?>
