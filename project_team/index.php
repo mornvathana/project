@@ -119,7 +119,14 @@
                                     if($menu->num_rows > 0){
                                         foreach($menu as $name){
                                         ?>
-                                            <li class="active" style="background-color: #dddfe4; border-radius: 20px; padding: 5px 20px;"><?= $name['name']?></li>
+                                         <li class="active" style="background-color: #dddfe4; border-radius: 20px; padding: 5px 20px">
+                                            <?php
+                                            $data = whereProductDetail("slug", $name['name']); 
+                                            $row = mysqli_fetch_assoc($data);
+                                            ?>
+                                            <a href="products.php?id=<?= trim($row['brand_id']); ?>&slug=<?= urlencode($name['name']); ?>"> <?= $name['name']; ?> </a>
+                                        </li>
+
                                         <?php
                                         }
                                     }

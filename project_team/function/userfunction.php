@@ -37,6 +37,19 @@
         $query = "SELECT * FROM $table where $selectCol = '$property'";
         return $query_run = mysqli_query($conn,$query);
     }
+
+    function whereProductDetail($selectCol,$property){
+        global $conn;
+        $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
+                            , i.specification,i.description,i.image,i.demo_image 
+                            , p.product_id, p.popular_pd, p.used_pd , p.new_pd
+                            FROM product_detail d 
+                            JOIN product_image i on d.id = i.product_id 
+                            JOIN product_option p ON d.id = p.product_id
+                            where d.slug = '$property'LIMIT 1 ";
+        return $query_run = mysqli_query($conn,$product);
+    }
+
     function getPrice($id,$userid){
         global $conn;
         $product = "SELECT * FROM orders WHERE cart_id = $id AND user_id = $userid";
