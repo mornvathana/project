@@ -21,13 +21,14 @@ if($_SESSION['auth_user']){
                 </div>
                 <div class = "absolute w-[62px] h-[10px] right-0 top-[32%] p-1 bg-green-500 "></div>
             </div>
-              <div class = "w-[40%] h-full flex justify-center items-center flex-col">
-                  <div class = "w-[50px] text-white font-medium h-[50px] bg-red-500 rounded-full flex justify-center items-center">
+              <div class = "w-[40%] h-full flex justify-center items-center flex-col relative">
+                  <div id = "boxColor" class = "w-[50px] text-white font-medium h-[50px] bg-red-500 rounded-full flex justify-center items-center">
                     2
                   </div>
                   <div class = "w-full h-[100%] text-center">
                     <p class = "text-sm font-bold">Payment</p>
                   </div>
+                  <div class = "absolute w-[57px] h-[10px] left-0 top-[32%] p-1 bg-green-500 hidden" id = "addLine"></div>
               </div>
           </div>
         </div>

@@ -9,6 +9,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const info = KHQR.IndividualInfo;
 
     const btncheckout = document.getElementById('checkout');
+    const addLine = document.getElementById("addLine");
+    const boxColor = document.getElementById("boxColor");
     const totalPrice = parseFloat(btncheckout.dataset.total);
 
     const form = document.getElementById("checkoutForm");
@@ -36,6 +38,9 @@ document.addEventListener("DOMContentLoaded", function () {
             hasSubmitted = true;
             setTimeout(function () {
                 alert("Please make payment!");
+                addLine.style.display = "block";
+                boxColor.classList.add("bg-green-500");
+                boxColor.classList.remove("bg-red-500");
                 btncheckout.style.display = "block";
             }, 1000);
         }
