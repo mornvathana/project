@@ -141,7 +141,7 @@ if($_SESSION['auth_user']){
                         <input type="hidden" name="cart_id" id = "cart_id" value = "<?= $product['id']?>">
                         <!-- end user_id and cart_id -->
                         <td class="py-4 px-4"><?= $product['product_qty'] ?></td>
-                        <td class="py-4 px-4 text-right">$<?= $product['product_price'] ?></td>
+                        <td class="py-4 px-4 text-right" >$<?= $product['product_price'] ?></td>
                         </tr>
                         <?php
                         }
@@ -192,7 +192,7 @@ if($_SESSION['auth_user']){
                 <!-- Total Section -->
                 <div class="mt-6 flex justify-between items-center text-lg md:text-xl font-medium">
                   <p class="text-gray-900">Total</p>
-                  <p class="text-green-500">
+                  <p class="text-green-500" id = "totalPrice">
                   <?php
                       $get_shipping = getShipping1($shipping_id);
                       if($get_shipping->num_rows > 0){
@@ -230,6 +230,23 @@ if($_SESSION['auth_user']){
                       </svg>
                     </button>
                   </div>
+                  <!--  -->
+                  <div class = "w-full h-[40px] flex justify-center items-center">
+                      <div class = "w-[70%] h-full bg-red-500 flex justify-center items-center rounded-tl-[10px] rounded-tr-[10px]">
+                        <p class = "font-bold text-white">KHQR</p>
+                      </div>
+                  </div>
+                  <div class = "w-full my-[1px] flex justify-center items-center">
+                      <div class = "w-[70%] h-full flex justify-center items-center">
+                        <p class = "">Morn sovathana</p>
+                      </div>
+                  </div>
+                  <div class = "w-full my-[1px] flex justify-center items-center">
+                      <div class = "w-[70%] h-full flex justify-center items-center">
+                        <p class = "" id = "showPrice"></p>
+                      </div>
+                  </div>
+                  <!--  -->
                   <!-- Modal body -->
                   <div class="p-6 space-y-6 text-center">
                     <canvas id="qrCodeCanvas" class="mx-auto"></canvas>
@@ -248,6 +265,15 @@ if($_SESSION['auth_user']){
         </div>
         </div>
     </div>
+    <script>
+      $(document).ready(function(){
+       const totalPrice = $("#totalPrice").text();
+        function getPrice(){
+          alert(totalPrice);
+        };
+        getPrice()
+      });
+    </script>
     <script src="https://github.com/davidhuotkeo/bakong-khqr/releases/download/bakong-khqr-1.0.6/khqr-1.0.6.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script src = "assets/script/khqr.js"></script>
