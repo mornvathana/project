@@ -1,35 +1,48 @@
 <?php 
     include('includes/header.php');
-?>
-    <section class="main swiper mySwiper h-[30vh] sm:h-[60vh] md:h-[80vh] lg:h-[80vh] xl:h-[80vh] 2xl:h-[80vh]">
+?> 
+    <!-- main slider -->
+    <section class="main swiper mySwiper">
         <div class="wrapper swiper-wrapper">
-          <?php
-             $item = getWebInfo("information_website","slide_image");
-            
-             foreach($item as $img){
-                $imageArray = $img['slide_image'];
-             }
-
-             $images = explode(',', $imageArray);
-
-             foreach($images as $img){
-            ?>
-            <div class="slide swiper-slide">
-                <img src="uploads/webinfo/<?= $img ?>" alt="" class="image" />
-                <div class="image-data">
-                </div>
+          <div class="slide swiper-slide">
+            <img src="https://taazatime.com/wp-content/uploads/2025/06/1-20.jpg" alt="" class="image" />
+            <div class="image-data">
+              <h2>
+                Oppo A5X <br />
+              </h2>
+              <a href="#" class="button">About Us</a>
             </div>
-            <?php
-             }
-
-          ?>
-
+          </div>
+          <div class="slide swiper-slide">
+            <img src="https://www.whatmobile.com.pk/control/news/assets/15112022/1e418359ec21f45c8f690a55259a5239_meta.jpg" alt="" class="image" />
+            <div class="image-data">
+              <span class="text">We really like what we do.</span>
+              <h2>
+                Coffee Beans with a <br />
+                Perfect Aroma
+              </h2>
+              <a href="#" class="button">About Us</a>
+            </div>
+          </div>
+          <div class="slide swiper-slide">
+            <img src="https://angkormeas.com/wp-content/uploads/2025/02/OPPO-RENO13.webp" alt="" class="image" />
+            <div class="image-data">
+              <span class="text">Making Our coffee with lover.</span>
+              <h2>
+                Alluring and Fragrant <br />
+                Coffee Aroma
+              </h2>
+              <a href="#" class="button">About Us</a>
+            </div>
+          </div>
         </div>
- 
+  
         <div class="swiper-button-next nav-btn"></div>
         <div class="swiper-button-prev nav-btn"></div>
         <div class="swiper-pagination"></div>
-    </section>
+      </section>
+    <!-- end of main-slide -->
+
     <div class="popular-brand mt-10 sm:mt-20 w-full">
         <div class="head w-full h-[50px]">
             <h1 class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[18px] sm:text-3xl text-gray-800 text-center" id="text"></h1>
@@ -192,7 +205,7 @@
                     <div
                         class="product-box w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-3 p-1 sm:p-5">
                         <?php
-                            $item = getProductByBrand("brand_id", 68);
+                            $item = getProductByBrand("brand_id", 68, 6);
                             if($item->num_rows > 0){
                                 foreach($item as $data1){
                                 ?>
@@ -255,7 +268,7 @@
                     <div
                         class="product-box w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-3 p-1 sm:p-5">
                         <?php
-                            $item = getProductByBrand("brand_id", 67);
+                            $item = getProductByBrand("brand_id", 67, 6);
                             if($item->num_rows > 0){
                                 foreach($item as $data1){
                                 ?>
@@ -318,7 +331,7 @@
                     <div
                         class="product-box w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-3 p-1 sm:p-5">
                         <?php
-                            $item = getProductByBrand("brand_id", 65);
+                            $item = getProductByBrand("brand_id", 65, 6);
                             if($item->num_rows > 0){
                                 foreach($item as $data1){
                                 ?>
@@ -381,7 +394,7 @@
                     <div
                         class="product-box w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-3 p-1 sm:p-5">
                         <?php
-                            $item = getProductByBrand("brand_id", 64);
+                            $item = getProductByBrand("brand_id", 64, 6);
                             if($item->num_rows > 0){
                                 foreach($item as $data1){
                                 ?>
@@ -444,7 +457,7 @@
                     <div
                         class="product-box w-full grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-3 p-1 sm:p-5">
                         <?php
-                            $item = getProductByBrand("brand_id", 63);
+                            $item = getProductByBrand("brand_id", 63, 6);
                             if($item->num_rows > 0){
                                 foreach($item as $data1){
                                 ?>
@@ -499,26 +512,28 @@
     </div>
 
     <?php
-    $item = getPopularProduct("used_pd", 1);
+    $item = getPopularProduct("used_pd", 1, 12);
     if ($item->num_rows > 0) { ?>
         <div class="product-box w-full p-3 sm:p-5">
             <div class="bg-[#fff] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-3 rounded-md overflow-hidden">
                 <?php foreach ($item as $data) { ?>
-                    <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg bg-[#fff]">
+                    <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
                         <a href="viewdetail.php?id=<?= $data['id']?>" class="flex flex-col items-center space-y-2 w-full">
-                            <div class="pro-img w-full overflow-hidden rounded-md">
-                                <img src="uploads/category/<?= $data['image']; ?>" alt="" class="w-full">
+                            <div class="pro-img w-auto overflow-hidden rounded-md">
+                                <img src="uploads/category/<?= $data['image'] ?>"
+                                    alt="" class="w-full 2xl:h-[145px] xl:h-[145px] lg:h-[145px] md:h-[145px] sm:h-[155px] h-[145px]">
                             </div>
-                            <div class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,sans-serif] text-lg font-semibold">
-                                <del class="dis-price opacity-50">$<?= $data['sell_price']; ?></del>
-                                <div class="full-price text-[#f34770]!important">$<?= $data['original_price']; ?></div>
+                            <div
+                                class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                                <del class="dis-price opacity-50">$<?= $data['sell_price'] ?></del>
+                                <div class="full-price text-[#f34770!important]">$<?= $data['original_price'] ?></div>
                             </div>
-                            <div class="pro-name text-center text-[13px] md:text-[15px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,sans-serif] h-[70px] overflow-hidden">
-                                <?= $data['description']; ?>
-                            </div>
-                            <button class="text-[#144194] font-[Roboto,hanuman,sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]">
-                                <i class="fa-solid fa-cart-shopping"></i> Add to cart
-                            </button>
+                            <div
+                                class="pro-name text-center text-[13px] md:text-[15px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[70px] overflow-hidden">
+                                <?= $data['name'] ?></div>
+                            <button
+                                class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                    class="fa-solid fa-cart-shopping"></i> Add to cart</button>
                             <div class="line"></div>
                         </a>
                     </div>
@@ -536,7 +551,7 @@
 </div>
 
     <!--  -->
-    <div class="banner w-full grid grid-cols-1 md:grid-cols-4 gap-3 mt-10 p-3 sm:p-5">
+    <!-- <div class="banner w-full grid grid-cols-1 md:grid-cols-4 gap-3 mt-10 p-3 sm:p-5">
         <div class="box w-full">
             <img src="https://angkormeas.com/wp-content/uploads/2023/10/iPhone-15-Pro-Max.webp" alt="">
         </div>
@@ -549,5 +564,5 @@
         <div class="box w-full">
             <img src="https://angkormeas.com/wp-content/uploads/2023/10/iPad-Pro-11-M4.webp" alt="">
         </div>
-    </div>
+    </div> -->
     <?php include('includes/footer.php')?>

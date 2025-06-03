@@ -1,11 +1,11 @@
 <?php
 return [
-    "dashboard" => "System Dashboard",
+    "dashboard" => "Dashboard",
     "totalProduct" => "Total Products",
-    "product" => "Product",
+    "product" => "Category",
     "brand" => "Brand",
     "orders" => "Orders",
-    "category" => "Category",
+    "category" => "Products",
     "user" => "User",
     "inventory" => "Inventory",
     "customer" => "Customer",

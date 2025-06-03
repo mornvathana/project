@@ -62,9 +62,23 @@
                     <h1
                         class="font-bold font-[Montserrat,hanuman,Sans-serif] text-[23px] sm:text-2xl text-[#fff] shadow-black">
                         Payment With</h1>
-                    <div class="bank mt-5 flex flex-wrap gap-3 w-[180px] h-[100px] rounded-lg overflow-hidden">
+                    <div class="bank mt-5 flex flex-wrap gap-3">
+                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/KHQR-available-here-logo-with-bg-1024x422-1.png"
+                            alt="" class="w-[90px] h-[45px]">
+                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/ABA.png" alt=""
+                            class="w-[50px] h-[45px]">
+                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/Hattha.png" alt=""
+                            class="w-[50px] h-[45px]">
+                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/Huione.png" alt=""
+                            class="w-[50px] h-[45px]">
+                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/Acleda.png" alt=""
+                            class="w-[150px] h-[40px]">
+                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/Chipmong.png" alt=""
+                            class="w-[150px] h-[40px]">
+                        <img src="https://angkormeas.com/wp-content/uploads/2023/10/Wing.png" alt=""
+                            class="w-[150px] h-[40px]">
                         <img src="https://blog.millionero.com/wp-content/uploads/2023/11/millionero_digital_currency_system_bakong_service_national_bank_of_cambodia.jpg"
-                            alt="" class="w-full h-full">
+                            alt="" class="w-[90px] h-[45px]">
                     </div>
                 </div>
 
