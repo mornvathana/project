@@ -9,8 +9,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const info = KHQR.IndividualInfo;
 
     const btncheckout = document.getElementById('checkout');
-    const addLine = document.getElementById("addLine");
-    const boxColor = document.getElementById("boxColor");
     const totalPrice = parseFloat(btncheckout.dataset.total);
 
     const form = document.getElementById("checkoutForm");
@@ -38,9 +36,6 @@ document.addEventListener("DOMContentLoaded", function () {
             hasSubmitted = true;
             setTimeout(function () {
                 alert("Please make payment!");
-                addLine.style.display = "block";
-                boxColor.classList.add("bg-green-500");
-                boxColor.classList.remove("bg-red-500");
                 btncheckout.style.display = "block";
             }, 1000);
         }
@@ -136,7 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const fetchTransactionStatus = (md5) => {
-        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiZjNkMDc4M2EyOTY4NDExYSJ9LCJpYXQiOjE3NDE3OTg1MzEsImV4cCI6MTc0OTU3NDUzMX0.PqTaMkbpl68zKI_6G9ApsnRmoAQjUF_IfEo2LfVKH8M';
+        const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiZjNkMDc4M2EyOTY4NDExYSJ9LCJpYXQiOjE3NDk5NzE4NDksImV4cCI6MTc1Nzc0Nzg0OX0.t9Tl-NRUnL9-uz9xEfXcko5qMiu3ysmPEHJM1nhfwCg';
         const url = 'https://api-bakong.nbc.gov.kh/v1/check_transaction_by_md5';
 
         fetch(url, {

@@ -29,7 +29,7 @@
     }else if(isset($_POST['add_category'])){
         $barcode = $_POST['barcode'];
         $name = $_POST['name'];
-        $slug = $_POST['name'];
+        $slug = $_POST['slug'];
         $original_price = $_POST['original_price'];
         $sell_price = $_POST['sell_price'];
         $specification = $_POST['specification'];

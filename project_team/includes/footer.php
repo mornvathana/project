@@ -140,9 +140,7 @@
     <!-- Swiper JS -->
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script src = "assets/script/search.js"></script>
-    <script src = "assets/script/test.js"></script>
-    <script src = "assets/script/custom1.js"></script>
-    <script src = "assets/script/jquery.js"></script>
+    <script src = "assets/script/custom.js"></script>
     <script src="assets/script/autotyping.js"></script>
     <script src="assets/script/jquery-3.7.1.js"></script>
     <script src="assets/script/script.js"></script>
