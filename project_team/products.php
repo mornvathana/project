@@ -233,7 +233,7 @@
     <script>
         $(document).ready(function(){
 
-            $("#minPrice").on('change',function(){
+            $("#minPrice").on('change', function(){
                 const value = $(this).val();
                 alert(value);
             });
