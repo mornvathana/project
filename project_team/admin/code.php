@@ -453,7 +453,7 @@
         $size = $_FILES['image']['size'];
         $image = $_FILES['image']['name'];
 
-        $path = "../uploads/product";  
+        $path = "../uploads/category";  
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
         $filename = time() . '.' . $image_ext;
 
@@ -502,7 +502,7 @@
         $brand_run = $conn->query($product);
         // image
         $old_image = $_POST['image'];
-        $path = '../uploads/product';
+        $path = '../uploads/category';
         $img_path = $path . '/' . $old_image;
 
         if($brand_run){
@@ -522,7 +522,7 @@
         $size = $_FILES['image']['size'];
         $image = $_FILES['image']['name'];
 
-        $path = "../uploads/product";  
+        $path = "../uploads/category";  
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
         $img_path = $path . '/' . $old_image;
 

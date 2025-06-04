@@ -19,10 +19,10 @@
 
     <!-- container -->
     <div class="Container_product flex flex-col lg:flex-row w-[100%] justify-between mx-auto p-1 sm:p-5">
-        <div class="price_range_slider w-[100%] lg:w-[20%] h-fit grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-1 2xl:lg:grid-cols-1 gap-3 mt-10 md:mt-0 font-[Poppins,hanuman,Sans-serif] rounded-lg">
-        <div class="bg-white rounded-lg p-6 w-full max-w-xs font-[Poppins,hanuman,Sans-serif]" style="border: 1px solid #e5e7eb;">
+        <div class="price_range_slider w-[100%] lg:w-[20%] h-fit grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-1 2xl:lg:grid-cols-1 gap-3 mt-10 md:mt-0 font-[Poppins,hanuman,Sans-serif] rounded-lg">
+        <div class="bg-white rounded-lg p-6 w-full font-[Poppins,hanuman,Sans-serif]" style="border: 1px solid #e5e7eb;">
         <div class="flex items-center justify-between mb-4">
-            <h3 class="text-lg font-semibold text-gray-800">CATEGORIES</h3>
+            <h3 class="text-lg font-semibold text-gray-800 font-[Montserrat,hanuman,Sans-serif]">CATEGORIES</h3>
             <button class="text-blue-500 text-sm font-medium" id="resetButton">Reset</button>
         </div>
         
@@ -50,7 +50,7 @@
 
         <div class="bg-white p-6 rounded-lg shadow-sm w-full max-w-md" style="border: 1px solid #e5e7eb;">
         <!-- Title -->
-        <h3 class="text-lg font-semibold text-gray-800 mb-4">Price</h3>
+        <h3 class="text-lg font-semibold text-gray-800 mb-4 font-[Montserrat,hanuman,Sans-serif]">Price</h3>
         
         <!-- Price display (will be updated by JS) -->
         <div id="priceDisplay" class="text-sm font-semibold text-gray-900 mb-5">$0 – $3,000</div>
