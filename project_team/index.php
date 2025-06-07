@@ -1,6 +1,7 @@
 <?php 
     include('includes/header.php');
 ?> 
+    <div class="loader"></div>
     <!-- main slider -->
     <section class="main swiper mySwiper">
         <div class="wrapper swiper-wrapper">
@@ -565,4 +566,16 @@
             <img src="https://angkormeas.com/wp-content/uploads/2023/10/iPad-Pro-11-M4.webp" alt="">
         </div>
     </div> -->
+    <script>
+    window.addEventListener("load", () => {
+    const loader = document.querySelector(".loader");
+
+    loader.classList.add("loader--hidden");
+
+    loader.addEventListener("transitionend", () => {
+    document.body.removeChild(loader);
+   });
+   });
+
+</script>
     <?php include('includes/footer.php')?>

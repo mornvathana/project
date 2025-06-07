@@ -54,7 +54,7 @@ function editMode() {
 
     rightButtons[1].addEventListener("click", function(){
         for(let i = 0; i < pages.length; i++){
-        if(pages[i].getAttribute("name") === "orders"){
+        if(pages[i].getAttribute("name") === "password"){
             pages[i].style.display = 'block';
         }else{
             pages[i].style.display = 'none';
@@ -64,13 +64,25 @@ function editMode() {
 
     rightButtons[2].addEventListener("click", function(){
         for(let i = 0; i < pages.length; i++){
-        if(pages[i].getAttribute("name") === "tracking "){
+        if(pages[i].getAttribute("name") === "orders"){
             pages[i].style.display = 'block';
         }else{
             pages[i].style.display = 'none';
         }
         }
     });
+
+    rightButtons[3].addEventListener("click", function(){
+        for(let i = 0; i < pages.length; i++){
+        if(pages[i].getAttribute("name") === "tracking"){
+            pages[i].style.display = 'block';
+        }else{
+            pages[i].style.display = 'none';
+        }
+        }
+    });
+
+    
 
     
   
