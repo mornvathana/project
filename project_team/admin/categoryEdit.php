@@ -66,7 +66,7 @@ include("lang.php");
                                                 if($brand->num_rows > 0){
                                                 foreach($brand as $item1){
                                                 ?>
-                                                <option value="<?= $item1['id']?>"><?= $item1['name'] ?></option>
+                                                <option value="<?= $item1['id']?>" <?= $item1['id'] == $item['brand_id'] ? 'selected' : ''?>><?= $item1['name'] ?></option>
                                                 <?php
                                                 }
                                                 }

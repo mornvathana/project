@@ -2,12 +2,10 @@
 <?php
   	$min = isset($_GET['min-price']) ? (int)$_GET['min-price'] : 8;
     $max = isset($_GET['max-price']) ? (int)$_GET['max-price'] : 3000;
-    $sort = $_GET['sort'] ?? ''; // Get sort option from query string
+    $sort = $_GET['sort'] ?? ''; 
     if(isset($_GET{'id'}) && isset($_GET['slug'])){
         $product = $_GET['id'];
         $slug = $_GET['slug'];
-        $product_item_filterSlider = getProduct($product,$min,$max,$slug,8);
-        // Call getProductFilter with sort added
         $product_item_filterOption = getProductFilter($product , $slug, $sort, 8);
 
     }
@@ -18,7 +16,18 @@
     class="page py-3 md:py-5 px-5 font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-gray-700 font-sm w-full">
     <ul class="flex space-x-3">
         <li class="text-sm"><a href="index.php"><i class="fas fa-home mr-2"></i> Home</a></li>
-        <li class="text-sm"><a href="#"><i class="fas fa-chevron-right text-gray-400"></i> Products</a></li>
+        <li class="text-sm"><a href="#"><i class="fas fa-chevron-right text-gray-400"></i>
+                                        <?php
+                            $name = getBrandTitle("product_detail",$product);
+                            if($name->num_rows > 0){
+                                foreach($name as $data){
+                                ?>
+                                <?= $data['slug']?>
+                                <input type = "hidden" id = "slugname"  value = "<?= $data['slug']?>" />
+                                <?php
+                                }
+                            }
+                ?></a></li>
         <li class="text-sm"><a href="#"><i class="fas fa-chevron-right text-gray-400"></i>
                 <?php
                         $name = getBrandTitle("brands",$product);
@@ -49,7 +58,7 @@
                 <div class="category-item active flex items-center p-2 rounded-md cursor-pointer space-x-3">
                     <input type="checkbox" value="all"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2"
-                        checked>
+                        >
                     <span class="text-sm">All</span>
                 </div>
 
@@ -59,7 +68,7 @@
                     foreach($item as $data){
                     ?>
                 <div class="category-item flex items-center p-2 rounded-md cursor-pointer space-x-3">
-                    <input type="checkbox" value="<?= $data['name'] ?>"
+                    <input type="checkbox" <?= $data['name'] == $slug ? 'checked' : ''?> value="<?= $data['name'] ?>"
                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
                     <span class="text-sm">
                         <?= $data['name'] ?>
@@ -105,7 +114,7 @@
                 </div>
 
                 <!-- Submit button -->
-                <button type="submit" class="mt-4 px-4 py-1 bg-[#2e3192] text-white rounded">Go</button>
+                <button type="submit" id = "pricefilter" class="mt-4 px-4 py-1 bg-[#2e3192] text-white rounded">Go</button>
             </form>
 
         </div>
@@ -201,41 +210,7 @@
         <div class="product-box w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-4 gap-3 mt-5"
             id="displayarea">
             <!-- box -->
-            <?php
-            // $sort = $_GET['sort'];
-            $products_to_show = !empty($sort) ? $product_item_filterOption : $product_item_filterSlider;
-            if(mysqli_num_rows( $products_to_show ) > 0){
-                foreach( $products_to_show as $item){
-                ?>
-            <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
-                <a href="viewdetail.php?id=<?= $item['id']?>" class="flex flex-col items-center space-y-2 w-full">
-                    <div class="pro-img w-auto overflow-hidden rounded-md">
-                        <img src="uploads/category/<?= $item['image']?>" alt=""
-                            class="w-full 2xl:h-[145px] xl:h-[145px] lg:h-[145px] md:h-[145px] sm:h-[155px] h-[145px]">
-                    </div>
-                    <div
-                        class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
-                        <del class="dis-price opacity-50">$
-                            <?= $item['sell_price']?>
-                        </del>
-                        <div class="full-price text-[#f34770!important]">$
-                            <?= $item['original_price']?>
-                        </div>
-                    </div>
-                    <div
-                        class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
-                        <?= $item['name']?>
-                    </div>
-                    <button
-                        class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                            class="fa-solid fa-cart-shopping"></i> Add to cart</button>
-                    <div class="line"></div>
-                </a>
-            </div>
-            <?php
-                }
-            }
-            ?>
+            
             <!-- end box -->
         </div>
         <!-- end of product-box -->
@@ -246,7 +221,7 @@
                 <ul class="inline-flex items-center space-x-1">
                     <!-- Previous Button -->
                     <li>
-                        <a href="#"
+                        <a id = "btnBack"
                             class="px-3 py-2 text-sm font-semibold text-gray-500 bg-white border border-gray-300 rounded-l-lg hover:bg-gray-100 hover:text-gray-700">
                             Previous
                         </a>
@@ -254,21 +229,21 @@
 
                     <!-- Page Number Buttons -->
                     <li>
-                        <a href="#"
-                            class="px-3 py-2 text-sm font-semibold text-gray-500 bg-white border border-gray-300 hover:bg-blue-500 hover:text-white">1</a>
+                        <a
+                            class="px-3 py-2 text-sm font-semibold text-gray-500 bg-white hover:bg-blue-500 hover:text-white"><span id = "startPage">1</span></a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="px-3 py-2 text-sm font-semibold text-gray-500 bg-white border border-gray-300 hover:bg-blue-500 hover:text-white">2</a>
+                        <a
+                            class="px-3 py-2 text-sm font-semibold text-gray-500 bg-white hover:bg-blue-500 hover:text-white">/</a>
                     </li>
                     <li>
-                        <a href="#"
-                            class="px-3 py-2 text-sm font-semibold text-gray-500 bg-white border border-gray-300 hover:bg-blue-500 hover:text-white">3</a>
+                        <a
+                            class="px-3 py-2 text-sm font-semibold text-gray-500 bg-white hover:bg-blue-500 hover:text-white"><span id = "totalPageEnd"></span></a>
                     </li>
 
                     <!-- Next Button -->
                     <li>
-                        <a href="#"
+                        <a href="#" id = "btnNext"
                             class="px-3 py-2 text-sm font-semibold text-gray-500 bg-white border border-gray-300 rounded-r-lg hover:bg-gray-100 hover:text-gray-700">
                             Next
                         </a>
@@ -289,37 +264,83 @@
 <!-- end product -->
 <script>
     $(document).ready(function () {
+        
+        let min = $("#minPrice").val();
+        let max = $("#maxPrice").val();
+        let startPage = $("#startPage");
+        let totalPage = $("#totalPageEnd");
+        let slug = $("#slugname").val();
+        let currentPage = 1;
+        let total = 4;
+        let limit = 10;
+        let value = "";
 
-<<<<<<< HEAD
-        $("#minThumb").on('change', function () {
-            const value = $(this).val();
-            alert(value);
+
+        
+        function run(){
+            data(slug,min,max,currentPage);
+        }
+
+        if(value === ''){
+               run()
+        }
+
+        $("#btnBack").click(function(e){
+            e.preventDefault();
+            if(currentPage > 1){
+                currentPage -= 1;
+                data(value,min,max,currentPage);
+                 startPage.text(currentPage);
+            }
         });
-=======
-            $("#minPrice").on('change', function(){
-                const value = $(this).val();
-                alert(value);
-            });
->>>>>>> 012b2b4d23ca8e83d42293b3eb536f1cfcf5ece7
+
+         $("#btnNext").click(function(e){
+            e.preventDefault();
+            const totalPageValue = parseInt(totalPage.text());
+            if(currentPage < totalPageValue){
+                currentPage += 1;
+                data(value,min,max,currentPage);
+                startPage.text(currentPage);
+            }
+        });
+
+        $(document).on("click", "#pricefilter", function(e){
+            e.preventDefault();
+
+            min = $("#minPrice").val();
+            max = $("#maxPrice").val();
+
+            if(value !== ''){
+                data(value, min, max, currentPage)
+            }
+
+            if (value === '') {
+                run();
+            }
+        });
 
 
         $('input[type="checkbox"]').on('change', function () {
-            let value = "";
-            let brandid = $("#brandid").val();
-            let minPrice = $("#minprice").val();
-            let maxPrice = $("#maxprice").val();
-            const display = $("#displayarea");
             if (this.checked) {
                 value = $(this).val();
+            }else{
+                value = '';
             }
+            data(value,min,max,currentPage);
+        });
+
+        function data(value,min,max,page){
+            let brandid = $("#brandid").val();
+            const display = $("#displayarea");
             $.ajax({
                 method: "POST",
                 url: "action/product.php",
                 data: {
                     "value": value,
                     "brandid": brandid,
-                    "maxPrice": maxPrice,
-                    "minPrice": minPrice,
+                    "max" : max,
+                    "min" : min,
+                    "page" : page,
                 },
                 dataType: "json",
                 success: function (data) {
@@ -342,13 +363,16 @@
                                         </a>
                                         </div>`;
                         }
+                        let totalPages = Math.ceil(data[0]['total'] / limit);
+                        totalPage.text(Math.max(totalPages, 1));
+
                         display.html(txt);
                     } else {
                         display.html("");
                     }
                 }
             });
-        });
+        }
     });
 </script>
 
