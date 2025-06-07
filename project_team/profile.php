@@ -13,8 +13,9 @@
             <li class="active"><a href="#"><i class="fa-regular fa-user"></i> Profile</a></li>
             <li class=""><a href="#"><i class="fa-solid fa-lock"></i></i> Change Password</a></li>
             <li class=""><a href="#"><i class="fa-solid fa-cart-shopping"></i> My Orders</a></li>
+            <li class=""><a href="#"><i class="fa-solid fa-cart-shopping"></i> My Favorite</a></li>
             <li class=""><a href="#"><i class="fa-solid fa-truck"></i> Order Tracking</a></li>
-            <li class=""><a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+            <li class=""><a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
         </ul>
     </div>
 

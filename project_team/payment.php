@@ -120,8 +120,8 @@ if($_SESSION['auth_user']){
                           </div>
                         </div>
 
-                        <!-- place-order -->
-                       <div class="place-order w-[100%] lg:w-[38%] h-fit mt-5 lg:mt-0 font-semibold font-[Poppins,hanuman,Sans-serif] p-5 border rounded-xl text-gray-700 sticky top-[4rem]" style="border: 1px solid #d1d5db;">
+                <!-- place-order -->
+                <div class="place-order w-[100%] lg:w-[38%] h-fit mt-5 lg:mt-0 font-semibold font-[Poppins,hanuman,Sans-serif] p-5 border rounded-xl text-gray-700 sticky top-[4rem]" style="border: 1px solid #d1d5db;">
                 <h2 class="text-md md:text-md font-bold mb-6">Your Order Summary</h2>
               
                 <!-- Order Table -->
@@ -185,10 +185,19 @@ if($_SESSION['auth_user']){
                         }
 
                       ?>
-                    </p>   <!-- Shipping -->
+                    </p>  
                   </div>
                 </div>
-              
+                <!--  -->
+                 <div class = "w-full h-[20px] my-2">
+                   <p class="text-gray-700 text-sm">Discount Coupon</p>
+                </div>
+                <div class = "w-full h-[40px] my-2">
+                    <from class = "w-full h-full grid grid-cols-[1fr_50px] gap-2">
+                      <input type = "text" class = "border-[2px] rounded-md border-gray-500 pl-2">
+                      <button class = "text-sm bg-[#144194] text-white rounded-md ">Apply</button>
+                    </from>
+                </div>
                 <!-- Total Section -->
                 <div class="mt-6 flex justify-between items-center text-lg md:text-xl font-medium">
                   <p class="text-gray-900">Total</p>
