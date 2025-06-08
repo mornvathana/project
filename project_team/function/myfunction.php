@@ -174,6 +174,7 @@
         $product = "SELECT * FROM $table";
         return $product_run = mysqli_query($conn,$product);
     }
+
     function getAllStatus($table,$pedding){
         global $conn;
         $product = "SELECT * FROM $table WHERE status IN ($pedding)";

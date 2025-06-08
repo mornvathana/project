@@ -60,7 +60,6 @@ include('includes/header.php');
                   <input type="hidden" name = "" id = "prod_id" value = "<?= $item['id']?>">
                   <input type="hidden" id = "product_name" value = "<?= $item['name']?>">
                   <input type="hidden" id = "product_barcode" value = "<?= $item['barcode']?>">
-                  <input type="hidden" id = "specification" value = "<?= $item['specification']?>">
                   <input type="hidden" id = "product_price" value ="<?= $item['sell_price']?>">
                   <input type="hidden" id = "product_image" value = "<?= $item['image']?>">
                   <button type = "submit" class="bg-blue-500 text-white py-1 sm:py-2 px-3 sm:px-5 rounded-full font-semibold addToCart" id = "add_checkout"><i class="fa-solid fa-cart-shopping"></i> Add to cart</button>
