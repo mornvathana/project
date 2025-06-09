@@ -123,7 +123,7 @@
             <button class="cus-account text-[#144194]">
                 <a href="account.html"><i class="fa-solid fa-user"></i></a>
             </button>
-            <button class="search text-[#144194]" onclick="toggleSearchBox()">
+            <button id="searchToggle" class="text-[#144194]">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
             <button class="menu-bar text-[#144194]">
@@ -171,6 +171,7 @@
                 }
             }
             ?>
+            <li><a href="contact.php"> Contact Us</a></li>
     </ul>
 </nav>
 

@@ -572,8 +572,8 @@
                             class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
                             Anker Power Bank 20,000mAh, 22.5W Cable built-in (In Stock) hyuuuuuuuuuuuu</div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            Remove</button>
                         <div class="line"></div>
                     </a>
                 </div>
@@ -592,8 +592,8 @@
                             class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
                             Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            Remove</button>
                         <div class="line"></div>
                     </a>
                 </div>
@@ -612,8 +612,8 @@
                             class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
                             Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            Remove</button>
                         <div class="line"></div>
                     </a>
                 </div>
@@ -632,8 +632,8 @@
                             class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
                             Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            Remove</button>
                         <div class="line"></div>
                     </a>
                 </div>
@@ -652,8 +652,8 @@
                             class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
                             Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            Remove</button>
                         <div class="line"></div>
                     </a>
                 </div>
@@ -672,8 +672,8 @@
                             class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
                             Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            Remove</button>
                         <div class="line"></div>
                     </a>
                 </div>
@@ -692,8 +692,8 @@
                             class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
                             Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            Remove</button>
                         <div class="line"></div>
                     </a>
                 </div>
@@ -712,8 +712,8 @@
                             class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
                             Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            Remove</button>
                         <div class="line"></div>
                     </a>
                 </div>
@@ -733,8 +733,8 @@
                             class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
                             Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            Remove</button>
                         <div class="line"></div>
                     </a>
                 </div>
@@ -753,8 +753,8 @@
                             class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
                             Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
-                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            Remove</button>
                         <div class="line"></div>
                     </a>
                 </div>
