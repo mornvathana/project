@@ -17,17 +17,9 @@
     <ul class="flex space-x-3">
         <li class="text-sm"><a href="index.php"><i class="fas fa-home mr-2"></i> Home</a></li>
         <li class="text-sm"><a href="#"><i class="fas fa-chevron-right text-gray-400"></i>
-                                        <?php
-                            $name = getBrandTitle("product_detail",$product);
-                            if($name->num_rows > 0){
-                                foreach($name as $data){
-                                ?>
-                                <?= $data['slug']?>
-                                <input type = "hidden" id = "slugname"  value = "<?= $data['slug']?>" />
-                                <?php
-                                }
-                            }
-                ?></a></li>
+        <?= $slug ?>
+        <input type = "hidden" id = "slugname"  value = "<?= $slug ?>" />
+        </a></li>
         <li class="text-sm"><a href="#"><i class="fas fa-chevron-right text-gray-400"></i>
                 <?php
                         $name = getBrandTitle("brands",$product);
