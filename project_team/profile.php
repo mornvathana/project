@@ -6,7 +6,7 @@
 ?>
 <div class="profile-block w-[90%] mx-auto mt-10 flex flex-col md:flex-row justify-between relative">
     <!-- menu -->
-    <div class="menu w-[100%] md:w-[30%] h-fit sticky top-[4rem]"
+    <div class="menu w-[100%] md:w-[30%] h-fit sticky top-[4rem] bg-[#fff] z-[999]"
         style="border: 1px solid #d2d3d4; border-radius: 10px;">
         <ul class="space-y-3 font-medium text-[15px] p-5 font-[Poppins,hanuman,Sans-serif] text-gray-800"
             id="righ_button">
@@ -15,7 +15,12 @@
             <li class=""><a href="#"><i class="fa-solid fa-cart-shopping"></i> My Orders</a></li>
             <li class=""><a href="#"><i class="fa-solid fa-cart-shopping"></i> My Favorite</a></li>
             <li class=""><a href="#"><i class="fa-solid fa-truck"></i> Order Tracking</a></li>
+<<<<<<< HEAD
             <li class=""><a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+=======
+            <li class=""><a href="#"><i class="fa-solid fa-heart"></i> My Favorites</a></li>
+            <li class=""><a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
+>>>>>>> 0e4a1ef146545c777f25fe821c8af040c3fd5711
         </ul>
     </div>
 
@@ -24,15 +29,48 @@
         <div class="page w-[100%] h-fit mt-5 md:mt-0 overflow-hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
             name="profile">
             <div class="w-full mx-auto p-6 bg-white rounded-lg shadow">
-    <h2 class="text-2xl font-semibold text-blue-800 mb-6">Personal Information</h2>
+        <h2 class="text-2xl font-semibold text-blue-800 mb-6">Personal Information</h2>
 
     <!-- Avatar -->
-    <div class="flex items-center space-x-4 mb-6">
-      <img src="https://soklyphone.com/upload/customers/Gc6u4rIIynH64zoPGbg2.png" alt="Avatar" class="w-20 h-20 rounded-full object-cover" />
+    <div class="flex space-x-4 mb-6 rounded-lg bg-gray-100 p-2">
+      <img src="https://th.bing.com/th/id/R.b3cf4fdb4aa23910a48d8efa69c8b447?rik=tlXIaDQ20rnx2Q&riu=http%3a%2f%2fcdn.collider.com%2fwp-content%2fuploads%2f2016%2f03%2fsuperman-returns.jpg&ehk=V8oY2akdo8%2fHFZ0XXdU%2beMwvSyLlDUtmm8k9rIrk%2fK8%3d&risl=&pid=ImgRaw&r=0" alt="Avatar" class="w-20 h-20 rounded-full object-cover" />
       <div>
-        <button class="text-blue-600 hover:underline">Change avatar</button>
+      <!-- Modal toggle -->
+      <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-blue-800 font-semibold" type="button">
+      Change Profile
+      </button>
         <p class="text-sm text-gray-500">Upload JPG, PNG image required.</p>
       </div>
+
+      <!-- Main modal -->
+    <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+    <div class="relative p-4 w-full max-w-2xl max-h-full">
+        <!-- Modal content -->
+        <form method="post" action="" class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+            <!-- Modal body -->
+            <div class="p-4 md:p-5 space-y-4">    
+            <div class="flex items-center justify-center w-full">
+            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+            <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+            </svg>
+            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+            </div>
+            <input id="dropzone-file" type="file" class="hidden" />
+            </label>
+            </div> 
+
+            </div>
+            <!-- Modal footer -->
+            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                <button data-modal-hide="static-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Upload</button>
+                <button data-modal-hide="static-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
+            </div>
+        </form>
+    </div>
+    </div>
     </div>
 
     <!-- Form Fields with Right-Aligned Icons -->
@@ -45,11 +83,7 @@
           class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
         <span class="absolute right-3 top-9 text-gray-400">
           <!-- User Icon -->
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M5.121 17.804A9 9 0 1118.88 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
+          <i class="fa-solid fa-user"></i>
         </span>
       </div>
 
@@ -75,11 +109,7 @@
           class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
         <span class="absolute right-3 top-9 text-gray-400">
           <!-- Mail Icon -->
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M16 12H8m8 0l-4-4m0 8l4-4m-4 4V4m0 16a9 9 0 110-18 9 9 0 010 18z" />
-          </svg>
+          <i class="fa-solid fa-envelope"></i>
         </span>
       </div>
 
@@ -90,11 +120,7 @@
           class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
         <span class="absolute right-3 top-9 text-gray-400">
           <!-- Phone Icon -->
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M3 5a2 2 0 012-2h2.586a1 1 0 01.707.293l2.707 2.707a1 1 0 010 1.414L9 10l5 5 2.586-2.586a1 1 0 011.414 0l2.707 2.707a1 1 0 01.293.707V19a2 2 0 01-2 2h-2c-9.941 0-18-8.059-18-18V5z" />
-          </svg>
+          <i class="fa-solid fa-phone"></i>
         </span>
       </div>
 
@@ -122,10 +148,10 @@
     </div>
 
     <!-- change password -->
-    <div class="page w-[100%] h-fit mt-5 md:mt-0 overflow-hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
+    <div class="page w-[100%] h-fit mt-5 md:mt-0 overflow-hidden hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
             name="password">
         <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow">
-    <h2 class="text-2xl font-semibold text-blue-800 mb-6">Change Password</h2>
+        <h2 class="text-2xl font-semibold text-blue-800 mb-6">Change Password</h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
       <!-- Current Password -->
@@ -161,8 +187,7 @@
         <div class="page w-[100%] h-fit p-5 mt-5 md:mt-0 hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
             name="orders">
             <div class="">
-                <h1 class="text-green-900 font-[Montserrat,hanuman,Sans-serif] text-[20px] font-bold">My Orders</h1>
-                <div class="line w-[13%] bg-gray-500 h-[2px] rounded-md mt-1"></div>
+                <h2 class="text-2xl font-semibold text-blue-800 mb-6">My Orders</h2>
 
                 <!-- order-box-noresponsive -->
                 <div class="order-box w-[100%] h-fit hidden md:block">
@@ -322,13 +347,11 @@
 
         <!-- orders-tracking -->
         <div class="page w-[100%] h-fit p-5 mt-5 md:mt-0 hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
-            name="stracking">
+            name="tracking">
             <div class="">
-                <h1 class="text-green-900 font-[Montserrat,hanuman,Sans-serif] text-[20px] font-bold">My Orders Tracking
-                </h1>
-                <div class="line w-[30%] bg-gray-500 h-[2px] rounded-md mt-1"></div>
+                <h2 class="text-2xl font-semibold text-blue-800 mb-6">Order Tracking</h2>
 
-                <div class="container mx-auto px-4 py-8 max-w-4xl">
+                <div class="container mx-auto max-w-4xl">
 
                     <!-- Order Summary -->
                     <div class="bg-white rounded-xl shadow-md p-6 mb-8">
@@ -485,9 +508,230 @@
             </div>
         </div>
 
+        <!-- favorites -->
+        <div class="page w-[100%] h-fit p-5 mt-5 md:mt-0 hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
+            name="favorites">
+            <div class="">
+                <h1 class="text-green-900 font-[Montserrat,hanuman,Sans-serif] text-[20px] font-bold">My Favorites
+                </h1>
+                <div class="line w-[30%] bg-gray-500 h-[2px] rounded-md mt-1"></div>
+
+                <!-- product-box -->
+            <div
+                class="product-box w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-4 gap-3 mt-5">
+                <!-- box -->
+                <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <div class="pro-img w-full overflow-hidden rounded-md">
+                            <img src="https://soklyphone.com/storage/Honor/Honor-Pad-X8a/1-17332981339izwY.png" alt=""
+                                class="w-full">
+                        </div>
+                        <div
+                            class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                            <del class="dis-price opacity-50">$999</del>
+                            <div class="full-price text-[#f34770!important]">$1,155</div>
+                        </div>
+                        <div
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            Anker Power Bank 20,000mAh, 22.5W Cable built-in (In Stock) hyuuuuuuuuuuuu</div>
+                        <button
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                        <div class="line"></div>
+                    </a>
+                </div>
+                <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <div class="pro-img w-full overflow-hidden rounded-md">
+                            <img src="https://soklyphone.com/storage/Apple/iPad/iPad-Mini-7/purple-1732616452hOIaG.png"
+                                alt="" class="w-full">
+                        </div>
+                        <div
+                            class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                            <del class="dis-price opacity-50">$999</del>
+                            <div class="full-price text-[#f34770!important]">$1,155</div>
+                        </div>
+                        <div
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
+                        <button
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                        <div class="line"></div>
+                    </a>
+                </div>
+                <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <div class="pro-img w-full overflow-hidden rounded-md">
+                            <img src="https://soklyphone.com/storage/Tecno/Tecno-Pad/Tecno-Megapad-10/1-1733106662Vq30k.png"
+                                alt="" class="w-full">
+                        </div>
+                        <div
+                            class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                            <del class="dis-price opacity-50">$999</del>
+                            <div class="full-price text-[#f34770!important]">$1,155</div>
+                        </div>
+                        <div
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
+                        <button
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                        <div class="line"></div>
+                    </a>
+                </div>
+                <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <div class="pro-img w-full overflow-hidden rounded-md">
+                            <img src="https://soklyphone.com/storage/Xiaomi/Xiaomi-Redmi-14C/blue-1-1732867506G5WZJ.png"
+                                alt="" class="w-full">
+                        </div>
+                        <div
+                            class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                            <del class="dis-price opacity-50">$999</del>
+                            <div class="full-price text-[#f34770!important]">$1,155</div>
+                        </div>
+                        <div
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
+                        <button
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                        <div class="line"></div>
+                    </a>
+                </div>
+                <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <div class="pro-img w-full overflow-hidden rounded-md">
+                            <img src="https://soklyphone.com/storage/Apple/iPad/iPad-Mini-7/blue-1732616451VzJsr.png"
+                                alt="" class="w-full">
+                        </div>
+                        <div
+                            class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                            <del class="dis-price opacity-50">$999</del>
+                            <div class="full-price text-[#f34770!important]">$1,155</div>
+                        </div>
+                        <div
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
+                        <button
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                        <div class="line"></div>
+                    </a>
+                </div>
+                <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <div class="pro-img w-full overflow-hidden rounded-md">
+                            <img src="https://soklyphone.com/storage/Apple/iMac/iMac-24-M4-2024/silver-1732612162uAOhd.png"
+                                alt="" class="w-full">
+                        </div>
+                        <div
+                            class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                            <del class="dis-price opacity-50">$999</del>
+                            <div class="full-price text-[#f34770!important]">$1,155</div>
+                        </div>
+                        <div
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
+                        <button
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                        <div class="line"></div>
+                    </a>
+                </div>
+                <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <div class="pro-img w-full overflow-hidden rounded-md">
+                            <img src="https://angkormeas.com/wp-content/uploads/2024/07/Z-Fold-6_Crafted-Black-300x300.jpg?v=1723378615"
+                                alt="" class="w-full">
+                        </div>
+                        <div
+                            class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                            <del class="dis-price opacity-50">$999</del>
+                            <div class="full-price text-[#f34770!important]">$1,155</div>
+                        </div>
+                        <div
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
+                        <button
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                        <div class="line"></div>
+                    </a>
+                </div>
+                <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <div class="pro-img w-full overflow-hidden rounded-md">
+                            <img src="https://angkormeas.com/wp-content/uploads/2024/09/Tab-S10-Ultra-300x300.jpg?v=1727525896"
+                                alt="" class="w-full">
+                        </div>
+                        <div
+                            class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                            <del class="dis-price opacity-50">$999</del>
+                            <div class="full-price text-[#f34770!important]">$1,155</div>
+                        </div>
+                        <div
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
+                        <button
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                        <div class="line"></div>
+                    </a>
+                </div>
+
+                <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <div class="pro-img w-full overflow-hidden rounded-md">
+                            <img src="https://angkormeas.com/wp-content/uploads/2024/09/Galaxy-Z-Flip6_Oct-300x300.jpg?v=1730212394"
+                                alt="" class="w-full">
+                        </div>
+                        <div
+                            class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                            <del class="dis-price opacity-50">$999</del>
+                            <div class="full-price text-[#f34770!important]">$1,155</div>
+                        </div>
+                        <div
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
+                        <button
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                        <div class="line"></div>
+                    </a>
+                </div>
+                <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <a href="#" class="flex flex-col items-center space-y-2 w-full">
+                        <div class="pro-img w-full overflow-hidden rounded-md">
+                            <img src="https://angkormeas.com/wp-content/uploads/2024/09/Tab-S10-Plus-300x300.jpg?v=1727526301"
+                                alt="" class="w-full">
+                        </div>
+                        <div
+                            class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                            <del class="dis-price opacity-50">$999</del>
+                            <div class="full-price text-[#f34770!important]">$1,155</div>
+                        </div>
+                        <div
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            Used Galaxy Z Fold 6 256G+12G (99%) Global</div>
+                        <button
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                        <div class="line"></div>
+                    </a>
+                </div>
+
+            </div>
+            <!-- end of product-box -->
+
+            </div>
+        </div>
+
 
     </div>
 </div>
+
 <script>
     $(document).ready(function(){
         $(document).on("click","#closeBtn",function(){
@@ -639,4 +883,19 @@
         });
     });
 </script>
+
+<!-- Toggle Password Visibility -->
+<script>
+    function togglePassword(id, iconId) {
+      const input = document.getElementById(id);
+      const icon = document.getElementById(iconId);
+      if (input.type === "password") {
+        input.type = "text";
+        icon.innerText = "🙈";
+      } else {
+        input.type = "password";
+        icon.innerText = "👁️";
+      }
+    }
+  </script>
 <?php include('includes/footer.php')?>
