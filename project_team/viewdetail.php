@@ -12,7 +12,7 @@ include('includes/header.php');
           <main class="max-w-[90%] sm:max-w-[90%] md:max-w-[90%] lg:max-w-[90%] xl:max-w-[80%] 2xl:max-w-[80%] m-auto grid grid-cols-[100%] lg:grid-cols-[350px,1fr] gap-[2rem] lg:gap-[5rem] items-start">
           <div class="pro-img-detail static lg:sticky top-[5rem] w-full">
             <div class="main-img overflow-hidden rounded-xl w-full">
-              <img src="uploads/category/<?= $item['image']?>" alt="" class="w-full lg:w-[500px] h-auto lg:h-[300px]" id="zoom">
+              <img src="uploads/category/<?= $item['image']?>" alt="" class="w-full lg:w-[500px] h-auto lg:h-[350px]" id="zoom">
             </div>
             
             <!-- pro-detail-slider -->
@@ -24,8 +24,8 @@ include('includes/header.php');
                       $imageArray = explode(',', $imageString);
                       foreach ($imageArray as $img) {
                     ?>
-                        <div class="active-box-img child-img swiper-slide">
-                          <img src="uploads/category/<?php echo htmlspecialchars($img); ?>" alt="" class="card-img">
+                        <div class="active-box-img child-img swiper-slide h-[100px] w-[100px] sm:h-[120px] sm:w-[120px] md:h-[150px] md:w-[150px] lg:h-[90px] lg:w-[180px] xl:h-[200px] xl:w-[200px] 2xl:h-[200px] 2xl:w-[200px] overflow-hidden rounded-lg">
+                          <img src="uploads/category/<?php echo htmlspecialchars($img); ?>" alt="" class="card-img w-full h-full">
                         </div>
                     <?php
                       }

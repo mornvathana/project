@@ -134,4 +134,18 @@
         return $product1 = mysqli_query($conn,$product);
 
     }
+
+    function getMenu($table){
+        global $conn;
+        // select index in sql
+        $query = "SELECT * FROM $table  ORDER BY id DESC LIMIT 1,7";
+        return mysqli_query($conn,$query);
+    }
+
+    function getMenuwithID($table,$id){
+        global $conn;
+        // select index in sql
+        $query = "SELECT * FROM $table WHERE id = $id";
+        return mysqli_query($conn,$query);
+    }
 ?>
