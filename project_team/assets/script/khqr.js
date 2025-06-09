@@ -1,16 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const KHQR = typeof BakongKHQR !== 'undefined' ? BakongKHQR : null;
-    if (!KHQR) {
-        console.error("BakongKHQR or its components are not loaded or defined.");
-        return;
-    }
-
-    const data = KHQR.khqrData;
-    const info = KHQR.IndividualInfo;
 
     const btncheckout = document.getElementById('checkout');
-    const totalPrice = parseFloat(btncheckout.dataset.total);
 
+    btncheckout.addEventListener("click",data);
+
+    // end button action 
     const form = document.getElementById("checkoutForm");
     const firstName = document.getElementById("first-name");
     const lastName = document.getElementById("last-name");
@@ -40,6 +33,19 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 1000);
         }
     });
+    
+    function data(){
+    const KHQR = typeof BakongKHQR !== 'undefined' ? BakongKHQR : null;
+
+    if (!KHQR) {
+        console.error("BakongKHQR or its components are not loaded or defined.");
+        return;
+    }
+
+    const data = KHQR.khqrData;
+    const info = KHQR.IndividualInfo;
+
+    const totalPrice = parseFloat(btncheckout.dataset.total);
 
     function autoSaveData() {
         const formData = {
@@ -117,9 +123,9 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
-    if (btncheckout) {
-        btncheckout.addEventListener("click", displayQRCode);
-    }
+    displayQRCode();
+
+    
 
     let checkTransactionInterval;
     let transition = false;
@@ -200,4 +206,4 @@ document.addEventListener("DOMContentLoaded", function () {
             clearInterval(checkTransactionInterval);
         });
     };
-});
+    }
