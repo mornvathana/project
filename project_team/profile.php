@@ -19,128 +19,136 @@
         </ul>
     </div>
 
-    <div class="all-page w-[100%] md:w-[68%]">
+    <?php
+        $data = getMenuwithID("users",$id);
+        if($data->num_rows > 0){
+            foreach($data as $user){
+            ?>
+        <div class="all-page w-[100%] md:w-[68%]">
         <!-- profile-page -->
-        <div class="page w-[100%] h-fit mt-5 md:mt-0 overflow-hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
-            name="profile">
+        <div class="page w-[100%] h-fit mt-5 md:mt-0 overflow-hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;" name="profile">
             <div class="w-full mx-auto p-6 bg-white rounded-lg shadow">
         <h2 class="text-2xl font-semibold text-blue-800 mb-6">Personal Information</h2>
 
-    <!-- Avatar -->
-    <div class="flex space-x-4 mb-6 rounded-lg bg-gray-100 p-2">
-      <img src="https://th.bing.com/th/id/R.b3cf4fdb4aa23910a48d8efa69c8b447?rik=tlXIaDQ20rnx2Q&riu=http%3a%2f%2fcdn.collider.com%2fwp-content%2fuploads%2f2016%2f03%2fsuperman-returns.jpg&ehk=V8oY2akdo8%2fHFZ0XXdU%2beMwvSyLlDUtmm8k9rIrk%2fK8%3d&risl=&pid=ImgRaw&r=0" alt="Avatar" class="w-20 h-20 rounded-full object-cover" />
-      <div>
-      <!-- Modal toggle -->
-      <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-blue-800 font-semibold" type="button">
-      Change Profile
-      </button>
-        <p class="text-sm text-gray-500">Upload JPG, PNG image required.</p>
-      </div>
+        <!-- Avatar -->
+        <div class="flex space-x-4 mb-6 rounded-lg bg-gray-100 p-2">
+        <img src="https://th.bing.com/th/id/R.b3cf4fdb4aa23910a48d8efa69c8b447?rik=tlXIaDQ20rnx2Q&riu=http%3a%2f%2fcdn.collider.com%2fwp-content%2fuploads%2f2016%2f03%2fsuperman-returns.jpg&ehk=V8oY2akdo8%2fHFZ0XXdU%2beMwvSyLlDUtmm8k9rIrk%2fK8%3d&risl=&pid=ImgRaw&r=0" alt="Avatar" class="w-20 h-20 rounded-full object-cover" />
+        <div>
+        <!-- Modal toggle -->
+        <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-blue-800 font-semibold" type="button">
+        Change Profile
+        </button>
+            <p class="text-sm text-gray-500">Upload JPG, PNG image required.</p>
+        </div>
 
-      <!-- Main modal -->
-    <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-    <div class="relative p-4 w-full max-w-2xl max-h-full">
-        <!-- Modal content -->
-        <form method="post" action="" class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
-            <!-- Modal body -->
-            <div class="p-4 md:p-5 space-y-4">    
-            <div class="flex items-center justify-center w-full">
-            <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-            <div class="flex flex-col items-center justify-center pt-5 pb-6">
-            <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+        <!-- Main modal -->
+        <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+        <div class="relative p-4 w-full max-w-2xl max-h-full">
+            <!-- Modal content -->
+            <form method="post" action="" class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                <!-- Modal body -->
+                <div class="p-4 md:p-5 space-y-4">    
+                <div class="flex items-center justify-center w-full">
+                <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                </svg>
+                <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                </div>
+                <input id="dropzone-file" type="file" class="hidden" />
+                </label>
+                </div> 
+
+                </div>
+                <!-- Modal footer -->
+                <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
+                    <button data-modal-hide="static-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Upload</button>
+                    <button data-modal-hide="static-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
+                </div>
+            </form>
+        </div>
+        </div>
+        </div>
+
+        <!-- Form Fields with Right-Aligned Icons -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+
+        <!-- Full Name -->
+        <div class="relative">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+            <input type="text" name = "name" value = "<?= $user['name']?>"
+            class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+            <span class="absolute right-3 top-9 text-gray-400">
+            <!-- User Icon -->
+            <i class="fa-solid fa-user"></i>
+            </span>
+        </div>
+
+        <!-- Birthday -->
+        <div class="relative">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Birthday</label>
+            <input type="date" value="2020-06-14"
+            class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+            <span class="absolute right-3 top-9 text-gray-400">
+            <!-- Calendar Icon -->
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                d="M8 7V3m8 4V3M5 11h14M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
-            </div>
-            <input id="dropzone-file" type="file" class="hidden" />
-            </label>
-            </div> 
+            </span>
+        </div>
 
-            </div>
-            <!-- Modal footer -->
-            <div class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600">
-                <button data-modal-hide="static-modal" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Upload</button>
-                <button data-modal-hide="static-modal" type="button" class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Decline</button>
-            </div>
-        </form>
-    </div>
-    </div>
-    </div>
+        <!-- Email -->
+        <div class="relative">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <input type="email" name = "email" value = "<?= $user['email']?>"
+            class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+            <span class="absolute right-3 top-9 text-gray-400">
+            <!-- Mail Icon -->
+            <i class="fa-solid fa-envelope"></i>
+            </span>
+        </div>
 
-    <!-- Form Fields with Right-Aligned Icons -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <!-- Phone -->
+        <div class="relative">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+            <input type="tel" placeholder="Enter your phone number"
+            class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+            <span class="absolute right-3 top-9 text-gray-400">
+            <!-- Phone Icon -->
+            <i class="fa-solid fa-phone"></i>
+            </span>
+        </div>
 
-      <!-- Full Name -->
-      <div class="relative">
-        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
-        <input type="text" value="mroun"
-          class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
-        <span class="absolute right-3 top-9 text-gray-400">
-          <!-- User Icon -->
-          <i class="fa-solid fa-user"></i>
-        </span>
-      </div>
+        <!-- Address -->
+        <div class="relative md:col-span-2">
+            <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+            <textarea placeholder="Enter your address" rows="2"
+            class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"></textarea>
+            <span class="absolute right-3 top-11 text-gray-400">
+            <!-- Location Icon -->
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round"
+                d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zM12 22s8-4.5 8-10A8 8 0 104 12c0 5.5 8 10 8 10z" />
+            </svg>
+            </span>
+        </div>
+        </div>
 
-      <!-- Birthday -->
-      <div class="relative">
-        <label class="block text-sm font-medium text-gray-700 mb-1">Birthday</label>
-        <input type="date" value="2020-06-14"
-          class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
-        <span class="absolute right-3 top-9 text-gray-400">
-          <!-- Calendar Icon -->
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M8 7V3m8 4V3M5 11h14M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-          </svg>
-        </span>
-      </div>
-
-      <!-- Email -->
-      <div class="relative">
-        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
-        <input type="email" value="mrounit83@gmail.com"
-          class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
-        <span class="absolute right-3 top-9 text-gray-400">
-          <!-- Mail Icon -->
-          <i class="fa-solid fa-envelope"></i>
-        </span>
-      </div>
-
-      <!-- Phone -->
-      <div class="relative">
-        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
-        <input type="tel" placeholder="Enter your phone number"
-          class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
-        <span class="absolute right-3 top-9 text-gray-400">
-          <!-- Phone Icon -->
-          <i class="fa-solid fa-phone"></i>
-        </span>
-      </div>
-
-      <!-- Address -->
-      <div class="relative md:col-span-2">
-        <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
-        <textarea placeholder="Enter your address" rows="2"
-          class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"></textarea>
-        <span class="absolute right-3 top-11 text-gray-400">
-          <!-- Location Icon -->
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
-            viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zM12 22s8-4.5 8-10A8 8 0 104 12c0 5.5 8 10 8 10z" />
-          </svg>
-        </span>
-      </div>
-    </div>
-
-    <!-- Update Button -->
-    <div class="text-center">
-      <button class="bg-blue-800 hover:bg-blue-900 text-white font-semibold px-6 py-2 rounded">Update</button>
-    </div>
-    </div>
-    </div>
+        <!-- Update Button -->
+        <div class="text-center">
+        <button class="bg-blue-800 hover:bg-blue-900 text-white font-semibold px-6 py-2 rounded">Update</button>
+        </div>
+        </div>
+        </div>
+            <?php
+            }
+        }
+    ?>
 
     <!-- change password -->
     <div class="page w-[100%] h-fit mt-5 md:mt-0 overflow-hidden hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
@@ -353,11 +361,38 @@
                         <div class="flex flex-col md:flex-row justify-between items-center">
                             <div class="mb-4 md:mb-0 text-center md:text-left">
                                 <h2 class="text-xl font-semibold text-gray-800">Hea Oun Cambodia</h2>
-                                <p class="text-gray-600">Placed on June 15, 2023</p>
+                                <p class="text-gray-600">Items : (
+                                <?php
+                                    $data = countCart("cart",$id);
+                                    ?>
+                                    <?= $data ?>
+                                    <?php
+                                ?>    
+                                )</p>
                             </div>
                             <div class="text-center md:text-right">
                                 <p class="text-gray-600">Total Amount</p>
-                                <p class="text-2xl font-bold text-gray-800">$149.99</p>
+                                <p class="text-2xl font-bold text-gray-800">
+                                    $
+                                     <?php
+                                    $price = getPriceCart($item['id'],$id);
+                                    if($price->num_rows > 0){
+                                        foreach($price as $num){
+                                        $idorder = $num['id'];
+                                            $shipping = getMenuwithID("shipping",$num['shipping_id']);
+                                            $total = 0;
+                                            if($shipping->num_rows > 0){
+                                            foreach($shipping as $value){
+                                            $total = $value['shipping_price'] + $num['product_price'];
+                                            ?>
+                                            <?= $total ?> 
+                                            <?php
+                                            }
+                                            }
+                                        }
+                                        }
+                                        ?>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -414,15 +449,22 @@
                                                 $
                                             <?php
                                             $idorder = 0;
-                                            $price = getPrice($item['id'],$id);
+                                            $price = getPriceCart($item['id'],$id);
                                             if($price->num_rows > 0){
                                                 foreach($price as $num){
                                                 $idorder = $num['id'];
-                                                ?>
-                                            <?= $num['total_price']?>
-                                            <?php
-                                                        }
+                                                 $shipping = getMenuwithID("shipping",$num['shipping_id']);
+                                                 $total = 0;
+                                                 if($shipping->num_rows > 0){
+                                                    foreach($shipping as $value){
+                                                    $total = $value['shipping_price'] + $num['product_price'];
+                                                    ?>
+                                                    <?= $total ?> 
+                                                    <?php
                                                     }
+                                                 }
+                                                }
+                                                }
                                                 ?>
                                             </td>
                                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">

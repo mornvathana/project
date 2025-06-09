@@ -55,6 +55,11 @@
         $product = "SELECT * FROM orders WHERE cart_id = $id AND user_id = $userid";
         return $product1 = mysqli_query($conn,$product);
     }
+    function getPriceCart($id,$userid){
+        global $conn;
+        $product = "SELECT * FROM cart WHERE id = $id AND user_id = $userid";
+        return $product1 = mysqli_query($conn,$product);
+    }
     function getOrders($id){
         global $conn;
         $product = "SELECT * FROM cart WHERE user_id = $id AND status = 0";
@@ -98,6 +103,16 @@
     function countStatusUser($table,$status,$id){
         global $conn;
         $query = "SELECT count(*) as count FROM $table WHERE status = $status AND user_id = $id";
+        $query_run = mysqli_query($conn,$query);
+        if($query_run){
+            $result = mysqli_fetch_assoc($query_run);
+                return $result['count'];
+        }
+        return 0;
+    }
+    function countCart($table,$id){
+        global $conn;
+        $query = "SELECT count(*) as count FROM $table WHERE user_id = $id";
         $query_run = mysqli_query($conn,$query);
         if($query_run){
             $result = mysqli_fetch_assoc($query_run);
@@ -206,6 +221,13 @@
         global $conn;
         // select index in sql
         $query = "SELECT * FROM $table WHERE id = $id";
+        return mysqli_query($conn,$query);
+    }
+
+    function getSelectTable($table,$id,$select){
+        global $conn;
+        // select index in sql
+        $query = "SELECT * FROM $table WHERE $select = $id";
         return mysqli_query($conn,$query);
     }
 ?>
