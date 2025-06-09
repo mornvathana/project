@@ -280,6 +280,8 @@ if($_SESSION['auth_user']){
         </div>
         </div>
     </div>
+    <script src="https://github.com/davidhuotkeo/bakong-khqr/releases/download/bakong-khqr-1.0.6/khqr-1.0.6.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script>
       $(document).ready(function(){
 
@@ -334,8 +336,6 @@ if($_SESSION['auth_user']){
         
       });
     </script>
-    <script src="https://github.com/davidhuotkeo/bakong-khqr/releases/download/bakong-khqr-1.0.6/khqr-1.0.6.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
     <script src = "assets/script/khqr.js"></script>
     <!-- end of shopping-cart-block -->
 <?php include('includes/footer.php')?>

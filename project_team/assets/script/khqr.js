@@ -130,11 +130,14 @@
     let checkTransactionInterval;
     let transition = false;
 
-    const startQrCodeScanner = (md5Value) => {
+    function startQrCodeScanner(md5Value) {
         checkTransactionInterval = setInterval(() => {
             fetchTransactionStatus(md5Value);
         }, 2000);
     };
+    
+
+    
 
     const fetchTransactionStatus = (md5) => {
         const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiZjNkMDc4M2EyOTY4NDExYSJ9LCJpYXQiOjE3NDk5NzE4NDksImV4cCI6MTc1Nzc0Nzg0OX0.t9Tl-NRUnL9-uz9xEfXcko5qMiu3ysmPEHJM1nhfwCg';
@@ -166,8 +169,9 @@
                     caption: `🚨 *New Order Alert* 🚨 \n\n🆔 *Order ID:* ${order_number}\n👤 *Customer Name:* ${firstName.value} ${lastName.value}\n📧 *Email:* ${email.value}\n\n📦*Order Detail*\n\n💵 *Total Price*: $${totalPrice}\n🏠 *Delivery Address*: ${address.value}, ${city.value}\n📱 *Contact Number*: ${phoneNumber.value}\n✅ *Thank you for your purchase*`,
                     parse_mode: "Markdown"
                 };
+
                 let message = false;
-                const sendMessage = async () => {
+                  const sendMessage = async () => {
                     if(message) return;
                     message = true;
                     try {
@@ -183,17 +187,18 @@
                         
                         if (data.ok) {
                             console.log("Message sent successfully!");
+                            window.location.href = 'http://localhost:8080/project/project_team/profile.php';
                         }
                     } catch (error) {
                         console.error("Fetch error:", error);
                     }
                 };
 
+
                 if(!transition){
                     transition = true;
-                    autoSaveData();
-                    window.location.href = 'http://localhost:8080/project/project_team/profile.php';
                     sendMessage();
+                    autoSaveData();
                 }
             
             

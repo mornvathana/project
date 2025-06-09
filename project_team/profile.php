@@ -15,12 +15,7 @@
             <li class=""><a href="#"><i class="fa-solid fa-cart-shopping"></i> My Orders</a></li>
             <li class=""><a href="#"><i class="fa-solid fa-cart-shopping"></i> My Favorite</a></li>
             <li class=""><a href="#"><i class="fa-solid fa-truck"></i> Order Tracking</a></li>
-<<<<<<< HEAD
-            <li class=""><a href="logout.php"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
-=======
-            <li class=""><a href="#"><i class="fa-solid fa-heart"></i> My Favorites</a></li>
             <li class=""><a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
->>>>>>> 0e4a1ef146545c777f25fe821c8af040c3fd5711
         </ul>
     </div>
 
