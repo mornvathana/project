@@ -1,7 +1,12 @@
 <?php
     session_start();
     include('userfunction.php');
-    $conn = new mysqli("localhost","root","","ecommerce_data");
+    include('../config/dbcon.php');
+    require '../vendor/autoload.php';
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
     if(isset($_SESSION['auth'])){
         if(isset($_POST['scrope'])){
             $scrope = $_POST['scrope'];
@@ -53,6 +58,72 @@
                     $stmt = $conn->prepare("UPDATE cart SET shipping_id = ? WHERE id = ?");
                     $stmt->bind_param('ii',$prod_shipping,$prod_id);
                     $stmt->execute();
+                break;
+                case "updateProfile":
+                    $id = $_POST['id'];
+                    $name = $_POST['name'];
+                    $email = $_POST['email'];
+                    $phonenumber = $_POST['phonenumber'];
+                    $address = $_POST['address'];
+                    $image = "123.jpg";
+                    $email_verify = null;
+
+                    $stmt1 = $conn->prepare("SELECT * FROM users WHERE email = ?");
+                    $stmt1->bind_param("s",$email);
+                    $stmt1->execute();
+                    $result = $stmt1->get_result();
+                    if($result->num_rows > 0){
+                        echo 100;
+                    }else{
+                        $stmt = $conn->prepare("UPDATE users SET name = ?,email = ?, image = ?,phonenumber = ? , address = ?, email_verify = ? WHERE id = ?");
+                        $stmt->bind_param('sssissi',$name,$email,$image,$phonenumber,$address,$email_verify,$id);
+
+                     if ($stmt->execute()) {
+
+                        if ($stmt->affected_rows > 0) {
+
+                            $base_url = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/";
+                            $verification_link = $base_url . "verify_email.php?email_id=" . $id;
+
+                            $content = "Hi $name,";
+                            $content .= "<br><br>Click <a href='" . $verification_link . "'>here</a> to verify your email.";
+
+                            $mail = new PHPMailer(true);
+
+                            try {
+                                $mail->isSMTP();
+                                $mail->Host = 'smtp.gmail.com';
+                                $mail->SMTPAuth = true;
+                                $mail->Username = 'mornsovathana@gmail.com'; 
+                                $mail->Password = 'adjujoekjgqfxeqg';  
+                                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                                $mail->Port = 587;
+
+                                $mail->setFrom('mornsovathana@gmail.com', 'Morn Sovathana');
+                                $mail->addAddress($email);
+
+                                $mail->isHTML(true);
+                                $mail->Subject = 'Email Verification';
+                                $mail->Body = $content;
+
+                                $mail->send();
+                                
+                                session_unset(); 
+                                session_destroy();
+
+                            } catch (Exception $e) {
+                                echo "Email could not be sent. Error: {$mail->ErrorInfo}";
+                                exit(); 
+                            }
+
+                            }
+                            
+                            echo 202;
+                            exit(); 
+                        }else{
+                            echo 404;
+                        }
+                    }
                 break;
                 default:
                 echo "Invailed Scrope";

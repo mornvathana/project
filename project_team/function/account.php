@@ -14,7 +14,7 @@
         $checkemail = $conn->query("SELECT * FROM users WHERE email = '$email'");
 
         if($checkemail->num_rows > 0){
-             $emailverify = "SELECT * FROM users WHERE email = '$email' AND email_verify IS NOT NULL";
+        $emailverify = "SELECT * FROM users WHERE email = '$email' AND email_verify IS NOT NULL";
 
         $dataverify = $conn->query($emailverify);
 
@@ -56,7 +56,7 @@
             redirect1("../login.php", "Please verify email!");
         }
         }else{
-            redirect1("../login","Email not found!");
+            redirect1("../login.php","Email not found!");
         }
 
 

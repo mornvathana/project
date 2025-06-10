@@ -1,6 +1,8 @@
 
 <?php 
+ ob_start();
 include('includes/header.php');
+include('authication.php');
 if($_SESSION['auth_user']){
   $user_id = $_SESSION['auth_user']['user_id'];
 }
