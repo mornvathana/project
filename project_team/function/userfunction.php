@@ -181,6 +181,13 @@
         $menu = "SELECT name,id FROM brands WHERE id = $id";
         return $menu1 = mysqli_query($conn,$menu);
     }
+
+    function favorite($table,$select,$id){
+        global $conn;
+        $menu = "SELECT * FROM $table WHERE $select = $id";
+        return $menu1 = mysqli_query($conn,$menu);
+    }
+
     function getShipping($id){
         global $conn;
         $product1 = "SELECT * FROM shipping WHERE id = $id";
