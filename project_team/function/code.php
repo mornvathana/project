@@ -125,6 +125,47 @@
                         }
                     }
                 break;
+                case "updatePass":
+                $id = $_POST['id'];
+                $email = $_POST['email'];
+                $oldPass = $_POST['oldPass'];
+                $newPass = $_POST['newPass'];
+                $conPass = $_POST['conPass'];
+                $status = 1;
+
+                if($newPass != $conPass){
+                    echo 101;
+                    exit();
+                }else{
+                    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ? AND status = ?");
+                    $stmt->bind_param("si",$email,$status);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    if($result->num_rows > 0){
+
+                        $data = mysqli_fetch_assoc($result);
+                        $password = $data['password'];
+                        
+                        if(password_verify($oldPass,$password)){
+                            echo 102;
+                            exit();
+                        }else{
+                            $hashedPassword = password_hash($newPass, PASSWORD_DEFAULT);
+                            $stmt1 = $conn->prepare("UPDATE users SET password = ? WHERE id = ? AND status = ?");
+                            $stmt1->bind_param("iii",$hashedPassword,$id,$status);
+                            $stmt1->execute();
+
+
+                            if($stmt1->affected_rows > 0){
+                                echo 202;
+                                exit();
+                            }
+                        }
+                    }
+                }
+
+                
+                break;
                 default:
                 echo "Invailed Scrope";
             }

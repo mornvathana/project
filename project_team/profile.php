@@ -105,6 +105,7 @@
             <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
             <input type="email" name = "email" id = "email" value = "<?= $user['email']?>"
             class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+            <input type="hidden" id = "email" value = <?= $user['email']?>>
             <span class="absolute right-3 top-9 text-gray-400">
             <!-- Mail Icon -->
             <i class="fa-solid fa-envelope"></i>
@@ -162,28 +163,32 @@
       <!-- Current Password -->
       <div class="relative">
         <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
-        <input type="password" id="currentPass" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
-        <span onclick="togglePassword('currentPass', 'iconCurrent')" id="iconCurrent" class="absolute right-3 top-[30px] cursor-pointer select-none">👁️</span>
+        <input type="password" id="oldPass" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" required />
+        <span onclick="togglePassword('oldPass', 'iconCurrent')" id="iconCurrent" class="absolute right-3 top-[30px] cursor-pointer select-none">👁️</span>
       </div>
 
       <!-- New Password -->
       <div class="relative">
         <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
-        <input type="password" id="newPass" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+        <input type="password" id="newPass" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" required />
+        <input type="hidden" id = "id" value = "<?= $id ?>">
         <span onclick="togglePassword('newPass', 'iconNew')" id="iconNew" class="absolute right-3 top-[30px] cursor-pointer select-none">👁️</span>
       </div>
 
       <!-- Re-enter New Password -->
       <div class="relative md:col-span-2">
         <label class="block text-sm font-medium text-gray-700 mb-1">Re-enter your password</label>
-        <input type="password" id="reNewPass" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
-        <span onclick="togglePassword('reNewPass', 'iconRe')" id="iconRe" class="absolute right-3 top-[30px] cursor-pointer select-none">👁️</span>
+        <input type="password" id="conPass" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" required />
+        <span onclick="togglePassword('conPass', 'iconRe')" id="iconRe" class="absolute right-3 top-[30px] cursor-pointer select-none">👁️</span>
       </div>
     </div>
 
     <!-- Update Button -->
-    <div class="text-center">
-      <button class="bg-blue-800 hover:bg-blue-900 text-white font-semibold px-6 py-2 rounded">Update</button>
+    <div class="flex justify-end items-center">
+        <button class="button text-white font-semibold rounded"  id = "loading1">
+            
+       </button>
+      <button class="bg-blue-800 hover:bg-blue-900 text-white font-semibold px-6 py-2 rounded" type = "submit" id = "updatePassword">Update</button>
     </div>
     </div>
     </div>
@@ -770,6 +775,115 @@
 
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $(document).on("click","#updatePassword",function(){
+        const loading1 = $("#loading1");
+        let oldPass = $("#oldPass").val();
+        let newPass = $("#newPass").val();
+        let conPass = $("#conPass").val();
+        let email = $("#email").val(); 
+        let id = $("#id").val();
+
+        $.ajax({
+            method: "POST",
+            url: "function/code.php",
+            data: {
+                "id" : id,
+                "email" : email,
+                "oldPass" : oldPass,
+                "newPass" : newPass,
+                "conPass" : conPass,
+                "scrope" : "updatePass",
+            },
+            beforeSend: function(){
+                 loading1.html(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                                <circle cx="50" cy="50" r="32" stroke-width="8" stroke="#2196f3" stroke-dasharray="50.2655 50.2655" fill="none" stroke-linecap="round">
+                                    <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"/>
+                                </circle>
+                                </svg>`);
+            },
+            success: function (data) {
+                if(data == 101){
+                     Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Password is not matching!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                        loading1.html("");
+                }else if(data == 102){
+                     Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">New Password the same as old password!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                }else if(data == 202){
+                     loading1.html(`<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
+                                    <path fill="#c8e6c9" d="M36,42H12c-3.314,0-6-2.686-6-6V12c0-3.314,2.686-6,6-6h24c3.314,0,6,2.686,6,6v24C42,39.314,39.314,42,36,42z"></path><path fill="#4caf50" d="M34.585 14.586L21.014 28.172 15.413 22.584 12.587 25.416 21.019 33.828 37.415 17.414z"></path>
+                                    </svg>`);
+                      Swal.fire({
+                        icon: 'success',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Password updated!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                        loading1.html("");
+                }
+            }
+        });
+        });
+        
+    });
+</script>
 <script>
     $(document).ready(function(){
         $(document).on("click","#updateProfile",function(){
