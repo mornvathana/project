@@ -82,7 +82,7 @@ include('includes/header.php');
                   ?>
               </div>
               <div class="btn mt-5 flex items-center space-x-5">
-                  <button class="text-blue-800 rounded-full font-semibold"><i class="fa-regular fa-heart"></i> Add to favorite</button>
+                  <button class="text-blue-800 rounded-full font-semibold" id = "addfavorite" data-id = "<?= $product ?>"><i class="fa-regular fa-heart"></i> Add to favorite</button>
                   <button class="text-blue-800 rounded-full font-semibold"><i class="fa-brands fa-facebook"></i> Share to facebook</button>
               </div>
             </div>
@@ -138,4 +138,74 @@ include('includes/header.php');
       }
     } 
   ?>
+  <script>
+    $(document).on("click","#addfavorite",function(){
+      const id = $(this).data("id");
+      
+      $.ajax({
+        method: "POST",
+        url: "function/code.php",
+        data: {
+          "id" : id,
+          "scrope" : "addfavorite",
+        },
+        success: function (data) {
+
+          if(data == 202){
+             Swal.fire({
+              icon: 'success',
+              title: '<span class="text-gray-800 font-semibold text-lg">Product added favorite!</span>',
+              showCancelButton: false, 
+              showConfirmButton: false, 
+              timer: 3000,  
+              background: '#fff',
+              focusCancel: true,
+              buttonsStyling: false,
+              customClass: {
+                  popup: 'rounded-xl shadow-md p-6',
+              },
+              didOpen: () => {
+                  document.querySelector('.swal2-popup').style.width = '400px';
+              }
+              });
+          }else if(data == 102){
+             Swal.fire({
+              icon: 'warning',
+              title: '<span class="text-gray-800 font-semibold text-lg">Product already exist!</span>',
+              showCancelButton: false, 
+              showConfirmButton: false, 
+              timer: 3000,  
+              background: '#fff',
+              focusCancel: true,
+              buttonsStyling: false,
+              customClass: {
+                  popup: 'rounded-xl shadow-md p-6',
+              },
+              didOpen: () => {
+                  document.querySelector('.swal2-popup').style.width = '400px';
+              }
+              });
+          }else{
+              Swal.fire({
+              icon: 'warning',
+              title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
+              showCancelButton: false, 
+              showConfirmButton: false, 
+              timer: 3000,  
+              background: '#fff',
+              focusCancel: true,
+              buttonsStyling: false,
+              customClass: {
+                  popup: 'rounded-xl shadow-md p-6',
+              },
+              didOpen: () => {
+                  document.querySelector('.swal2-popup').style.width = '400px';
+              }
+              });
+          }
+          
+        }
+      });
+    });
+  </script>
 <?php include('includes/footer.php')?>

@@ -4,6 +4,10 @@
     include('../config/dbcon.php');
     require '../vendor/autoload.php';
 
+    if(isset($_SESSION['auth_user'])){
+        $userid = $_SESSION['auth_user']['user_id'];
+    }   
+
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\Exception;
 
@@ -164,6 +168,41 @@
                 }
 
                 
+                break;
+                case "addfavorite":
+                    $id = $_POST['id'];
+                    $stmt1 = $conn->prepare("SELECT * FROM favorite WHERE product_id = ? AND user_id = ?");
+                    $stmt1->bind_param("ii",$id,$userid);
+                    $stmt1->execute();
+
+                    $data = $stmt1->get_result();
+
+                    if($data->num_rows > 0){
+                        echo 102;
+                        exit();
+                    }else{
+                        $stmt = $conn->prepare("SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
+                                            , i.specification,i.description,i.image,i.demo_image FROM product_detail d 
+                                            JOIN product_image i on d.id = i.product_id where d.id = ?");
+                        $stmt->bind_param('i',$id);
+                        $stmt->execute();
+                        $result = $stmt->get_result();
+
+                        if($result->num_rows > 0){
+
+                        $row = $result->fetch_assoc();
+
+                        $insert = $conn->prepare("INSERT INTO favorite (user_id,product_id,name,image,sell_price,original_price) VALUES (?,?,?,?,?,?)");
+                        $insert->bind_param('iissii',$userid,$row['id'],$row['name'],$row['image'],$row['sell_price'],$row['original_price']);
+
+                        if($insert->execute()){
+                            echo 202;
+                        }else{
+                            echo 101;
+                        }
+                        }
+                    }
+
                 break;
                 default:
                 echo "Invailed Scrope";
