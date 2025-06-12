@@ -204,6 +204,20 @@
                     }
 
                 break;
+                case "deletefavorite":
+                    $favoriteid = $_POST['favoriteid'];
+                    $favoriteuser = $_POST['favoriteuser'];
+
+                    $stmt = $conn->prepare("DELETE FROM favorite WHERE id = ? AND user_id = ?");
+                    $stmt->bind_param('ii',$favoriteid,$favoriteuser);
+                    $stmt->execute();
+                    
+                    if($stmt->affected_rows > 0){
+                        echo 202;
+                    }else{
+                        echo 101;
+                    }
+                break;
                 default:
                 echo "Invailed Scrope";
             }

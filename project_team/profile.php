@@ -570,7 +570,7 @@
 
                     foreach($data as $name){
                     ?>
-                    <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg" id = "data-<?= $name['id']?>">
                     <a href="#" class="flex flex-col items-center space-y-2 w-full">
                         <div class="pro-img w-full overflow-hidden rounded-md">
                             <img src="uploads/category/<?= $name['image']?>" alt=""
@@ -580,12 +580,14 @@
                             class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
                             <del class="dis-price opacity-50">$<?= $name['original_price']?></del>
                             <div class="full-price text-[#f34770!important]">$<?= $name['sell_price']?></div>
+                            <input type="hidden" id = "favoriteid" value = "<?= $name['id']?>">
+                             <input type="hidden" id = "favoriteuser" value = "<?= $id?>">
                         </div>
                         <div
-                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden" >
                             <?= $name['name']?></div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]" id = "removefavorite"><i class="fa-solid fa-heart"></i>
                             Remove</button>
                         <div class="line"></div>
                     </a>
@@ -606,6 +608,63 @@
 
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $(document).on("click","#removefavorite",function(){
+            let favoriteid = $("#favoriteid").val();
+            let favoriteuser = $("#favoriteuser").val();
+
+            $.ajax({
+                method: "POST",
+                url: "function/code.php",
+                data: {
+                    "favoriteid" : favoriteid,
+                    "favoriteuser" : favoriteuser,
+                    "scrope" : "deletefavorite",
+                },
+                success: function (data) {
+                    if(data == 202){
+                         Swal.fire({
+                        icon: 'success',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Password updated!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        }).then(() =>{
+                            $(`#data-${favoriteid}`).remove();
+                        });
+                    }else if(data == 101){
+                         Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>
 <script>
     $(document).ready(function(){
         $(document).on("click","#updatePassword",function(){
