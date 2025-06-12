@@ -492,60 +492,6 @@
                     </div>
 
                     <!-- Order Details -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <!-- Shipping Address -->
-                        <div class="bg-white rounded-xl shadow-md p-6">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                                <i class="fas fa-truck text-gray-500 mr-2"></i>
-                                Shipping Address
-                            </h2>
-                            <div class="text-gray-600">
-                                <p class="font-medium">Hea Oun Cambodia</p>
-                                <p>123 Main Street</p>
-                                <p>Apartment 4B</p>
-                                <p>Svay Rieng, NY 10001</p>
-                                <p>Cambodia</p>
-                                <p class="mt-2">
-                                    <i class="fas fa-phone-alt mr-2"></i> 0963904112
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Payment Method -->
-                        <div class="bg-white rounded-xl shadow-md p-6">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                                <i class="fas fa-credit-card text-gray-500 mr-2"></i>
-                                Payment Method
-                            </h2>
-                            <div class="flex items-center">
-                                <div class="bg-blue-100 p-2 rounded-lg mr-3 w-12 h-12">
-                                    <img src="https://blog.millionero.com/wp-content/uploads/2023/11/millionero_digital_currency_system_bakong_service_national_bank_of_cambodia.jpg"
-                                        alt="" class="w-full h-full">
-                                </div>
-                                <div>
-                                    <p class="font-medium font-[Poppins,hanuman,Sans-serif] text-xl">បាគង</p>
-                                </div>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-gray-200">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-600">Subtotal (3 items)</span>
-                                    <span class="font-medium">$149.99</span>
-                                </div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-600">Shipping</span>
-                                    <span class="font-medium text-green-600">Free</span>
-                                </div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-600">Tax</span>
-                                    <span class="font-medium">$12.00</span>
-                                </div>
-                                <div class="flex justify-between font-semibold mt-3 pt-2 border-t border-gray-200">
-                                    <span>Total</span>
-                                    <span>$161.99</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -917,7 +863,7 @@
                                 color2 = "";
                                 color3 = "";
                             }
-                            txt += `<div class="relative p-4 w-full max-w-md max-h-full">
+                            txt += `<div class="relative p-4 w-full max-w-3xl max-h-full">
                             <!-- Modal content -->
                             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
                                 <!-- Modal header -->
@@ -936,9 +882,9 @@
                                 </div>
 
                                 <!-- Modal body -->
-                                <div class="p-4 md:p-5">
+                                <div class="p-4 md:p-5 grid grid-cols-2 gap-5">
                                     <form class="space-y-4" action="#">
-                                        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                                        <div class="bg-white rounded-xl shadow-md p-6">
                                             <div class="flex flex-col md:flex-row items-center">
                                                 <!-- Status Steps -->
                                                 <div class="flex-1">
@@ -999,9 +945,25 @@
                                             </div><!-- .flex -->
                                         </div><!-- .p-6 -->
                                     </form>
+                                <div class="bg-white rounded-xl shadow-md p-6">
+                                    <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-truck text-gray-500 mr-2"></i>
+                                        Shipping Address
+                                    </h2>
+                                    <div class="text-gray-600">
+                                        <p class="font-medium">Hea Oun Cambodia</p>
+                                        <p>123 Main Street</p>
+                                        <p>Apartment 4B</p>
+                                        <p>Svay Rieng, NY 10001</p>
+                                        <p>Cambodia</p>
+                                        <p class="mt-2">
+                                            <i class="fas fa-phone-alt mr-2"></i> 0963904112
+                                        </p>
+                                    </div>
+                                </div>
                                 </div><!-- .p-4 -->
                             </div><!-- .modal content -->
-                        </div><!-- .p-4 -->`;
+                        </div>`;
                         }
                         display.html(txt);
                     }
