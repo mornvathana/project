@@ -18,6 +18,42 @@
 
     <!-- container -->
     <div class="Container_product flex flex-col lg:flex-row w-[100%] justify-between mx-auto p-1 sm:p-5">
+        <div class="price_range_slider w-[100%] lg:w-[20%] h-fit grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-1 2xl:lg:grid-cols-1 gap-3 mt-10 md:mt-0 font-[Poppins,hanuman,Sans-serif] rounded-lg" style="border: 1px solid #e5e7eb;">
+        <div class="bg-white rounded-lg p-6 w-full max-w-xs font-[Poppins,hanuman,Sans-serif]">
+        <div class="flex items-center justify-between mb-4">
+            <h3 class="text-lg font-semibold text-gray-800">CATEGORIES</h3>
+            <button class="text-blue-500 text-sm font-medium" id="resetButton">Reset</button>
+        </div>
+        
+        <div class="space-y-[0px]">
+            <div class="category-item active flex items-center p-2 rounded-md cursor-pointer space-x-3">
+                <input type="checkbox" value="all" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2" checked>
+                <span class="text-sm">All</span>
+            </div>
+            
+            <div class="category-item flex items-center p-2 rounded-md cursor-pointer space-x-3">
+                <input type="checkbox" value="mobile" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
+                <span class="text-sm">Mobile Phone</span>
+            </div>
+            
+            <div class="category-item flex items-center p-2 rounded-md cursor-pointer space-x-3">
+                <input type="checkbox" value="earphones" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
+                <span class="text-sm">Bluetooth Earphones</span>
+            </div>
+            
+            <div class="category-item flex items-center p-2 rounded-md cursor-pointer space-x-3">
+                <input type="checkbox" value="case" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
+                <span class="text-sm">Case</span>
+            </div>
+            
+            <div class="category-item flex items-center p-2 rounded-md cursor-pointer space-x-3">
+                <input type="checkbox" value="speaker" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
+                <span class="text-sm">Bluetooth Speaker</span>
+            </div>
+        </div>
+        </div>
+        </div>
+
         <div class="w-[100%] lg:w-[78%]">
 
             <div class="product-head flex justify-between items-center px-3 sm:px-3 py-2 border rounded-sm">
@@ -36,7 +72,7 @@
             <!-- end of product-head -->
             
             <!-- ui slider range -->
-            <form method="GET" action="" class="flex items-center justify-center">
+            <!-- <form method="GET" action="" class="flex items-center justify-center">
               <input type="hidden" name="id" value="<?= $_GET['id'] ?? '' ?>">
               <input type="hidden" name="slug" value="<?= $_GET['slug'] ?>">
               <div class="rounded-xl w-full">
@@ -52,7 +88,28 @@
                       <span id="max-value" class="text-md md:text-lg font-normal text-gray-800"><?= $_GET['max-price'] ?? 3000 ?></span>
                   </div>
               </div>
-          </form>
+              </form> -->
+
+              <!-- <div class="wrapper mt-5">
+                <div class="price-input">
+                    <div class="field">
+                        <span>Min</span>
+                        <input type="number" class="input-min" value="2500">
+                    </div>
+                    <div class="separator">-</div>
+                    <div class="field">
+                        <span>Max</span>
+                        <input type="number" class="input-max" value="7500">
+                    </div>
+                </div>
+                <div class="slider">
+                    <div class="progress"></div>
+                </div>
+                <div class="range-input">
+                    <input type="range" class="range-min" min="0" max="10000" value="2500" step="100">
+                    <input type="range" class="range-max" min="0" max="10000" value="7500" step="100">
+                </div>
+                </div> -->
 
          
             <!-- product-box -->
@@ -119,14 +176,14 @@
               
         </div>
 
-        <div class="banner w-[100%] lg:w-[20%] h-auto lg:h-[500px] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-1 2xl:lg:grid-cols-1 gap-3 mt-10 md:mt-0">
+        <!-- <div class="banner w-[100%] lg:w-[20%] h-auto lg:h-[500px] grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-1 2xl:lg:grid-cols-1 gap-3 mt-10 md:mt-0">
             <a href="#"><img src="https://angkormeas.com/wp-content/uploads/2023/10/Apple-Watch-Ultra-2-2024.webp" alt="" class="w-full h-full"></a>
             <a href="#"><img src="https://angkormeas.com/wp-content/uploads/2023/10/Apple-Watch-Series-10.webp" alt="" class="w-full h-full"></a>
             <a href="#"><img src="https://angkormeas.com/wp-content/uploads/2023/10/Apple-Watch-SE-2024.webp" alt="" class="w-full h-full"></a>
-        </div>
+        </div> -->
     </div>
     <!-- end product -->
-        <script>
+    <script>
         const form = document.querySelector("form");
         const rangeMin = document.getElementById("range-min");
         const rangeMax = document.getElementById("range-max");
@@ -147,6 +204,69 @@
         rangeMax.addEventListener("change", () => {
             form.submit();
         });
+
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+        const resetButton = document.getElementById('resetButton');
+        const categoryItems = document.querySelectorAll('.category-item');
+
+        checkboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // Uncheck all other checkboxes
+                    checkboxes.forEach(cb => {
+                        if (cb !== this) cb.checked = false;
+                    });
+                    
+                    // Update active states
+                    categoryItems.forEach(item => {
+                        item.classList.remove('active');
+                    });
+                    this.closest('.category-item').classList.add('active');
+                } else {
+                    // Prevent unchecking the last checked item
+                    const checkedItems = document.querySelectorAll('input[type="checkbox"]:checked');
+                    if (checkedItems.length === 0) {
+                        this.checked = true;
+                    }
+                }
+            });
+        });
+        
+        // category filter
+        resetButton.addEventListener('click', function() {
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+            document.querySelector('input[value="all"]').checked = true;
+            
+            categoryItems.forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector('input[value="all"]').closest('.category-item').classList.add('active');
+        });
+
+        const rangeInput = document.querySelectorAll(".range-input input"),
+        priceInput = document.querySelectorAll(".price-input input"),
+        range = document.querySelector(".slider .progress");
+        let priceGap = 1000;
+
+        priceInput.forEach(input =>{
+        input.addEventListener("input", e =>{
+        let minPrice = parseInt(priceInput[0].value),
+        maxPrice = parseInt(priceInput[1].value);
+        
+        if((maxPrice - minPrice >= priceGap) && maxPrice <= rangeInput[1].max){
+            if(e.target.className === "input-min"){
+                rangeInput[0].value = minPrice;
+                range.style.left = ((minPrice / rangeInput[0].max) * 100) + "%";
+            }else{
+                rangeInput[1].value = maxPrice;
+                range.style.right = 100 - (maxPrice / rangeInput[1].max) * 100 + "%";
+            }
+        }
+        });
+        });
+
     </script>
 
 <?php include('includes/footer.php')?>
