@@ -28,7 +28,7 @@
                                 <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.id}</td>
                                 <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.name}</td>
                                 <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1 flex justify-center items-center">
-                                    <img src="${imagePath}" class="w-[50px] h-[50px]" alt="image" />
+                                    <img src="${imagePath}" class="w-[100px] h-[50px]" alt="image" />
                                 </td>
                                 <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">
                                     <form action="code.php" method="post" enctype="multipart/form-data">
