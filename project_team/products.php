@@ -18,8 +18,8 @@
 
     <!-- container -->
     <div class="Container_product flex flex-col lg:flex-row w-[100%] justify-between mx-auto p-1 sm:p-5">
-        <div class="price_range_slider w-[100%] lg:w-[20%] h-fit grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-1 2xl:lg:grid-cols-1 gap-3 mt-10 md:mt-0 font-[Poppins,hanuman,Sans-serif] rounded-lg" style="border: 1px solid #e5e7eb;">
-        <div class="bg-white rounded-lg p-6 w-full max-w-xs font-[Poppins,hanuman,Sans-serif]">
+        <div class="price_range_slider w-[100%] lg:w-[20%] h-fit grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-1 xl:grid-cols-1 2xl:lg:grid-cols-1 gap-3 mt-10 md:mt-0 font-[Poppins,hanuman,Sans-serif] rounded-lg">
+        <div class="bg-white rounded-lg p-6 w-full max-w-xs font-[Poppins,hanuman,Sans-serif]" style="border: 1px solid #e5e7eb;">
         <div class="flex items-center justify-between mb-4">
             <h3 class="text-lg font-semibold text-gray-800">CATEGORIES</h3>
             <button class="text-blue-500 text-sm font-medium" id="resetButton">Reset</button>
@@ -51,6 +51,47 @@
                 <span class="text-sm">Bluetooth Speaker</span>
             </div>
         </div>
+        </div>
+
+        <div class="bg-white p-6 rounded-lg shadow-sm w-full max-w-md" style="border: 1px solid #e5e7eb;">
+        <!-- Title -->
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">Price</h3>
+        
+        <!-- Price display (will be updated by JS) -->
+        <div id="priceDisplay" class="text-lg font-semibold text-gray-900 mb-5">$0 – $3,000</div>
+        
+        <!-- Slider container -->
+        <div class="relative mb-6">
+            <!-- Background track -->
+            <div class="h-1.5 bg-gray-200 rounded-full w-full"></div>
+            <!-- Active track -->
+            <div id="activeTrack" class="absolute top-0 h-1.5 bg-[#2e3192] rounded-full"></div>
+            
+            <!-- Thumb for min price -->
+            <input 
+                type="range" 
+                id="minPrice" 
+                min="0" 
+                max="3000" 
+                value="0" 
+                class="absolute top-0 w-full h-1.5 opacity-0 cursor-pointer"
+            >
+            
+            <!-- Thumb for max price -->
+            <input 
+                type="range" 
+                id="maxPrice" 
+                min="0" 
+                max="3000" 
+                value="3000" 
+                class="absolute top-0 w-full h-1.5 opacity-0 cursor-pointer"
+            >
+            
+            <!-- Visible thumbs -->
+            <div id="minThumb" class="absolute top-1/2 -mt-2 w-4 h-4 bg-[#2e3192] rounded-full cursor-pointer"></div>
+            <div id="maxThumb" class="absolute top-1/2 -mt-2 w-4 h-4 bg-[#2e3192] rounded-full cursor-pointer"></div>
+        </div>
+        
         </div>
         </div>
 
@@ -278,6 +319,78 @@
         });
         });
 
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const minPriceInput = document.getElementById('minPrice');
+            const maxPriceInput = document.getElementById('maxPrice');
+            const minThumb = document.getElementById('minThumb');
+            const maxThumb = document.getElementById('maxThumb');
+            const activeTrack = document.getElementById('activeTrack');
+            const priceDisplay = document.getElementById('priceDisplay');
+            
+            function updateSlider() {
+                // Get values
+                const minValue = parseInt(minPriceInput.value);
+                const maxValue = parseInt(maxPriceInput.value);
+                
+                // Update thumb positions
+                const minPercent = (minValue / 3000) * 100;
+                const maxPercent = (maxValue / 3000) * 100;
+                
+                minThumb.style.left = `${minPercent}%`;
+                maxThumb.style.left = `${maxPercent}%`;
+                
+                // Update active track
+                activeTrack.style.left = `${minPercent}%`;
+                activeTrack.style.width = `${maxPercent - minPercent}%`;
+                
+                // Update price display
+                priceDisplay.textContent = `$${minValue} – $${maxValue}`;
+            }
+            
+            // Event listeners
+            minPriceInput.addEventListener('input', function() {
+                if (parseInt(this.value) > parseInt(maxPriceInput.value)) {
+                    this.value = maxPriceInput.value;
+                }
+                updateSlider();
+            });
+            
+            maxPriceInput.addEventListener('input', function() {
+                if (parseInt(this.value) < parseInt(minPriceInput.value)) {
+                    this.value = minPriceInput.value;
+                }
+                updateSlider();
+            });
+            
+            // Make thumbs draggable
+            function makeDraggable(thumb, input) {
+                thumb.addEventListener('mousedown', function(e) {
+                    e.preventDefault();
+                    const slider = thumb.parentElement;
+                    const sliderRect = slider.getBoundingClientRect();
+                    
+                    function moveHandler(e) {
+                        let percent = (e.clientX - sliderRect.left) / sliderRect.width;
+                        percent = Math.max(0, Math.min(1, percent));
+                        input.value = Math.round(percent * 3000);
+                        updateSlider();
+                    }
+                    
+                    document.addEventListener('mousemove', moveHandler);
+                    document.addEventListener('mouseup', function() {
+                        document.removeEventListener('mousemove', moveHandler);
+                    });
+                });
+            }
+            
+            makeDraggable(minThumb, minPriceInput);
+            makeDraggable(maxThumb, maxPriceInput);
+            
+            // Initialize
+            updateSlider();
+        });
     </script>
 
 <?php include('includes/footer.php')?>
