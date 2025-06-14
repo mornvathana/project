@@ -58,7 +58,7 @@
         <h3 class="text-lg font-semibold text-gray-800 mb-4">Price</h3>
         
         <!-- Price display (will be updated by JS) -->
-        <div id="priceDisplay" class="text-lg font-semibold text-gray-900 mb-5">$0 – $3,000</div>
+        <div id="priceDisplay" class="text-sm font-semibold text-gray-900 mb-5">$0 – $3,000</div>
         
         <!-- Slider container -->
         <div class="relative mb-6">
@@ -257,6 +257,8 @@
             form.submit();
         });
 
+    </script>
+    <script>
         const checkboxes = document.querySelectorAll('input[type="checkbox"]');
         const resetButton = document.getElementById('resetButton');
         const categoryItems = document.querySelectorAll('.category-item');
@@ -318,7 +320,6 @@
         }
         });
         });
-
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {

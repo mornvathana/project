@@ -374,6 +374,138 @@
                         </div>
                     </div>
 
+                    <!-- Order Items Table -->
+                    <div class="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-100 overflow-x-auto">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-6">Order Items</h2>
+
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Product</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Price</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Quantity</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Status</th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <!-- Item 1 -->
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-16 w-16">
+                                                    <img class="h-16 w-16 rounded-md object-cover"
+                                                        src="https://soklyphone.com/storage/Honor/Honor-X8c/marrs-green-1743995765whc8P.png"
+                                                        alt="">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Honor X8c</div>
+                                                    <div class="text-sm text-gray-500">Color: Midnight Black</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            $149.99
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            1
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                class="px-2 flex items-center text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 w-fit">
+                                                <span
+                                                    class="w-2 h-2 rounded-full bg-blue-500 mr-1 animate-pulse"></span>
+                                                <p>Shipped</p>
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-blue-600 hover:text-blue-900">View Details</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Item 2 -->
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-16 w-16">
+                                                    <img class="h-16 w-16 rounded-md object-cover"
+                                                        src="https://soklyphone.com/storage/Apple/iphone/iPhone-16-16-Plus/teal-1726814145waTa2.png"
+                                                        alt="">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Iphone 16 Plus</div>
+                                                    <div class="text-sm text-gray-500">Color: White</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            $29.99
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            1
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                class="px-2 flex items-center text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 w-fit">
+                                                <span
+                                                    class="w-2 h-2 rounded-full bg-blue-500 mr-1 animate-pulse"></span>
+                                                <p>Shipped</p>
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-blue-600 hover:text-blue-900">View Details</button>
+                                        </td>
+                                    </tr>
+
+                                    <!-- Item 3 -->
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-16 w-16">
+                                                    <img class="h-16 w-16 rounded-md object-cover"
+                                                        src="https://soklyphone.com/storage/Apple/iphone/iPhone-16-Pro-16-Pro-Max/desert-titanium-1726818848FBBCx.png"
+                                                        alt="">
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Iphone 16 Pro Max
+                                                    </div>
+                                                    <div class="text-sm text-gray-500">Color: Navy Blue</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                            $19.99
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            2
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span
+                                                class="px-2 flex items-center text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 w-fit">
+                                                <i class="fas fa-check-circle mr-1"></i>
+                                                <p>Delivered</p>
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                            <button class="text-blue-600 hover:text-blue-900">View Details</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
                     <!-- Order Details -->
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
                         <!-- Shipping Address -->
@@ -402,7 +534,8 @@
                             </h2>
                             <div class="flex items-center">
                                 <div class="bg-blue-100 p-2 rounded-lg mr-3 w-12 h-12">
-                                    <img src="https://blog.millionero.com/wp-content/uploads/2023/11/millionero_digital_currency_system_bakong_service_national_bank_of_cambodia.jpg" alt="" class="w-full h-full">
+                                    <img src="https://blog.millionero.com/wp-content/uploads/2023/11/millionero_digital_currency_system_bakong_service_national_bank_of_cambodia.jpg"
+                                        alt="" class="w-full h-full">
                                 </div>
                                 <div>
                                     <p class="font-medium font-[Poppins,hanuman,Sans-serif] text-xl">បាគង</p>
