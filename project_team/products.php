@@ -11,8 +11,8 @@
 <!-- start proudct -->
   <div class="page py-3 md:py-5 px-5 font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-gray-700 font-medium w-full">
         <ul class="flex space-x-3">
-            <li><a href="#">Home</a></li>
-            <li><a href="#">. Products</a></li>
+            <li><a href="index.php"><i class="fas fa-home mr-2"></i> Home</a></li>
+            <li><a href="#"><i class="fas fa-chevron-right text-gray-400 text-xs"></i> Products</a></li>
         </ul>
     </div>
 

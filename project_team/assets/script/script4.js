@@ -62,6 +62,16 @@ function editMode() {
         }
     });
 
+    rightButtons[2].addEventListener("click", function(){
+        for(let i = 0; i < pages.length; i++){
+        if(pages[i].getAttribute("name") === "tracking"){
+            pages[i].style.display = 'block';
+        }else{
+            pages[i].style.display = 'none';
+        }
+        }
+    });
+
     
   
   
