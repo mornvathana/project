@@ -5,7 +5,7 @@
     if(isset($_GET{'id'}) && isset($_GET['slug'])){
         $product = $_GET['id'];
         $slug = $_GET['slug'];
-        $product_item = getProduct($product,$min,$max,$slug);
+        $product_item = getProduct($product,$min,$max,$slug,8);
     }
 ?>
 <!-- start proudct -->

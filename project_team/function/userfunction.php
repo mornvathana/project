@@ -13,7 +13,7 @@
         return $product1 = mysqli_query($conn,$product);
 
     }
-    function getProductByBrand($select,$id){
+    function getProductByBrand($select,$id,$limit){
         global $conn;
         $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
                             , i.specification,i.description,i.image,i.demo_image 
@@ -21,7 +21,7 @@
                             FROM product_detail d 
                             JOIN product_image i on d.id = i.product_id 
                             JOIN product_option p ON d.id = p.product_id
-                            where d.$select = $id ";
+                            where d.$select = $id LIMIT $limit";
         return $product1 = mysqli_query($conn,$product);
 
     }
@@ -111,11 +111,11 @@
                     , i.user_id,i.cart_id,i.first_name,i.last_name,i.city,i.province,i.email,i.phone_number,i.total_price,i.created_at FROM cart d JOIN orders i on d.id = i.cart_id where i.cart_id = $cartId AND i.user_id = $userId AND i.id = $orderId";
         return $product1 = mysqli_query($conn,$product);
     }
-    function getProduct($id,$min,$max,$slug){
+    function getProduct($id,$min,$max,$slug,$limit){
         global $conn;
         $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
                     , i.specification,i.description,i.image,i.demo_image FROM product_detail d JOIN product_image i on d.id = i.product_id 
-                    WHERE d.brand_id = $id AND d.slug = '$slug' AND d.sell_price BETWEEN $min AND $max ";
+                    WHERE d.brand_id = $id AND d.slug = '$slug' AND d.sell_price BETWEEN $min AND $max LIMIT $limit";
         return $product1 = mysqli_query($conn,$product);
     }
     function getProductEach($id){

@@ -2,10 +2,10 @@
 return [
     "dashboard" => "ទិន្នន័យប្រព័ន្ធ",
     "totalProduct" => "ទំនិញសរុប",
-    "product" => "ទំនិញ",
+    "product" => "ប្រភេទ",
     "brand" => "ម៉ាក",
     "orders" => "ការបញ្ជាទិញ",
-    "category" => "ប្រភេទ",
+    "category" => "ទំនិញ",
     "user" => "អ្នកប្រើប្រាស់",
     "inventory" => "សារពើភណ្ឌ",
     "customer" => "អតិថិជន",
