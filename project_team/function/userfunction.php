@@ -1,7 +1,7 @@
 <?php
     $conn = new mysqli("localhost","root","","ecommerce_data");
 
-    function getPopularProduct($select,$id){
+    function getPopularProduct($select,$id,$limit){
         global $conn;
         $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
                             , i.specification,i.description,i.image,i.demo_image 
@@ -9,7 +9,7 @@
                             FROM product_detail d 
                             JOIN product_image i on d.id = i.product_id 
                             JOIN product_option p ON d.id = p.product_id
-                            where p.$select = $id ";
+                            where p.$select = $id LIMIT $limit";
         return $product1 = mysqli_query($conn,$product);
 
     }

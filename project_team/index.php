@@ -512,7 +512,7 @@
     </div>
 
     <?php
-    $item = getPopularProduct("used_pd", 1);
+    $item = getPopularProduct("used_pd", 1, 12);
     if ($item->num_rows > 0) { ?>
         <div class="product-box w-full p-3 sm:p-5">
             <div class="bg-[#fff] grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 xl:grid-cols-6 2xl:grid-cols-6 gap-3 rounded-md overflow-hidden">
@@ -551,7 +551,7 @@
 </div>
 
     <!--  -->
-    <div class="banner w-full grid grid-cols-1 md:grid-cols-4 gap-3 mt-10 p-3 sm:p-5">
+    <!-- <div class="banner w-full grid grid-cols-1 md:grid-cols-4 gap-3 mt-10 p-3 sm:p-5">
         <div class="box w-full">
             <img src="https://angkormeas.com/wp-content/uploads/2023/10/iPhone-15-Pro-Max.webp" alt="">
         </div>
@@ -564,5 +564,5 @@
         <div class="box w-full">
             <img src="https://angkormeas.com/wp-content/uploads/2023/10/iPad-Pro-11-M4.webp" alt="">
         </div>
-    </div>
+    </div> -->
     <?php include('includes/footer.php')?>
