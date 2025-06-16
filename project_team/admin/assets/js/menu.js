@@ -21,7 +21,7 @@
                         let txt = "";
                         for (let i in data) {
                             let item = data[i];
-                            const imagePath = item.image ? `../uploads/brand/${item.image}` : '../uploads/default/default.jpg';
+                            const imagePath = item.image ? `../uploads/category/${item.image}` : '../uploads/default/default.jpg';
                             const isActive = item.status == 1;
 
                             txt += `<tr id="brand-${item.id}">

@@ -21,11 +21,11 @@ $(document).ready(function(){
                     let txt = "";
                     for (let i in data) {
                         let item = data[i];
-                        txt += `<a href="viewdetail.php?id=${item.id}" class="flex items-center space-x-3 p-2 ml-2">
+                        txt += `<a href="viewdetail.php?id=${item.id}" class="flex items-center space-x-3 p-2 ml-2 font-[Roboto,hanuman,sans-serif] hover:bg-gray-100 rounded-md">
                                     <img src="uploads/category/${item.image}" alt="" 
                                         class="w-10 h-10 object-cover rounded-md">
                                     <div class="flex-1 min-w-0">
-                                        <div class="font-medium truncate">${item.name}</div>
+                                        <div class="font-sm truncate">${item.name}</div>
                                         <div class="text-xs text-gray-500">${item.sell_price}$</div>
                                     </div>
                                 </a>`;
