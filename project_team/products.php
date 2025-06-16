@@ -9,6 +9,7 @@
     }
 ?>
 <!-- start proudct -->
+  <input type = "text" value = "<?= $product?>" id = "brandid"/>
   <div class="page py-3 md:py-5 px-5 font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-gray-700 font-medium w-full">
         <ul class="flex space-x-3">
             <li><a href="index.php"><i class="fas fa-home mr-2"></i> Home</a></li>
@@ -30,26 +31,20 @@
                 <input type="checkbox" value="all" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2" checked>
                 <span class="text-sm">All</span>
             </div>
-            
-            <div class="category-item flex items-center p-2 rounded-md cursor-pointer space-x-3">
-                <input type="checkbox" value="mobile" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
-                <span class="text-sm">Mobile Phone</span>
-            </div>
-            
-            <div class="category-item flex items-center p-2 rounded-md cursor-pointer space-x-3">
-                <input type="checkbox" value="earphones" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
-                <span class="text-sm">Bluetooth Earphones</span>
-            </div>
-            
-            <div class="category-item flex items-center p-2 rounded-md cursor-pointer space-x-3">
-                <input type="checkbox" value="case" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
-                <span class="text-sm">Case</span>
-            </div>
-            
-            <div class="category-item flex items-center p-2 rounded-md cursor-pointer space-x-3">
-                <input type="checkbox" value="speaker" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
-                <span class="text-sm">Bluetooth Speaker</span>
-            </div>
+
+            <?php
+                $item = getAll("product");
+                if($item->num_rows > 0){
+                    foreach($item as $data){
+                    ?>
+                    <div class="category-item flex items-center p-2 rounded-md cursor-pointer space-x-3">
+                        <input type="checkbox" value="<?= $data['name'] ?>" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 focus:ring-2">
+                        <span class="text-sm"><?= $data['name'] ?></span>
+                    </div>
+                    <?php
+                    }
+                }
+            ?>
         </div>
         </div>
 
@@ -165,7 +160,7 @@
 
          
             <!-- product-box -->
-            <div class="product-box w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-4 gap-3 mt-5">
+            <div class="product-box w-full grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-4 gap-3 mt-5" id = "displayarea">
             <!-- box -->
             <?php
             if(mysqli_num_rows( $product_item) > 0){
@@ -235,6 +230,64 @@
         </div> -->
     </div>
     <!-- end product -->
+    <script>
+        $(document).ready(function(){
+
+            $("#minPrice").on('change',function(){
+                const value = $(this).val();
+                alert(value);
+            });
+
+
+            $('input[type="checkbox"]').on('change',function(){
+                let value = "";
+                let brandid = $("#brandid").val();
+                let minPrice = $("#minPrice").val();
+                let maxPrice = $("#maxPrice").val();
+                const display = $("#displayarea");
+                if(this.checked){
+                    value = $(this).val();
+                }
+                $.ajax({
+                    method: "POST",
+                    url: "action/product.php",
+                    data: {
+                        "value" : value,
+                        "brandid" : brandid,
+                        "maxPrice" : maxPrice,
+                        "minPrice" : minPrice,
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                        if(data.length > 0){
+                            let txt = "";
+                            for(i in data){
+                                let item = data[i];
+                                txt += `<div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                                        <a href="viewdetail.php?id=${item.id}" class="flex flex-col items-center space-y-2 w-full">
+                                            <div class="pro-img w-auto overflow-hidden rounded-md">
+                                                <img src="uploads/category/${item.image}" alt="" class="w-full 2xl:h-[145px] xl:h-[145px] lg:h-[145px] md:h-[145px] sm:h-[155px] h-[145px]">
+                                            </div>
+                                            <div class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
+                                                <del class="dis-price opacity-50">${item.originalprice}</del>
+                                                <div class="full-price text-[#f34770!important]">${item.sellprice}</div>
+                                            </div>
+                                            <div class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">${item.name}</div>
+                                            <button class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                                            <div class="line"></div>
+                                        </a>
+                                        </div>`;
+                            }
+                            display.html(txt);
+                        }else{
+                            display.html("");
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
     <script>
         const form = document.querySelector("form");
         const rangeMin = document.getElementById("range-min");
