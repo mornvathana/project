@@ -290,10 +290,17 @@
 <script>
     $(document).ready(function () {
 
+<<<<<<< HEAD
         $("#minThumb").on('change', function () {
             const value = $(this).val();
             alert(value);
         });
+=======
+            $("#minPrice").on('change', function(){
+                const value = $(this).val();
+                alert(value);
+            });
+>>>>>>> 012b2b4d23ca8e83d42293b3eb536f1cfcf5ece7
 
 
         $('input[type="checkbox"]').on('change', function () {

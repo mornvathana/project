@@ -136,7 +136,7 @@
                                         ?>
                                     <tr class="border-b-2">
                                         <td><a href="#"><img
-                                                    src="https://shunliphone.com/wp-content/uploads/2024/09/iphone16.plus_.green_-300x300.png"
+                                                    src="uploads/category/<?= $item['product_image']?>"
                                                     alt="Product Image"></a></td>
                                         <td>
                                             <?= $item['product_name']?>
@@ -289,91 +289,11 @@
                     </div>
 
                     <!-- Progress Tracking -->
-                    <div class="bg-white rounded-xl shadow-md p-6 mb-8">
-                        <div class="flex flex-col md:flex-row items-center">
-
-                            <!-- Status Steps -->
-                            <div class="flex-1">
-                                <div class="space-y-6">
-                                    <!-- Step 1 -->
-                                    <div class="flex items-start">
-                                        <div class="mr-4 flex flex-col items-center">
-                                            <div
-                                                class="w-4 h-4 rounded-full bg-green-500 border-4 border-green-100 mt-1">
-                                            </div>
-                                            <div class="w-0.5 h-12 bg-gray-200"></div>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-medium text-gray-800">Order Placed</h3>
-                                            <p class="text-sm text-gray-600 mt-1">We've received your order</p>
-                                            <p class="text-xs text-gray-500 mt-1 flex items-center">
-                                                <i class="far fa-clock mr-1.5"></i>
-                                                June 15, 11:30 AM
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Step 2 -->
-                                    <div class="flex items-start">
-                                        <div class="mr-4 flex flex-col items-center">
-                                            <div
-                                                class="w-4 h-4 rounded-full bg-green-500 border-4 border-green-100 mt-1">
-                                            </div>
-                                            <div class="w-0.5 h-12 bg-gray-200"></div>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-medium text-gray-800">Order Processed</h3>
-                                            <p class="text-sm text-gray-600 mt-1">Items packaged and ready for shipment
-                                            </p>
-                                            <p class="text-xs text-gray-500 mt-1 flex items-center">
-                                                <i class="far fa-clock mr-1.5"></i>
-                                                June 16, 2:15 PM
-                                            </p>
-                                        </div>
-                                    </div>
-
-                                    <!-- Step 3 -->
-                                    <div class="flex items-start">
-                                        <div class="mr-4 flex flex-col items-center">
-                                            <div
-                                                class="w-4 h-4 rounded-full bg-blue-500 border-4 border-blue-100 mt-1 animate-pulse">
-                                            </div>
-                                            <div class="w-0.5 h-12 bg-gray-200"></div>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-medium text-gray-800">Shipped</h3>
-                                            <p class="text-sm text-gray-600 mt-1">Carrier has picked up package</p>
-                                            <p class="text-xs text-gray-500 mt-1 flex items-center">
-                                                <i class="far fa-clock mr-1.5"></i>
-                                                June 17, 9:45 AM
-                                            </p>
-                                            <div class="mt-2 text-sm text-blue-600">
-                                                <i class="fas fa-truck mr-1.5"></i>
-                                                Tracking #: វីរប៊ុនថាំ
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <!-- Step 4 -->
-                                    <div class="flex items-start">
-                                        <div class="mr-4 flex flex-col items-center">
-                                            <div class="w-4 h-4 rounded-full bg-gray-300 border-4 border-gray-100 mt-1">
-                                            </div>
-                                        </div>
-                                        <div>
-                                            <h3 class="font-medium text-gray-800">Delivered</h3>
-                                            <p class="text-sm text-gray-600 mt-1">Estimated delivery date</p>
-                                            <p class="text-xs text-gray-500 mt-1 flex items-center">
-                                                <i class="far fa-clock mr-1.5"></i>
-                                                June 20, by end of day
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                      <div id="authentication-modal" tabindex="-1" aria-hidden="true" 
+                    class="hidden displayareapopup overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        
                     </div>
-
+                    <!-- end processing tracking -->
                     <!-- Order Items Table -->
                     <div class="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-100 overflow-x-auto">
                         <h2 class="text-xl font-semibold text-gray-800 mb-6">Order Items</h2>
@@ -387,120 +307,62 @@
                                             Product</th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Price</th>
+                                            Total Price</th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Quantity</th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Status</th>
-                                        <th scope="col"
-                                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Actions</th>
+                                            Shipping Detail</th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
                                     <!-- Item 1 -->
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
+                                        <?php
+                                        $cart = getOrders($id);
+                                        if($cart->num_rows > 0){
+                                            foreach($cart as $item){
+                                            ?>
+                                            <tr>
+                                             <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 h-16 w-16">
                                                     <img class="h-16 w-16 rounded-md object-cover"
-                                                        src="https://soklyphone.com/storage/Honor/Honor-X8c/marrs-green-1743995765whc8P.png"
+                                                        src="uploads/category/<?= $item['product_image']?>"
                                                         alt="">
                                                 </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Honor X8c</div>
-                                                    <div class="text-sm text-gray-500">Color: Midnight Black</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            $149.99
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            1
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span
-                                                class="px-2 flex items-center text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 w-fit">
-                                                <span
-                                                    class="w-2 h-2 rounded-full bg-blue-500 mr-1 animate-pulse"></span>
-                                                <p>Shipped</p>
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <button class="text-blue-600 hover:text-blue-900">View Details</button>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Item 2 -->
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-16 w-16">
-                                                    <img class="h-16 w-16 rounded-md object-cover"
-                                                        src="https://soklyphone.com/storage/Apple/iphone/iPhone-16-16-Plus/teal-1726814145waTa2.png"
-                                                        alt="">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Iphone 16 Plus</div>
-                                                    <div class="text-sm text-gray-500">Color: White</div>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            $29.99
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            1
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span
-                                                class="px-2 flex items-center text-xs leading-5 font-semibold rounded-full bg-blue-100 text-blue-800 w-fit">
-                                                <span
-                                                    class="w-2 h-2 rounded-full bg-blue-500 mr-1 animate-pulse"></span>
-                                                <p>Shipped</p>
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <button class="text-blue-600 hover:text-blue-900">View Details</button>
-                                        </td>
-                                    </tr>
-
-                                    <!-- Item 3 -->
-                                    <tr>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-16 w-16">
-                                                    <img class="h-16 w-16 rounded-md object-cover"
-                                                        src="https://soklyphone.com/storage/Apple/iphone/iPhone-16-Pro-16-Pro-Max/desert-titanium-1726818848FBBCx.png"
-                                                        alt="">
-                                                </div>
-                                                <div class="ml-4">
-                                                    <div class="text-sm font-medium text-gray-900">Iphone 16 Pro Max
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900"><?= $item['product_name']?></div>
                                                     </div>
-                                                    <div class="text-sm text-gray-500">Color: Navy Blue</div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                            $19.99
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                            2
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            <span
-                                                class="px-2 flex items-center text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800 w-fit">
-                                                <i class="fas fa-check-circle mr-1"></i>
-                                                <p>Delivered</p>
-                                            </span>
-                                        </td>
-                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <button class="text-blue-600 hover:text-blue-900">View Details</button>
-                                        </td>
-                                    </tr>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                                                $
+                                            <?php
+                                            $idorder = 0;
+                                            $price = getPrice($item['id'],$id);
+                                            if($price->num_rows > 0){
+                                                foreach($price as $num){
+                                                $idorder = $num['id'];
+                                                ?>
+                                            <?= $num['total_price']?>
+                                            <?php
+                                                        }
+                                                    }
+                                                ?>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                                <?= $item['product_qty']?>
+                                            </td>
+                                            
+                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                <button class="text-blue-600 hover:text-blue-900" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" data-id = "<?= $item['id']?>" id = "viewdetail" type = "button">View Details</button>
+                                            </td>
+                                        </tr>
+                                            <?php
+                                            }
+                                        }
+                                        ?>
                                 </tbody>
                             </table>
                         </div>
@@ -570,4 +432,155 @@
 
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $(document).on("click","#closeBtn",function(){
+             $('.displayareapopup').addClass('hidden'); 
+        });
+
+        $(document).on("click","#viewdetail",function(){
+            let id = $(this).data("id");
+            const display = $("#authentication-modal");
+            $.ajax({
+                method: "POST",
+                url: "action/detailshipping.php",
+                data: {
+                    "id" : id,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if(data.length > 0){
+                        let txt = "";
+                        let box1 = "";
+                        let color1 = "";
+                        let box2 = "";
+                        let color2 = "";
+                        let box3 = "";
+                        let color3 = "";
+                        for(i in data){
+                            let item = data[i];
+                            if(item.status == 1){
+                                box1 = "bg-green-500";
+                                box2 = "bg-red-500";
+                                box3 = "bg-red-500";
+                                color1 = "text-green-500";
+                                color2 = "text-red-500";
+                                color3 = "text-red-500";
+                            }else if(item.status == 2){
+                                box1 = "bg-green-500";
+                                box2 = "bg-green-500";
+                                box3 = "bg-red-500";
+                                color1 = "text-green-500";
+                                color2 = "text-green-500";
+                                color3 = "text-red-500";
+                            }
+                            else if(item.status == 3){
+                                box1 = "bg-green-500";
+                                box2 = "bg-green-500";
+                                box3 = "bg-green-500";
+                                color1 = "text-green-500";
+                                color2 = "text-green-500";
+                                color3 = "text-green-500";
+                            }else{
+                                box1 = "";
+                                box2 = "";
+                                box3 = "";
+
+                                color1 = "";
+                                color2 = "";
+                                color3 = "";
+                            }
+                            txt += `<div class="relative p-4 w-full max-w-md max-h-full">
+                            <!-- Modal content -->
+                            <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
+                                <!-- Modal header -->
+                                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                                    <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+                                        Shipping Report
+                                    </h3>
+                                    <button type="button" 
+                                    class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" 
+                                    data-modal-hide="authentication-modal" id = "closeBtn">
+                                        <svg class="w-3 h-3" aria-hidden="true" fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                </div>
+
+                                <!-- Modal body -->
+                                <div class="p-4 md:p-5">
+                                    <form class="space-y-4" action="#">
+                                        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                                            <div class="flex flex-col md:flex-row items-center">
+                                                <!-- Status Steps -->
+                                                <div class="flex-1">
+                                                <div class="space-y-6">
+                                                    <!-- Step 1 -->
+                                                    <div class="flex items-start">
+                                                        <div class="mr-4 flex flex-col items-center">
+                                                            <div
+                                                                class="w-4 h-4 rounded-full mt-1 mx-1 ${box1} border-4 mt-1">
+                                                            </div>
+                                                            <div class="w-0.5 h-12 bg-gray-200"></div>
+                                                        </div>
+                                                        <div>
+                                                            <h3 class="font-medium ${color1}">Pedding</h3>
+                                                            <p class="text-sm text-gray-600 mt-1">We've received your order</p>
+                                                            <p class="text-xs text-gray-500 mt-1 flex items-center">
+                                                                <i class="far fa-clock mr-1.5"></i>
+                                                                June 15, 11:30 AM
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                    <!-- Step 2 -->
+                                                    <div class="flex items-start">
+                                                        <div class="mr-4 flex flex-col items-center">
+                                                            <div
+                                                                class="w-4 h-4 rounded-full mt-1 mx-1 ${box2} border-4 mt-1">
+                                                            </div>
+                                                            <div class="w-0.5 h-12 bg-gray-200"></div>
+                                                        </div>
+                                                        <div>
+                                                            <h3 class="font-medium ${color2}">Processing</h3>
+                                                            <p class="text-sm text-gray-600 mt-1">Items packaged and ready for shipment</p>
+                                                            <p class="text-xs text-gray-500 mt-1 flex items-center">
+                                                                <i class="far fa-clock mr-1.5"></i>
+                                                                June 16, 2:15 PM
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Step 4 -->
+                                                    <div class="flex items-start">
+                                                        <div class="mr-4 flex flex-col items-center">
+                                                            <div class="w-4 h-4 rounded-full mt-1 mx-1 ${box3} border-4 border-gray-100 mt-1">
+                                                            </div>
+                                                        </div>
+                                                        <div>
+                                                            <h3 class="font-medium ${color3}">Delivered</h3>
+                                                            <p class="text-sm text-gray-600 mt-1">Estimated delivery date</p>
+                                                            <p class="text-xs text-gray-500 mt-1 flex items-center">
+                                                                <i class="far fa-clock mr-1.5"></i>
+                                                                June 20, by end of day
+                                                            </p>
+                                                        </div>
+                                                    </div>
+
+                                                </div><!-- .space-y-6 -->
+                                                </div><!-- .flex-1 -->
+                                            </div><!-- .flex -->
+                                        </div><!-- .p-6 -->
+                                    </form>
+                                </div><!-- .p-4 -->
+                            </div><!-- .modal content -->
+                        </div><!-- .p-4 -->`;
+                        }
+                        display.html(txt);
+                    }
+                }
+            });
+        });
+    });
+</script>
 <?php include('includes/footer.php')?>
