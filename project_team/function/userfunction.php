@@ -118,6 +118,37 @@
                     WHERE d.brand_id = $id AND d.slug = '$slug' AND d.sell_price BETWEEN $min AND $max LIMIT $limit";
         return $product1 = mysqli_query($conn,$product);
     }
+    function getProductFilter($id, $slug, $sort, $limit) {
+    global $conn;
+
+    $sql = "SELECT d.id, d.brand_id, d.slug, d.barcode, d.name, d.original_price, d.sell_price, 
+                   i.specification, i.description, i.image, i.demo_image 
+            FROM product_detail d 
+            JOIN product_image i ON d.id = i.product_id 
+            WHERE d.brand_id = $id AND d.slug = '$slug'";
+
+    switch ($sort) {
+        case 'price_asc':
+            $sql .= " ORDER BY d.sell_price ASC";
+            break;
+        case 'price_desc':
+            $sql .= " ORDER BY d.sell_price DESC";
+            break;
+        case 'az':
+            $sql .= " ORDER BY d.name ASC";
+            break;
+        case 'za':
+            $sql .= " ORDER BY d.name DESC";
+            break;
+        default:
+            $sql .= " ORDER BY d.id DESC";
+    }
+
+    $sql .= " LIMIT $limit";
+
+    return mysqli_query($conn, $sql);
+    }
+
     function getProductEach($id){
         global $conn;
         $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
