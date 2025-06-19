@@ -125,7 +125,8 @@
                 <?php
                             }
                         }
-                    ?>
+                ?>
+                
             </h1>
             <div
                 class="sort-box font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-gray-700 font-medium">
@@ -375,6 +376,7 @@
     });
 
 </script>
+
 <script>
     const checkboxes = document.querySelectorAll('input[type="checkbox"]');
     const resetButton = document.getElementById('resetButton');
@@ -438,6 +440,7 @@
         });
     });
 </script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const minPriceInput = document.getElementById('minPrice');
@@ -510,6 +513,7 @@
         updateSlider();
     });
 </script>
+
 <script>
     const minInput = document.getElementById('minPrice');
     const maxInput = document.getElementById('maxPrice');
@@ -561,9 +565,5 @@
         document.getElementById('filterForm').submit();
     });
 </script>
-
-
-
-
 
 <?php include('includes/footer.php')?>

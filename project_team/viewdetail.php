@@ -3,6 +3,7 @@ include('includes/header.php');
   if(isset($_GET['id'])){
     $product = $_GET['id'];
     $product_item = getProductEach($product);
+    
   }
 ?>
   <?php
@@ -67,7 +68,18 @@ include('includes/header.php');
             </div>
               <div class="category font-[Poppins,hanuman,Sans-serif] flex items-baseline lg:items-center space-x-3 mt-5 w-full">
                   <h1 class="font-semibold text-gray-700 text-sm sm:text-lg">Category</h1>
-                  <h3 class="font-medium text-gray-700 text-[10px] sm:text-sm">2nd Hand Mobiles, Used Samsung</h3>
+                  <h3 class="font-medium text-gray-700 text-[10px] sm:text-sm"><?= $item['slug'] ?> ,</h3>
+                  <?php
+                        // Display brand name
+                        $name = getBrandTitle("brands", $item['brand_id']);
+                        if($name->num_rows > 0){
+                          foreach($name as $brand){
+                            ?>
+                            <h3 class="font-medium text-gray-700 text-[10px] sm:text-sm"><?= $brand['name'] ?></h3>
+                            <?php
+                          }
+                        }
+                  ?>
               </div>
               <div class="btn mt-5 flex items-center space-x-5">
                   <button class="text-blue-800 rounded-full font-semibold"><i class="fa-regular fa-heart"></i> Add to favorite</button>

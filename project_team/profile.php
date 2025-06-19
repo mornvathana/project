@@ -11,95 +11,150 @@
         <ul class="space-y-3 font-medium text-[15px] p-5 font-[Poppins,hanuman,Sans-serif] text-gray-800"
             id="righ_button">
             <li class="active"><a href="#"><i class="fa-regular fa-user"></i> Profile</a></li>
+            <li class=""><a href="#"><i class="fa-solid fa-lock"></i></i> Change Password</a></li>
             <li class=""><a href="#"><i class="fa-solid fa-cart-shopping"></i> My Orders</a></li>
             <li class=""><a href="#"><i class="fa-solid fa-truck"></i> Order Tracking</a></li>
+            <li class=""><a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a></li>
         </ul>
     </div>
 
     <div class="all-page w-[100%] md:w-[68%]">
         <!-- profile-page -->
-        <div class="page w-[100%] h-fit p-5 mt-5 md:mt-0" style="border: 1px solid #d2d3d4; border-radius: 10px;"
+        <div class="page w-[100%] h-fit mt-5 md:mt-0 overflow-hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
             name="profile">
-            <div class="text-[20px] font-semibold">
-                <h1 class="text-green-900 font-[Montserrat,hanuman,Sans-serif] font-bold">My Profile</h1>
-                <div class="line w-[13%] bg-gray-500 h-[2px] rounded-md mt-1"></div>
-                <div class="mt-5">
-                    <form id="myForm" class="space-y-4">
-                        <!-- Input 1 -->
-                        <?php
-                        $user = getById("users",$id);
-                        if($user->num_rows > 0){
-                         foreach($user as $users){
-                        ?>
-                        <div>
-                            <label for="input1"
-                                class="block text-[15px] text-gray-700 font-medium font-[Montserrat,hanuman,Sans-serif]">Username</label>
-                            <input type="text" id="input1"
-                                class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 font-medium text-gray-800"
-                                placeholder="Enter your name" value="<?= $users['name']?>" />
-                        </div>
-                        <!-- Input 2 -->
-                        <div>
-                            <label for="input2"
-                                class="block text-[15px] text-gray-700 font-medium font-[Montserrat,hanuman,Sans-serif]">Email</label>
-                            <input type="text" id="input2"
-                                class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 font-medium text-gray-800"
-                                placeholder="Heaoun@gmail.com" value="<?= $users['email']?>" />
-                        </div>
-                        <?php
-                         }
-                        }
-                    ?>
-                        <!-- Password Fields -->
-                        <div id="passwordFields" class="hidden">
-                            <div>
-                                <label for="password"
-                                    class="block text-[15px] text-gray-700 font-medium font-[Montserrat,hanuman,Sans-serif]">Old
-                                    Password</label>
-                                <input type="password" id="password"
-                                    class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                                    placeholder="Old Password" />
-                            </div>
+            <div class="w-full mx-auto p-6 bg-white rounded-lg shadow">
+    <h2 class="text-2xl font-semibold text-blue-800 mb-6">Personal Information</h2>
 
-                            <div>
-                                <label for="password"
-                                    class="block text-[15px] text-gray-700 font-medium font-[Montserrat,hanuman,Sans-serif]">New
-                                    Password</label>
-                                <input type="password" id="password"
-                                    class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500"
-                                    placeholder="New Password" />
-                            </div>
+    <!-- Avatar -->
+    <div class="flex items-center space-x-4 mb-6">
+      <img src="https://soklyphone.com/upload/customers/Gc6u4rIIynH64zoPGbg2.png" alt="Avatar" class="w-20 h-20 rounded-full object-cover" />
+      <div>
+        <button class="text-blue-600 hover:underline">Change avatar</button>
+        <p class="text-sm text-gray-500">Upload JPG, PNG image required.</p>
+      </div>
+    </div>
 
-                            <div>
-                                <label for="verifyPassword"
-                                    class="block text-[15px] text-gray-700 font-medium font-[Montserrat,hanuman,Sans-serif]">Verify
-                                    Password</label>
-                                <input type="password" id="verifyPassword"
-                                    class="mt-1 block w-full px-3 py-2 bg-gray-100 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" />
-                            </div>
-                        </div>
+    <!-- Form Fields with Right-Aligned Icons -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
 
-                        <!-- Action Buttons -->
-                        <div class="flex">
-                            <!-- Edit Button -->
-                            <button id="editBtn" type="button"
-                                class="px-4 py-2 bg-blue-500 text-white rounded-md text-[15px]" onclick="editMode()"><i
-                                    class="fa-solid fa-pen-to-square"></i> Edit</button>
+      <!-- Full Name -->
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Full Name</label>
+        <input type="text" value="mroun"
+          class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+        <span class="absolute right-3 top-9 text-gray-400">
+          <!-- User Icon -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M5.121 17.804A9 9 0 1118.88 17.804M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+        </span>
+      </div>
 
-                            <!-- Update Button -->
-                            <button id="updateBtn" type="submit"
-                                class="hidden px-4 py-2 bg-green-500 text-white rounded-md text-[15px]"
-                                onclick="updateMode()"><i class="fa-solid fa-floppy-disk"></i> Update</button>
+      <!-- Birthday -->
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Birthday</label>
+        <input type="date" value="2020-06-14"
+          class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+        <span class="absolute right-3 top-9 text-gray-400">
+          <!-- Calendar Icon -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M8 7V3m8 4V3M5 11h14M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+        </span>
+      </div>
 
-                            <!-- Cancel Button -->
-                            <a href="logout.php" id="logoutBtn" type="button"
-                                class="px-4 py-2 bg-red-500 text-white rounded-md text-[15px] ml-2"><i
-                                    class="fa-solid fa-right-from-bracket"></i> Logout</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+      <!-- Email -->
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+        <input type="email" value="mrounit83@gmail.com"
+          class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+        <span class="absolute right-3 top-9 text-gray-400">
+          <!-- Mail Icon -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M16 12H8m8 0l-4-4m0 8l4-4m-4 4V4m0 16a9 9 0 110-18 9 9 0 010 18z" />
+          </svg>
+        </span>
+      </div>
+
+      <!-- Phone -->
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+        <input type="tel" placeholder="Enter your phone number"
+          class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+        <span class="absolute right-3 top-9 text-gray-400">
+          <!-- Phone Icon -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M3 5a2 2 0 012-2h2.586a1 1 0 01.707.293l2.707 2.707a1 1 0 010 1.414L9 10l5 5 2.586-2.586a1 1 0 011.414 0l2.707 2.707a1 1 0 01.293.707V19a2 2 0 01-2 2h-2c-9.941 0-18-8.059-18-18V5z" />
+          </svg>
+        </span>
+      </div>
+
+      <!-- Address -->
+      <div class="relative md:col-span-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Address</label>
+        <textarea placeholder="Enter your address" rows="2"
+          class="w-full pr-10 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300"></textarea>
+        <span class="absolute right-3 top-11 text-gray-400">
+          <!-- Location Icon -->
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2"
+            viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round"
+              d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2zM12 22s8-4.5 8-10A8 8 0 104 12c0 5.5 8 10 8 10z" />
+          </svg>
+        </span>
+      </div>
+    </div>
+
+    <!-- Update Button -->
+    <div class="text-center">
+      <button class="bg-blue-800 hover:bg-blue-900 text-white font-semibold px-6 py-2 rounded">Update</button>
+    </div>
+    </div>
+    </div>
+
+    <!-- change password -->
+    <div class="page w-[100%] h-fit mt-5 md:mt-0 overflow-hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
+            name="password">
+        <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow">
+    <h2 class="text-2xl font-semibold text-blue-800 mb-6">Change Password</h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <!-- Current Password -->
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Current Password</label>
+        <input type="password" id="currentPass" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+        <span onclick="togglePassword('currentPass', 'iconCurrent')" id="iconCurrent" class="absolute right-3 top-[30px] cursor-pointer select-none">👁️</span>
+      </div>
+
+      <!-- New Password -->
+      <div class="relative">
+        <label class="block text-sm font-medium text-gray-700 mb-1">New Password</label>
+        <input type="password" id="newPass" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+        <span onclick="togglePassword('newPass', 'iconNew')" id="iconNew" class="absolute right-3 top-[30px] cursor-pointer select-none">👁️</span>
+      </div>
+
+      <!-- Re-enter New Password -->
+      <div class="relative md:col-span-2">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Re-enter your password</label>
+        <input type="password" id="reNewPass" class="w-full border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring focus:border-blue-300" />
+        <span onclick="togglePassword('reNewPass', 'iconRe')" id="iconRe" class="absolute right-3 top-[30px] cursor-pointer select-none">👁️</span>
+      </div>
+    </div>
+
+    <!-- Update Button -->
+    <div class="text-center">
+      <button class="bg-blue-800 hover:bg-blue-900 text-white font-semibold px-6 py-2 rounded">Update</button>
+    </div>
+    </div>
+    </div>
 
         <!-- orders-page -->
         <div class="page w-[100%] h-fit p-5 mt-5 md:mt-0 hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
@@ -266,7 +321,7 @@
 
         <!-- orders-tracking -->
         <div class="page w-[100%] h-fit p-5 mt-5 md:mt-0 hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
-            name="tracking">
+            name="stracking">
             <div class="">
                 <h1 class="text-green-900 font-[Montserrat,hanuman,Sans-serif] text-[20px] font-bold">My Orders Tracking
                 </h1>
