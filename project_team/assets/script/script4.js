@@ -82,7 +82,15 @@ function editMode() {
         }
     });
 
-    
+    rightButtons[4].addEventListener("click", function(){
+        for(let i = 0; i < pages.length; i++){
+        if(pages[i].getAttribute("name") === "favorites"){
+            pages[i].style.display = 'block';
+        }else{
+            pages[i].style.display = 'none';
+        }
+        }
+    });
 
     
   
