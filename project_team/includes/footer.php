@@ -126,7 +126,7 @@
     <!-- <div class="overlay hidden fixed inset-0 bg-white bg-opacity-80 z-50" id="overlay" onclick="closeSearchBox()"></div> -->
 
     <!-- Search Overlay and Box -->
-    <div id="searchOverlay" class="search-overlay fixed inset-0 bg-black bg-opacity-50 z-40 flex items-center justify-center p-4">
+    <div id="searchOverlay" class="search-overlay fixed inset-0 bg-black bg-opacity-50 z-40 flex items-center justify-center p-4 block lg:hidden">
         <div id="searchBox" class="search-box w-full max-w-2xl bg-white rounded-xl shadow-2xl overflow-hidden">
             <div class="p-6">
                 <div class="flex justify-between items-center mb-4">
@@ -327,24 +327,24 @@
         const productData = [
             {
                 id: 1,
-                name: "Wireless Bluetooth Headphones",
-                category: "Audio",
+                name: "Iphone 14 Pro Max",
+                category: "smartphone",
                 price: 89.99,
-                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
+                image: "https://angkormeas.com/wp-content/uploads/2023/12/Iphone-14.jpg?v=1748610574"
             },
             {
                 id: 2,
-                name: "Smartphone Pro Max",
-                category: "Mobile",
+                name: "Samsung Galaxy S21",
+                category: "smartphone",
                 price: 999.99,
-                image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
+                image: "https://angkormeas.com/wp-content/uploads/2025/04/Galaxy-S25-Ultra_No-Gift-150x150.jpg?v=1749381031"
             },
             {
                 id: 3,
-                name: "4K Ultra HD Smart TV",
-                category: "Television",
+                name: "MacBook Pro 16",
+                category: "Laptop",
                 price: 699.99,
-                image: "https://images.unsplash.com/photo-1571415060716-baff5f717c37?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
+                image: "https://angkormeas.com/wp-content/uploads/2023/05/macbook-Air-13_m2.jpg?v=1735907052"
             },
             {
                 id: 4,
