@@ -7,7 +7,7 @@ $brandid = (int) $_POST['brandid'];
 $minPrice = (int) $_POST['min']; 
 $maxPrice = (int) $_POST['max']; 
 $page = $_POST['page'];
-$limit = 10;
+$limit = 8; // Number of records per page
 $totalPage = ($page - 1 ) * $limit;
 // 
 $sqlTotal = "SELECT COUNT(*) as Total FROM product_detail";
