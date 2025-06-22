@@ -113,20 +113,6 @@
         <!-- Font Awesome Telegram Icon -->
         <img src="https://static-00.iconduck.com/assets.00/telegram-icon-512x512-4sztjer8.png" alt="" class="w-[40px]">
     </a>
-
-    <!-- Overlay -->
-    <div class="overlay hidden fixed inset-0 bg-white bg-opacity-80 z-50" id="overlay" onclick="closeSearchBox()"></div>
-
-    <!-- Floating Search Box -->
-    <div class="search-box hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl w-11/12 max-w-lg z-50"
-        id="searchBox">
-        <button
-            class="absolute top-2 right-2 bg-[#144194] text-white px-3 py-1 rounded-full hover:bg-red-500 focus:outline-none"
-            onclick="closeSearchBox()">X</button>
-        <input type="text"
-            class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Search For Products..." id="searchInput">
-    </div>
     
     <!-- boostrap -->
          <!-- Floating Telegram Icon Link -->
@@ -137,18 +123,46 @@
     </a>
 
     <!-- Overlay -->
-    <div class="overlay hidden fixed inset-0 bg-white bg-opacity-80 z-50" id="overlay" onclick="closeSearchBox()"></div>
+    <!-- <div class="overlay hidden fixed inset-0 bg-white bg-opacity-80 z-50" id="overlay" onclick="closeSearchBox()"></div> -->
 
-    <!-- Floating Search Box -->
-    <div class="search-box hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-xl w-11/12 max-w-lg z-50"
-        id="searchBox">
-        <button
-            class="absolute top-2 right-2 bg-[#144194] text-white px-3 py-1 rounded-full hover:bg-red-500 focus:outline-none"
-            onclick="closeSearchBox()">X</button>
-        <input type="text"
-            class="w-full px-4 py-2 border border-gray-300 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            placeholder="Search For Products..." id="searchInput">
+    <!-- Search Overlay and Box -->
+    <div id="searchOverlay" class="search-overlay fixed inset-0 bg-black bg-opacity-50 z-40 flex items-center justify-center p-4">
+        <div id="searchBox" class="search-box w-full max-w-2xl bg-white rounded-xl shadow-2xl overflow-hidden">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-2xl font-bold text-gray-500 font-[Montserrat,hanuman,Sans-serif]">ស្វែងរកទំនិញ</h2>
+                    <button id="closeSearch" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="relative mb-4">
+                    <input type="text" id="searchInput" 
+                           class="w-full pl-4 pr-10 py-3 text-gray-700 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                           placeholder="Search for products..." 
+                           autocomplete="off">
+                    <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                        <svg id="searchIcon" class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                        <div id="searchLoader" class="hidden w-5 h-5 border-2 border-blue-200 border-t-blue-500 rounded-full search-loader"></div>
+                    </div>
+                </div>
+                
+                <div id="searchResults" class="hidden border-t border-gray-200">
+                    <div id="resultsContainer" class="search-results-container">
+                        <!-- Results will be inserted here -->
+                    </div>
+                    <div id="searchFooter" class="px-4 py-2 bg-gray-50 text-sm text-gray-500">
+                        <span id="resultCount">0</span> results found
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+
     <!-- js tailwind flowbite -->
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
     <!-- Swiper JS -->
@@ -306,6 +320,150 @@
     });
 
  </script>
+ 
+ <!-- floating search box -->
+ <script>
+        // Sample product data with images
+        const productData = [
+            {
+                id: 1,
+                name: "Wireless Bluetooth Headphones",
+                category: "Audio",
+                price: 89.99,
+                image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
+            },
+            {
+                id: 2,
+                name: "Smartphone Pro Max",
+                category: "Mobile",
+                price: 999.99,
+                image: "https://images.unsplash.com/photo-1592899677977-9c10ca588bbd?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
+            },
+            {
+                id: 3,
+                name: "4K Ultra HD Smart TV",
+                category: "Television",
+                price: 699.99,
+                image: "https://images.unsplash.com/photo-1571415060716-baff5f717c37?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
+            },
+            {
+                id: 4,
+                name: "Wireless Gaming Mouse",
+                category: "Computer",
+                price: 49.99,
+                image: "https://images.unsplash.com/photo-1527814050087-3793815479db?ixlib=rb-1.2.1&auto=format&fit=crop&w=100&h=100&q=80"
+            }
+        ];
+
+        // DOM Elements
+        const searchToggle = document.getElementById('searchToggle');
+        const searchOverlay = document.getElementById('searchOverlay');
+        const searchBox = document.getElementById('searchBox');
+        const closeSearch = document.getElementById('closeSearch');
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+        const resultsContainer = document.getElementById('resultsContainer');
+        const resultCount = document.getElementById('resultCount');
+        const searchIcon = document.getElementById('searchIcon');
+        const searchLoader = document.getElementById('searchLoader');
+
+        // Toggle search
+        function toggleSearch() {
+            searchOverlay.classList.toggle('active');
+            searchBox.classList.toggle('active');
+            
+            if (searchOverlay.classList.contains('active')) {
+                searchInput.focus();
+            } else {
+                searchResults.classList.add('hidden');
+                searchInput.value = '';
+            }
+        }
+
+        // Event Listeners
+        searchToggle.addEventListener('click', toggleSearch);
+        closeSearch.addEventListener('click', toggleSearch);
+        
+        // Close when clicking outside search box
+        searchOverlay.addEventListener('click', (e) => {
+            if (e.target === searchOverlay) {
+                toggleSearch();
+            }
+        });
+        
+        // Close with ESC key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
+                toggleSearch();
+            }
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', function() {
+            const query = this.value.trim().toLowerCase();
+            
+            if (query.length < 2) {
+                searchResults.classList.add('hidden');
+                return;
+            }
+            
+            // Show loading state
+            searchIcon.classList.add('hidden');
+            searchLoader.classList.remove('hidden');
+            
+            // Simulate API delay
+            setTimeout(() => {
+                const results = productData.filter(product => 
+                    product.name.toLowerCase().includes(query) || 
+                    product.category.toLowerCase().includes(query)
+                );
+                
+                displayResults(results);
+                
+                // Hide loading state
+                searchIcon.classList.remove('hidden');
+                searchLoader.classList.add('hidden');
+            }, 500);
+        });
+
+        // Display results
+        function displayResults(results) {
+            resultsContainer.innerHTML = '';
+            
+            if (results.length === 0) {
+                resultsContainer.innerHTML = `
+                    <div class="p-4 text-center text-gray-500">
+                        No results found for "${searchInput.value}"
+                    </div>
+                `;
+            } else {
+                results.forEach(product => {
+                    const resultItem = document.createElement('a');
+                    resultItem.href = '#';
+                    resultItem.className = 'block px-4 py-3 hover:bg-gray-50 transition search-result-item';
+                    resultItem.innerHTML = `
+                        <div class="flex items-center">
+                            <img src="${product.image}" alt="${product.name}" class="w-12 h-12 object-cover rounded-md mr-3">
+                            <div class="flex-1 min-w-0">
+                                <h3 class="text-sm font-medium text-gray-900 truncate">${product.name}</h3>
+                                <p class="text-xs text-gray-500">${product.category}</p>
+                                <p class="text-sm font-semibold text-blue-600 mt-1">$${product.price.toFixed(2)}</p>
+                            </div>
+                        </div>
+                    `;
+                    resultItem.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        searchInput.value = product.name;
+                        // You could add additional action here, like navigating to the product page
+                    });
+                    resultsContainer.appendChild(resultItem);
+                });
+            }
+            
+            resultCount.textContent = results.length;
+            searchResults.classList.remove('hidden');
+        }
+    </script>
 </body>
 
 </html>
