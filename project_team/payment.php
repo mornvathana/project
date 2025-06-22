@@ -120,8 +120,8 @@ if($_SESSION['auth_user']){
                           </div>
                         </div>
 
-                        <!-- place-order -->
-                       <div class="place-order w-[100%] lg:w-[38%] h-fit mt-5 lg:mt-0 font-semibold font-[Poppins,hanuman,Sans-serif] p-5 border rounded-xl text-gray-700 sticky top-[4rem]" style="border: 1px solid #d1d5db;">
+                <!-- place-order -->
+                <div class="place-order w-[100%] lg:w-[38%] h-fit mt-5 lg:mt-0 font-semibold font-[Poppins,hanuman,Sans-serif] p-5 border rounded-xl text-gray-700 sticky top-[4rem]" style="border: 1px solid #d1d5db;">
                 <h2 class="text-md md:text-md font-bold mb-6">Your Order Summary</h2>
               
                 <!-- Order Table -->
@@ -185,10 +185,25 @@ if($_SESSION['auth_user']){
                         }
 
                       ?>
-                    </p>   <!-- Shipping -->
+                    </p>  
                   </div>
                 </div>
-              
+                <!--  -->
+                 <div class = "w-full h-[20px] my-2">
+                   <p class="text-gray-700 text-sm">Discount Coupon</p>
+                </div>
+                <div class = "w-full h-[40px] my-2">
+                    <from class = "w-full h-full grid grid-cols-[1fr_50px] gap-2">
+                      <input type = "text" id = "discode" class = "border-[2px] rounded-md border-gray-500 pl-2">
+                      <button class = "text-sm flex justify-center items-center text-white rounded-md "><span id = "discounticon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                        <circle cx="50" cy="50" r="32" stroke-width="8" stroke="#2196f3" stroke-dasharray="50.2655 50.2655" fill="none" stroke-linecap="round">
+                          <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"/>
+                        </circle>
+                      </svg></span>
+                    </button>
+                    </from>
+                </div>
                 <!-- Total Section -->
                 <div class="mt-6 flex justify-between items-center text-lg md:text-xl font-medium">
                   <p class="text-gray-900">Total</p>
@@ -206,7 +221,7 @@ if($_SESSION['auth_user']){
               
                 <!-- Checkout Button -->
                 <div class="mt-6 text-center text-sm"  >
-                  <button id = "checkout" data-total = "<?= $finalTotal ?>" data-modal-target="qrCodeModal" data-modal-toggle="qrCodeModal" type = "button" class="w-full hidden py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400"  >
+                  <button id = "checkout" data-total = "<?= $finalTotal ?>" data-modal-target="qrCodeModal" data-modal-toggle="qrCodeModal" type = "button" class="w-full hidden py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 "  >
                     Proceed to Checkout
                   </button>
                 </div>
@@ -265,17 +280,62 @@ if($_SESSION['auth_user']){
         </div>
         </div>
     </div>
-    <script>
-      $(document).ready(function(){
-       const totalPrice = $("#totalPrice").text();
-        function getPrice(){
-          alert(totalPrice);
-        };
-        getPrice()
-      });
-    </script>
     <script src="https://github.com/davidhuotkeo/bakong-khqr/releases/download/bakong-khqr-1.0.6/khqr-1.0.6.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+    <script>
+      $(document).ready(function(){
+
+       const totalBill = <?= $finalTotal ?>;
+       let finalPrice = 0;
+
+       $(document).on("keyup","#discode",function(e){
+
+        e.preventDefault();
+
+        const totalPrice = $(this).val().trim();
+
+        const discounticon = $("#discounticon");
+        
+        $.ajax({
+          method: "POST",
+          url: "action/discount.php",
+          data: {
+            "code" : totalPrice,
+          },
+          dataType: "json",
+          beforeSend: function(){
+            discounticon.html(``);
+          },
+          success: function (data) {
+            if(data.length > 0){
+              let txt = "";
+              for(i in data){
+                let item = data[i];
+                txt += `${item.discode}`;
+              }
+              
+               finalPrice = totalBill - (totalBill * (txt / 100));
+                discounticon.html(`<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
+                      <path fill="#c8e6c9" d="M36,42H12c-3.314,0-6-2.686-6-6V12c0-3.314,2.686-6,6-6h24c3.314,0,6,2.686,6,6v24C42,39.314,39.314,42,36,42z"></path><path fill="#4caf50" d="M34.585 14.586L21.014 28.172 15.413 22.584 12.587 25.416 21.019 33.828 37.415 17.414z"></path>
+                      </svg>`);
+              $("#checkout").attr("data-total",finalPrice);
+              $("#discode").prop("readonly",true);
+              $("#totalPrice").html(`$${finalPrice}`)
+            }else{
+              discounticon.html(` <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="10" fill="#ffcdd2"/>
+                                <path d="M5 5 L19 19" stroke="#f44336" stroke-width="2"/>
+                                <path d="M19 5 L5 19" stroke="#f44336" stroke-width="2"/>
+                              </svg>`);
+            }
+          }
+        });
+
+
+       });
+        
+      });
+    </script>
     <script src = "assets/script/khqr.js"></script>
     <!-- end of shopping-cart-block -->
 <?php include('includes/footer.php')?>

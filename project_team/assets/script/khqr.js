@@ -1,16 +1,9 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const KHQR = typeof BakongKHQR !== 'undefined' ? BakongKHQR : null;
-    if (!KHQR) {
-        console.error("BakongKHQR or its components are not loaded or defined.");
-        return;
-    }
-
-    const data = KHQR.khqrData;
-    const info = KHQR.IndividualInfo;
 
     const btncheckout = document.getElementById('checkout');
-    const totalPrice = parseFloat(btncheckout.dataset.total);
 
+    btncheckout.addEventListener("click",data);
+
+    // end button action 
     const form = document.getElementById("checkoutForm");
     const firstName = document.getElementById("first-name");
     const lastName = document.getElementById("last-name");
@@ -40,6 +33,19 @@ document.addEventListener("DOMContentLoaded", function () {
             }, 1000);
         }
     });
+    
+    function data(){
+    const KHQR = typeof BakongKHQR !== 'undefined' ? BakongKHQR : null;
+
+    if (!KHQR) {
+        console.error("BakongKHQR or its components are not loaded or defined.");
+        return;
+    }
+
+    const data = KHQR.khqrData;
+    const info = KHQR.IndividualInfo;
+
+    const totalPrice = parseFloat(btncheckout.dataset.total);
 
     function autoSaveData() {
         const formData = {
@@ -117,18 +123,21 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     };
 
-    if (btncheckout) {
-        btncheckout.addEventListener("click", displayQRCode);
-    }
+    displayQRCode();
+
+    
 
     let checkTransactionInterval;
     let transition = false;
 
-    const startQrCodeScanner = (md5Value) => {
+    function startQrCodeScanner(md5Value) {
         checkTransactionInterval = setInterval(() => {
             fetchTransactionStatus(md5Value);
         }, 2000);
     };
+    
+
+    
 
     const fetchTransactionStatus = (md5) => {
         const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoiZjNkMDc4M2EyOTY4NDExYSJ9LCJpYXQiOjE3NDk5NzE4NDksImV4cCI6MTc1Nzc0Nzg0OX0.t9Tl-NRUnL9-uz9xEfXcko5qMiu3ysmPEHJM1nhfwCg';
@@ -160,8 +169,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     caption: `🚨 *New Order Alert* 🚨 \n\n🆔 *Order ID:* ${order_number}\n👤 *Customer Name:* ${firstName.value} ${lastName.value}\n📧 *Email:* ${email.value}\n\n📦*Order Detail*\n\n💵 *Total Price*: $${totalPrice}\n🏠 *Delivery Address*: ${address.value}, ${city.value}\n📱 *Contact Number*: ${phoneNumber.value}\n✅ *Thank you for your purchase*`,
                     parse_mode: "Markdown"
                 };
+
                 let message = false;
-                const sendMessage = async () => {
+                  const sendMessage = async () => {
                     if(message) return;
                     message = true;
                     try {
@@ -177,17 +187,18 @@ document.addEventListener("DOMContentLoaded", function () {
                         
                         if (data.ok) {
                             console.log("Message sent successfully!");
+                            window.location.href = 'http://localhost:8080/project/project_team/profile.php';
                         }
                     } catch (error) {
                         console.error("Fetch error:", error);
                     }
                 };
 
+
                 if(!transition){
                     transition = true;
-                    autoSaveData();
-                    window.location.href = 'http://localhost:8080/project/project_team/profile.php';
                     sendMessage();
+                    autoSaveData();
                 }
             
             
@@ -200,4 +211,4 @@ document.addEventListener("DOMContentLoaded", function () {
             clearInterval(checkTransactionInterval);
         });
     };
-});
+    }
