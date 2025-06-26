@@ -6,7 +6,7 @@
         $id = $_SESSION['auth_user']['user_id'];
     }   
 ?>
-<div class="profile-block w-[90%] mx-auto mt-10 flex flex-col md:flex-row justify-between relative">
+<div class="profile-block w-[90%] mx-auto mt-10 flex my-2 flex-col md:flex-row justify-between relative">
     <!-- menu -->
     <div class="menu w-[100%] md:w-[30%] h-fit sticky top-[4rem] bg-[#fff] z-10 overflow-hidden"
         style="border: 1px solid #d2d3d4; border-radius: 10px;">
@@ -497,60 +497,6 @@
                     </div>
 
                     <!-- Order Details -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                        <!-- Shipping Address -->
-                        <div class="bg-white rounded-xl shadow-md p-6">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                                <i class="fas fa-truck text-gray-500 mr-2"></i>
-                                Shipping Address
-                            </h2>
-                            <div class="text-gray-600">
-                                <p class="font-medium">Hea Oun Cambodia</p>
-                                <p>123 Main Street</p>
-                                <p>Apartment 4B</p>
-                                <p>Svay Rieng, NY 10001</p>
-                                <p>Cambodia</p>
-                                <p class="mt-2">
-                                    <i class="fas fa-phone-alt mr-2"></i> 0963904112
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Payment Method -->
-                        <div class="bg-white rounded-xl shadow-md p-6">
-                            <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
-                                <i class="fas fa-credit-card text-gray-500 mr-2"></i>
-                                Payment Method
-                            </h2>
-                            <div class="flex items-center">
-                                <div class="bg-blue-100 p-2 rounded-lg mr-3 w-12 h-12">
-                                    <img src="https://blog.millionero.com/wp-content/uploads/2023/11/millionero_digital_currency_system_bakong_service_national_bank_of_cambodia.jpg"
-                                        alt="" class="w-full h-full">
-                                </div>
-                                <div>
-                                    <p class="font-medium font-[Poppins,hanuman,Sans-serif] text-xl">បាគង</p>
-                                </div>
-                            </div>
-                            <div class="mt-6 pt-4 border-t border-gray-200">
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-600">Subtotal (3 items)</span>
-                                    <span class="font-medium">$149.99</span>
-                                </div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-600">Shipping</span>
-                                    <span class="font-medium text-green-600">Free</span>
-                                </div>
-                                <div class="flex justify-between mb-2">
-                                    <span class="text-gray-600">Tax</span>
-                                    <span class="font-medium">$12.00</span>
-                                </div>
-                                <div class="flex justify-between font-semibold mt-3 pt-2 border-t border-gray-200">
-                                    <span>Total</span>
-                                    <span>$161.99</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 
@@ -575,7 +521,7 @@
 
                     foreach($data as $name){
                     ?>
-                    <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg">
+                    <div class="box w-full overflow-hidden rounded-md p-3 sm:p-5 box-shadow-custom sm:shadow-lg" id = "data-<?= $name['id']?>">
                     <a href="#" class="flex flex-col items-center space-y-2 w-full">
                         <div class="pro-img w-full overflow-hidden rounded-md">
                             <img src="uploads/category/<?= $name['image']?>" alt=""
@@ -585,12 +531,14 @@
                             class="price flex items-center space-x-3 text-[#144194] font-[Roboto,hanuman,Sans-serif] text-lg font-semibold">
                             <del class="dis-price opacity-50">$<?= $name['original_price']?></del>
                             <div class="full-price text-[#f34770!important]">$<?= $name['sell_price']?></div>
+                            <input type="hidden" id = "favoriteid" value = "<?= $name['id']?>">
+                             <input type="hidden" id = "favoriteuser" value = "<?= $id?>">
                         </div>
                         <div
-                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden">
+                            class="pro-name text-center text-[13px] md:text-[14px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[75px] overflow-hidden" >
                             <?= $name['name']?></div>
                         <button
-                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i class="fa-solid fa-heart"></i>
+                            class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]" id = "removefavorite"><i class="fa-solid fa-heart"></i>
                             Remove</button>
                         <div class="line"></div>
                     </a>
@@ -611,6 +559,63 @@
 
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        $(document).on("click","#removefavorite",function(){
+            let favoriteid = $("#favoriteid").val();
+            let favoriteuser = $("#favoriteuser").val();
+
+            $.ajax({
+                method: "POST",
+                url: "function/code.php",
+                data: {
+                    "favoriteid" : favoriteid,
+                    "favoriteuser" : favoriteuser,
+                    "scrope" : "deletefavorite",
+                },
+                success: function (data) {
+                    if(data == 202){
+                         Swal.fire({
+                        icon: 'success',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Password updated!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        }).then(() =>{
+                            $(`#data-${favoriteid}`).remove();
+                        });
+                    }else if(data == 101){
+                         Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                    }
+                }
+            });
+        });
+    });
+</script>
 <script>
     $(document).ready(function(){
         $(document).on("click","#updatePassword",function(){
@@ -864,7 +869,7 @@
                                 color2 = "";
                                 color3 = "";
                             }
-                            txt += `<div class="relative p-4 w-full max-w-md max-h-full">
+                            txt += `<div class="relative p-4 w-full max-w-3xl max-h-full">
                             <!-- Modal content -->
                             <div class="relative bg-white rounded-lg shadow-sm dark:bg-gray-700">
                                 <!-- Modal header -->
@@ -880,9 +885,9 @@
                                 </div>
 
                                 <!-- Modal body -->
-                                <div class="p-4 md:p-5">
+                                <div class="p-4 md:p-5 grid grid-cols-2 gap-5">
                                     <form class="space-y-4" action="#">
-                                        <div class="bg-white rounded-xl shadow-md p-6 mb-8">
+                                        <div class="bg-white rounded-xl shadow-md p-6">
                                             <div class="flex flex-col md:flex-row items-center">
                                                 <!-- Status Steps -->
                                                 <div class="flex-1">
@@ -943,9 +948,42 @@
                                             </div><!-- .flex -->
                                         </div><!-- .p-6 -->
                                     </form>
+                                <div class="bg-white rounded-xl shadow-md p-6">
+                                    <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
+                                        <i class="fas fa-truck text-gray-500 mr-2"></i>
+                                        Shipping Details
+                                    </h2>
+                                    <div class="text-gray-600">
+                                        <p class="font-medium flex my-2">
+                                        <span class = "mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                        </svg>
+                                        </span>
+                                         ${item.username}
+                                        </p>
+                                        <p class = "flex my-2">
+                                        <span class = "mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" />
+                                        </svg>
+                                        </span>
+                                         ${item.city}, ${item.province}</p>
+                                        <p class = "flex my-2">
+                                        <span class = "mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                                        </svg>
+                                        </span>
+                                         ${item.shippingMethod}</p>
+                                        <p class="mt-2">
+                                            <i class="fas fa-phone-alt mr-2"></i> ${item.phonenumber}
+                                        </p>
+                                    </div>
+                                </div>
                                 </div><!-- .p-4 -->
                             </div><!-- .modal content -->
-                        </div><!-- .p-4 -->`;
+                        </div>`;
                         }
                         display.html(txt);
                     }

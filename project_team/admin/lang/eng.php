@@ -1,7 +1,7 @@
 <?php
 return [
     "dashboard" => "Dashboard",
-    "totalProduct" => "Total Products",
+    "totalProduct" => "Products",
     "product" => "Category",
     "brand" => "Brand",
     "orders" => "Orders",
@@ -51,7 +51,7 @@ return [
      "webinfo" => "Web info",
     "equal" => "Equal",
     "sellproduct" => "Sell product",
-    "Revenue" => "Revenue",
+    "revenue" => "Revenue",
     "bigreceipt" => "Receipt",
     "smallreceipt" => "Small Receipt",
     "permission" => "Permission",

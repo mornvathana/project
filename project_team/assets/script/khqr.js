@@ -13,10 +13,14 @@
     const phoneNumber = document.getElementById("phone-number");
     const userId = document.getElementById("user_id");
     const CartId = document.getElementById("cart_id");
+    const shippingMethod = document.getElementById("shippingMethod");
 
     let hasSubmitted = false;
 
-    form.addEventListener("input", function () {
+    form.addEventListener("input",checkFields);
+    shippingMethod.addEventListener("change", checkFields);
+
+    function checkFields() {
         if (
             firstName.value.trim() !== "" &&
             lastName.value.trim() !== "" &&
@@ -24,6 +28,7 @@
             city.value.trim() !== "" &&
             address.value.trim() !== "" &&
             phoneNumber.value.trim() !== "" &&
+            shippingMethod.value !== "" &&
             !hasSubmitted
         ) {
             hasSubmitted = true;
@@ -32,7 +37,7 @@
                 btncheckout.style.display = "block";
             }, 1000);
         }
-    });
+    };
     
     function data(){
     const KHQR = typeof BakongKHQR !== 'undefined' ? BakongKHQR : null;
@@ -41,11 +46,20 @@
         console.error("BakongKHQR or its components are not loaded or defined.");
         return;
     }
-
+    let score = 0;
     const data = KHQR.khqrData;
     const info = KHQR.IndividualInfo;
 
     const totalPrice = parseFloat(btncheckout.dataset.total);
+
+    if(totalPrice < 100){
+        score = 1;
+    }else if(totalPrice >= 100 && totalPrice <= 200){
+        score = 2;
+    }else if(totalPrice >= 200 && totalPrice <= 300){
+        score = 3;
+    }
+
 
     function autoSaveData() {
         const formData = {
@@ -57,7 +71,9 @@
             city: city.value,
             address: address.value,
             phone_number: phoneNumber.value,
+            shipping : shippingMethod.value,
             totalPrice: totalPrice,
+            scorecus : score,
         };
 
         fetch('save_checkout_data.php', {

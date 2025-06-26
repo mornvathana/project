@@ -14,19 +14,28 @@
     $city = mysqli_real_escape_string($conn, $input_data['city']);
     $province = mysqli_real_escape_string($conn, $input_data['province']);
     $phone_number = mysqli_real_escape_string($conn, $input_data['phone_number']);
+    $shipping = mysqli_real_escape_string($conn, $input_data['shipping']);
     $total_price = mysqli_real_escape_string($conn,$input_data['totalPrice']);
+    $scorecus = mysqli_real_escape_string($conn, $input_data['scorecus']);
 
 
-    $sql = "INSERT INTO orders (user_id, cart_id, first_name, last_name, city, province, email, phone_number, total_price) 
-            VALUES ('$user_id', '$cart_id', '$first_name', '$last_name', '$city', '$province', '$email', '$phone_number', '$total_price')";
+
+    $sql = "INSERT INTO orders (user_id, cart_id, first_name, last_name, city, province, email, phone_number,delivery_option , total_price) 
+            VALUES ('$user_id', '$cart_id', '$first_name', '$last_name', '$city', '$province', '$email', '$phone_number','$shipping', '$total_price')";
 
     if (mysqli_query($conn, $sql)) {
+
+        $orderid = $conn->insert_id;
+
+        $score_cus = $conn->query("INSERT INTO score_customer (user_id,order_id,score) VALUES ('$user_id','$orderid','$scorecus')");
         
         $update = $conn->query("UPDATE cart SET status = 0 WHERE id = '$cart_id' AND user_id = '$user_id'");
 
         if($update){
 
-            echo json_encode(['status' => 'success', 'message' => 'Order saved successfully']);
+            if($score_cus){
+                echo json_encode(['status' => 'success', 'message' => 'Order saved successfully']);
+            }
 
         }
 
