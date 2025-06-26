@@ -411,6 +411,56 @@
   }
   </style>
 
+  <style>
+    /* Custom animations */
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .animate-pulse {
+      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+    
+    /* Transition for scale */
+    .scale-95 {
+      /* transform: scale(0.95); */
+    }
+    .scale-100 {
+      /* transform: scale(1); */
+    }
+    
+    /* Rotate transition for icon */
+    .rotate-45 {
+      transform: rotate(45deg);
+    }
+    
+    /* Smooth transitions */
+    .transition-all {
+      transition-property: all;
+    }
+    
+    /* Menu item animations */
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Apply animations to menu items when they appear */
+    #menuOptions a {
+      animation: slideUp 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    #menuOptions a:nth-child(1) { animation-delay: 0.1s; }
+    #menuOptions a:nth-child(2) { animation-delay: 0.2s; }
+    #menuOptions a:nth-child(3) { animation-delay: 0.3s; }
+  </style>
+
 </head>
 
 <body>
