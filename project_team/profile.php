@@ -8,7 +8,7 @@
 ?>
 <div class="profile-block w-[90%] mx-auto mt-10 flex flex-col md:flex-row justify-between relative">
     <!-- menu -->
-    <div class="menu w-[100%] md:w-[30%] h-fit sticky top-[4rem] bg-[#fff] z-[999]"
+    <div class="menu w-[100%] md:w-[30%] h-fit sticky top-[4rem] bg-[#fff] z-10 overflow-hidden"
         style="border: 1px solid #d2d3d4; border-radius: 10px;">
         <ul class="space-y-3 font-medium text-[15px] p-5 font-[Poppins,hanuman,Sans-serif] text-gray-800"
             id="righ_button">
@@ -405,11 +405,11 @@
                     </div>
 
                     <!-- Progress Tracking -->
-                      <div id="authentication-modal" tabindex="-1" aria-hidden="true" 
-                    class="hidden displayareapopup overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                    <div id="authentication-modal" tabindex="-1" aria-hidden="true" 
+                    class="hidden displayareapopup transform overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                         
                     </div>
-                    <!-- end processing tracking -->
+
                     <!-- Order Items Table -->
                     <div class="bg-white rounded-xl shadow-md p-6 mb-8 border border-gray-100 overflow-x-auto">
                         <h2 class="text-xl font-semibold text-gray-800 mb-6">Order Items</h2>
@@ -720,6 +720,7 @@
         
     });
 </script>
+
 <script>
     $(document).ready(function(){
         $(document).on("click","#updateProfile",function(){
@@ -866,14 +867,7 @@
                                     <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
                                         Shipping Report
                                     </h3>
-                                    <button type="button" 
-                                    class="end-2.5 text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" 
-                                    data-modal-hide="authentication-modal" id = "closeBtn">
-                                        <svg class="w-3 h-3" aria-hidden="true" fill="none" viewBox="0 0 14 14">
-                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
-                                        </svg>
-                                        <span class="sr-only">Close modal</span>
-                                    </button>
+                                    
                                 </div>
 
                                 <!-- Modal body -->
@@ -966,4 +960,31 @@
       }
     }
   </script>
+
+  <!-- displayareapopup modal animation -->
+  <script>
+  document.addEventListener("DOMContentLoaded", function () {
+  const buttons = document.querySelectorAll("[data-modal-target]");
+  
+  buttons.forEach(button => {
+    button.addEventListener("click", function () {
+      const modalId = this.getAttribute("data-modal-target");
+      const modal = document.getElementById(modalId);
+      
+      if (modal) {
+        modal.classList.remove("hidden");
+        modal.classList.add("flex", "show"); // Add show class for animation
+      }
+    });
+  });
+  });
+
+  function closeModal() {
+  const modal = document.getElementById("authentication-modal");
+  modal.classList.remove("flex", "show");
+  modal.classList.add("hidden");
+  }
+  </script>
+
+
 <?php include('includes/footer.php')?>

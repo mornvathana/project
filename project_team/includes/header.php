@@ -392,6 +392,25 @@
       }
     }
   </style>
+
+  <style>
+  @keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    rotate: 45deg;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  }
+
+  .displayareapopup.show {
+  animation: fadeInScale 0.5s ease-in-out forwards;
+  }
+  </style>
+
 </head>
 
 <body>
