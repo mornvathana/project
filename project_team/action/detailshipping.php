@@ -16,8 +16,25 @@
 
         $item = $row->fetch_assoc();
 
+        $userid = $item['user_id'];
+
+        $name = "";
+
+        $sql = $conn->query("SELECT name FROM users WHERE id = $userid");
+        
+        if($sql->num_rows > 0){
+            $row = $sql->fetch_assoc();
+            $name = $row['name'];
+        }
+
+
         $data[] = array(
             "id" => $item['id'],
+            "username" => $name,
+            "city" => $item['city'],
+            "province" => $item['province'],
+            "phonenumber" => $item['phone_number'],
+            "shippingMethod" => $item['delivery_option'],
             "status" => $item['status'],
         );
         echo json_encode($data);

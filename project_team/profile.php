@@ -6,7 +6,7 @@
         $id = $_SESSION['auth_user']['user_id'];
     }   
 ?>
-<div class="profile-block w-[90%] mx-auto mt-10 flex flex-col md:flex-row justify-between relative">
+<div class="profile-block w-[90%] mx-auto mt-10 flex my-2 flex-col md:flex-row justify-between relative">
     <!-- menu -->
     <div class="menu w-[100%] md:w-[30%] h-fit sticky top-[4rem] bg-[#fff] z-[999]"
         style="border: 1px solid #d2d3d4; border-radius: 10px;">
@@ -948,16 +948,33 @@
                                 <div class="bg-white rounded-xl shadow-md p-6">
                                     <h2 class="text-lg font-semibold text-gray-800 mb-4 flex items-center">
                                         <i class="fas fa-truck text-gray-500 mr-2"></i>
-                                        Shipping Address
+                                        Shipping Details
                                     </h2>
                                     <div class="text-gray-600">
-                                        <p class="font-medium">Hea Oun Cambodia</p>
-                                        <p>123 Main Street</p>
-                                        <p>Apartment 4B</p>
-                                        <p>Svay Rieng, NY 10001</p>
-                                        <p>Cambodia</p>
+                                        <p class="font-medium flex my-2">
+                                        <span class = "mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
+                                        </svg>
+                                        </span>
+                                         ${item.username}
+                                        </p>
+                                        <p class = "flex my-2">
+                                        <span class = "mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M12.75 3.03v.568c0 .334.148.65.405.864l1.068.89c.442.369.535 1.01.216 1.49l-.51.766a2.25 2.25 0 0 1-1.161.886l-.143.048a1.107 1.107 0 0 0-.57 1.664c.369.555.169 1.307-.427 1.605L9 13.125l.423 1.059a.956.956 0 0 1-1.652.928l-.679-.906a1.125 1.125 0 0 0-1.906.172L4.5 15.75l-.612.153M12.75 3.031a9 9 0 0 0-8.862 12.872M12.75 3.031a9 9 0 0 1 6.69 14.036m0 0-.177-.529A2.25 2.25 0 0 0 17.128 15H16.5l-.324-.324a1.453 1.453 0 0 0-2.328.377l-.036.073a1.586 1.586 0 0 1-.982.816l-.99.282c-.55.157-.894.702-.8 1.267l.073.438c.08.474.49.821.97.821.846 0 1.598.542 1.865 1.345l.215.643m5.276-3.67a9.012 9.012 0 0 1-5.276 3.67m0 0a9 9 0 0 1-10.275-4.835M15.75 9c0 .896-.393 1.7-1.016 2.25" />
+                                        </svg>
+                                        </span>
+                                         ${item.city}, ${item.province}</p>
+                                        <p class = "flex my-2">
+                                        <span class = "mr-2">
+                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 18.75a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h6m-9 0H3.375a1.125 1.125 0 0 1-1.125-1.125V14.25m17.25 4.5a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m3 0h1.125c.621 0 1.129-.504 1.09-1.124a17.902 17.902 0 0 0-3.213-9.193 2.056 2.056 0 0 0-1.58-.86H14.25M16.5 18.75h-2.25m0-11.177v-.958c0-.568-.422-1.048-.987-1.106a48.554 48.554 0 0 0-10.026 0 1.106 1.106 0 0 0-.987 1.106v7.635m12-6.677v6.677m0 4.5v-4.5m0 0h-12" />
+                                        </svg>
+                                        </span>
+                                         ${item.shippingMethod}</p>
                                         <p class="mt-2">
-                                            <i class="fas fa-phone-alt mr-2"></i> 0963904112
+                                            <i class="fas fa-phone-alt mr-2"></i> ${item.phonenumber}
                                         </p>
                                     </div>
                                 </div>
