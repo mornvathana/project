@@ -120,6 +120,18 @@ if($_SESSION['auth_user']){
                               />
                             </div>
                           </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-1 gap-6 mb-8">
+                            <div>
+                              <label for="city" class="block text-gray-700">Shipping Method</label>
+                              <select id = "shippingMethod" class = "mt-2 p-2 md:p-2 w-full border border-gray-300 rounded-md font-medium">
+                                <option value = "" select >Select shipping Method</option>
+                                <option value = "J&T">J&T</option>
+                                <option value = "Virak Buntham">Virak Buntham</option>
+                              </select>
+                            </div>
+                          </div>
+
                         </div>
 
                 <!-- place-order -->
