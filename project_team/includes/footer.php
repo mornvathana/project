@@ -107,20 +107,43 @@
         </div>
     </footer>
      
-    <!-- Floating Telegram Icon Link -->
-    <a href="https://t.me/your_username" target="_blank"
-        class="fixed bottom-4 right-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-400 focus:outline-none transition duration-300 ease-in-out block sm:hidden">
-        <!-- Font Awesome Telegram Icon -->
-        <img src="https://static-00.iconduck.com/assets.00/telegram-icon-512x512-4sztjer8.png" alt="" class="w-[40px]">
-    </a>
+    <!-- Floating Menu -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col items-end space-y-3">
     
-    <!-- boostrap -->
-         <!-- Floating Telegram Icon Link -->
-    <a href="https://t.me/your_username" target="_blank"
-        class="fixed bottom-4 right-4 bg-blue-500 text-white rounded-full shadow-lg hover:bg-blue-400 focus:outline-none transition duration-300 ease-in-out block sm:hidden">
-        <!-- Font Awesome Telegram Icon -->
-        <img src="https://static-00.iconduck.com/assets.00/telegram-icon-512x512-4sztjer8.png" alt="" class="w-[40px]">
-    </a>
+    <!-- Menu items -->
+    <div id="menuItems" class="flex flex-col items-end space-y-3 transform scale-0 opacity-0 transition-all duration-300 origin-bottom">
+      
+      <!-- Call an agent -->
+      <div class="flex items-center space-x-2">
+        <span class="bg-gray-700 text-white text-sm px-2 py-1 rounded">Call an agent</span>
+        <button class="bg-blue-600 hover:bg-green-700 p-3 rounded-full shadow-lg">
+          📞
+        </button>
+      </div>
+
+      <!-- Live chat -->
+      <div class="flex items-center space-x-2">
+        <span class="bg-gray-700 text-white text-sm px-2 py-1 rounded">Live chat</span>
+        <button class="bg-blue-600 hover:bg-green-700 p-3 rounded-full shadow-lg">
+          💬
+        </button>
+      </div>
+
+      <!-- Send email -->
+      <div class="flex items-center space-x-2">
+        <span class="bg-gray-700 text-white text-sm px-2 py-1 rounded">Send email</span>
+        <button class="bg-blue-600 hover:bg-green-700 p-3 rounded-full shadow-lg">
+          ✉️
+        </button>
+      </div>
+    </div>
+
+    <!-- Toggle Button -->
+    <button id="toggleMenuBtn" class="bg-gray-700 text-white p-4 rounded-full shadow-lg hover:bg-gray-800 transition w-12 h-12 flex items-center justify-center">
+      <!-- Icon changes here -->
+      <span id="menuIcon">＋</span>
+    </button>
+  </div>
 
     <!-- Overlay -->
     <!-- <div class="overlay hidden fixed inset-0 bg-white bg-opacity-80 z-50" id="overlay" onclick="closeSearchBox()"></div> -->
@@ -464,6 +487,28 @@
             searchResults.classList.remove('hidden');
         }
     </script>
+    
+    <!-- footer menu floating button -->
+    <script>
+    const toggleBtn = document.getElementById('toggleMenuBtn');
+    const menu = document.getElementById('menuItems');
+    const icon = document.getElementById('menuIcon');
+
+    let isOpen = false;
+
+    toggleBtn.addEventListener('click', () => {
+      isOpen = !isOpen;
+      if (isOpen) {
+        menu.classList.remove('scale-0', 'opacity-0');
+        menu.classList.add('scale-100', 'opacity-100');
+        icon.textContent = '×'; // Close icon
+      } else {
+        menu.classList.remove('scale-100', 'opacity-100');
+        menu.classList.add('scale-0', 'opacity-0');
+        icon.textContent = '＋'; // Menu icon
+      }
+    });
+  </script>
 </body>
 
 </html>
