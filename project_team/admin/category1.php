@@ -12,7 +12,7 @@ include("lang.php");
             <div class="flex justify-between items-center w-[100%] md:w-full gap-2 grid grid-cols-1 md:grid-cols-4 lg:grid-cols-4">
                 <div class = "w-[100%] md:w-[35px] py-1 md:py-2 rounded-sm">
                     <label  class = "text-[13px] font-medium text-[#515151]"><?php echo $text['product']?></label>
-                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-full md:w-[100px] xl:w-[120px] py-1 font-medium text-[#515151] outline-none">
+                    <select name="product_item" id="product_item" class = "product-item-select text-[13px] mt-1 border border-gray-400 rounded-md w-full md:w-[100px] xl:w-[120px] py-1 font-medium text-[#515151] outline-none">
                     <option value = "" selected class = "text-[13px]"><?php echo $text['select']?></option>
                     <?php
                     $product = getAll("product_detail");
@@ -28,14 +28,14 @@ include("lang.php");
                 </div>
                 <div class = "w-[100%] md:w-[35px] py-1 md:py-2 rounded-sm">
                     <label  class = "text-[13px] font-medium text-[#515151]"><?php echo $text['brand']?></label>
-                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-full md:w-[100px] xl:w-[120px] py-1 font-medium text-[#515151] outline-none">
+                    <select name="product_item" id="brand_item" class = "product-item-select text-[13px] mt-1 border border-gray-400 rounded-md w-full md:w-[100px] xl:w-[120px] py-1 font-medium text-[#515151] outline-none">
                     <option value = "" selected class = "text-[13px]"><?php echo $text['select']?></option>
                     <?php
                     $product = getAll("brands");
                     if(mysqli_num_rows($product) > 0){
                         foreach($product as $productItem){
                             ?>
-                            <option value="<?= $productItem['name']?>" class = "text-[14px]"><?= $productItem['name']?></option>
+                            <option value="<?= $productItem['id']?>" class = "text-[14px]"><?= $productItem['name']?></option>
                             <?php
                             }
                         }
@@ -44,7 +44,7 @@ include("lang.php");
                 </div>
                 <div class = "w-[100%] md:w-[35px] py-1 md:py-2 rounded-sm">
                     <label  class = "text-[13px] font-medium text-[#515151]"><?php echo $text['product']?></label>
-                    <select name="product_item" id="product_item" class = "text-[13px] mt-1 border border-gray-400 rounded-md w-full md:w-[100px] xl:w-[120px] py-1 font-medium text-[#515151] outline-none">
+                    <select name="category_item" id="category_item" class = "product-item-select text-[13px] mt-1 border border-gray-400 rounded-md w-full md:w-[100px] xl:w-[120px] py-1 font-medium text-[#515151] outline-none">
                     <option value = "" selected class = "text-[13px]"><?php echo $text['select']?></option>
                     <?php
                     $product = getAll("product");

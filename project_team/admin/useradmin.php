@@ -14,7 +14,7 @@
                     foreach($user as $userItem){
                         ?>
                         <div class = "h-full px-2 py-5 bg-[#f3f5f7]">
-                            <div class = "w-full h-[100%] flex flex-col gap-5">
+                            <div class = "w-full flex flex-col gap-5">
                                 <div class = "h-[5%] flex justify-center items-center">
                                     <div class = "w-[95%] h-full flex justify-start items-center">
                                         <h1 class = "text-md font-medium">My Profile</h1>

@@ -48,42 +48,6 @@
                     echo "400";
                 }
             break;
-            case "filterData";
-                $product = $_POST['product_item'] ?? null;
-                $category = $_POST['category_item'] ?? null;
-                $brand = $_POST['brand_item'] ?? null;
-                //
-                $where = [];
-
-                if (!empty($product)) {
-                    $where[] = "product_id = '$product'";
-                }
-                if (!empty($category)) {  
-                    $where[] = "name = '$category'";
-                }
-                if (!empty($brand)) {  
-                    $where[] = "name = '$brand'";
-                }
-
-                $condition = !empty($where) ? "WHERE " . implode(" AND ", $where) : "";
-                $sql = "SELECT * FROM category_db $condition";
-                $sql_filter = $conn->query($sql);
-
-
-                if($sql_filter == false){
-                    echo 505;
-                }else{
-                    $data = [];
-                    if($sql_filter->num_rows > 0){
-                      while($row = $sql_filter->fetch_assoc()){
-                          $data[] = $row;
-                      }
-                      echo json_encode($data);
-                    }else{
-                        echo 404;
-                    }
-                }
-            break;
             case "close_active":
             $status = $_POST['status'];
             $userid = $_POST['userid'];
