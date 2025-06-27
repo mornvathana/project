@@ -10,7 +10,7 @@ $permission = permission($user_id);
 
 ?>
         <!-- end header -->
-        <div class = "h-full px-2 py-2 bg-[#f3f5f7]">
+        <div class = "h-full px-2 py-2 bg-[#f3f5f7] overflow-hidden">
         <div class = "w-full h-[100vh] rounded-md p-5">
                 <div class = "w-full h-[8%] flex justify-between items-center">
                     <div>
@@ -70,7 +70,7 @@ $permission = permission($user_id);
                                 <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[70%] lg:h-[100%] rounded-md">
                                     <input type="file" name = "image" id = "profile_image" accept="image/*" class = "w-full h-full hidden" required>
                                 </div>
-                                <label for="profile_image" class = "absolute text-sm left-[30%] w-full  "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
+                                <label for="profile_image" class = "absolute text-sm left-[40%] w-full  "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
                                 </div>
                                 </div> 
                                 <div class="w-full lg:mt-5 flex justify-end items-center pr-5">
