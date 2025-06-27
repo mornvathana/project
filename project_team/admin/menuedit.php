@@ -39,7 +39,7 @@ include('includes/header.php');
                                             if(!empty($brand_item['image'])){
                                                 echo '../uploads/product/' . $brand_item['image'];
                                             }else{
-                                                echo 'assets/img/default/default.jpg';
+                                                echo '../uploads/default/default.png';
                                             }
                                         ?>   
                                          " id = "showImage" class = "w-full h-full object-contain" alt="">

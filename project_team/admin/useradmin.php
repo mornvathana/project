@@ -27,7 +27,7 @@
                                                         if($userItem['image']){
                                                             echo "../uploads/admin/" . $userItem['image'];
                                                         }else{
-                                                            echo "assets/img/default.jpg";
+                                                            echo "../uploads/default/default.png";
                                                         }
                                                     ?>" class = "rounded-full w-[50px] h-[50px] md:w-[100px] md:h-[100px]" alt="">
                                         </div>

@@ -41,7 +41,7 @@ include("lang.php");
                                             if(!empty($brand_item['image'])){
                                                 echo '../uploads/brand/' . $brand_item['image'];
                                             }else{
-                                                echo '../uploads/default/default.jpg';
+                                                echo '../uploads/default/default.png';
                                             }
                                         ?>   
                                          " id = "showImage" class = "w-full h-full object-contain" alt="">

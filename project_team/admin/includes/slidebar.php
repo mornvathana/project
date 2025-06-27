@@ -62,7 +62,7 @@
                     </li>
                     <?php endif;?>
                     <?php if(!empty($permission['product']) == 1): ?>
-                    <li class = "p-2 my-1 text-[12px] <?= $page == 'menu.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
+                    <li class = "p-2 my-1 text-[12px] <?= $page == 'menu.php' ? 'bg-gray-200' : ''; ?> <?= $page == 'menuedit.php' ? 'bg-gray-200' : ''; ?> <?= $page == 'createmenu.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
                         <a href="menu.php" class = "flex items-center">
                         <span class = "mr-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" class = "w-[15px] h-[15px]" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -73,7 +73,7 @@
                     </li>
                     <?php endif;?>
                     <?php if(!empty($permission['brands']) == 1): ?>
-                    <li class = "p-2 my-1 text-[12px] <?= $page == 'branddisplay.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
+                    <li class = "p-2 my-1 text-[12px] <?= $page == 'branddisplay.php' ? 'bg-gray-200' : ''; ?> <?= $page == 'brand.php' ? 'bg-gray-200' : ''; ?> <?= $page == 'brandedit.php' ? 'bg-gray-200' : ''; ?> font-medium rounded-md hover:text-white hover:bg-blue-500">
                         <a href="branddisplay.php" class = "flex items-center">
                         <span class = "mr-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" class = "w-[15px] h-[15px]" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
@@ -87,7 +87,7 @@
                     </li>
                     <?php endif;?>
                     <?php if(!empty($permission['category']) == 1): ?>
-                    <li class = "p-2 my-1 text-[12px] <?= $page == 'category1.php' ? 'bg-gray-200' : ''; ?>  font-medium rounded-md hover:text-white hover:bg-blue-500">
+                    <li class = "p-2 my-1 text-[12px] <?= $page == 'category1.php' ? 'bg-gray-200' : ''; ?> <?= $page == 'categoryEdit.php' ? 'bg-gray-200' : ''; ?> <?= $page == 'category.php' ? 'bg-gray-200' : ''; ?>  font-medium rounded-md hover:text-white hover:bg-blue-500">
                         <a href="category1.php" class = "flex items-center">
                         <span class = "mr-1">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" class = "w-[15px] h-[15px]" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

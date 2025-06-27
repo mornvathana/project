@@ -43,7 +43,7 @@ include('../middleware/adminAccess.php');
                                     <div class = "w-full h-full flex">
                                     <div class = "w-full md:w-[50%] flex justify-center items-center none">
                                         <div class="w-[90%] border border-[1px] border-dashed border-blue-900 h-[70%] lg:h-[100%] rounded-md">
-                                            <img src="<?= !empty($data['logo']) ? '../uploads/webinfo/' . $data['logo'] : '../uploads/default/default.jpg'?>" id = "showImage" class = "w-full h-full object-contain" alt="">
+                                            <img src="<?= !empty($data['logo']) ? '../uploads/webinfo/' . $data['logo'] : '../uploads/default/default.png'?>" id = "showImage" class = "w-full h-full object-contain" alt="">
                                             <input type="hidden" name="old_image" value = "<?= $data['logo']?>" >
                                         </div>
                                     </div> 
@@ -73,7 +73,7 @@ include('../middleware/adminAccess.php');
                                                 if(!empty($img)){
                                                     echo "../uploads/webinfo/" . $img;
                                                 }else{
-                                                    echo "../uploads/default/default.jpg";
+                                                    echo "../uploads/default/default.png";
                                                 }
                                             ?>
                                                  " id = "showImage1" class = "w-full h-full object-contain" alt="">

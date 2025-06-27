@@ -47,7 +47,7 @@ include("lang.php");
                         <label for="name" class = "block py-1 text-[13px]"><?php echo $text['uploads']?><span class = "text-red-500">*</span></label>
                            <div class = "w-[60%] flex justify-center items-center">
                                 <div class="w-[60%] border-dotted border-[2px] p-1 border-blue-900 h-[100%] rounded-md" >
-                                <img src="../uploads/default/default.jpg" id = "showImage" class = "w-full h-full object-contain" alt="">
+                                <img src="../uploads/default/default.png" id = "showImage" class = "w-full h-full object-contain" alt="">
                                 </div>
                            </div> 
                            <div class = "w-[50%] flex justify-center items-center relative">

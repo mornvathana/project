@@ -59,7 +59,7 @@ $permission = permission($user_id);
                                             if(!empty($user['image'])){
                                                 echo '../uploads/admin/' . $user['image'];
                                             }else{
-                                                echo '../uploads/default/default.jpg';
+                                                echo '../uploads/default/default.png';
                                             }
                                         ?>
                                         " id = "showImage" class = "w-full h-full object-contain" alt="">

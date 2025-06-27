@@ -36,7 +36,7 @@
                         if(!empty($data['image'])){
                             echo "../uploads/admin/" . $data['image'];
                         }else{
-                            echo "../uploads/default/default.jpg";
+                            echo "../uploads/default/default.png";
                         }
                     ?>
                     " alt="user photo">
