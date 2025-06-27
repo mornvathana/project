@@ -17,7 +17,7 @@
             },
             dataType: "json",
             success: function (data) {
-                if(data){
+                if(data.length > 0){
                    let txt = "";
                      for (let i in data) {
                             let item = data[i];
@@ -31,7 +31,7 @@
                             <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">
                                 <form action="code.php" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="brand_id" value="${item.id}">
-                                    <button type="submit" name="${isActive ? 'btn_active1' : 'btn_disable1'}"
+                                    <button type="submit" name="${isActive ? 'btn_active_user' : 'btn_disable_user'}"
                                         class="${isActive ? 'bg-green-100 text-green-500 border-[1px] border-green-500' : 'bg-red-100 text-red-500 border-[1px] border-red-500'}  px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
                                         ${isActive ? 'Active' : 'Disable'}
                                     </button>
@@ -104,7 +104,7 @@
                              <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${item.email}</td>
                             <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">${verify}</td>
                             <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">
-                                <form action="code.php" method="post" enctype="multipart/form-data">
+                                 <form action="code.php" method="post" enctype="multipart/form-data">
                                     <input type="hidden" name="brand_id" value="${item.id}">
                                     <button type="submit" name="${isActive ? 'btn_active_user' : 'btn_disable_user'}"
                                         class="${isActive ? 'bg-green-100 text-green-500 border-[1px] border-green-500' : 'bg-red-100 text-red-500 border-[1px] border-red-500'}  px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">

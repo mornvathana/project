@@ -12,14 +12,14 @@
         if($stmt->execute()){
             
             $result = $stmt->get_result();
-            while($row = $result->fetch_array()){
+            while($row = $result->fetch_assoc()){
                 $data[] = array(
-                "id" => $row['0'],
-                "name" => $row['1'],
-                "email" => $row['2'],
-                "emailverify" => $row['8'],
-                "status" => $row['7'],
-                "created" => $row['10'],
+                "id" => $row['id'],
+                "name" => $row['name'],
+                "email" => $row['email'],
+                "emailverify" => $row['email_verify'],
+                "status" => $row['status'],
+                "created" => $row['created_at'],
                 );
             };
 

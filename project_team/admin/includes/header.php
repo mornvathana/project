@@ -10,7 +10,6 @@ ob_clean();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src = "assets/js/tailwindcss.js"></script>
-    <script src = "assets/js/fontawesome.css"></script>
     <script src = "assets/js/jquery.min.js"></script>
     <!-- Datatable -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
