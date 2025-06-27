@@ -20,7 +20,7 @@
                                         <h1 class = "text-md font-medium">My Profile</h1>
                                     </div>
                                 </div>
-                                <div class = "h-[25%] w-full  flex justify-center items-start">
+                                <div class = "h-[120px] w-full  flex justify-center items-start">
                                     <div class = "w-[95%] h-full flex justify-start gap-5 items-center bg-[#ffffff] rounded-md shadow-sm">
                                         <div class = "w-[15%] h-full flex justify-end items-center">
                                             <img src="<?php
@@ -29,7 +29,7 @@
                                                         }else{
                                                             echo "assets/img/default.jpg";
                                                         }
-                                                    ?>" class = "rounded-full w-[100px] h-[100px]" alt="">
+                                                    ?>" class = "rounded-full w-[50px] h-[50px] md:w-[100px] md:h-[100px]" alt="">
                                         </div>
                                         <div class = "w-[60%] h-full flex justify-start items-center">
                                             <ul>
@@ -46,7 +46,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class = "h-[40%] w-full  flex justify-center items-start">
+                                <div class = "h-[150px] w-full  flex justify-center items-start">
                                     <div class = "w-[95%] h-full items-center bg-[#ffffff] rounded-md shadow-sm px-5 py-1">
                                         <div class = "w-full h-[30%]  flex justify-between items-center">  
                                             <div>
