@@ -723,5 +723,7 @@
         }else{
             redirect1("userclient.php","Something went wrong!");
         }
+    }else if(isset($_POST['create_discount'])){
+        
     }
 ?>

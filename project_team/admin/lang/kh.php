@@ -48,6 +48,9 @@ return [
     "createadmin" => "បង្កើតអ្នកគ្រប់គ្រង",
 
     // Newly translated items
+    "codename" => "Coupon Code",
+    "createpromotion" => "បង្គើតកូដបញ្ចុះតម្លៃ",
+    "promotionCode" => "កូដបញ្ចុះតម្លៃ",
     "webinfo" => "ព័ត៌មានវេបសាយ",
     "equal" => "ស្មើរតុល្យភាព",
     "sellproduct" => "ទំនិញលក់",

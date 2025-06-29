@@ -48,6 +48,9 @@ return [
     "createadmin" => "Create Admin",
 
     // Newly translated items
+    "codename" => "លេខកូដ",
+    "createpromotion" => "Create Discount coupon",
+    "promotionCode" => "Discount coupon",
      "webinfo" => "Web info",
     "equal" => "Equal",
     "sellproduct" => "Sell product",

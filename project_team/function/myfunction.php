@@ -2,6 +2,15 @@
     include("../config/dbcon.php");
     session_start();
 
+    function generateCode($prefix = 'SAVE-',$length = 6){
+        $characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $code = '';
+        for($i = 0 ; $i < $length ; $i++){
+            $code .=$characters[rand(0,strlen($characters) - 1)];
+        }
+        return $prefix . $code;
+    }
+
     function sumPrice($table,$id){
         global $conn;
         $query = "SELECT SUM(total_price) as total FROM $table WHERE user_id = $id" ;
