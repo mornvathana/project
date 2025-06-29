@@ -3,6 +3,7 @@
 </body>
 <script src="assets/js/flowbite.min.js"></script>
 <script src="assets/js/apexcharts.js"></script>
+<script src="assets/js/actionChat.js"></script>
 <script src= "assets/js/custom.js"></script>
 <script src= "assets/js/Data.js"></script>
 <script src = "assets/js/sweetalert2@11.js"></script>
