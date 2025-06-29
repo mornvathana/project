@@ -5,4 +5,9 @@ $(document).ready(function(){
       $("#messagearea").addClass("hidden");
     });
 
+    $(".btnClose").on("click",function(){
+      $("#chatarea").addClass("hidden").removeClass("block");
+      $("#messagearea").addClass("block").removeClass("hidden");
+    });
+    
 });
