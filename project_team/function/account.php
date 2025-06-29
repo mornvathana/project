@@ -65,59 +65,71 @@
         $username = mysqli_real_escape_string($conn, $_POST['username']);
         $email = mysqli_real_escape_string($conn, $_POST['email']);
         $password = mysqli_real_escape_string($conn, $_POST['password']);
-        $email_double = "SELECT * FROM users WHERE email = '$email'";
-        $email_double_run = mysqli_query($conn,$email_double);
+        $con_password = mysqli_real_escape_string($conn, $_POST['con_password']);
 
-        if(mysqli_num_rows($email_double_run) > 0){
-
-            redirect1("../login.php","We got the same email!");
-
+        if($password !== $con_password){
+            redirect1("../login.php","Password is not match!");
         }else{
+            if(strlen($password) < 8){
+                redirect1("../login.php","Password must be at least 8 characters long!");
+            }else{
+                    $email_double = "SELECT * FROM users WHERE email = '$email'";
+                    $email_double_run = mysqli_query($conn,$email_double);
 
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $register = "INSERT INTO users (id,name,email,password) VALUES(null,'$username','$email','$hashedPassword')";
-        $register_run = mysqli_query($conn,$register);
+                    if(mysqli_num_rows($email_double_run) > 0){
 
-        if($register_run){
-            
-        $email_id = $conn->insert_id;
+                        redirect1("../login.php","We got the same email!");
 
-        $base_url = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/";
-        $verification_link = $base_url . "verify_email.php?email_id=" . $email_id;
+                    }else{
 
-        $content .= "<br><br>Click <a href='" . $verification_link . "'>here</a> to verify your email.";
+                    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                    $register = "INSERT INTO users (id,name,email,password) VALUES(null,'$username','$email','$hashedPassword')";
+                    $register_run = mysqli_query($conn,$register);
+
+                    if($register_run){
+                        
+                    $email_id = $conn->insert_id;
+
+                    $base_url = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/";
+                    $verification_link = $base_url . "verify_email.php?email_id=" . $email_id;
+
+                    $content .= "<br><br>Click <a href='" . $verification_link . "'>here</a> to verify your email.";
 
 
-        $mail = new PHPMailer(true);
-        try {
-            $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';
-            $mail->SMTPAuth = true;
-            $mail->Username = 'mornsovathana@gmail.com'; 
-            $mail->Password = 'adjujoekjgqfxeqg';  
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = 587;
+                    $mail = new PHPMailer(true);
+                    try {
+                        $mail->isSMTP();
+                        $mail->Host = 'smtp.gmail.com';
+                        $mail->SMTPAuth = true;
+                        $mail->Username = 'mornsovathana@gmail.com'; 
+                        $mail->Password = 'adjujoekjgqfxeqg';  
+                        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                        $mail->Port = 587;
 
-            $mail->setFrom('mornsovathana@gmail.com', 'Morn sovathana');
-            $mail->addAddress($email);
+                        $mail->setFrom('mornsovathana@gmail.com', 'Morn sovathana');
+                        $mail->addAddress($email);
 
-            $mail->isHTML(true);
-            $mail->Subject = 'Email Verification';
-            $mail->Body = $content;
+                        $mail->isHTML(true);
+                        $mail->Subject = 'Email Verification';
+                        $mail->Body = $content;
 
-            $mail->send();
-            echo "Verification email sent to $email.";
-        } catch (Exception $e) {
-            echo "Email could not be sent. Error: {$mail->ErrorInfo}";
+                        $mail->send();
+                        echo "Verification email sent to $email.";
+                    } catch (Exception $e) {
+                        echo "Email could not be sent. Error: {$mail->ErrorInfo}";
+                    }
+
+                    redirect("../verifypage.php","please verify email!");
+
+                    }else{
+                        
+                        redirect1("register.php","Something went wrong!");
+                    }
+                    }
+            }
         }
 
-        redirect("../verifypage.php","please verify email!");
-
-        }else{
-            
-            redirect1("register.php","Something went wrong!");
-        }
-        } 
+        
     }else if(isset($_POST['check_opt'])){
         $opt = $_POST['otp'];
         $opt_check = "SELECT opt FROM users WHERE opt = $opt";

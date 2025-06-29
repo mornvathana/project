@@ -54,35 +54,35 @@ if(isset($_GET['id'])){
                         <div class = "flex justify-between items-center grid grid-cols-3">
                         <input type="hidden" id = "userId" value = "<?= $user_id?>">
                             <div>
-                                <input type="checkbox"   id = "dashboard" >
+                                <input type="checkbox" name = "dashboard"   id = "dashboard" value = "1">
                                 <label for="" class = "py-1 text-[13px]">Dashboard</label>
                             </div>
                             <div>
-                                <input type="checkbox"   id = "total_product" >
+                                <input type="checkbox" name = "totalproduct"   id = "total_product" value = "1">
                                 <label for="" class = "py-1 text-[13px]">Total </label>
                             </div>
                             <div>
-                                <input type="checkbox"   id = "product" >
+                                <input type="checkbox" name = "product"   id = "product" value = "1">
                                 <label for="" class = "py-1 text-[13px]">Product</label>
                             </div>
                             <div>
-                                <input type="checkbox"   id = "brands" >
+                                <input type="checkbox" name = "brands"  id = "brands" value = "1">
                                 <label for="" class = "py-1 text-[13px]">Brands</label>
                             </div>
                             <div>
-                                <input type="checkbox"   id = "category" >
+                                <input type="checkbox" name = "category"   id = "category" value = "1">
                                 <label for="" class = "py-1 text-[13px]">Category</label>
                             </div>
                             <div>
-                                <input type="checkbox"   id = "orders" >
+                                <input type="checkbox" name = "orders"  id = "orders" value = "1" >
                                 <label for="" class = "py-1 text-[13px]">Orders</label>
                             </div>
                             <div>
-                                <input type="checkbox"   id = "users" >
+                                <input type="checkbox" name = "users"  id = "users" value = "1" >
                                 <label for="" class = "py-1 text-[13px]">User</label>
                             </div>
                             <div>
-                                <input type="checkbox"   id = "inventory" >
+                                <input type="checkbox" name = "inventory"   id = "inventory" value = "1">
                                 <label for="" class = "py-1 text-[13px]">Inventory</label>
                                 <?php
                                     $data = getLastId("users");
@@ -99,7 +99,7 @@ if(isset($_GET['id'])){
                         <div class="w-[90%] border border-[1px] border-dashed border-blue-900 h-[70%] md:h-[100%] rounded-md">
                             <img src="
                             <?php
-                                echo 'assets/img/default.jpg';
+                                echo '../uploads/default/default.png';
                             ?>
                             " id = "showImage" class = "w-full h-full object-contain" alt="">
                             <input type="hidden" name="old_image" value = "<?= $user['image'] ?>" >
@@ -113,7 +113,7 @@ if(isset($_GET['id'])){
                     </div>
                     </div>
                     <div class="w-full md:mt-5 flex justify-end items-center pr-5">
-                    <button type = "submit" id = "save_btn" name = "create_admin" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md"><?php echo $text['submit']?></button>
+                    <button type = "submit" name = "create_admin" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md"><?php echo $text['submit']?></button>
                     </div>
                     </div>
                     </div>

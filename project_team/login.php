@@ -70,7 +70,7 @@ include('includes/header.php');
                   <i class="uil uil-lock icon"></i>
                 </div>
                 <div class="input-field">
-                  <input type="password" class="password" placeholder="Confirm Password" required />
+                  <input type="password" name = "con_password" class="password" placeholder="Confirm Password" required />
                   <i class="uil uil-lock icon"></i>
                   <i class="uil uil-eye-slash showHidePw"></i>
                 </div>

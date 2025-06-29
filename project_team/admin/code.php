@@ -279,6 +279,15 @@
         $conPassword = $_POST['con_password'];
         $username = $_POST['username'];
         $email = $_POST['email'];
+        // 
+        $dashboard = $_POST['dashboard'] ? 1 : 0;
+        $totalproduct = $_POST['totalproduct'] ? 1 : 0;
+        $product = $_POST['product'] ? 1 : 0;
+        $brands = $_POST['brands'] ? 1 : 0;
+        $category = $_POST['category'] ? 1 : 0;
+        $orders = $_POST['orders'] ? 1 : 0;
+        $users = $_POST['users'] ? 1 : 0;
+        $inventory = $_POST['inventory'] ? 1 : 0;
 
         $size = $_FILES['image']['size'];
         $image = $_FILES['image']['name'];
@@ -324,6 +333,23 @@
                         $register_run = $stmt->execute();
                         if($register_run){
                             // 
+                            $userId = $conn->insert_id;
+                            $sql = "INSERT INTO permission (
+                            user_id,
+                            dashboard,
+                            total_product,
+                            product,
+                            brands,
+                            category,
+                            orders,
+                            user,
+                            inventory,
+                            updated_by)
+                            VALUES ('$tableId','$dashboard','$totalproduct','$product','$brands','$category','$orders','$users','$inventory','$userId')";
+
+                            $sql_run = $conn->query($sql);
+
+                            if($sql){
                             $id = $conn->insert_id;
                             $text = "Create Admin ID : ". $id;
                             activity_log($user_id,$text,$ip);
@@ -331,6 +357,11 @@
                             move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
                             // update in permision user_Id 
                             redirect("useradmin.php","Register Successfully!");
+                            }else{
+                                redirect1("createadmin.php?id=$pageId","Something went wrong!");
+                            }
+
+                            
                         }else{
                             redirect1("createadmin.php?id=$pageId","Something went wrong!");
                         }

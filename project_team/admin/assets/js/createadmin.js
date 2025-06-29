@@ -40,9 +40,7 @@
                     url: "action/permission.php",
                     data: data,
                     success: function (data) {
-                        if(data == 202){
-                            alert("done");
-                        }
+                        
                     }
                 });
             });
