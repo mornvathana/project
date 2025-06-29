@@ -108,7 +108,7 @@ ob_clean();
 
           #container1 {
             height: 400px;
-          }
+          } 
           #container2 {
             width: 100%;
             max-width: 800px;
