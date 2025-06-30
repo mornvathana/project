@@ -92,7 +92,15 @@ function editMode() {
         }
     });
 
-    
+    rightButtons[5].addEventListener("click", function(){
+        for(let i = 0; i < pages.length; i++){
+        if(pages[i].getAttribute("name") === "rewards"){
+            pages[i].style.display = 'block';
+        }else{
+            pages[i].style.display = 'none';
+        }
+        }
+    });
     
   
   

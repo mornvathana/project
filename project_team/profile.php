@@ -17,6 +17,10 @@
             <li class=""><a href="#" class="flex items-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path d="M2.25 2.25a.75.75 0 0 0 0 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 0 0-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 0 0 0-1.5H5.378A2.25 2.25 0 0 1 7.5 15h11.218a.75.75 0 0 0 .674-.421 60.358 60.358 0 0 0 2.96-7.228.75.75 0 0 0-.525-.965A60.864 60.864 0 0 0 5.68 4.509l-.232-.867A1.875 1.875 0 0 0 3.636 2.25H2.25ZM3.75 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM16.5 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" /></svg> <span>My Orders</span></a></li>
             <li class=""><a href="#" class="flex items-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path d="M3.375 4.5C2.339 4.5 1.5 5.34 1.5 6.375V13.5h12V6.375c0-1.036-.84-1.875-1.875-1.875h-8.25ZM13.5 15h-12v2.625c0 1.035.84 1.875 1.875 1.875h.375a3 3 0 1 1 6 0h3a.75.75 0 0 0 .75-.75V15Z" /><path d="M8.25 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0ZM15.75 6.75a.75.75 0 0 0-.75.75v11.25c0 .087.015.17.042.248a3 3 0 0 1 5.958.464c.853-.175 1.522-.935 1.464-1.883a18.659 18.659 0 0 0-3.732-10.104 1.837 1.837 0 0 0-1.47-.725H15.75Z" /><path d="M19.5 19.5a1.5 1.5 0 1 0-3 0 1.5 1.5 0 0 0 3 0Z" /></svg> <span>Order Tracking</span></a></li>
             <li class=""><a href="#" class="flex items-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" /></svg> <span>My Favorites</span></a></li>
+            <li class=""><a href="#" class="flex items-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+            </svg>
+            <span>My Rewards</span></a></li>
             <li class=""><a href="logout.php" class="flex items-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6"><path fill-rule="evenodd" d="M7.5 3.75A1.5 1.5 0 0 0 6 5.25v13.5a1.5 1.5 0 0 0 1.5 1.5h6a1.5 1.5 0 0 0 1.5-1.5V15a.75.75 0 0 1 1.5 0v3.75a3 3 0 0 1-3 3h-6a3 3 0 0 1-3-3V5.25a3 3 0 0 1 3-3h6a3 3 0 0 1 3 3V9A.75.75 0 0 1 15 9V5.25a1.5 1.5 0 0 0-1.5-1.5h-6Zm10.72 4.72a.75.75 0 0 1 1.06 0l3 3a.75.75 0 0 1 0 1.06l-3 3a.75.75 0 1 1-1.06-1.06l1.72-1.72H9a.75.75 0 0 1 0-1.5h10.94l-1.72-1.72a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg> <span>Logout</span></a></li>
         </ul>
     </div>
@@ -555,7 +559,260 @@
 
             </div>
         </div>
+        
+        <div class="page w-[100%] h-fit p-5 mt-5 md:mt-0 hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;"
+            name="rewards">
+        <div class="container mx-auto px-4 py-8 max-w-6xl">
+        <!-- Header -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-blue-800 flex items-center space-x-2"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 11.25v8.25a1.5 1.5 0 0 1-1.5 1.5H5.25a1.5 1.5 0 0 1-1.5-1.5v-8.25M12 4.875A2.625 2.625 0 1 0 9.375 7.5H12m0-2.625V7.5m0-2.625A2.625 2.625 0 1 1 14.625 7.5H12m0 0V21m-8.625-9.75h18c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125h-18c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125Z" />
+            </svg>
+            <span> Your Rewards</span></h1>
+            <p class="text-gray-600">Redeem your savings points for discounts</p>
+        </header>
 
+        <!-- Points Summary -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <h2 class="text-xl font-semibold text-gray-700 font-[Roboto,hanuman,Sans-serif]">Available Points</h2>
+                    <p id="points-counter" class="text-4xl font-bold points-pulse text-green-500">1,250 <span class="text-lg">pts</span></p>
+                </div>
+                <div class="text-center md:text-right font-[Roboto,hanuman,Sans-serif]">
+                    <p class="text-gray-600 mb-2">Points expiring soon: <span class="font-semibold">250 pts</span> (Jun 30, 2025)</p>
+                    <p class="text-sm text-gray-500">Earn more points with every purchase!</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Redeem Options -->
+        <section class="mb-8">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-semibold text-gray-800">Redeem Your Points</h2>
+                <button id="history-btn" onclick="showGiftHistory()" class="history-btn bg-blue-800 hover:bg-blue-900 text-white font-medium py-2 px-4 rounded-md transition-all flex items-center shadow-lg hover:shadow-xl transform hover:scale-105">
+                    <i class="fas fa-gift mr-2"></i>
+                    View Gift History
+                    <span class="ml-2 bg-white text-blue-800 text-xs font-bold px-2 py-1 rounded-full animate-pulse">3</span>
+                </button>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Option 1 -->
+                <div class="reward-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:border-indigo-300 transition-all relative font-[Roboto,hanuman,Sans-serif]">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">$5 Discount</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">500 pts</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 flex items-center space-x-2"><span>5$ Discount</span> <i class="fas fa-tag text-amber-500 mr-2"></i></p>
+                        <button onclick="redeemPoints(500, '$5 Discount')" class="w-full bg-blue-800 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
+                            Redeem Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Option 2 -->
+                <div class="reward-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:border-indigo-300 transition-all relative font-[Roboto,hanuman,Sans-serif]">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">$10 Discount</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">1,000 pts</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 flex items-center space-x-2"><span>$10 Discount</span> <i class="fas fa-tag text-green-500 mr-2"></i></p>
+                        <button onclick="redeemPoints(1000, '$10 Discount')" class="w-full bg-blue-800 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
+                            Redeem Now
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Option 3 -->
+                <div class="reward-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:border-indigo-300 transition-all relative font-[Roboto,hanuman,Sans-serif]">
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-4">
+                            <h3 class="text-lg font-semibold text-gray-800">Free Shipping</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">750 pts</span>
+                        </div>
+                        <p class="text-gray-600 mb-4 flex items-center space-x-2"><span>Get free shipping</span> <i class="fas fa-shipping-fast text-blue-500 mr-2"></i></p>
+                        <button onclick="redeemPoints(750, 'Free Shipping')" class="w-full bg-blue-800 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
+                            Redeem Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent Activity -->
+        <section>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Recent Activity</h2>
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                            <tr>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Activity</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Points</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="activity-body" class="bg-white divide-y divide-gray-200">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Jun 15, 2023</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Order #12345</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600">+150 pts</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Completed</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Jun 10, 2023</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$10 Discount</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">-1,000 pts</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Redeemed</td>
+                            </tr>
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Jun 5, 2023</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Order #12344</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600">+200 pts</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Completed</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Success Modal (hidden by default) -->
+        <div id="success-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-sm mx-auto relative z-10 transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
+                <div class="text-center">
+                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
+                        <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h3 id="success-title" class="text-lg leading-6 font-medium text-gray-900">Success!</h3>
+                    <div class="mt-2">
+                        <p id="success-message" class="text-sm text-gray-500">Your points have been redeemed successfully.</p>
+                    </div>
+                    <div class="mt-4">
+                        <button onclick="closeModal()" type="button" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-indigo-900 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500">
+                            Got it!
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Gift History Modal (hidden by default) -->
+        <div id="gift-history-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full mx-4 mx-auto relative z-10 transform transition-all duration-300 scale-95 opacity-0" id="gift-history-content">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800 flex items-center">
+                        <i class="fas fa-gift text-blue-800 mr-2"></i>
+                        Your Gift History
+                    </h3>
+                    <button onclick="closeGiftHistory()" class="text-gray-500 hover:text-gray-700 transition-transform hover:rotate-90">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="space-y-4 max-h-96 overflow-y-auto pr-2">
+                    <div class="gift-history-item border-b pb-4 border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-medium text-gray-800 flex items-center">
+                                <i class="fas fa-tag text-green-500 mr-2"></i>
+                                $10 Discount
+                            </h4>
+                            <span class="text-sm text-gray-500">Jun 10, 2023</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1 ml-6">Redeemed with 1,000 points</p>
+                        <div class="flex justify-between items-center mt-2 ml-6">
+                            <span class="inline-block px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Used</span>
+                            <button class="text-xs text-blue-600 hover:text-blue-800 font-medium" onclick="showVoucherDetails('$10 Discount', 'Jun 10, 2023', 'Used', 'DISCOUNT10-2023')">
+                                View Details <i class="fas fa-chevron-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gift-history-item border-b pb-4 border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-medium text-gray-800 flex items-center">
+                                <i class="fas fa-shipping-fast text-blue-500 mr-2"></i>
+                                Free Shipping
+                            </h4>
+                            <span class="text-sm text-gray-500">May 28, 2023</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1 ml-6">Redeemed with 750 points</p>
+                        <div class="flex justify-between items-center mt-2 ml-6">
+                            <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Active</span>
+                            <button class="text-xs text-blue-600 hover:text-blue-800 font-medium" onclick="showVoucherDetails('Free Shipping', 'May 28, 2023', 'Active', 'FREESHIP-2023')">
+                                View Details <i class="fas fa-chevron-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="gift-history-item border-b pb-4 border-gray-200">
+                        <div class="flex justify-between items-center">
+                            <h4 class="font-medium text-gray-800 flex items-center">
+                                <i class="fas fa-tag text-amber-500 mr-2"></i>
+                                $5 Discount
+                            </h4>
+                            <span class="text-sm text-gray-500">Apr 15, 2023</span>
+                        </div>
+                        <p class="text-sm text-gray-600 mt-1 ml-6">Redeemed with 500 points</p>
+                        <div class="flex justify-between items-center mt-2 ml-6">
+                            <span class="inline-block px-2 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-full">Expired</span>
+                            <button class="text-xs text-blue-600 hover:text-blue-800 font-medium" onclick="showVoucherDetails('$5 Discount', 'Apr 15, 2023', 'Expired', 'DISCOUNT5-2023')">
+                                View Details <i class="fas fa-chevron-right ml-1"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Voucher Details Modal -->
+        <div id="voucher-details-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full mx-4 mx-auto relative z-10">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-xl font-semibold text-gray-800">Voucher Details</h3>
+                    <button onclick="closeVoucherDetails()" class="text-gray-500 hover:text-gray-700">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
+                </div>
+                <div class="space-y-4">
+                    <div>
+                        <h4 id="voucher-name" class="font-medium text-gray-800 text-lg"></h4>
+                        <p id="voucher-date" class="text-sm text-gray-600"></p>
+                    </div>
+                    <div class="bg-gray-50 p-4 rounded-lg">
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Voucher Code:</span>
+                            <span id="voucher-code" class="font-mono font-bold text-blue-800"></span>
+                        </div>
+                        <div class="flex justify-between mb-2">
+                            <span class="text-gray-600">Status:</span>
+                            <span id="voucher-status" class="font-medium"></span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-gray-600">Redeemed On:</span>
+                            <span id="voucher-redeemed" class="text-gray-800"></span>
+                        </div>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button onclick="closeVoucherDetails()" class="bg-blue-800 hover:bg-blue-900 text-white font-medium py-2 px-6 rounded-md transition-colors">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        </div>
 
     </div>
 </div>
@@ -1032,6 +1289,197 @@
   modal.classList.add("hidden");
   }
   </script>
+
+  <!-- rewards page animation -->
+   <script>
+        let currentPoints = 1250;
+        
+        function redeemPoints(points, rewardName) {
+            if (currentPoints < points) {
+                showModal('Not Enough Points', `You need ${points - currentPoints} more points to redeem this reward.`);
+                return;
+            }
+            
+            // Create confetti effect
+            createConfetti();
+            
+            // Update points
+            currentPoints -= points;
+            updatePointsCounter();
+            
+            // Add to activity
+            addActivity(rewardName, points);
+            
+            // Show success message
+            showModal('Reward Redeemed!', `You've successfully redeemed ${points} points for ${rewardName}.`);
+        }
+        
+        function updatePointsCounter() {
+            const counter = document.getElementById('points-counter');
+            counter.classList.add('points-pulse');
+            
+            // Animate the points change
+            let start = parseInt(counter.textContent.replace(',', ''));
+            let end = currentPoints;
+            let duration = 1000; // 1 second
+            let startTime = null;
+            
+            function animatePoints(timestamp) {
+                if (!startTime) startTime = timestamp;
+                const progress = Math.min((timestamp - startTime) / duration, 1);
+                const value = Math.floor(start + (end - start) * progress);
+                counter.textContent = value.toLocaleString() + ' pts';
+                
+                if (progress < 1) {
+                    requestAnimationFrame(animatePoints);
+                } else {
+                    setTimeout(() => {
+                        counter.classList.remove('points-pulse');
+                    }, 500);
+                }
+            }
+            
+            requestAnimationFrame(animatePoints);
+        }
+        
+        function addActivity(rewardName, points) {
+            const activityBody = document.getElementById('activity-body');
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+            
+            const newRow = document.createElement('tr');
+            newRow.innerHTML = `
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${dateStr}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${rewardName}</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">-${points} pts</td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Redeemed</td>
+            `;
+            
+            // Add animation class
+            newRow.classList.add('redeem-success');
+            
+            // Insert at the top of the table
+            activityBody.insertBefore(newRow, activityBody.firstChild);
+            
+            // Remove the animation class after the animation completes
+            setTimeout(() => {
+                newRow.classList.remove('redeem-success');
+            }, 1500);
+        }
+        
+        function showModal(title, message) {
+            const modal = document.getElementById('success-modal');
+            const modalContent = document.getElementById('modal-content');
+            document.getElementById('success-title').textContent = title;
+            document.getElementById('success-message').textContent = message;
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('success-modal');
+            const modalContent = document.getElementById('modal-content');
+            
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+        
+        function createConfetti() {
+            const colors = ['#6366f1', '#ec4899', '#f59e0b', '#10b981'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.style.position = 'fixed';
+                confetti.style.width = '10px';
+                confetti.style.height = '10px';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.borderRadius = '50%';
+                confetti.style.left = Math.random() * 100 + 'vw';
+                confetti.style.top = '-10px';
+                confetti.style.zIndex = '100';
+                confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
+                
+                document.body.appendChild(confetti);
+                
+                const animation = confetti.animate([
+                    { top: '-10px', opacity: 1 },
+                    { top: '100vh', opacity: 0 }
+                ], {
+                    duration: 1000 + Math.random() * 2000,
+                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                });
+                
+                animation.onfinish = () => {
+                    confetti.remove();
+                };
+            }
+        }
+        
+        function showGiftHistory() {
+            const modal = document.getElementById('gift-history-modal');
+            const modalContent = document.getElementById('gift-history-content');
+            
+            // Animate the history button
+            const historyBtn = document.getElementById('history-btn');
+            historyBtn.classList.add('animate-pulse');
+            setTimeout(() => {
+                historyBtn.classList.remove('animate-pulse');
+            }, 500);
+            
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+        
+        function closeGiftHistory() {
+            const modal = document.getElementById('gift-history-modal');
+            const modalContent = document.getElementById('gift-history-content');
+            
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+        
+        function showVoucherDetails(name, date, status, code) {
+            document.getElementById('voucher-name').textContent = name;
+            document.getElementById('voucher-date').textContent = date;
+            document.getElementById('voucher-status').textContent = status;
+            document.getElementById('voucher-code').textContent = code;
+            document.getElementById('voucher-redeemed').textContent = date;
+            
+            // Set status color
+            const statusElement = document.getElementById('voucher-status');
+            statusElement.className = 'font-medium ';
+            if (status === 'Used') {
+                statusElement.classList.add('text-green-600');
+            } else if (status === 'Active') {
+                statusElement.classList.add('text-blue-600');
+            } else {
+                statusElement.classList.add('text-gray-600');
+            }
+            
+            const modal = document.getElementById('voucher-details-modal');
+            modal.classList.remove('hidden');
+        }
+        
+        function closeVoucherDetails() {
+            const modal = document.getElementById('voucher-details-modal');
+            modal.classList.add('hidden');
+        }
+    </script>
 
 
 <?php include('includes/footer.php')?>
