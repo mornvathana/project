@@ -521,6 +521,76 @@
       }
     });
   </script>
+
+  <!-- language selector -->
+  <script>
+        // Get current language from localStorage or default to English
+        let currentLanguage = localStorage.getItem('language') || 'en';
+        
+        // Set initial checkmark
+        document.getElementById(`check-${currentLanguage}`).classList.remove('hidden');
+        
+        function toggleLanguageMenu() {
+            const menu = document.getElementById('language-menu');
+            menu.classList.toggle('hidden');
+        }
+        
+        function changeLanguage(lang) {
+            // Hide all checkmarks first
+            document.querySelectorAll('#language-menu svg').forEach(svg => {
+                svg.classList.add('hidden');
+            });
+            
+            // Show the selected language's checkmark
+            document.getElementById(`check-${lang}`).classList.remove('hidden');
+            
+            // Update the button
+            const button = document.getElementById('language-button');
+            if (lang === 'en') {
+                button.innerHTML = `
+                    <img src="https://flagcdn.com/w20/gb.png" alt="English" class="flag-icon mr-2">
+                    ENG
+                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                `;
+            } else if (lang === 'km') {
+                button.innerHTML = `
+                    <img src="https://flagcdn.com/w20/kh.png" alt="Cambodia" class="flag-icon mr-2">
+                    KH
+                    <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    </svg>
+                `;
+            }
+            
+            // Store the selected language
+            localStorage.setItem('language', lang);
+            currentLanguage = lang;
+            
+            // Close the menu
+            document.getElementById('language-menu').classList.add('hidden');
+            
+            // Here you would typically reload the page with the new language
+            // or update the content dynamically
+            console.log(`Language changed to: ${lang}`);
+            
+            // For a real implementation, you would:
+            // 1. Load the appropriate language file/translations
+            // 2. Update all text elements on the page
+            // 3. Possibly reload the page if using server-side language switching
+        }
+        
+        // Close the dropdown when clicking outside
+        document.addEventListener('click', function(event) {
+            const languageButton = document.getElementById('language-button');
+            const languageMenu = document.getElementById('language-menu');
+            
+            if (!languageButton.contains(event.target) && !languageMenu.contains(event.target)) {
+                languageMenu.classList.add('hidden');
+            }
+        });
+    </script>
 </body>
 
 </html>

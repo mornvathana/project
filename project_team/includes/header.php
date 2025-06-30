@@ -410,56 +410,82 @@
   animation: fadeInScale 0.5s ease-in-out forwards;
   }
   </style>
+  
+  <!-- rewards page animations -->
+   <style>
+        @keyframes pointsPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes redeemSuccess {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            50% { transform: translateY(-20px) scale(1.1); opacity: 1; }
+            100% { transform: translateY(-100px) scale(0.9); opacity: 0; }
+        }
+        
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .points-pulse {
+            animation: pointsPulse 2s infinite;
+        }
+        
+        .redeem-success {
+            animation: redeemSuccess 1.5s forwards;
+        }
+        
+        .reward-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .reward-card {
+            transition: all 0.3s ease;
+        }
+        
+        .history-btn:hover {
+            animation: bounce 0.5s ease;
+        }
+        
+        .gift-history-item {
+            animation: fadeIn 0.5s ease forwards;
+            opacity: 0;
+        }
+        
+        .gift-history-item:nth-child(1) { animation-delay: 0.1s; }
+        .gift-history-item:nth-child(2) { animation-delay: 0.2s; }
+        .gift-history-item:nth-child(3) { animation-delay: 0.3s; }
+        .gift-history-item:nth-child(4) { animation-delay: 0.4s; }
+        .gift-history-item:nth-child(5) { animation-delay: 0.5s; }
+    </style>
 
-  <style>
-    /* Custom animations */
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    .animate-pulse {
-      animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-    }
-    
-    /* Transition for scale */
-    .scale-95 {
-      /* transform: scale(0.95); */
-    }
-    .scale-100 {
-      /* transform: scale(1); */
-    }
-    
-    /* Rotate transition for icon */
-    .rotate-45 {
-      transform: rotate(45deg);
-    }
-    
-    /* Smooth transitions */
-    .transition-all {
-      transition-property: all;
-    }
-    
-    /* Menu item animations */
-    @keyframes slideUp {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    /* Apply animations to menu items when they appear */
-    #menuOptions a {
-      animation: slideUp 0.5s ease-out forwards;
-      opacity: 0;
-    }
-    #menuOptions a:nth-child(1) { animation-delay: 0.1s; }
-    #menuOptions a:nth-child(2) { animation-delay: 0.2s; }
-    #menuOptions a:nth-child(3) { animation-delay: 0.3s; }
-  </style>
+    <!-- change language button -->
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .language-dropdown {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+        
+        .flag-icon {
+            width: 20px;
+            height: 15px;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+    </style>
 
 </head>
 
