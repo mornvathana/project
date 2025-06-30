@@ -17,6 +17,7 @@
     $shipping = mysqli_real_escape_string($conn, $input_data['shipping']);
     $total_price = mysqli_real_escape_string($conn,$input_data['totalPrice']);
     $scorecus = mysqli_real_escape_string($conn, $input_data['scorecus']);
+    $discountcode = mysqli_real_escape_string($conn, $input_data['discount']);
 
 
 
@@ -25,19 +26,59 @@
 
     if (mysqli_query($conn, $sql)) {
 
-        $orderid = $conn->insert_id;
 
-        $score_cus = $conn->query("INSERT INTO score_customer (user_id,order_id,score) VALUES ('$user_id','$orderid','$scorecus')");
-        
-        $update = $conn->query("UPDATE cart SET status = 0 WHERE id = '$cart_id' AND user_id = '$user_id'");
+        $findUserScore = $conn->query("SELECT * FROM score_customer WHERE user_id = '$user_id'");
 
-        if($update){
+        if($findUserScore->num_rows > 0){
 
-            if($score_cus){
-                echo json_encode(['status' => 'success', 'message' => 'Order saved successfully']);
+            $row = $findUserScore->fetch_assoc();
+
+            $defaultScore = $row['score'];
+
+            $totalScoreUser = $defaultScore + $scorecus;
+
+
+            $score_cus = $conn->query("UPDATE score_customer SET score = '$totalScoreUser' WHERE user_id = '$user_id'");
+            
+            $update = $conn->query("UPDATE cart SET status = 0 WHERE id = '$cart_id' AND user_id = '$user_id'");
+
+            if($update){
+
+                if($score_cus){
+
+                    $updateStatus = $conn->query("UPDATE discount SET status = 0 WHERE dis_code = '$discountcode'");
+                    
+                    if($updateStatus){
+                        echo json_encode(['status' => 'success', 'message' => 'Order saved successfully']);
+                    }
+                }
+
+            }
+
+            
+
+        }else{
+
+            $score_cus = $conn->query("INSERT INTO score_customer (user_id,score) VALUES ('$user_id','$scorecus')");
+            
+            $update = $conn->query("UPDATE cart SET status = 0 WHERE id = '$cart_id' AND user_id = '$user_id'");
+
+            if($update){
+
+                if($score_cus){
+
+                    $updateStatus = $conn->query("UPDATE discount SET status = 0 WHERE dis_code = '$discountcode'");
+                    
+                    if($updateStatus){
+                        echo json_encode(['status' => 'success', 'message' => 'Order saved successfully']);
+                    }
+                }
+
             }
 
         }
+
+       
 
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Failed to save order: ' . mysqli_error($conn)]);
