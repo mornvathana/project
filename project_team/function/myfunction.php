@@ -2,6 +2,7 @@
     include("../config/dbcon.php");
     session_start();
 
+
     function sumPrice($table,$id){
         global $conn;
         $query = "SELECT SUM(total_price) as total FROM $table WHERE user_id = $id" ;

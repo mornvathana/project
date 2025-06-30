@@ -577,7 +577,16 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-4 md:mb-0">
                     <h2 class="text-xl font-semibold text-gray-700 font-[Roboto,hanuman,Sans-serif]">Available Points</h2>
-                    <p id="points-counter" class="text-4xl font-bold points-pulse text-green-500">1,250 <span class="text-lg">pts</span></p>
+                    <p id="points-counter" class="text-4xl font-bold points-pulse text-green-500">
+                        <span id = "totalScore">
+                            <?php
+                            $price = sumScore("score_customer",$id);
+                            ?>
+                            <?= $price['total']?>
+                            <?php
+                            ?>
+                        </span>
+                         <span>pts</span></p>
                 </div>
                 <div class="text-center md:text-right font-[Roboto,hanuman,Sans-serif]">
                     <p class="text-gray-600 mb-2">Points expiring soon: <span class="font-semibold">250 pts</span> (Jun 30, 2025)</p>
@@ -592,7 +601,7 @@
                 <h2 class="text-2xl font-semibold text-gray-800">Redeem Your Points</h2>
                 <button id="history-btn" onclick="showGiftHistory()" class="history-btn bg-blue-800 hover:bg-blue-900 text-white font-medium py-2 px-4 rounded-md transition-all flex items-center shadow-lg hover:shadow-xl transform hover:scale-105">
                     <i class="fas fa-gift mr-2"></i>
-                    View Gift History
+                    Code Redeem
                     <span class="ml-2 bg-white text-blue-800 text-xs font-bold px-2 py-1 rounded-full animate-pulse">3</span>
                 </button>
             </div>
@@ -602,11 +611,12 @@
                 <div class="reward-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:border-indigo-300 transition-all relative font-[Roboto,hanuman,Sans-serif]">
                     <div class="p-4">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-gray-800">$5 Discount</h3>
-                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">500 pts</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Score</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">10 pts</span>
                         </div>
-                        <p class="text-gray-600 mb-4 flex items-center space-x-2"><span>5$ Discount</span> <i class="fas fa-tag text-amber-500 mr-2"></i></p>
-                        <button onclick="redeemPoints(500, '$5 Discount')" class="w-full bg-blue-800 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
+                        <input type = "hidden" id = "userId" value = "<?= $id ?>"/>
+                        <p class="text-gray-600 mb-4 flex items-center space-x-2"><span>5% Discount</span> <i class="fas fa-tag text-amber-500 mr-2"></i></p>
+                        <button id = "discountfive" class="w-full bg-blue-800 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
                             Redeem Now
                         </button>
                     </div>
@@ -616,11 +626,11 @@
                 <div class="reward-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:border-indigo-300 transition-all relative font-[Roboto,hanuman,Sans-serif]">
                     <div class="p-4">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-gray-800">$10 Discount</h3>
-                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">1,000 pts</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Score</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">20 pts</span>
                         </div>
-                        <p class="text-gray-600 mb-4 flex items-center space-x-2"><span>$10 Discount</span> <i class="fas fa-tag text-green-500 mr-2"></i></p>
-                        <button onclick="redeemPoints(1000, '$10 Discount')" class="w-full bg-blue-800 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
+                        <p class="text-gray-600 mb-4 flex items-center space-x-2"><span>20% Discount</span> <i class="fas fa-tag text-green-500 mr-2"></i></p>
+                        <button id = "discounttwenty" class="w-full bg-blue-800 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
                             Redeem Now
                         </button>
                     </div>
@@ -630,11 +640,11 @@
                 <div class="reward-card bg-white rounded-lg shadow-md overflow-hidden border border-gray-200 hover:border-indigo-300 transition-all relative font-[Roboto,hanuman,Sans-serif]">
                     <div class="p-4">
                         <div class="flex justify-between items-start mb-4">
-                            <h3 class="text-lg font-semibold text-gray-800">Free Shipping</h3>
-                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">750 pts</span>
+                            <h3 class="text-lg font-semibold text-gray-800">Score</h3>
+                            <span class="bg-indigo-100 text-indigo-800 text-xs font-medium px-2.5 py-0.5 rounded">30 pts</span>
                         </div>
-                        <p class="text-gray-600 mb-4 flex items-center space-x-2"><span>Get free shipping</span> <i class="fas fa-shipping-fast text-blue-500 mr-2"></i></p>
-                        <button onclick="redeemPoints(750, 'Free Shipping')" class="w-full bg-blue-800 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
+                        <p class="text-gray-600 mb-4 flex items-center space-x-2"><span>30% Discount</span> <i class="fas fa-tag text-green-500 mr-2"></i></p>
+                        <button id = "discountthirty" class ="w-full bg-blue-800 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-colors">
                             Redeem Now
                         </button>
                     </div>
@@ -651,59 +661,35 @@
                         <thead class="bg-gray-50">
                             <tr>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Date</th>
-                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Activity</th>
+                                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Redeemed Code</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Points</th>
                                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                             </tr>
                         </thead>
                         <tbody id="activity-body" class="bg-white divide-y divide-gray-200">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Jun 15, 2023</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Order #12345</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600">+150 pts</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Completed</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Jun 10, 2023</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">$10 Discount</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">-1,000 pts</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Redeemed</td>
-                            </tr>
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Jun 5, 2023</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Order #12344</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600">+200 pts</td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Completed</td>
-                            </tr>
+                            <?php
+                                $data = getByStatus("discount","0",$id);
+
+                                if($data->num_rows > 0){
+                                    foreach($data as $item){
+                                    ?>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"><?= $item['created_at']?></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"><?= $item['dis_code']?></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-green-600"><?= $item['dis_per']?></td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Redeemed</td>
+                                    </tr>
+                                    <?php
+                                    }
+                                }
+                            ?>
+                            
                         </tbody>
                     </table>
                 </div>
             </div>
         </section>
         
-        <!-- Success Modal (hidden by default) -->
-        <div id="success-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-            <div class="bg-white rounded-lg shadow-xl p-6 max-w-sm mx-auto relative z-10 transform transition-all duration-300 scale-95 opacity-0" id="modal-content">
-                <div class="text-center">
-                    <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-green-100 mb-4">
-                        <svg class="h-6 w-6 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                        </svg>
-                    </div>
-                    <h3 id="success-title" class="text-lg leading-6 font-medium text-gray-900">Success!</h3>
-                    <div class="mt-2">
-                        <p id="success-message" class="text-sm text-gray-500">Your points have been redeemed successfully.</p>
-                    </div>
-                    <div class="mt-4">
-                        <button onclick="closeModal()" type="button" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-indigo-900 bg-indigo-100 border border-transparent rounded-md hover:bg-indigo-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-indigo-500">
-                            Got it!
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <!-- Gift History Modal (hidden by default) -->
         <div id="gift-history-modal" class="fixed inset-0 flex items-center justify-center z-50 hidden">
             <div class="absolute inset-0 bg-black opacity-50"></div>
@@ -711,7 +697,7 @@
                 <div class="flex justify-between items-center mb-4">
                     <h3 class="text-xl font-semibold text-gray-800 flex items-center">
                         <i class="fas fa-gift text-blue-800 mr-2"></i>
-                        Your Gift History
+                        Your Redeem Code
                     </h3>
                     <button onclick="closeGiftHistory()" class="text-gray-500 hover:text-gray-700 transition-transform hover:rotate-90">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -720,54 +706,31 @@
                     </button>
                 </div>
                 <div class="space-y-4 max-h-96 overflow-y-auto pr-2">
-                    <div class="gift-history-item border-b pb-4 border-gray-200">
+                    <?php
+                       $data =  getByStatus("discount","1",$id);
+
+                       if($data->num_rows > 0){
+                         foreach($data as $item){
+                        ?>
+                        <div class="gift-history-item border-b pb-4 border-gray-200">
                         <div class="flex justify-between items-center">
                             <h4 class="font-medium text-gray-800 flex items-center">
                                 <i class="fas fa-tag text-green-500 mr-2"></i>
-                                $10 Discount
+                                %<?= $item['dis_per']?> Discount
                             </h4>
-                            <span class="text-sm text-gray-500">Jun 10, 2023</span>
+                            <span class="text-sm text-gray-500">Code Redeem: <?= $item['dis_code']?></span>
                         </div>
-                        <p class="text-sm text-gray-600 mt-1 ml-6">Redeemed with 1,000 points</p>
+                        <p class="text-sm text-gray-600 mt-1 ml-6">Redeemed with <?= $item['dis_per']?> points</p>
                         <div class="flex justify-between items-center mt-2 ml-6">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Used</span>
-                            <button class="text-xs text-blue-600 hover:text-blue-800 font-medium" onclick="showVoucherDetails('$10 Discount', 'Jun 10, 2023', 'Used', 'DISCOUNT10-2023')">
-                                View Details <i class="fas fa-chevron-right ml-1"></i>
-                            </button>
+                            <span class="inline-block px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Not Redeem</span>
+                            <span></span>
                         </div>
-                    </div>
-                    <div class="gift-history-item border-b pb-4 border-gray-200">
-                        <div class="flex justify-between items-center">
-                            <h4 class="font-medium text-gray-800 flex items-center">
-                                <i class="fas fa-shipping-fast text-blue-500 mr-2"></i>
-                                Free Shipping
-                            </h4>
-                            <span class="text-sm text-gray-500">May 28, 2023</span>
                         </div>
-                        <p class="text-sm text-gray-600 mt-1 ml-6">Redeemed with 750 points</p>
-                        <div class="flex justify-between items-center mt-2 ml-6">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-blue-100 text-blue-800 rounded-full">Active</span>
-                            <button class="text-xs text-blue-600 hover:text-blue-800 font-medium" onclick="showVoucherDetails('Free Shipping', 'May 28, 2023', 'Active', 'FREESHIP-2023')">
-                                View Details <i class="fas fa-chevron-right ml-1"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="gift-history-item border-b pb-4 border-gray-200">
-                        <div class="flex justify-between items-center">
-                            <h4 class="font-medium text-gray-800 flex items-center">
-                                <i class="fas fa-tag text-amber-500 mr-2"></i>
-                                $5 Discount
-                            </h4>
-                            <span class="text-sm text-gray-500">Apr 15, 2023</span>
-                        </div>
-                        <p class="text-sm text-gray-600 mt-1 ml-6">Redeemed with 500 points</p>
-                        <div class="flex justify-between items-center mt-2 ml-6">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-gray-100 text-gray-800 rounded-full">Expired</span>
-                            <button class="text-xs text-blue-600 hover:text-blue-800 font-medium" onclick="showVoucherDetails('$5 Discount', 'Apr 15, 2023', 'Expired', 'DISCOUNT5-2023')">
-                                View Details <i class="fas fa-chevron-right ml-1"></i>
-                            </button>
-                        </div>
-                    </div>
+                        <?php
+                         }
+                       }
+                    ?>
+
                 </div>
             </div>
         </div>
@@ -818,6 +781,172 @@
 </div>
 <script>
     $(document).ready(function(){
+
+        const display = $("#totalScore");
+
+        $(document).on("click","#discountfive",function(){
+            const five = 5;
+            const userId = $("#userId").val();
+
+            $.ajax({    
+                method: "post",
+                url: "action/discountredeem.php",
+                data: {
+                    "five" : five,
+                    "userId" : userId,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if(data.status === 202){
+                        Swal.fire({
+                        icon: 'success',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Redeemed Success!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        }).then(() =>{
+                            display.html(data.finalscore);
+                        });
+                    }else if(data.status === 404){
+                        Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                    }   
+                }
+            });
+        });
+
+        $("#discounttwenty").on("click",function(){
+            const five = 20;
+            const userId = $("#userId").val();
+            $.ajax({    
+                method: "post",
+                url: "action/discountredeem.php",
+                data: {
+                    "five" : five,
+                    "userId" : userId
+                },
+                dataType: "json",
+                success: function (data) {
+                     if(data.status === 202){
+                        Swal.fire({
+                        icon: 'success',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Redeemed Success!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        }).then(() =>{
+                            display.html(data.finalscore);
+                        });
+                    }else if(data.status === 404){
+                        Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                    } 
+                }
+            });
+        });
+
+        $("#discountthirty").on("click",function(){
+            const five = 30;
+            const userId = $("#userId").val();
+            $.ajax({    
+                method: "post",
+                url: "action/discountredeem.php",
+                data: {
+                    "five" : five,
+                    "userId" : userId
+                },
+                dataType: "json",
+                success: function (data) {
+                     if(data.status === 202){
+                        Swal.fire({
+                        icon: 'success',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Redeemed Success!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        }).then(() =>{
+                            display.html(data.finalscore);
+                        });
+                    }else if(data.status === 404){
+                        Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                    } 
+                }
+            });
+        });
+    });
+</script>
+<script>
+    $(document).ready(function(){
         $(document).on("click","#removefavorite",function(){
             let favoriteid = $("#favoriteid").val();
             let favoriteuser = $("#favoriteuser").val();
@@ -832,7 +961,7 @@
                 },
                 success: function (data) {
                     if(data == 202){
-                         Swal.fire({
+                        Swal.fire({
                         icon: 'success',
                         title: '<span class="text-gray-800 font-semibold text-lg">Password updated!</span>',
                         showCancelButton: false, 
@@ -1266,164 +1395,8 @@
   </script>
 
   <!-- displayareapopup modal animation -->
-  <script>
-  document.addEventListener("DOMContentLoaded", function () {
-  const buttons = document.querySelectorAll("[data-modal-target]");
-  
-  buttons.forEach(button => {
-    button.addEventListener("click", function () {
-      const modalId = this.getAttribute("data-modal-target");
-      const modal = document.getElementById(modalId);
-      
-      if (modal) {
-        modal.classList.remove("hidden");
-        modal.classList.add("flex", "show"); // Add show class for animation
-      }
-    });
-  });
-  });
-
-  function closeModal() {
-  const modal = document.getElementById("authentication-modal");
-  modal.classList.remove("flex", "show");
-  modal.classList.add("hidden");
-  }
-  </script>
-
-  <!-- rewards page animation -->
-   <script>
-        let currentPoints = 1250;
-        
-        function redeemPoints(points, rewardName) {
-            if (currentPoints < points) {
-                showModal('Not Enough Points', `You need ${points - currentPoints} more points to redeem this reward.`);
-                return;
-            }
-            
-            // Create confetti effect
-            createConfetti();
-            
-            // Update points
-            currentPoints -= points;
-            updatePointsCounter();
-            
-            // Add to activity
-            addActivity(rewardName, points);
-            
-            // Show success message
-            showModal('Reward Redeemed!', `You've successfully redeemed ${points} points for ${rewardName}.`);
-        }
-        
-        function updatePointsCounter() {
-            const counter = document.getElementById('points-counter');
-            counter.classList.add('points-pulse');
-            
-            // Animate the points change
-            let start = parseInt(counter.textContent.replace(',', ''));
-            let end = currentPoints;
-            let duration = 1000; // 1 second
-            let startTime = null;
-            
-            function animatePoints(timestamp) {
-                if (!startTime) startTime = timestamp;
-                const progress = Math.min((timestamp - startTime) / duration, 1);
-                const value = Math.floor(start + (end - start) * progress);
-                counter.textContent = value.toLocaleString() + ' pts';
-                
-                if (progress < 1) {
-                    requestAnimationFrame(animatePoints);
-                } else {
-                    setTimeout(() => {
-                        counter.classList.remove('points-pulse');
-                    }, 500);
-                }
-            }
-            
-            requestAnimationFrame(animatePoints);
-        }
-        
-        function addActivity(rewardName, points) {
-            const activityBody = document.getElementById('activity-body');
-            const now = new Date();
-            const dateStr = now.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-            
-            const newRow = document.createElement('tr');
-            newRow.innerHTML = `
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">${dateStr}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">${rewardName}</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600">-${points} pts</td>
-                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Redeemed</td>
-            `;
-            
-            // Add animation class
-            newRow.classList.add('redeem-success');
-            
-            // Insert at the top of the table
-            activityBody.insertBefore(newRow, activityBody.firstChild);
-            
-            // Remove the animation class after the animation completes
-            setTimeout(() => {
-                newRow.classList.remove('redeem-success');
-            }, 1500);
-        }
-        
-        function showModal(title, message) {
-            const modal = document.getElementById('success-modal');
-            const modalContent = document.getElementById('modal-content');
-            document.getElementById('success-title').textContent = title;
-            document.getElementById('success-message').textContent = message;
-            
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modalContent.classList.remove('scale-95', 'opacity-0');
-                modalContent.classList.add('scale-100', 'opacity-100');
-            }, 10);
-        }
-        
-        function closeModal() {
-            const modal = document.getElementById('success-modal');
-            const modalContent = document.getElementById('modal-content');
-            
-            modalContent.classList.remove('scale-100', 'opacity-100');
-            modalContent.classList.add('scale-95', 'opacity-0');
-            
-            setTimeout(() => {
-                modal.classList.add('hidden');
-            }, 300);
-        }
-        
-        function createConfetti() {
-            const colors = ['#6366f1', '#ec4899', '#f59e0b', '#10b981'];
-            
-            for (let i = 0; i < 50; i++) {
-                const confetti = document.createElement('div');
-                confetti.style.position = 'fixed';
-                confetti.style.width = '10px';
-                confetti.style.height = '10px';
-                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-                confetti.style.borderRadius = '50%';
-                confetti.style.left = Math.random() * 100 + 'vw';
-                confetti.style.top = '-10px';
-                confetti.style.zIndex = '100';
-                confetti.style.transform = 'rotate(' + Math.random() * 360 + 'deg)';
-                
-                document.body.appendChild(confetti);
-                
-                const animation = confetti.animate([
-                    { top: '-10px', opacity: 1 },
-                    { top: '100vh', opacity: 0 }
-                ], {
-                    duration: 1000 + Math.random() * 2000,
-                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
-                });
-                
-                animation.onfinish = () => {
-                    confetti.remove();
-                };
-            }
-        }
-        
-        function showGiftHistory() {
+ <script>
+     function showGiftHistory() {
             const modal = document.getElementById('gift-history-modal');
             const modalContent = document.getElementById('gift-history-content');
             
@@ -1452,34 +1425,6 @@
                 modal.classList.add('hidden');
             }, 300);
         }
-        
-        function showVoucherDetails(name, date, status, code) {
-            document.getElementById('voucher-name').textContent = name;
-            document.getElementById('voucher-date').textContent = date;
-            document.getElementById('voucher-status').textContent = status;
-            document.getElementById('voucher-code').textContent = code;
-            document.getElementById('voucher-redeemed').textContent = date;
-            
-            // Set status color
-            const statusElement = document.getElementById('voucher-status');
-            statusElement.className = 'font-medium ';
-            if (status === 'Used') {
-                statusElement.classList.add('text-green-600');
-            } else if (status === 'Active') {
-                statusElement.classList.add('text-blue-600');
-            } else {
-                statusElement.classList.add('text-gray-600');
-            }
-            
-            const modal = document.getElementById('voucher-details-modal');
-            modal.classList.remove('hidden');
-        }
-        
-        function closeVoucherDetails() {
-            const modal = document.getElementById('voucher-details-modal');
-            modal.classList.add('hidden');
-        }
-    </script>
-
+ </script>
 
 <?php include('includes/footer.php')?>

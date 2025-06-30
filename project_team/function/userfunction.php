@@ -13,6 +13,24 @@
         return $product1 = mysqli_query($conn,$product);
 
     }
+
+     function getByStatus($table,$status,$userId){
+        global $conn;
+        $product = "SELECT * FROM $table WHERE status = $status AND user_redeem = $userId";
+        return $product1 = mysqli_query($conn,$product);
+
+    }
+    
+    function sumScore($table,$id){
+        global $conn;
+        $query = "SELECT SUM(score) as total FROM $table WHERE user_id = $id" ;
+        $query_run = mysqli_query($conn,$query);
+        if(mysqli_num_rows($query_run) > 0){
+            return mysqli_fetch_assoc($query_run);
+        }
+        return null;
+    }
+
     function getProductByBrand($select,$id,$limit){
         global $conn;
         $product = "SELECT d.id,d.brand_id,d.slug,d.barcode,d.name,d.original_price,d.sell_price 
