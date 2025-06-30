@@ -48,6 +48,9 @@ return [
     "createadmin" => "Create Admin",
 
     // Newly translated items
+    "score" => "Total Score",
+    "percent" => "Percent Discount",
+    "autocreatecode" => "Auto Generate",
     "codename" => "លេខកូដ",
     "createpromotion" => "Create Discount coupon",
     "promotionCode" => "Discount coupon",

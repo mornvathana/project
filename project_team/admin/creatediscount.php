@@ -1,7 +1,7 @@
 <?php 
 include('includes/header.php');
 include('../middleware/adminAccess.php');
-include('middleware/menu.php');
+include('middleware/discount.php');
 include("lang.php");
  if($_SESSION['auth_user']){
     $userId = $_SESSION['auth_user']['user_id'];
@@ -15,7 +15,7 @@ include("lang.php");
                         <h1 class = "font-medium"><?php echo $text['createpromotion']?></h1>
                     </div>
                     <div>
-                        <a href = "menu.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i><?php echo $text['back']?></a>
+                        <a href = "discount.php" class = "bg-blue-500 text-[12px] text-white px-2 py-1 font-medium rounded-md"><i class="fa-solid fa-arrow-left pr-1"></i><?php echo $text['back']?></a>
                     </div>
                 </div>
                 <div class="w-full h-[85%] mt-5 bg-[#ffffff] p-4 rounded-md">
@@ -23,13 +23,13 @@ include("lang.php");
                         <div class = "w-full grid grid-cols-1 md:grid-cols-2 gap-5 ">
                         <div class = "">
                             <input type="hidden" name="userId" value = "<?= $userId?>">
-                            <label for="name" class = "block py-1 text-[13px] w-full"><?php echo $text['codename']?></label>
-                            <input type="text" name = "discount" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Coupon discount" required>
-                            <label for="name" class = "block py-1 text-[13px] w-full"><?php echo $text['codename']?></label>
-                            <input type="text" name = "discount" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Coupon discount" required>
+                            <label for="discount" class = "block py-1 text-[13px] w-full"><?php echo $text['promotionCode']?></label>
+                            <input type="text" name = "discount" id = "discount" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "" required>
+                            <label for="percent" class = "block py-1 text-[13px] w-full"><?php echo $text['percent']?></label>
+                            <input type="text" name = "percent" id = "percent" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "" required>
                         </div>
                         <div class = " h-[180px] flex">
-                        <label for="name" class = "block py-1 text-[13px]"><?php echo $text['uploads']?><span class = "text-red-500">*</span></label>
+                        <label for="name" class = "block py-1 text-[13px]"><?php echo $text['autocreatecode']?><span class = "text-red-500">*</span></label>
                            <div class = "w-[50%] flex justify-center items-center relative">
                                 <div class = "w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md flex justify-center items-center">
                                     <span id = "display"></span>

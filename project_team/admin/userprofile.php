@@ -87,7 +87,15 @@
                                                     </ul>
                                                     <ul>
                                                         <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['emailverify']?></li>
-                                                        <li class = "text-[10px] md:text-[12px]">Morn</li>
+                                                        <li class = "text-[10px] md:text-[12px]">
+                                                            <?php
+                                                                if(!empty($userItem['email_verify'])){
+                                                                    echo "Yes";
+                                                                }else{
+                                                                    echo "Not yet";
+                                                                }
+                                                            ?>
+                                                        </li>
                                                     </ul>
                                                     <ul>
                                                         <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['userrole']?></li>
@@ -147,6 +155,17 @@
                                                         <li class = "text-[10px] md:text-[12px]">
                                                             <?php
                                                                 $price = sumPrice("orders",$id);
+                                                                ?>
+                                                                <?= $price['total']?>
+                                                                <?php
+                                                            ?>
+                                                        </li>
+                                                    </ul>
+                                                    <ul>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['score']?></li>
+                                                        <li class = "text-[10px] md:text-[12px]">
+                                                            <?php
+                                                                $price = sumScore("score_customer",$id);
                                                                 ?>
                                                                 <?= $price['total']?>
                                                                 <?php

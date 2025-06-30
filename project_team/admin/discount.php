@@ -1,13 +1,19 @@
 <?php
     include('includes/header.php');
+
+    include('../middleware/adminAccess.php');
+
+    include('middleware/discount.php');
+
+    include("lang.php");
 ?>
 <div class="h-full px-2 py-2 ">
     <div class="w-full bg-[#f3f5f7] rounded-md p-5">
         <div class="w-full h-[10%] flex justify-between items-center">
             <div>
-                <h1 class="font-medium"><?php echo $text['productList']?></h1>
+                <h1 class="font-medium"><?php echo $text['promotionCode']?></h1>
                 <a href="creatediscount.php" class="bg-[#111729] text-[12px] text-white ml-2 px-2 py-1 font-medium rounded-md">
-                    <?php echo $text['createproductlist']?> <i class="fa-solid fa-plus pl-1"></i>
+                    <?php echo $text['createpromotion']?> <i class="fa-solid fa-plus pl-1"></i>
                 </a>
             </div>
             <div>
@@ -42,7 +48,7 @@
                     <tr>
                         <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['id']?></th>
                         <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['name']?></th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['image']?></th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['promotionCode']?></th>
                         <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['status']?></th>
                         <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['option']?></th>
                     </tr>
@@ -55,7 +61,7 @@
     </div>
 </div>
 <!--  -->
-<script src = "assets/js/menu.js"></script>
+<script src = "assets/js/discount.js"></script>
 <?php
     include('includes/footer.php');
 ?>

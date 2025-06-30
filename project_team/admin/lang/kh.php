@@ -48,6 +48,9 @@ return [
     "createadmin" => "បង្កើតអ្នកគ្រប់គ្រង",
 
     // Newly translated items
+    "score" => "ពិន្ទុសរុប",
+    "percent" => "ភាគរយបញ្ចុះតម្លៃ",
+    "autocreatecode" => "បង្គើតកូដ",
     "codename" => "Coupon Code",
     "createpromotion" => "បង្គើតកូដបញ្ចុះតម្លៃ",
     "promotionCode" => "កូដបញ្ចុះតម្លៃ",

@@ -74,6 +74,10 @@ if(isset($_GET['id'])){
                                 <label for="" class = "py-1 text-[13px]">Category</label>
                             </div>
                             <div>
+                                <input type="checkbox" name = "promotionCode"   id = "promotionCode" value = "1">
+                                <label for="" class = "py-1 text-[13px]">Discount coupon</label>
+                            </div>
+                            <div>
                                 <input type="checkbox" name = "orders"  id = "orders" value = "1" >
                                 <label for="" class = "py-1 text-[13px]">Orders</label>
                             </div>

@@ -7,6 +7,11 @@
     // handle ip
     $ip = getUserIP();
 
+    require '../vendor/autoload.php';
+
+    use PHPMailer\PHPMailer\PHPMailer;
+    use PHPMailer\PHPMailer\Exception;
+
     if(isset($_POST['product_add'])){
         $pd_name = $_POST['product_name'];
         $pd_title = $_POST['product_title'];
@@ -285,6 +290,7 @@
         $product = $_POST['product'] ? 1 : 0;
         $brands = $_POST['brands'] ? 1 : 0;
         $category = $_POST['category'] ? 1 : 0;
+        $promotionCode = $_POST['promotionCode'] ? 1 : 0;
         $orders = $_POST['orders'] ? 1 : 0;
         $users = $_POST['users'] ? 1 : 0;
         $inventory = $_POST['inventory'] ? 1 : 0;
@@ -341,15 +347,46 @@
                             product,
                             brands,
                             category,
+                            promotionCode,
                             orders,
                             user,
                             inventory,
                             updated_by)
-                            VALUES ('$tableId','$dashboard','$totalproduct','$product','$brands','$category','$orders','$users','$inventory','$userId')";
+                            VALUES ('$tableId','$dashboard','$totalproduct','$product','$brands','$category','$promotionCode','$orders','$users','$inventory','$userId')";
 
                             $sql_run = $conn->query($sql);
 
                             if($sql){
+                            
+                            $email_id = $conn->insert_id;
+
+                            $base_url = "http://" . $_SERVER['HTTP_HOST'] . dirname($_SERVER['PHP_SELF']) . "/";
+                            $verification_link = $base_url . "verify_email.php?email_id=" . $email_id;
+
+                            $content .= "<br><br>Click <a href='" . $verification_link . "'>here</a> to verify your email.";
+
+                            $mail = new PHPMailer(true);
+                            try {
+                                $mail->isSMTP();
+                                $mail->Host = 'smtp.gmail.com';
+                                $mail->SMTPAuth = true;
+                                $mail->Username = 'mornsovathana@gmail.com'; 
+                                $mail->Password = 'adjujoekjgqfxeqg';  
+                                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+                                $mail->Port = 587;
+
+                                $mail->setFrom('mornsovathana@gmail.com', 'Morn sovathana');
+                                $mail->addAddress($email);
+
+                                $mail->isHTML(true);
+                                $mail->Subject = 'Email Verification';
+                                $mail->Body = $content;
+
+                                $mail->send();
+                                echo "Verification email sent to $email.";
+                            } catch (Exception $e) {
+                                echo "Email could not be sent. Error: {$mail->ErrorInfo}";
+                            }
                             $id = $conn->insert_id;
                             $text = "Create Admin ID : ". $id;
                             activity_log($user_id,$text,$ip);
@@ -724,6 +761,43 @@
             redirect1("userclient.php","Something went wrong!");
         }
     }else if(isset($_POST['create_discount'])){
+        $code = $_POST['discount'];
+        $percent = $_POST['percent'];
+        $userId = $_POST['userId'];
+
+        if($percent > 30){
+            redirect1("creatediscount.php","Discount must less than 30%!");
+        }else{
+            $stmt = $conn->prepare("INSERT INTO discount (dis_code,dis_per,created_by) VALUES(?,?,?)");
+            $stmt->bind_param("sii",$code,$percent,$userId);
+            $stmt->execute();
+
+            if($stmt->affected_rows > 0){
+                redirect("discount.php","Data has successfully!");
+
+                $id = $conn->insert_id;
+                // 
+                $text = "Create discount coupon ID : ". $id;
+                activity_log($user_id,$text,$ip);
+            }else{
+                redirect1("creatediscount.php","Something went wrong!");
+            }
+        }
+
+       
         
+    }else if(isset($_POST{'discount_delete'})){
+        $discount_id = $_POST['discount_id'];
+        $discount = "DELETE FROM discount WHERE id = $discount_id";
+        $brand_run = $conn->query($discount);
+
+        if($brand_run){
+            // 
+            $text = "Delete discount ID : ". $discount_id;
+            activity_log($user_id,$text,$ip);
+            redirect("discount.php","discount deleted successfully!");
+        }else{
+            redirect1("discount.php","Something went wrong!");
+        }
     }
 ?>

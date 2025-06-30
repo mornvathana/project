@@ -72,15 +72,23 @@
                                                 <div class = "w-full h-[50%] grid grid-cols-3">
                                                     <ul>
                                                         <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['firstName']?></li>
-                                                        <li class = "text-[10px] md:text-[12px]">Morn</li>
+                                                        <li class = "text-[10px] md:text-[12px]"><?= $userItem['name']?></li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['lastName']?></li>
-                                                        <li class = "text-[10px] md:text-[12px]">Morn</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['emailverify']?></li>
+                                                        <li class = "text-[10px] md:text-[12px]">
+                                                            <?php
+                                                                if(!empty($userItem['email'])){
+                                                                    echo "Yes";
+                                                                }else{
+                                                                    echo "No";
+                                                                }
+                                                            ?>
+                                                        </li>
                                                     </ul>
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['date']?></li>
-                                                        <li class = "text-[10px] md:text-[12px]"><?= $userItem['created_at']?></li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['userrole']?></li>
+                                                        <li class = "text-[10px] md:text-[12px]">Admin</li>
                                                     </ul>
                                                 </div>
                                                 <div class = "w-full h-[50%] grid grid-cols-3">
@@ -88,13 +96,10 @@
                                                         <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['email']?></li>
                                                         <li class = "text-[10px] md:text-[12px]"><?= $userItem['email']?></li>
                                                     </ul>
+                                                    
                                                     <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['emailverify']?></li>
-                                                        <li class = "text-[10px] md:text-[12px]">Morn</li>
-                                                    </ul>
-                                                    <ul>
-                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['userrole']?></li>
-                                                        <li class = "text-[10px] md:text-[12px]">Admin</li>
+                                                        <li class = "text-[10px] md:text-[13px] text-[#646a7a]"><?php echo $text['date']?></li>
+                                                        <li class = "text-[10px] md:text-[12px]"><?= $userItem['created_at']?></li>
                                                     </ul>
                                                 </div>
                                             </div>
