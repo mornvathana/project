@@ -29,7 +29,7 @@
         <div class="bottom-footer bg-[#06090c] w-[100%] py-2">
             <div class="logo w-full flex flex-col justify-center items-center space-y-5 px-5 sm:px-10">
                 <a href="#">
-                    <img src="https://shunliphone.com/wp-content/uploads/2022/04/shunli-logo.png" alt=""
+                    <img src="uploads/logo/logo-removebg-preview.png" alt=""
                         class="w-[150px]">
                 </a>
                 <p

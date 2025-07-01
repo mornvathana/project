@@ -1,7 +1,7 @@
 
 <header class="header">
         <div
-            class="top-header w-[100%] bg-[#144194] hidden sm:flex justify-between px-5 py-2 font-[Hanuman,Sans-serif] text-[#fff] sticky top-0 text-[13px]">
+            class="top-header w-[100%] bg-[#144194] hidden sm:flex justify-between items-center px-5 py-2 font-[Hanuman,Sans-serif] text-[#fff] sticky top-0 text-[13px]">
             <div class="flex space-x-5 items-center">
                 <div class="phone-contact flex items-center space-x-2">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
@@ -44,7 +44,7 @@
             <div class="">
                 <a href="" class="flex items-center space-x-2">
                 <i class="fa-brands fa-telegram"></i>
-                <p>Chat On Telegram</p>
+                <p​ class="text-[13px] font-[Hanuman,Sans-serif]">ហាងលក់ទូរស័ព្ទដៃឥនលីន</p​>
                 </a>
             </div>
         </div>
@@ -53,8 +53,8 @@
 
     <div class="bottom-header flex justify-between items-center px-5 py-1 sticky top-0 lg:static bg-[#fff] z-40 shadow-sm">
         <div class="left">
-            <div class="logo w-[150px]">
-                <a href="#"><img src="https://soklyphone.com/storage/image-2022-07-02-164325-1656755040dyQxA.jpg"
+            <div class="logo w-[50px] lg:w-[100px] h-[50px] lg:h-[90px] flex justify-center items-center zoom-100">
+                <a href="#"><img src="uploads/logo/logo-removebg-preview.png" class="w-full h-full"
                         alt=""></a>
             </div>
         </div>
