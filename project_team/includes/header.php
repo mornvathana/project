@@ -1,6 +1,9 @@
 <?php
     session_start();
     include('function/userfunction.php');
+    if(!empty($_SESSION['auth_user'])){
+        $id = $_SESSION['auth_user']['user_id'];
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">

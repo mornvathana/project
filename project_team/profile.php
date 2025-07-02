@@ -602,7 +602,7 @@
                 <button id="history-btn" onclick="showGiftHistory()" class="history-btn bg-blue-800 hover:bg-blue-900 text-white font-medium py-2 px-4 rounded-md transition-all flex items-center shadow-lg hover:shadow-xl transform hover:scale-105">
                     <i class="fas fa-gift mr-2"></i>
                     Code Redeem
-                    <span class="ml-2 bg-white text-blue-800 text-xs font-bold px-2 py-1 rounded-full animate-pulse">3</span>
+                    <span class="ml-2 bg-white text-blue-800 text-xs font-bold px-2 py-1 rounded-full animate-pulse" id = "totalCount"></span>
                 </button>
             </div>
             
@@ -705,31 +705,8 @@
                         </svg>
                     </button>
                 </div>
-                <div class="space-y-4 max-h-96 overflow-y-auto pr-2">
-                    <?php
-                       $data =  getByStatus("discount","1",$id);
-
-                       if($data->num_rows > 0){
-                         foreach($data as $item){
-                        ?>
-                        <div class="gift-history-item border-b pb-4 border-gray-200">
-                        <div class="flex justify-between items-center">
-                            <h4 class="font-medium text-gray-800 flex items-center">
-                                <i class="fas fa-tag text-green-500 mr-2"></i>
-                                %<?= $item['dis_per']?> Discount
-                            </h4>
-                            <span class="text-sm text-gray-500">Code Redeem: <?= $item['dis_code']?></span>
-                        </div>
-                        <p class="text-sm text-gray-600 mt-1 ml-6">Redeemed with <?= $item['dis_per']?> points</p>
-                        <div class="flex justify-between items-center mt-2 ml-6">
-                            <span class="inline-block px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Not Redeem</span>
-                            <span></span>
-                        </div>
-                        </div>
-                        <?php
-                         }
-                       }
-                    ?>
+                <div class="space-y-4 max-h-96 overflow-y-auto pr-2" id = "displayDataRedeem">
+                    
 
                 </div>
             </div>
@@ -783,6 +760,51 @@
     $(document).ready(function(){
 
         const display = $("#totalScore");
+       
+
+        function dataRedeem(){
+            const displayDataRedeem = $("#displayDataRedeem");
+            const userId = $("#userId").val();
+            let countNum  = $("#totalCount");
+            $.ajax({
+                method: "POST",
+                url: "action/redeemdata.php",
+                data: {
+                    "userid" : userId,
+                },
+                dataType: "json",
+                success: function (data) {
+                    if(data.length > 0){
+                        let txt = "";
+                        for(i in data){
+                            let item = data[i];
+                            txt += `<div class="gift-history-item border-b pb-4 border-gray-200">
+                            <div class="flex justify-between items-center">
+                                <h4 class="font-medium text-gray-800 flex items-center">
+                                    <i class="fas fa-tag text-green-500 mr-2"></i>
+                                    %${item.disper} Discount
+                                </h4>
+                                <span class="text-sm text-gray-500">Code Redeem:  ${item.discode}</span>
+                            </div>
+                            <p class="text-sm text-gray-600 mt-1 ml-6">Redeemed with ${item.disper} points</p>
+                            <div class="flex justify-between items-center mt-2 ml-6">
+                                <span class="inline-block px-2 py-1 text-xs font-medium bg-green-100 text-green-800 rounded-full">Not Redeem</span>
+                                <span></span>
+                            </div>
+                            </div>`;
+                        }
+                        countNum.html(data[0]['totalcount']);
+                        displayDataRedeem.html(txt);
+                    }else{
+                        displayDataRedeem.html(0);
+                    }
+                }
+            });
+        }
+
+        dataRedeem();
+
+       
 
         $(document).on("click","#discountfive",function(){
             const five = 5;
@@ -803,7 +825,7 @@
                         title: '<span class="text-gray-800 font-semibold text-lg">Redeemed Success!</span>',
                         showCancelButton: false, 
                         showConfirmButton: false, 
-                        timer: 3000,  
+                        timer: 2000,  
                         background: '#fff',
                         focusCancel: true,
                         buttonsStyling: false,
@@ -815,6 +837,7 @@
                         }
                         }).then(() =>{
                             display.html(data.finalscore);
+                             dataRedeem();
                         });
                     }else if(data.status === 404){
                         Swal.fire({
@@ -822,7 +845,7 @@
                         title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
                         showCancelButton: false, 
                         showConfirmButton: false, 
-                        timer: 3000,  
+                        timer: 2000,  
                         background: '#fff',
                         focusCancel: true,
                         buttonsStyling: false,
@@ -856,7 +879,7 @@
                         title: '<span class="text-gray-800 font-semibold text-lg">Redeemed Success!</span>',
                         showCancelButton: false, 
                         showConfirmButton: false, 
-                        timer: 3000,  
+                        timer: 2000,  
                         background: '#fff',
                         focusCancel: true,
                         buttonsStyling: false,
@@ -868,6 +891,7 @@
                         }
                         }).then(() =>{
                             display.html(data.finalscore);
+                             dataRedeem();
                         });
                     }else if(data.status === 404){
                         Swal.fire({
@@ -875,7 +899,7 @@
                         title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
                         showCancelButton: false, 
                         showConfirmButton: false, 
-                        timer: 3000,  
+                        timer: 2000,  
                         background: '#fff',
                         focusCancel: true,
                         buttonsStyling: false,
@@ -909,7 +933,7 @@
                         title: '<span class="text-gray-800 font-semibold text-lg">Redeemed Success!</span>',
                         showCancelButton: false, 
                         showConfirmButton: false, 
-                        timer: 3000,  
+                        timer: 2000,  
                         background: '#fff',
                         focusCancel: true,
                         buttonsStyling: false,
@@ -921,6 +945,7 @@
                         }
                         }).then(() =>{
                             display.html(data.finalscore);
+                             dataRedeem();
                         });
                     }else if(data.status === 404){
                         Swal.fire({
@@ -928,7 +953,7 @@
                         title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
                         showCancelButton: false, 
                         showConfirmButton: false, 
-                        timer: 3000,  
+                        timer: 2000,  
                         background: '#fff',
                         focusCancel: true,
                         buttonsStyling: false,
@@ -966,7 +991,7 @@
                         title: '<span class="text-gray-800 font-semibold text-lg">Password updated!</span>',
                         showCancelButton: false, 
                         showConfirmButton: false, 
-                        timer: 3000,  
+                        timer: 2000,  
                         background: '#fff',
                         focusCancel: true,
                         buttonsStyling: false,
@@ -985,7 +1010,7 @@
                         title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
                         showCancelButton: false, 
                         showConfirmButton: false, 
-                        timer: 3000,  
+                        timer: 2000,  
                         background: '#fff',
                         focusCancel: true,
                         buttonsStyling: false,
@@ -1004,122 +1029,9 @@
 </script>
 <script>
     $(document).ready(function(){
-        $(document).on("click","#updatePassword",function(){
-        const loading1 = $("#loading1");
-        let oldPass = $("#oldPass").val();
-        let newPass = $("#newPass").val();
-        let conPass = $("#conPass").val();
-        let email = $("#email").val(); 
-        let id = $("#id").val();
+         $(document).on("click","#updateProfile",function(){
 
-        $.ajax({
-            method: "POST",
-            url: "function/code.php",
-            data: {
-                "id" : id,
-                "email" : email,
-                "oldPass" : oldPass,
-                "newPass" : newPass,
-                "conPass" : conPass,
-                "scrope" : "updatePass",
-            },
-            beforeSend: function(){
-                 loading1.html(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-                                <circle cx="50" cy="50" r="32" stroke-width="8" stroke="#2196f3" stroke-dasharray="50.2655 50.2655" fill="none" stroke-linecap="round">
-                                    <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"/>
-                                </circle>
-                                </svg>`);
-            },
-            success: function (data) {
-                if(data == 101){
-                     Swal.fire({
-                        icon: 'warning',
-                        title: '<span class="text-gray-800 font-semibold text-lg">Password is not matching!</span>',
-                        showCancelButton: false, 
-                        showConfirmButton: false, 
-                        timer: 3000,  
-                        background: '#fff',
-                        focusCancel: true,
-                        buttonsStyling: false,
-                        customClass: {
-                            popup: 'rounded-xl shadow-md p-6',
-                        },
-                        didOpen: () => {
-                            document.querySelector('.swal2-popup').style.width = '400px';
-                        }
-                        });
-                        loading1.html("");
-                }else if(data == 102){
-                     Swal.fire({
-                        icon: 'warning',
-                        title: '<span class="text-gray-800 font-semibold text-lg">old password is not correct!</span>',
-                        showCancelButton: false, 
-                        showConfirmButton: false, 
-                        timer: 3000,  
-                        background: '#fff',
-                        focusCancel: true,
-                        buttonsStyling: false,
-                        customClass: {
-                            popup: 'rounded-xl shadow-md p-6',
-                        },
-                        didOpen: () => {
-                            document.querySelector('.swal2-popup').style.width = '400px';
-                        }
-                        });
-                        loading1.html("");
-                }else if(data == 202){
-                     loading1.html(`<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
-                                    <path fill="#c8e6c9" d="M36,42H12c-3.314,0-6-2.686-6-6V12c0-3.314,2.686-6,6-6h24c3.314,0,6,2.686,6,6v24C42,39.314,39.314,42,36,42z"></path><path fill="#4caf50" d="M34.585 14.586L21.014 28.172 15.413 22.584 12.587 25.416 21.019 33.828 37.415 17.414z"></path>
-                                    </svg>`);
-                      Swal.fire({
-                        icon: 'success',
-                        title: '<span class="text-gray-800 font-semibold text-lg">Password updated!</span>',
-                        showCancelButton: false, 
-                        showConfirmButton: false, 
-                        timer: 3000,  
-                        background: '#fff',
-                        focusCancel: true,
-                        buttonsStyling: false,
-                        customClass: {
-                            popup: 'rounded-xl shadow-md p-6',
-                        },
-                        didOpen: () => {
-                            document.querySelector('.swal2-popup').style.width = '400px';
-                        }
-                        });
-                        $("#oldPass").val('');
-                        $("#newPass").val('');
-                        $("#conPass").val('');
-
-                }else{
-                    Swal.fire({
-                        icon: 'warning',
-                        title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
-                        showCancelButton: false, 
-                        showConfirmButton: false, 
-                        timer: 3000,  
-                        background: '#fff',
-                        focusCancel: true,
-                        buttonsStyling: false,
-                        customClass: {
-                            popup: 'rounded-xl shadow-md p-6',
-                        },
-                        didOpen: () => {
-                            document.querySelector('.swal2-popup').style.width = '400px';
-                        }
-                        });
-                        loading1.html("");
-                }
-            }
-        });
-        });
-        
-    });
-</script>
-
-<script>
-    $(document).ready(function(){
-        $(document).on("click","#updateProfile",function(){
+            alert("Hello");
 
             const loading = $("#loading");
     
@@ -1155,7 +1067,7 @@
                         title: '<span class="text-gray-800 font-semibold text-lg">Please new another email!</span>',
                         showCancelButton: false, 
                         showConfirmButton: false, 
-                        timer: 3000,  
+                        timer: 2000,  
                         background: '#fff',
                         focusCancel: true,
                         buttonsStyling: false,
@@ -1176,7 +1088,7 @@
                         title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
                         showCancelButton: false, 
                         showConfirmButton: false, 
-                        timer: 3000,  
+                        timer: 2000,  
                         background: '#fff',
                         focusCancel: true,
                         buttonsStyling: false,
@@ -1194,8 +1106,120 @@
             });
             
         });
+        // 
+        $(document).on("click","#updatePassword",function(){
+        const loading1 = $("#loading1");
+        let oldPass = $("#oldPass").val();
+        let newPass = $("#newPass").val();
+        let conPass = $("#conPass").val();
+        let email = $("#email").val(); 
+        let id = $("#id").val();
+
+        $.ajax({
+            method: "POST",
+            url: "function/code.php",
+            data: {
+                "id" : id,
+                "email" : email,
+                "oldPass" : oldPass,
+                "newPass" : newPass,
+                "conPass" : conPass,
+                "scrope" : "updatePass",
+            },
+            beforeSend: function(){
+                 loading1.html(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
+                                <circle cx="50" cy="50" r="32" stroke-width="8" stroke="#2196f3" stroke-dasharray="50.2655 50.2655" fill="none" stroke-linecap="round">
+                                    <animateTransform attributeName="transform" type="rotate" repeatCount="indefinite" dur="1s" values="0 50 50;360 50 50" keyTimes="0;1"/>
+                                </circle>
+                                </svg>`);
+            },
+            success: function (data) {
+                if(data == 101){
+                     Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Password is not matching!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 2000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                        loading1.html("");
+                }else if(data == 102){
+                     Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">old password is not correct!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 2000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                        loading1.html("");
+                }else if(data == 202){
+                     loading1.html(`<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="50" height="50" viewBox="0 0 48 48">
+                                    <path fill="#c8e6c9" d="M36,42H12c-3.314,0-6-2.686-6-6V12c0-3.314,2.686-6,6-6h24c3.314,0,6,2.686,6,6v24C42,39.314,39.314,42,36,42z"></path><path fill="#4caf50" d="M34.585 14.586L21.014 28.172 15.413 22.584 12.587 25.416 21.019 33.828 37.415 17.414z"></path>
+                                    </svg>`);
+                      Swal.fire({
+                        icon: 'success',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Password updated!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 2000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                        $("#oldPass").val('');
+                        $("#newPass").val('');
+                        $("#conPass").val('');
+
+                }else{
+                    Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 2000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                        loading1.html("");
+                }
+            }
+        });
+        });
+        
     });
 </script>
+
 <!--  -->
 <script>
     $(document).ready(function(){
