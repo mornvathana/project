@@ -3,7 +3,7 @@
 ?> 
     <div class="loader"></div>
     <!-- main slider -->
-    <section class="main swiper mySwiper">
+    <section class="main swiper mySwiper h-[300px] sm:h-[400px] md:h-[400px] lg:h-[500px] xl:h-[550px] 2xl:h-[600px] relative">
         <div class="wrapper swiper-wrapper">
           <div class="slide swiper-slide">
             <img src="https://taazatime.com/wp-content/uploads/2025/06/1-20.jpg" alt="" class="image" />
