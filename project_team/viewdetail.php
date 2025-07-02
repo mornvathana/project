@@ -1,7 +1,6 @@
 <?php 
 ob_start();
 include('includes/header.php');
-include('authication.php');
   if(isset($_GET['id'])){
     $product = $_GET['id'];
     $product_item = getProductEach($product);
