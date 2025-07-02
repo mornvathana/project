@@ -1,10 +1,16 @@
 <?php 
 include('includes/header.php');
+include('authication.php');
   if(isset($_GET['id'])){
     $product = $_GET['id'];
     $product_item = getProductEach($product);
     
   }
+
+if($_SESSION['auth_user']){
+    $user_id = $_SESSION['auth_user']['user_id'];
+}
+ob_end_flush();
 ?>
   <?php
     if($product_item->num_rows > 0){
@@ -81,9 +87,31 @@ include('includes/header.php');
                         }
                   ?>
               </div>
-              <div class="btn mt-5 flex items-center space-x-5">
-                  <button class="text-blue-800 rounded-full font-semibold" id = "addfavorite" data-id = "<?= $product ?>"><i class="fa-regular fa-heart"></i> Add to favorite</button>
-                  <button class="text-blue-800 rounded-full font-semibold"><i class="fa-brands fa-facebook"></i> Share to facebook</button>
+              <div class="btn mt-5 flex items-center">
+                <!-- show heart full when product is favorite -->
+                <?php
+                $favorite = "SELECT * FROM favorite WHERE user_id = $user_id AND product_id = $product";
+                $result = $conn->query($favorite);
+                if($result->num_rows > 0){
+                  ?>
+                  <input type="hidden" id = "favoriteid" value = "<?= $result->fetch_assoc()['id']?>">
+                  <input type="hidden" id = "favoriteuser" value = "<?= $user_id?>">
+                  <button class="text-blue-800 rounded-full font-semibold flex items-center" id = "removefavorite" data-id = "<?= $product ?>"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-5">
+                  <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                  </svg>
+                  <span class="ml-1 text-md">Remove favorite</span></button>
+                  <button class="text-blue-800 rounded-full font-semibold flex items-center ml-3"><i class="fa-brands fa-facebook"></i> <span class="ml-1 text-md">Share to facebook</span></button>
+                  <?php
+                } else {
+                  ?>
+                  <button class="text-blue-800 rounded-full font-semibold flex items-center" id = "addfavorite" data-id = "<?= $product ?>"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                  </svg>
+                  <span class="ml-1 text-md">Add to favorite</span></button>
+                  <button class="text-blue-800 rounded-full font-semibold flex items-center ml-3"><i class="fa-brands fa-facebook"></i> <span class="ml-1 text-md">Share to facebook</span></button>
+                  <?php
+                }
+                ?>
               </div>
             </div>
             <div class="specification w-full border rounded-xl mt-5 p-1 bg-opacity-30">
@@ -139,6 +167,7 @@ include('includes/header.php');
     } 
   ?>
   <script>
+    // add favorite
     $(document).on("click","#addfavorite",function(){
       const id = $(this).data("id");
       
@@ -206,6 +235,63 @@ include('includes/header.php');
           
         }
       });
+    });
+
+    // remove favorite
+       $(document).ready(function(){
+        $(document).on("click","#removefavorite",function(){
+            let favoriteid = $("#favoriteid").val();
+            let favoriteuser = $("#favoriteuser").val();
+
+            $.ajax({
+                method: "POST",
+                url: "function/code.php",
+                data: {
+                    "favoriteid" : favoriteid,
+                    "favoriteuser" : favoriteuser,
+                    "scrope" : "deletefavorite",
+                },
+                success: function (data) {
+                    if(data == 202){
+                        Swal.fire({
+                        icon: 'success',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Password updated!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        }).then(() =>{
+                            $(`#data-${favoriteid}`).remove();
+                        });
+                    }else if(data == 101){
+                         Swal.fire({
+                        icon: 'warning',
+                        title: '<span class="text-gray-800 font-semibold text-lg">Something went wrong!</span>',
+                        showCancelButton: false, 
+                        showConfirmButton: false, 
+                        timer: 3000,  
+                        background: '#fff',
+                        focusCancel: true,
+                        buttonsStyling: false,
+                        customClass: {
+                            popup: 'rounded-xl shadow-md p-6',
+                        },
+                        didOpen: () => {
+                            document.querySelector('.swal2-popup').style.width = '400px';
+                        }
+                        });
+                    }
+                }
+            });
+        });
     });
   </script>
 <?php include('includes/footer.php')?>
