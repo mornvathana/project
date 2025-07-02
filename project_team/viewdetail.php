@@ -1,4 +1,5 @@
 <?php 
+ob_start();
 include('includes/header.php');
 include('authication.php');
   if(isset($_GET['id'])){
@@ -10,6 +11,7 @@ include('authication.php');
 if($_SESSION['auth_user']){
     $user_id = $_SESSION['auth_user']['user_id'];
 }
+
 ob_end_flush();
 ?>
   <?php

@@ -14,6 +14,7 @@
     const userId = document.getElementById("user_id");
     const CartId = document.getElementById("cart_id");
     const shippingMethod = document.getElementById("shippingMethod");
+    const discode = document.getElementById("discode");
 
     let hasSubmitted = false;
 
@@ -73,6 +74,7 @@
             phone_number: phoneNumber.value,
             shipping : shippingMethod.value,
             totalPrice: totalPrice,
+            discount : discode.value,
             scorecus : score,
         };
 
