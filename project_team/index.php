@@ -5,37 +5,34 @@
     <!-- main slider -->
     <section class="main swiper mySwiper h-[300px] sm:h-[400px] md:h-[400px] lg:h-[500px] xl:h-[550px] 2xl:h-[600px] relative">
         <div class="wrapper swiper-wrapper">
-          <div class="slide swiper-slide">
-            <img src="https://taazatime.com/wp-content/uploads/2025/06/1-20.jpg" alt="" class="image" />
-            <div class="image-data">
-              <h2>
-                Oppo A5X <br />
-              </h2>
-              <a href="#" class="button">About Us</a>
-            </div>
-          </div>
-          <div class="slide swiper-slide">
-            <img src="https://www.whatmobile.com.pk/control/news/assets/15112022/1e418359ec21f45c8f690a55259a5239_meta.jpg" alt="" class="image" />
-            <div class="image-data">
-              <span class="text">We really like what we do.</span>
-              <h2>
-                Coffee Beans with a <br />
-                Perfect Aroma
-              </h2>
-              <a href="#" class="button">About Us</a>
-            </div>
-          </div>
-          <div class="slide swiper-slide">
-            <img src="https://angkormeas.com/wp-content/uploads/2025/02/OPPO-RENO13.webp" alt="" class="image" />
-            <div class="image-data">
-              <span class="text">Making Our coffee with lover.</span>
-              <h2>
-                Alluring and Fragrant <br />
-                Coffee Aroma
-              </h2>
-              <a href="#" class="button">About Us</a>
-            </div>
-          </div>
+            
+          <?php
+            $data = getAll("information_website");
+            if($data->num_rows > 0){
+                foreach($data as $img){
+                 $imgData = $img['slide_image'];
+                 $image = explode(",",$imgData);
+                 foreach($image as $item){
+                ?>
+                <!-- </div> -->
+                <div class="slide swiper-slide">
+                    <img src="uploads/webinfo/<?= $item ?>" alt="" class="image" />
+                    <div class="image-data">
+                    <span class="text">We really like what we do.</span>
+                    <h2>
+                        Coffee Beans with a <br />
+                        Perfect Aroma
+                    </h2>
+                    <a href="#" class="button">About Us</a>
+                    </div>
+                </div>
+                <!--  -->
+                <?php
+                 }
+                }
+            }
+          ?>
+          
         </div>
   
         <div class="swiper-button-next nav-btn"></div>

@@ -54,7 +54,16 @@
     <div class="bottom-header flex justify-between items-center px-5 py-1 sticky top-0 lg:static bg-[#fff] z-40 shadow-sm">
         <div class="left">
             <div class="logo w-[50px] lg:w-[100px] h-[50px] lg:h-[90px] flex justify-center items-center zoom-100">
-                <a href="#"><img src="uploads/logo/logo-removebg-preview.png" class="w-full h-full"
+                <a href="#"><img src="
+                            <?php
+                                $data = getAll("information_website");
+                                if($data->num_rows > 0){
+                                    foreach($data as $img){
+                                        echo "uploads/webinfo/" . $img['logo'];
+                                    }
+                                }
+                            ?>
+                            " class="w-full h-full"
                         alt=""></a>
             </div>
         </div>
