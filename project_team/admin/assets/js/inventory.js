@@ -162,7 +162,7 @@
                     display.html(`<span class="loader absolute left-[50%] top-[50%]"></span>`);
                     },
                     success: function (data) {
-                        if (data) {
+                        if (data.length > 0) {
                             let txt = "";
                             for(i in data){
                                 let item = data[i];
@@ -179,6 +179,8 @@
                             $("#totalPayments").text(data[0]['total']);
                             totalPage.text(Math.ceil( data[0]['total'] / limit));
                             display.html(head + txt);
+                        }else{
+                            display.html(`<tr><td>No Data</td></tr>`);
                         }
                     },
                     error: function (xhr, status, error) {

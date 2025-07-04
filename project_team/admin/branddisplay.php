@@ -16,7 +16,28 @@ include("lang.php");
                 </a>
             </div>
             <div>
-                <div class="flex">
+                
+            </div>  
+        </div>
+
+        <div class="w-full mt-5 overflow-x-auto rounded-md shadow-lg bg-[#ffffff]">
+            <table class="text-center w-full table-auto">
+                <thead class = "bg-[#f6f8fa]">
+                    <tr>
+                        <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['id'] ?></th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['name'] ?></th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['image'] ?></th>
+                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['status'] ?></th>
+                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['option'] ?></th>
+                    </tr>
+                </thead>
+                <tbody id = "displayData" class = "relative">
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class = "w-full h-[30px] my-5 flex justify-end items-center">
+            <div class="flex">
                     <!-- Previous Button -->
                     <a href="#" id="back_btn" class="flex items-center justify-center px-2 h-7 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
                         <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -38,24 +59,6 @@ include("lang.php");
                         </svg>
                     </a>
                 </div>
-            </div>
-        </div>
-
-        <div class="w-full h-[100vh] mt-5 overflow-x-auto rounded-md shadow-lg bg-[#ffffff]">
-            <table class="text-center w-full table-auto">
-                <thead class = "bg-[#f6f8fa]">
-                    <tr>
-                        <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['id'] ?></th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['name'] ?></th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['image'] ?></th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['status'] ?></th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['option'] ?></th>
-                    </tr>
-                </thead>
-                <tbody id = "displayData" class = "relative">
-                    
-                </tbody>
-            </table>
         </div>
     </div>
 </div>

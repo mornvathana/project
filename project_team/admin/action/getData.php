@@ -16,19 +16,19 @@
     $order = $conn->query($product);
     $Data = array();
     if ($order->num_rows > 0) {
-        while($row = $order->fetch_array()){
-            $id = $row[1];
+        while($row = $order->fetch_assoc()){
+            $id = $row['id'];
             $data = $conn->query("SELECT * FROM users WHERE id = $id");
             foreach($data as $item){
                 $userName = $item['name'];
             }
             $Data[] = array(
-                "id" => $row[0],
-                "firstName" => $row[3],
-                "lastName" => $row[4],
-                "date" => $row[11],
-                "total" => $row[9],
-                "status" => $row[10],
+                "id" => $row['id'],
+                "firstName" => $row['first_name'],
+                "lastName" => $row['last_name'],
+                "date" => $row['created_at'],
+                "total" => $row['total_price'],
+                "status" => $row['status'],
                 "user_id" => $userName,
                 "total" => $total,
             );

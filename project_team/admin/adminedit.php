@@ -54,35 +54,39 @@ $permission = permission($user_id);
                                     <div class = "flex justify-between items-center grid grid-cols-3">
                                     <input type="hidden" id = "userId" value = "<?= $user_id?>">
                                         <div>
-                                            <input type="checkbox"   id = "dashboard" <?= $permission['dashboard'] == 1 ? 'checked' : ''?> >
+                                            <input type="checkbox"   id = "dashboard" <?= (isset($permission['dashboard']) && $permission['dashboard'] == 1) ? 'checked' : ''?> >
                                             <label for="" class = "py-1 text-[13px]">Dashboard</label>
                                         </div>
                                         <div>
-                                            <input type="checkbox"   id = "total_product" <?= $permission['total_product'] == 1 ? 'checked' : ''?> >
+                                            <input type="checkbox"   id = "total_product" <?= (isset($permission['total_product']) && $permission['total_product'] == 1) ? 'checked' : ''?> >
                                             <label for="" class = "py-1 text-[13px]">Total </label>
                                         </div>
                                         <div>
-                                            <input type="checkbox"   id = "product" <?= $permission['product'] == 1 ? 'checked' : ''?> >
+                                            <input type="checkbox"   id = "product" <?= (isset($permission['product']) && $permission['product'] == 1) ? 'checked' : ''?>  >
                                             <label for="" class = "py-1 text-[13px]">Product</label>
                                         </div>
                                         <div>
-                                            <input type="checkbox"   id = "brands" <?= $permission['brands'] == 1 ? 'checked' : ''?> >
+                                            <input type="checkbox"   id = "brands" <?= (isset($permission['brands']) && $permission['brands'] == 1) ? 'checked' : ''?> >
                                             <label for="" class = "py-1 text-[13px]">Brands</label>
                                         </div>
                                         <div>
-                                            <input type="checkbox"   id = "category" <?= $permission['category'] == 1 ? 'checked' : ''?> >
+                                            <input type="checkbox"   id = "category" <?= (isset($permission['category']) && $permission['category'] == 1) ? 'checked' : ''?> >
                                             <label for="" class = "py-1 text-[13px]">Category</label>
                                         </div>
                                         <div>
-                                            <input type="checkbox"   id = "orders" <?= $permission['orders'] == 1 ? 'checked' : ''?> >
+                                            <input type="checkbox"   id = "orders" <?= (isset($permission['orders']) && $permission['orders'] == 1) ? 'checked' : ''?> >
                                             <label for="" class = "py-1 text-[13px]">Orders</label>
                                         </div>
                                         <div>
-                                            <input type="checkbox"   id = "users" <?= $permission['user'] == 1 ? 'checked' : ''?> >
+                                            <input type="checkbox"   id = "users" <?= (isset($permission['user']) && $permission['user'] == 1) ? 'checked' : ''?> >
                                             <label for="" class = "py-1 text-[13px]">User</label>
                                         </div>
                                         <div>
-                                            <input type="checkbox"   id = "inventory" <?= $permission['inventory'] == 1 ? 'checked' : ''?> >
+                                            <input type="checkbox"   id = "discount" <?= (isset($permission['promotionCode']) && $permission['promotionCode'] == 1) ? 'checked' : ''?> >
+                                            <label for="" class = "py-1 text-[13px]">Discount</label>
+                                        </div>
+                                        <div>
+                                            <input type="checkbox"   id = "inventory" <?= (isset($permission['inventory']) && $permission['inventory'] == 1) ? 'checked' : ''?> >
                                             <label for="" class = "py-1 text-[13px]">Inventory</label>
                                             <?php
                                                 $data = getLastId("users");

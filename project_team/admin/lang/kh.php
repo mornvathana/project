@@ -30,7 +30,7 @@ return [
     "userprofile" => "ប្រវត្តិរូបអ្នកប្រើប្រាស់",
     "personalinformation" => "ព័ត៌មានផ្ទាល់ខ្លួន",
     "personalproduct" => "ទំនិញផ្ទាល់ខ្លួន",
-    "previous" => "ទៅក្រោយ",
+    "previous" => "ក្រោយ",
     "totalprice" => "តម្លៃសរុប",
     "firstName" => "នាមខ្លួន",
     "lastName" => "នាមត្រកូល",
@@ -48,6 +48,7 @@ return [
     "createadmin" => "បង្កើតអ្នកគ្រប់គ្រង",
 
     // Newly translated items
+   "filter" => "តាមលំដាប", 
     "score" => "ពិន្ទុសរុប",
     "percent" => "ភាគរយបញ្ចុះតម្លៃ",
     "autocreatecode" => "បង្គើតកូដ",
@@ -75,7 +76,7 @@ return [
     "editbrand" => "កែម៉ាក",
     "createproduct" => "បង្គើតទំនិញ",
     "created" => "បង្គើតនៅ",
-    "next" => "ទៅមុខ",
+    "next" => "បន្ទាប់",
     "name" => "ឈ្មោះ",
     "total" => "ចំនួនសរុប",
     "id" => "លេខ",

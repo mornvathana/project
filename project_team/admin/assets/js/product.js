@@ -2,23 +2,24 @@
 
         let currentPage = 1;
         let limit = 10;
+        let filterData = '';
         let startPage = $("#startPage");
         let totalPage = $("#totalPage");
         let activeSection = "orders";
 
-        $("ul.flex > li").click(function(){
-            $("ul.flex > li a").removeClass("border-b-[2px] border-blue-500");
-            $("ul.flex > li a span:first-child").removeClass("text-blue-500");
-            // add class to click button 
-            $(this).find("a").addClass("border-b-[2px] border-blue-500");
-            $(this).find("span:first-child").addClass("text-blue-500");
+
+        $("#filter").change(function(){
+            let value = $(this).val();
+            filterData = value;
+            product(currentPage);
+
         });
         
         $("#page_num").change(function(){
             limit = parseInt($(this).val());
             currentPage = 1;
             startPage.text(currentPage);
-            selectPage();
+            product(currentPage);
         });
 
 
@@ -27,7 +28,7 @@
         if(currentPage < totalPageValue){
             currentPage += 1;
             startPage.text(currentPage);
-            selectPage();
+            product(currentPage);
         }
             
         });
@@ -36,7 +37,7 @@
             if(currentPage > 1){
                 currentPage -= 1;
                 startPage.text(currentPage);
-                selectPage();
+                product(currentPage);
             }
             
         });
@@ -77,6 +78,7 @@
                     data: {
                         "page": page,
                         "limit": limit,
+                        "filterData" : filterData,
                     },
                     dataType: "json",
                     beforeSend: function(){

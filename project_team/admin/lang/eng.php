@@ -48,6 +48,7 @@ return [
     "createadmin" => "Create Admin",
 
     // Newly translated items
+    "filter" => "Filter", 
     "score" => "Total Score",
     "percent" => "Percent Discount",
     "autocreatecode" => "Auto Generate",

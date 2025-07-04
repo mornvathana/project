@@ -14,9 +14,12 @@
                 $sql = $conn->query("SELECT * FROM cart WHERE id = $num AND status = 0 AND user_id = $user_id");
                 foreach($sql as $data){
                     $image = $data['product_image'];
+                    $barcode = $data['barcode'];
                 }
             $Data[] = array(
                 "id" => $row[0],
+                "barcode" => $barcode,
+                "delivery" => $row[10],
                 "user_id" => $row[1],
                 "first" => $row[3],
                 "last" => $row[4],

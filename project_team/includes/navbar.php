@@ -165,7 +165,7 @@
                 </a>
             </button>
             <button class="cus-account text-[#144194]">
-                <a href="account.html"><i class="fa-solid fa-user"></i></a>
+                <a href="profile.php"><i class="fa-solid fa-user"></i></a>
             </button>
             <button id="searchToggle" class="text-[#144194]">
                 <i class="fa-solid fa-magnifying-glass"></i>

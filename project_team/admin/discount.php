@@ -17,6 +17,27 @@
                 </a>
             </div>
             <div>
+                
+            </div>
+        </div>
+
+        <div class="w-full h-[60vh] mt-5 overflow-x-auto rounded-md bg-[#ffffff] shadow-md">
+            <table class="text-center w-full table-auto">
+                <thead class = "bg-[#f6f8fa]">
+                    <tr>
+                        <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['id']?></th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['name']?></th>
+                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['promotionCode']?></th>
+                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['status']?></th>
+                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['option']?></th>
+                    </tr>
+                </thead>
+                <tbody id = "displayData" class = "relative">
+                    
+                </tbody>
+            </table>
+        </div>
+        <div class = "w-full h-[10px] flex justify-end items-center mt-5">
                 <div class="flex">
                     <!-- Previous Button -->
                     <a href="#" id="back_btn" class="flex items-center justify-center px-2 h-7 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
@@ -40,24 +61,6 @@
                     </a>
                 </div>
             </div>
-        </div>
-
-        <div class="w-full h-[100vh] mt-5 overflow-x-auto rounded-md bg-[#ffffff] shadow-md">
-            <table class="text-center w-full table-auto">
-                <thead class = "bg-[#f6f8fa]">
-                    <tr>
-                        <th width="30" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['id']?></th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['name']?></th>
-                        <th width="100" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['promotionCode']?></th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['status']?></th>
-                        <th width="60" class="py-2 text-[11px] md:text-[13px] text-[#646a7a] shadow-b border-gray-900 font-medium"><?php echo $text['option']?></th>
-                    </tr>
-                </thead>
-                <tbody id = "displayData" class = "relative">
-                    
-                </tbody>
-            </table>
-        </div>
     </div>
 </div>
 <!--  -->

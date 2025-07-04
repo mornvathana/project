@@ -104,7 +104,7 @@
                                             <!-- Modal header -->
                                             <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
                                                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                                    <?php echo $text['report']?>
+                                                    Report Sell
                                                 </h3>
                                                 <button type="button" id = "closeX" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
                                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -120,48 +120,48 @@
                                                 </div>
                                                 <div class=" mb-4 grid grid-cols-2 gap-5 ">
                                                     <div class="col-span-1">
-                                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo $text['name']?></label>
-                                                        <input type="hidden" name="id" id="id" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.id}" readonly>
-                                                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.first} ${item.last}" readonly>
+                                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barcode</label>
+                                                        <input type="hidden" name="id" id="pdid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.id}" readonly>
+                                                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.barcode}" readonly>
                                                     </div>
                                                     <div class="col-span-1">
-                                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo $text['barcode']?></label>
+                                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
                                                         <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.first} ${item.last}" readonly>
+                                                    </div>
+                                                    <div class="col-span-2 sm:col-span-1">
+                                                        <label for="province" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
+                                                        <input type="text" name="province" id="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.province}" readonly>
                                                     </div>
                                                      <div class="col-span-1">
-                                                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo $text['email']?></label>
-                                                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.email}" readonly>
+                                                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Delivery</label>
+                                                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.delivery}" readonly>
                                                     </div>
                                                     <div class="col-span-1">
-                                                        <label for="total_price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo $text['price']?></label>
+                                                        <label for="total_price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact</label>
                                                         <input type="text" name="total_price" id="total_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.total_price}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
-                                                        <label for="Model" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo $text['model']?></label>
+                                                        <label for="Model" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Province</label>
                                                         <input type="text" name="Model" id="Model" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.province}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
-                                                        <label for="method_payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo $text['payment']?></label>
+                                                        <label for="method_payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
                                                         <input type="text" name="method_payment" id="method_payment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.city}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
-                                                        <label for="province" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo $text['province']?></label>
-                                                        <input type="text" name="province" id="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.province}" readonly>
-                                                    </div>
-                                                    <div class="col-span-2 sm:col-span-1">
-                                                        <label for="city" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo $text['city']?></label>
-                                                        <input type="text" name="city" id="city" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.city}" readonly>
+                                                        <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Discount</label>
+                                                        <input type="text" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.phone_number}" readonly>
                                                     </div>
                                                      <div class="col-span-2 sm:col-span-1">
-                                                        <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo $text['phone']?></label>
+                                                        <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Discount</label>
                                                         <input type="text" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.phone_number}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
-                                                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"><?php echo $text['status']?></label>
+                                                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
                                                         <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                            <option value="1" ${item.status == 1 ? 'selected' : ''} ><?php echo $text['pedding']?></option>
-                                                            <option value="2" ${item.status == 2 ? 'selected' : ''} ><?php echo $text['processing']?></option>
-                                                            <option value="3" ${item.status == 3 ? 'selected' : ''} ><?php echo $text['finish']?></option>
+                                                            <option value="1" ${item.status == 1 ? 'selected' : ''} >Pedding</option>
+                                                            <option value="2" ${item.status == 2 ? 'selected' : ''} >Processing</option>
+                                                            <option value="3" ${item.status == 3 ? 'selected' : ''} >Completed</option>
                                                         </select>
                                                     </div>
                                                 <div></div>
@@ -188,7 +188,8 @@
         // btn_save
         $(document).on("click","#btn_save",function(){
             const status = $("#category").val();
-            const id = $("#id").val();
+            const id = $("#pdid").val();
+            alert(id);
             // 
             $.ajax({
                 method: "POST",

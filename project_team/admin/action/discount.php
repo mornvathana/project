@@ -19,7 +19,7 @@
         $result = $stmt->get_result();
         while($row = $result->fetch_assoc()){
 
-            $id = $row['created_by'];
+            $id = $row['user_redeem'];
 
             $sql = $conn->query("SELECT * FROM users WHERE id = $id");
 

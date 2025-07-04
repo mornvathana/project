@@ -112,54 +112,29 @@ include("lang.php");
                                 <input type="hidden" name="old_image"  >
                             </div>
                         </div> 
-                        <div class = "w-[50%] flex justify-center items-center relative">
+                        <div class = "w-[50%] my-2 flex justify-center items-center relative">
                         <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
                             <input type="file" name = "image" id = "profile_image" accept="image/*" class = "w-full h-full hidden" required>
                         </div>
-                        <label for="profile_image" class = "absolute left-[30%] text-sm w-full "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
+                        <label for="profile_image" class = "absolute left-[40%] text-sm w-full "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
                         </div> 
                         </div>
                         </div>
                         </div>
                         <div class = "w-full">
                         <div class = "w-full">
-                            <p class = "py-1 text-[13px] pl-3"><?php echo $text['demoimage']?></p>
+
                         </div>
                         <div class = "w-full h-[150px] flex">
                         <div class = "w-[50%] flex justify-center items-center none">
                             <div class="w-[90%] gap-2 grid grid-cols-3 h-[100%] rounded-md">
-                                <div class = " h-[50%]">
-                                <img src="../uploads/default/default.jpg" id = "showImage1" class = "w-full h-full object-contain" alt="">
-                                <input type="checkbox" name="" id="">
-                                <input type="hidden" name="old_image" >
-                                </div>
-                                <div class = " h-[50%]">
-                                <img src="../uploads/default/default.jpg" id = "showImage1" class = "w-full h-full object-contain" alt="">
-                                <input type="checkbox" name="" id="">
-                                <input type="hidden" name="old_image" >
-                                </div>
-                                <div class = " h-[50%]">
-                                <img src="../uploads/default/default.jpg" id = "showImage1" class = "w-full h-full object-contain" alt="">
-                                <input type="checkbox" name="" id="">
-                                <input type="hidden" name="old_image" >
-                                </div>
-                                <div class = " h-[50%]">
-                                <img src="../uploads/default/default.jpg" id = "showImage1" class = "w-full h-full object-contain" alt="">
-                                <input type="checkbox" name="" id="">
-                                <input type="hidden" name="old_image" >
-                                </div>
-                                <div class = " h-[50%]">
-                                <img src="../uploads/default/default.jpg" id = "showImage1" class = "w-full h-full object-contain" alt="">
-                                <input type="checkbox" name="" id="">
-                                <input type="hidden" name="old_image" >
-                                </div>
                             </div>
                         </div> 
                         <div class = "w-[50%] flex justify-center items-center relative">
                         <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
                             <input type="file" name = "demo_image[]" id = "profile_image1" multiple accept="image/*" class = "w-full h-full hidden">
                         </div>
-                        <label for="profile_image1" class = "absolute text-sm left-[30%] w-full "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
+                        <label for="profile_image1" class = "absolute text-sm left-[40%] w-full "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
                         </div> 
                         </div>
                         </div>

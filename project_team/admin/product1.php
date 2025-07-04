@@ -5,15 +5,15 @@
 ?>
 <div class="h-full px-2 py-2 bg-[#f3f5f7]">
     <div class="w-full rounded-md p-5">
-        <div class="w-full h-[10%] flex justify-between items-center">
+        <div class="w-full h-[10%] flex justify-between items-center mb-3">
             <div>
-                <h1 class="font-medium"><?php echo $text['productreport']?></h1>
+                <h1 class="font-medium "><?php echo $text['productreport']?></h1>
             </div>
         </div>
-        <div class = "w-full  grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class = "w-full h-[250px]  grid grid-cols-1 md:grid-cols-2 gap-5 overflow-hidden">
             <div id = "container1" class = "w-full rounded-md">
             </div>
-            <div class = "w-full h-[250px] shadow-md bg-white ">
+            <div class = "w-full h-[250px] shadow-md bg-white  overflow-y-auto">
                 <div class = "w-full h-[15%] bg-[#eee] grid grid-cols-2">
                   <div class = "flex justify-center gap-1 items-center">
                     <span class = "font-medium text-md"><?php echo $text['name']?></span>
@@ -25,29 +25,44 @@
                 <!--  -->
                 <div class = "w-full h-[90%] grid grid-cols-2 my-2">
                   <?php
-                   $data = [];
-                    $item = getAll("brands");
+                    $item = getAll("product");
                     if($item->num_rows > 0){
                       foreach($item as $name){
                         ?>
                         <div class = "text-center">
+                          <?=  $name['name']?>
                         </div>
                         <?php
-                          $count = countProduct("product_detail",$name['id']);
+                          $count = countProduct("product_detail",$name['name']);
                           $data[] = [$name['name'],(int)$count];
                           ?>
                           <div class = "text-center">
-                              </div>
+                            <?= $count?>
+                          </div>
                           <?php
                         ?>
                         <?php
                       }
                     }
-                    $jsonData = json_encode($data);
                   ?>
                 </div>
             </div>
         </div>
+        <?php
+          $data = [];
+          $item = getAll("brands");
+          if($item->num_rows > 0){
+            foreach($item as $name){
+              ?>
+              <?php
+                $count = countProduct1("product_detail",$name['id']);
+                $data[] = [$name['name'],(int)$count];
+              ?>
+              <?php
+            }
+          }
+          $jsonData = json_encode($data);
+        ?>
         <div class = "h-[8%] w-full flex justify-between items-center mt-3">
           <div>
             <ul class = "flex">
@@ -62,26 +77,26 @@
             <div>
                <ul class="flex">
                         <li class = "">
-                        <div class="flex items-center gap-2">
-                                  <!-- Pagination Buttons -->
-                                  <a href="#" class="flex items-center justify-center px-2 h-7 me-3 text-[10px] md:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="back_btn">
-                                      <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
-                                      </svg>
-                                    ​<?php echo $text['previous']?>
-                                  </a>
-
-                                  <a href="#" class="flex items-center justify-center px-3 h-8 me-3 text-[10px] md:text-sm font-medium text-gray-500 rounded-lg">
-                                      <span id="startPage">1</span> / <span id="totalPage">10</span>
-                                  </a>
-
-                                  <a href="#" class="flex items-center justify-center px-2 h-7 text-[10px] md:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="next_btn">
-                                      <?php echo $text['next']?>
-                                      <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                                      </svg>
-                                  </a>
-                              </div>
+                        <!-- next  -->
+                        <div class = "flex gap-3">
+                        <form class="max-w-sm">
+                        <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
+                            <option value="10" selected><?php echo $text['page']?></option>
+                            <option value="10">10</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                       </form>
+                       <form class="max-w-sm">
+                        <select id="filter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
+                            <option value="10" selected><?php echo $text['filter']?></option>
+                            <option value="asc">A - Z</option>
+                            <option value="desc">Z - A</option>
+                        </select>
+                       </form>
+                        </div>
+                       
+                        <!-- back button -->
                         </li>
                     </ul>
             </div>
@@ -102,6 +117,28 @@
                 </tbody>
           </table>
         </div>
+        <div class = " w-full h-[10px] flex justify-end items-center my-5">
+                <div class="flex items-center gap-2">
+                  <!-- Pagination Buttons -->
+                  <a href="#" class="flex items-center justify-center px-2 h-7 me-3 text-[10px] md:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="back_btn">
+                      <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                      </svg>
+                    ​<?php echo $text['previous']?>
+                  </a>
+
+                  <a href="#" class="flex items-center justify-center px-3 h-8 me-3 text-[10px] md:text-sm font-medium text-gray-500 rounded-lg">
+                      <span id="startPage">1</span> / <span id="totalPage">10</span>
+                  </a>
+
+                  <a href="#" class="flex items-center justify-center px-2 h-7 text-[10px] md:text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="next_btn">
+                      <?php echo $text['next']?>
+                      <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                      </svg>
+                  </a>
+              </div>
+          </div>
     </div>
 </div>
 <script src = "assets/js/product.js"></script>

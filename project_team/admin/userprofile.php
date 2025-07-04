@@ -38,7 +38,7 @@
                                                         }else{
                                                             echo "assets/img/default.jpg";
                                                         }
-                                                    ?>" class = "rounded-full w-[100px] h-[100px]" alt="">
+                                                    ?>" class = "rounded-full w-[130px] h-[100px]" alt="">
                                         </div>
                                         <div class = "w-[60%] h-full flex justify-start items-center">
                                             <ul>
@@ -195,7 +195,7 @@
                 </div>
                 <div>
                     <!--  -->
-                    <div class="flex items-start md:justify-end gap-2">
+                    <div class="flex items-start md:justify-end">
                     <form class="max-w-sm">
                         <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
                             <option value = "1" selected><?php echo $text['status']?></option>
@@ -204,25 +204,6 @@
                             <option value="3"><?php echo $text['finish']?></option>
                         </select>
                     </form>
-
-                    <!-- Pagination Buttons -->
-                    <a href="#" class="flex items-center justify-center px-2 h-7 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="back_btn">
-                        <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
-                        </svg>
-                        <?php echo $text['previous']?>
-                    </a>
-
-                    <a href="#" class="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 rounded-lg">
-                        <span id="startPage">1</span> / <span id="totalPage">10</span>
-                    </a>
-
-                    <a href="#" class="flex items-center justify-center px-2 h-7 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="next_btn">
-                        <?php echo $text['back']?>
-                        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
-                        </svg>
-                    </a>
                 </div>
                 <!--  -->
                 </div>
@@ -247,6 +228,27 @@
                            
                         </tbody>
                     </table>
+                </div>
+            </div>
+            <div class = "w-full h-[10px] flex justify-end items-center">
+                <div class = "flex">
+                    <a href="#" class="flex items-center justify-center px-2 h-7 me-3 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="back_btn">
+                        <svg class="w-3.5 h-3.5 me-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 5H1m0 0 4 4M1 5l4-4"/>
+                        </svg>
+                        <?php echo $text['previous']?>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-center px-3 h-8 me-3 text-sm font-medium text-gray-500 rounded-lg">
+                        <span id="startPage">1</span> / <span id="totalPage">10</span>
+                    </a>
+
+                    <a href="#" class="flex items-center justify-center px-2 h-7 text-sm font-medium text-gray-500 bg-white border border-gray-300 rounded-lg hover:bg-gray-100 hover:text-gray-700" id="next_btn">
+                        <?php echo $text['back']?>
+                        <svg class="w-3.5 h-3.5 ms-2 rtl:rotate-180" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
             <!--  -->

@@ -13,7 +13,7 @@
                 if(mysqli_num_rows($user) > 0){
                     foreach($user as $userItem){
                         ?>
-                        <div class = "h-full px-2 py-5 bg-[#f3f5f7]">
+                        <div class = "h-full px-2 py-10 bg-[#f3f5f7]">
                             <div class = "w-full flex flex-col gap-5">
                                 <div class = "h-[5%] flex justify-center items-center">
                                     <div class = "w-[95%] h-full flex justify-start items-center">
@@ -55,13 +55,13 @@
                                             <div>
                                                 <ul class = "flex gap-5">
                                                     <li>
-                                                        <a href="activitylog.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[10px] md:text-[13px] rounded-md"><i class="fas fa-user"></i> <span><?php echo $text['activitylogs']?></span></button></a>
+                                                        <a href="activitylog.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[9px] md:text-[13px] rounded-md"><i class="fas fa-user"></i> <span><?php echo $text['activitylogs']?></span></button></a>
                                                     </li>
                                                     <li>
-                                                        <a href="changeinfor.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[10px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i> <span><?php echo $text['changepassword']?></span></button></a>
+                                                        <a href="changeinfor.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[9px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i> <span><?php echo $text['changepassword']?></span></button></a>
                                                     </li>
                                                     <li>
-                                                        <a href="createadmin.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[10px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i> <span><?php echo $text['createadmin']?></span></button></a>
+                                                        <a href="createadmin.php?id=<?= $userItem['id']?>"><button class="bg-blue-100 border-[1px] border-blue-500 text-blue-500 px-2 py-[1px] text-[9px] md:text-[13px] rounded-md"><i class="fas fa-edit"></i> <span><?php echo $text['createadmin']?></span></button></a>
                                                     </li>
                                                 </ul>
                                             </div>

@@ -18,7 +18,7 @@
 ?>
 <div class = "hidden w-full shadow-sm h-full lg:block " id = "slide-bar">
             <div class = "fixed flex items-center justify-between px-5 w-full h-[50px] bg-white shadow-sm border-b ">    
-                <img src="assets/img/download.png" class = 'object-cover w-10' alt="">
+                <img src="assets/img/logo-removebg-preview.png" class = 'object-cover w-10' alt="">
                 <i class="cursor-pointer fa-solid fa-arrow-left"></i>
             </div>
             <!-- end title siide-left -->

@@ -20,7 +20,7 @@ include('../middleware/adminAccess.php');
                                     <div class = "w-full md:flex gap-5 ">
                                     <div class  = "w-full md:w-[50%]">
                                     <div class = "w-full">
-                                        <label for = "phonenumber" class = "block py-1 text-[13px]">Phone number</label>
+                                        <label for = "phonenumber" class = "block w-full py-1 text-[13px]">Phone number</label>
                                         <input type="text" name = "phonenumber" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" id = "phonenumber" value = "<?= $data['phone_number'] ?>" placeholder = "Phone number">
                                     </div>
                                     <div class = "w-full">
@@ -51,12 +51,12 @@ include('../middleware/adminAccess.php');
                                     <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[70%] lg:h-[100%] rounded-md">
                                         <input type="file" name = "image" id = "profile_image" accept="image/*" class = "w-full h-full hidden">
                                     </div>
-                                    <label for="profile_image" class = "absolute text-sm ">Select Image <i class="fa-solid fa-image"></i></label>
+                                    <label for="profile_image" class = "absolute text-sm "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
                                     </div>
                                     </div> 
                                     <div class = "w-full h-full">
                                         <div class = "w-full">
-                                <p class = "py-1 text-[13px] pl-3">Demo Image</p>
+                                <p class = "py-1 text-[13px] pl-3">Demo image</p>
                             </div>
                             <div class = "w-full h-[150px] flex">
                             <div class = "w-[50%] flex justify-center items-center none">
@@ -89,11 +89,11 @@ include('../middleware/adminAccess.php');
                             <div class="w-[80%] border-dotted p-4 border-[2px] border-blue-900 h-[100%] rounded-md">
                                 <input type="file" name = "demo_image[]" id = "profile_image1" multiple accept="image/*" class = "w-full h-full hidden">
                             </div>
-                            <label for="profile_image1" class = "absolute text-sm ">Demo Image <i class="fa-solid fa-image"></i></label>
+                            <label for="profile_image1" class = "absolute text-sm "><?php echo $text['selectimage']?> <i class="fa-solid fa-image"></i></label>
                             </div> 
                             </div>
                             </div>
-                            <div class="w-full lg:mt-5 flex justify-end items-center pr-5">
+                            <div class="w-full mt-5 flex justify-end items-center pr-5">
                             <button type = "submit" name = "updateweb" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md">Update</button>
                             </div>
                             </div>
