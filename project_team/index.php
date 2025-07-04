@@ -287,9 +287,17 @@
                                             <div
                                                 class="pro-name text-center text-[13px] md:text-[15px] text-gray-700 font-bold leading-6 font-[Roboto,hanuman,Sans-serif] h-[70px] overflow-hidden">
                                                 <?= $data1['name']?></div>
+                                            <form action="" method="POST" class="w-full upl">
+                                            <!-- data hidden -->
+                                            <input type="hidden" id = "prod_id" value = "<?= $data1['id']?>">
+                                            <input type="hidden" id = "product_name" value = "<?= $data1['name']?>">
+                                            <input type="hidden" id = "product_barcode" value = "<?= $data1['barcode']?>">
+                                            <input type="hidden" id = "product_price" value ="<?= $data1['sell_price']?>">
+                                            <input type="hidden" id = "product_image" value = "<?= $data1['image']?>">
                                             <button
-                                                class="text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
+                                                type="submit" class="addToCart text-[#144194] font-[Roboto,hanuman,Sans-serif] text-sm font-semibold opacity-85 border rounded-full p-2 border-[#144194]"><i
                                                     class="fa-solid fa-cart-shopping"></i> Add to cart</button>
+                                            </form>
                                             <div class="line"></div>
                                         </a>
                                     </div>
