@@ -10,16 +10,16 @@
                 <h1 class="font-medium "><?php echo $text['productreport']?></h1>
             </div>
         </div>
-        <div class = "w-full h-[250px]  grid grid-cols-1 md:grid-cols-2 gap-5 overflow-hidden">
+        <div class = "w-full h-[250px] md:h-[250px] overflow-y-auto md:overflow-y-hidden grid grid-cols-1 md:grid-cols-2 gap-5 overflow-hidden">
             <div id = "container1" class = "w-full rounded-md">
             </div>
             <div class = "w-full h-[250px] shadow-md bg-white  overflow-y-auto">
                 <div class = "w-full h-[15%] bg-[#eee] grid grid-cols-2">
                   <div class = "flex justify-center gap-1 items-center">
-                    <span class = "font-medium text-md"><?php echo $text['name']?></span>
+                    <span class = "font-medium text-sm"><?php echo $text['name']?></span>
                   </div>
                    <div class = "flex justify-center items-center">
-                    <span class = "font-medium text-md"><?php echo $text['total']?></span>
+                    <span class = "font-medium text-sm"><?php echo $text['total']?></span>
                   </div>
                 </div>
                 <!--  -->
@@ -29,14 +29,14 @@
                     if($item->num_rows > 0){
                       foreach($item as $name){
                         ?>
-                        <div class = "text-center">
+                        <div class = "text-center text-sm">
                           <?=  $name['name']?>
                         </div>
                         <?php
                           $count = countProduct("product_detail",$name['name']);
                           $data[] = [$name['name'],(int)$count];
                           ?>
-                          <div class = "text-center">
+                          <div class = "text-center text-sm">
                             <?= $count?>
                           </div>
                           <?php
