@@ -2,6 +2,7 @@
         let currentPage = 1;
         let totalPage = $("#totalPage");
         let startPage = $("#startPage");
+        let filterData = '';
         let limit = 10;
         const display = $("#displayData");
 
@@ -11,6 +12,8 @@
                 url: "action/selectProduct.php",
                 data: {
                     "page": page,
+                    "filterData" : filterData,
+                    "limit" : limit,
                 },
                 dataType: 'json',
                 beforeSend: function(){
@@ -65,6 +68,20 @@
                 }
             });
         }
+
+        $("#filter").change(function(){
+            let value = $(this).val();
+            filterData = value;
+            load(currentPage);
+
+        });
+
+         $("#page_num").change(function(){
+            limit = parseInt($(this).val());
+            currentPage = 1;
+            startPage.text(currentPage);
+            load(currentPage);
+        });
 
         $("#next_btn").click(function(){
             

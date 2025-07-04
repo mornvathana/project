@@ -3,7 +3,7 @@
     include('../middleware/adminAccess.php');
     include("lang.php");
 ?>
-<div class="h-full px-2 py-2 bg-[#f3f5f7]">
+<div class="h-full px-2 py-2 bg-[#f3f5f7] overflow-hidden">
     <div class="w-full rounded-md p-5">
         <div class="w-full h-[10%] flex justify-between items-center mb-3">
             <div>
