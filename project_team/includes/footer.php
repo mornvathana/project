@@ -34,7 +34,7 @@
                 </a>
                 <p
                     class="font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[15px] lg:text-[15px] xl:text-[15px] 2xl:text-[15px] text-[#fff] font-medium text-center">
-                    En Lin Phone Shop, your trusted phone shop in Phnom Penh selling and buying all kinds of new or used
+                    En Lin Phone Shop, your trusted phone shop in Svay Rieng in selling and buying all kinds of new or used
                     phones, tablets, smart watches, electronic devices, and accessories.</p>
             </div>
             <div class="line w-full h-[2px] bg-[#fff] mt-10 md:mt-10"></div>
@@ -45,8 +45,7 @@
                          En Lin Phone Shop</h1>
                     <div
                         class="address font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[14px] md:text-[14px] lg:text-[14px] xl:text-[14px] 2xl:text-[14px] text-[#fff] font-medium mt-5 leading-10">
-                        <i class="fa-solid fa-location-dot"></i> ផ្ទះលេខ​​ ២៩៨E0, មហាវិថី​ ម៉ៅសេទុង (St,245)
-                        ខាងលិចចេនឡាផ្សារដើមគរ
+                        <i class="fa-solid fa-location-dot"></i> ភូមិប្រសូត្រ សង្កាត់កណ្តៀងរាយ ស្រុកស្វាយទាប ខេត្តស្វាយរៀង
                     </div>
                     <div
                         class="font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[14px] md:text-[14px] lg:text-[14px] xl:text-[14px] 2xl:text-[14px] text-[#fff] font-medium mt-3">
@@ -103,7 +102,7 @@
             <!-- <div class="line w-[100%] bg-[#fff] h-[1px] mx-auto"></div> -->
             <div
                 class="copy-right font-[Poppins,hanuman,Sans-serif] text-[10px] sm:text-[12px] md:text-[12px] lg:text-[12px] xl:text-[12px] 2xl:text-[12px] font-medium text-center text-[#fff] mt-0 md:mt-5 border-t-2 w-[100%] lg:w-[35%] mx-auto p-2">
-                Copyright © 2024 En Lin Mobile Shop | Website by Azis Web</div>
+                Copyright © 2024 En Lin Mobile Shop | Website by SRU STUDENT</div>
         </div>
     </footer>
      
