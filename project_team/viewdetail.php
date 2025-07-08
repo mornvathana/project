@@ -1,15 +1,18 @@
 <?php 
 ob_start();
 include('includes/header.php');
+// include('authication.php');
   if(isset($_GET['id'])){
     $product = $_GET['id'];
     $product_item = getProductEach($product);
     
   }
 
-if($_SESSION['auth_user']){
+  if(isset($_SESSION['auth']) && $_SESSION['auth'] == true){
     $user_id = $_SESSION['auth_user']['user_id'];
-}
+  } else {
+    $user_id = 0;
+  }
 
 ob_end_flush();
 ?>
