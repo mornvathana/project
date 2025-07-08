@@ -16,7 +16,23 @@ include("lang.php");
                 </a>
             </div>
             <div>
-                
+                <div class="flex gap-3">
+                    <form class="max-w-sm">
+                        <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
+                            <option value="10" selected><?php echo $text['page']?></option>
+                            <option value="10">10</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                       </form>
+                       <form class="max-w-sm">
+                        <select id="filter" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
+                            <option value="10" selected><?php echo $text['filter']?></option>
+                            <option value="asc">A - Z</option>
+                            <option value="desc">Z - A</option>
+                        </select>
+                       </form>
+                </div>
             </div>  
         </div>
 

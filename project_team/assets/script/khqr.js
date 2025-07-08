@@ -1,5 +1,7 @@
 
     const btncheckout = document.getElementById('checkout');
+    const boxColor = document.getElementById("boxColor");
+    const addLine = document.getElementById("addLine");
 
     btncheckout.addEventListener("click",data);
 
@@ -12,7 +14,8 @@
     const address = document.getElementById("address");
     const phoneNumber = document.getElementById("phone-number");
     const userId = document.getElementById("user_id");
-    const CartId = document.getElementById("cart_id");
+    const CartId = document.querySelectorAll(".cart_id");
+    const CartidArray = Array.from(CartId).map(input => input.value);
     const shippingMethod = document.getElementById("shippingMethod");
     const discode = document.getElementById("discode");
 
@@ -36,11 +39,15 @@
             setTimeout(function () {
                 alert("Please make payment!");
                 btncheckout.style.display = "block";
+                boxColor.classList.remove("bg-red-500");
+                boxColor.classList.add("bg-green-500");
+                addLine.classList.remove("hidden");
             }, 1000);
         }
     };
     
     function data(){
+
     const KHQR = typeof BakongKHQR !== 'undefined' ? BakongKHQR : null;
 
     if (!KHQR) {
@@ -59,37 +66,6 @@
         score = 2;
     }else if(totalPrice >= 200 && totalPrice <= 300){
         score = 3;
-    }
-
-
-    function autoSaveData() {
-        const formData = {
-            first_name: firstName.value,
-            last_name: lastName.value,
-            email: email.value,
-            userid: userId.value,
-            cartid: CartId.value,
-            city: city.value,
-            address: address.value,
-            phone_number: phoneNumber.value,
-            shipping : shippingMethod.value,
-            totalPrice: totalPrice,
-            discount : discode.value,
-            scorecus : score,
-        };
-
-        fetch('save_checkout_data.php', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log('Data saved successfully:', data);
-        })
-        .catch(error => {
-            console.error('Error saving data:', error);
-        });
     }
 
     const optionalData = {
@@ -176,22 +152,24 @@
 
                 const token_telegram = "7948926578:AAH13fuvJf_wUOFr2fNo8YGFIZzJvuUvSX0";
                 const chat_id = "1985070836";
-                const order_number = "7777"; 
                 const imageUrl = "https://cdn.vectorstock.com/i/500p/25/50/order-now-modern-web-banner-with-package-icon-vector-31212550.jpg";
                 
                 const url = `https://api.telegram.org/bot${token_telegram}/sendPhoto`;
                 
-                const payload = {
-                    chat_id: chat_id,
-                    photo: imageUrl,
-                    caption: `🚨 *New Order Alert* 🚨 \n\n🆔 *Order ID:* ${order_number}\n👤 *Customer Name:* ${firstName.value} ${lastName.value}\n📧 *Email:* ${email.value}\n\n📦*Order Detail*\n\n💵 *Total Price*: $${totalPrice}\n🏠 *Delivery Address*: ${address.value}, ${city.value}\n📱 *Contact Number*: ${phoneNumber.value}\n✅ *Thank you for your purchase*`,
-                    parse_mode: "Markdown"
-                };
 
                 let message = false;
-                  const sendMessage = async () => {
+                  const sendMessage = async (value) => {
                     if(message) return;
                     message = true;
+
+                    const payload = {
+
+                    chat_id: chat_id,
+                    photo: imageUrl,
+                    caption: `🚨 *New Order Alert* 🚨 \n\n🆔 *Order ID:* ${value}\n👤 *Customer Name:* ${firstName.value} ${lastName.value}\n📧 *Email:* ${email.value}\n\n📦*Order Detail*\n\n💵 *Total Price*: $${totalPrice}\n🚚 *Delivery Method*: ${shippingMethod.value}\n🏠 *Delivery Address*: ${address.value}, ${city.value}\n📱 *Contact Number*: ${phoneNumber.value}\n✅ *Thank you for your purchase*`,
+                    parse_mode: "Markdown"
+
+                    };
                     try {
                         const response = await fetch(url, {
                             method: "POST",
@@ -215,8 +193,39 @@
 
                 if(!transition){
                     transition = true;
-                    sendMessage();
                     autoSaveData();
+                    function autoSaveData() {
+                    const formData = {
+                        first_name: firstName.value,
+                        last_name: lastName.value,
+                        email: email.value,
+                        userid: userId.value,
+                        cartid: CartidArray,
+                        city: city.value,
+                        address: address.value,
+                        phone_number: phoneNumber.value,
+                        shipping : shippingMethod.value,
+                        totalprice: totalPrice,
+                        discount : discode.value,
+                        scorecus : score,
+                    };
+
+                    fetch('save_checkout_data.php', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(formData)
+                    })
+                    .then(response => response.text())
+                    .then(text => {
+                        const data = JSON.parse(text);
+                        value = data.order_id;
+                        sendMessage(value);
+                    })
+                    .catch(error => {
+                        console.error('Error saving data:', error);
+                    });
+                    }
+                    
                 }
             
             

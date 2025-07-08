@@ -3,11 +3,12 @@
     include('../config/dbcon.php');
 
     $code = $_POST['code'];
+    $status = 1;
 
-    $stmt = $conn->prepare("SELECT * FROM discount WHERE dis_code = ?");
-    $stmt->bind_param('s',$code);
+    $stmt = $conn->prepare("SELECT * FROM discount WHERE dis_code = ? AND status = ?");
+    $stmt->bind_param('si',$code,$status);
 
-    $data = array();
+    $data = array();    
 
     if($stmt->execute()){
         $result = $stmt->get_result();

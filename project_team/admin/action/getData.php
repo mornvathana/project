@@ -13,23 +13,19 @@
     $total = $rTotal['0'];
 
     $product = "SELECT * FROM orders ORDER BY id DESC LIMIT $totalPage,$limit";
+    $product = "SELECT o.*, u.name FROM orders o JOIN users u ON o.user_id = u.id ORDER BY o.id DESC LIMIT $totalPage, $limit";
     $order = $conn->query($product);
     $Data = array();
     if ($order->num_rows > 0) {
         while($row = $order->fetch_assoc()){
-            $id = $row['id'];
-            $data = $conn->query("SELECT * FROM users WHERE id = $id");
-            foreach($data as $item){
-                $userName = $item['name'];
-            }
             $Data[] = array(
                 "id" => $row['id'],
                 "firstName" => $row['first_name'],
                 "lastName" => $row['last_name'],
                 "date" => $row['created_at'],
-                "total" => $row['total_price'],
+                "totalprice" => $row['total_price'],
                 "status" => $row['status'],
-                "user_id" => $userName,
+                "user_id" => $row['name'],
                 "total" => $total,
             );
         }

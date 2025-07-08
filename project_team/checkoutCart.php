@@ -57,6 +57,7 @@ ob_end_flush();
                                 $get_cart = getProductUser("cart",$user_id);
                                 if(mysqli_num_rows($get_cart) > 0){
                                   foreach($get_cart as $cart){
+
                                     $itemTotal = $cart['product_price'] * $cart['product_qty'];
                                     $shippingTotal = $itemTotal + $cart['total_price'];
 
@@ -68,12 +69,14 @@ ob_end_flush();
                                     <td><a href="#"><img src="uploads/category/<?= $cart['product_image']?>" alt="Product Image"></a></td>
                                     <td><?= $cart['product_name'] ?></td>
                                     <td>
-                                        <input type="number" id="inputValue" name = "update_qty" value = "<?= $cart['product_qty']?>" value="0" min="0" step="1" class="w-[70px] text-center border border-gray-300 rounded-lg">
+                                        <input type="number" id="inputValue" name = "update_qty" value = "<?= $cart['product_qty']?>" value="1" min="1" step="1" class="w-[70px] text-center border border-gray-300 rounded-lg">
                                         <input type="hidden" name="id" id = "cartId" value = "<?= $cart['id']?>">
                                     </td>
                                     <td>$<?= $cart['product_price']?></td>
                                     <td>$<?= number_format($itemTotal,2) ?></td>
+                                    <input type = "hidden" id = "$array[] = $cart['id'];" value = "<?= $cart['id']?>">
                                   </tr>
+                                  <input type = "hidden" class = "cart-id-hidden" value = "<?= $cart['id']?>">
                                     <?php
                                   }
                                 }
@@ -81,91 +84,6 @@ ob_end_flush();
                             </tbody>
                         </table>
                         <!-- <button class="mt-5 bg-red-500 text-white rounded-lg p-3 font-semibold"><a href="index.php">Back</a></button> -->
-                    </form>
-                </div>
-            </div>
-
-            <!-- cart-box-responsive -->
-            <div class="cart-box w-[100%] lg:w-[60%] border rounded-xl h-fit p-5 mt-3 block md:hidden">
-                <div class="box">
-                    <!-- form of cart-box -->
-                    <form action="" method="POST"
-                        class="w-full font-semibold font-[Poppins,hanuman,Sans-serif] text-gray-700">
-                        <!-- cart -->
-                        <div class="cart w-full space-y-5 border-b-2 pb-3 text-sm">
-                            <div class="flex justify-between w-full">
-                                <label for="remove-product"></label>
-                                <div><a href="#"><i class="fa-solid fa-xmark"></i></a></div>
-                            </div>
-
-                            <div class="flex justify-between w-full">
-                                <label for="product-image" class="invisible">Image:</label>
-                                <div><img
-                                        src="https://shunliphone.com/wp-content/uploads/2024/09/iphone16.plus_.green_-300x300.png"
-                                        alt="Product Image" class="w-[100px]"></div>
-                            </div>
-
-                            <div class="flex justify-between w-full">
-                                <label for="product-name">Product:</label>
-                                <div class="text-right"><a href="#">iPhone 16 Plus – Non active</a></div>
-                            </div>
-
-                            <div class="flex justify-between">
-                                <label for="price">Price:</label>
-                                <div>$15.00</div>
-                            </div>
-
-                            <div class="flex justify-between">
-                                <label for="qty">Quantity:</label>
-                                <div><input type="number" id="inputValue" value="0" min="0" step="1"
-                                        class="w-[70px] text-center border border-gray-300 rounded-lg"></div>
-                            </div>
-
-                            <div class="flex justify-between">
-                                <label for="sub-total">Sub Total:</label>
-                                <div>$15.00</div>
-                            </div>
-
-                        </div>
-
-                        <!-- cart -->
-                        <div class="cart w-full space-y-5 border-b-2 pb-3 text-sm mt-3">
-                            <div class="flex justify-between w-full">
-                                <label for="remove-product"></label>
-                                <div><a href="#"><i class="fa-solid fa-xmark"></i></a></div>
-                            </div>
-
-                            <div class="flex justify-between w-full">
-                                <label for="product-image" class="invisible">Image:</label>
-                                <div><img
-                                        src="https://shunliphone.com/wp-content/uploads/2024/09/iphone16pro.max_.gold_-300x300.png"
-                                        alt="Product Image" class="w-[100px]"></div>
-                            </div>
-
-                            <div class="flex justify-between w-full">
-                                <label for="product-name">Product:</label>
-                                <div class="text-right"><a href="#">iPhone 16 Plus – Non active</a></div>
-                            </div>
-
-                            <div class="flex justify-between">
-                                <label for="price">Price:</label>
-                                <div>$15.00</div>
-                            </div>
-
-                            <div class="flex justify-between">
-                                <label for="qty">Quantity:</label>
-                                <div><input type="number" id="inputValue" value="0" min="0" step="1" class="w-[70px] text-center border border-gray-300 rounded-lg"></div>
-                            </div>
-
-                            <div class="flex justify-between">
-                                <label for="sub-total">Sub Total:</label>
-                                <div>$15.00</div>
-                            </div>
-
-                        </div>
-
-                        <button class="mt-5 bg-blue-500 text-white rounded-lg p-2 text-sm"><a href="#"> <i
-                                    class="fa-regular fa-pen-to-square"></i> Update</a></button>
                     </form>
                 </div>
             </div>
@@ -249,6 +167,14 @@ ob_end_flush();
      <script src = "assets/script/custom.js"></script>
      <script>
         $(document).ready(function(){
+
+            $("#inputValue").on("input",function(){
+                let val = $(this).val();
+                if(val < 1 || isNaN(val)){
+                    $(this).val(1);
+                }
+            });
+
             $("#shipping").on("change",function(){
                 if($('#shipping:checked').length > 0){
                     $("#buttoncheckout").css("display","block");

@@ -28,8 +28,8 @@
     <?php
         $data = getMenuwithID("users",$id);
         if($data->num_rows > 0){
-            foreach($data as $user){
-            ?>
+        foreach($data as $user){
+        ?>
         <div class="all-page w-[100%] md:w-[68%]">
         <!-- profile-page -->
         <div class="page w-[100%] h-fit mt-5 md:mt-0 overflow-hidden" style="border: 1px solid #d2d3d4; border-radius: 10px;" name="profile">
@@ -214,64 +214,68 @@
                             <table class="">
                                 <thead class="">
                                     <tr class="font-normal text-md">
-                                        <td class="invisible"></td>
-                                        <th>Image</th>
-                                        <th>Price</th>
-                                        <th>Price</th>
+                                        <th>ID</th>
                                         <th>Quantity</th>
+                                        <th>Total Price</th>
                                         <th>A4 Receipt</th>
                                         <th>Small Receipt</th>
                                     </tr>
                                 </thead>
                                 <tbody class="font-normal">
                                     <?php
-                                    $cart = getOrders($id);
-                                    if($cart->num_rows > 0){
-                                        foreach($cart as $item){
-                                        ?>
-                                    <tr class="border-b-2">
-                                        <td><a href="#"><img
-                                                    src="uploads/category/<?= $item['product_image']?>"
-                                                    alt="Product Image"></a></td>
-                                        <td>
-                                            <?= $item['product_name']?>
-                                        </td>
-                                        <td>
-                                            <?= $item['product_price']?>
-                                        </td>
-                                        <td><input type="number" readonly id="inputValue"
-                                                value="<?= $item['product_qty']?>" min="0" step="1"
-                                                class="w-[70px] text-center border border-gray-300 rounded-lg" disabled>
-                                        </td>
-                                        <td>
-                                            <?php
-                                                    $idorder = 0;
-                                                    $price = getPrice($item['id'],$id);
-                                                    if($price->num_rows > 0){
-                                                        foreach($price as $num){
-                                                        $idorder = $num['id'];
-                                                        ?>
-                                            <?= $num['total_price']?>
-                                            <?php
+                                       $orders =  getTableByUsers($id);
+
+                                       if($orders->num_rows > 0){
+                                            foreach($orders as $item){
+                                            ?>
+                                                <tr class="border-b-2">
+                                                <td>
+                                                    <?= $item['id']?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                        $total = 0;
+                                                        $cart_arr = $item['cart_id'];
+                                                        $cartiddata = explode(",",$cart_arr);
+
+                                                        foreach($cartiddata as $num){
+                                                           $data = getDataByUsers("cart",$id,0,$num);
+                                                           if($data->num_rows > 0){
+                                                            foreach($data as $qty){
+                                                                $total += $qty['product_qty'];
+                                                            }
+                                                           }
                                                         }
-                                                    }
-                                                ?>
-                                        </td>
-                                        <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1"><a
-                                                href="action/invoice.php?cartId=<?= $item['id']?>&orderid=<?= $idorder?>&userid=<?= $item['user_id']?>"
-                                                target="_blank"><i
-                                                    class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a>
-                                        </td>
-                                        <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1"><a
-                                                href="action/smallinvoice.php?cartId=<?= $item['id']?>&orderid=<?= $idorder?>&userid=<?= $item['user_id']?>"
-                                                target="_blank"><i
-                                                    class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                        }
-                                    }
-                                ?>
+                                                        echo $total;
+                                                    ?>
+                                                </td>
+                                                <td>
+                                                    <?php
+                                                        $data = getPriceOrders1($item['id']);
+                                                        if($data->num_rows > 0){
+                                                            foreach($data as $value){
+                                                            ?>
+                                                            <?= $value['total_price']?>
+                                                            <?php
+                                                            }
+                                                        }
+                                                    ?>
+                                                </td>
+                                                <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1"><a
+                                                        href="action/invoice.php?orderid=<?= $item['id']?>&userid=<?= $id?>"
+                                                        target="_blank"><i
+                                                            class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a>
+                                                </td>
+                                                <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1"><a
+                                                        href="action/smallinvoice.php?cartId=<?= $item['id']?>&orderid=<?= $idorder?>&userid=<?= $item['user_id']?>"
+                                                        target="_blank"><i
+                                                            class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a>
+                                                </td>
+                                            </tr>
+                                            <?php
+                                            }
+                                       }
+                                    ?>
                                 </tbody>
                             </table>
                         </form>
@@ -391,23 +395,15 @@
 
                                     $
                                     <?php
-                                    $price = getPriceCart($item['id'],$id);
-                                    if($price->num_rows > 0){
-                                        foreach($price as $num){
-                                        $idorder = $num['id'];
-                                            $shipping = getMenuwithID("shipping",$num['shipping_id']);
-                                            $total = 0;
-                                            if($shipping->num_rows > 0){
-                                            foreach($shipping as $value){
-                                            $total = $value['shipping_price'] + $num['product_price'];
-                                            ?>
-                                            <?= $total ?> 
-                                            <?php
-                                            }
-                                            }
+                                     $data = getPriceOrders($id);
+                                     $total = 0;
+                                    if($data->num_rows > 0){
+                                        foreach($data as $price){
+                                            $total += $price['total_price'];
+                                            echo $total;
                                         }
-                                        }
-                                        ?>
+                                    }
+                                    ?>
                                 </p>
                             </div>
                         </div>
@@ -469,11 +465,11 @@
                                             if($price->num_rows > 0){
                                                 foreach($price as $num){
                                                 $idorder = $num['id'];
-                                                 $shipping = getMenuwithID("shipping",$num['shipping_id']);
+                                                $shipping = getCartOrdersPrice($id,$num['id'],"orders");
                                                  $total = 0;
                                                  if($shipping->num_rows > 0){
                                                     foreach($shipping as $value){
-                                                    $total = $value['shipping_price'] + $num['product_price'];
+                                                    $total = $value['total_price'];
                                                     ?>
                                                     <?= $total ?> 
                                                     <?php
@@ -1313,10 +1309,6 @@
                                                         <div>
                                                             <h3 class="font-medium ${color1}">Pedding</h3>
                                                             <p class="text-sm text-gray-600 mt-1">We've received your order</p>
-                                                            <p class="text-xs text-gray-500 mt-1 flex items-center">
-                                                                <i class="far fa-clock mr-1.5"></i>
-                                                                June 15, 11:30 AM
-                                                            </p>
                                                         </div>
                                                     </div>
 
@@ -1331,10 +1323,6 @@
                                                         <div>
                                                             <h3 class="font-medium ${color2}">Processing</h3>
                                                             <p class="text-sm text-gray-600 mt-1">Items packaged and ready for shipment</p>
-                                                            <p class="text-xs text-gray-500 mt-1 flex items-center">
-                                                                <i class="far fa-clock mr-1.5"></i>
-                                                                June 16, 2:15 PM
-                                                            </p>
                                                         </div>
                                                     </div>
                                                     <!-- Step 4 -->
@@ -1346,10 +1334,6 @@
                                                         <div>
                                                             <h3 class="font-medium ${color3}">Delivered</h3>
                                                             <p class="text-sm text-gray-600 mt-1">Estimated delivery date</p>
-                                                            <p class="text-xs text-gray-500 mt-1 flex items-center">
-                                                                <i class="far fa-clock mr-1.5"></i>
-                                                                June 20, by end of day
-                                                            </p>
                                                         </div>
                                                     </div>
 

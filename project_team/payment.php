@@ -152,7 +152,7 @@ if($_SESSION['auth_user']){
                         <td class="py-4 px-4"><?= $product['product_name'] ?></td>
                         <!-- user_id -->
                         <input type="hidden" name="user_id" id= "user_id" value = "<?= $user_id?>">
-                        <input type="hidden" name="cart_id" id = "cart_id" value = "<?= $product['id']?>">
+                        <input type="text" name="cart_id" class = "cart_id" value = "<?= $product['id']?>">
                         <!-- end user_id and cart_id -->
                         <td class="py-4 px-4"><?= $product['product_qty'] ?></td>
                         <td class="py-4 px-4 text-right" >$<?= $product['product_price'] ?></td>
@@ -179,7 +179,7 @@ if($_SESSION['auth_user']){
                          $get_cart = getProductUser("cart",$user_id);
                          if(mysqli_num_rows($get_cart) > 0){
                           foreach($get_cart as $cart){
-                            $itemTotal = $cart['product_price'] * $cart['product_qty'];
+                            $itemTotal += $cart['product_price'];
                             $shipping_id = $cart['shipping_id'];
                           }
                           ?>
@@ -191,7 +191,7 @@ if($_SESSION['auth_user']){
                     <p class="font-semibold text-gray-900">
                       <?php
                         $shipping = getShipping($shipping_id);
-                        if($shipping->num_rows > 0){
+                        if($shipping->num_rows > 0){  
                           $price = $shipping->fetch_assoc();
                           ?>
                           $<?= $price['shipping_price'] ?>
@@ -235,7 +235,7 @@ if($_SESSION['auth_user']){
               
                 <!-- Checkout Button -->
                 <div class="mt-6 text-center text-sm"  >
-                  <button id = "checkout" data-total = "<?= $finalTotal ?>" data-modal-target="qrCodeModal" data-modal-toggle="qrCodeModal" type = "button" class="w-full hidden py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 "  >
+                  <button id = "checkout" data-total = "<?= $finalTotal ?>" data-modal-target="qrCodeModal" data-modal-toggle="qrCodeModal" type = "button" class="w-full py-3 px-5 bg-blue-500 text-white font-semibold rounded-lg hover:bg-orange-600 focus:outline-none focus:ring-2 hidden focus:ring-orange-400 "  >
                     Proceed to Checkout
                   </button>
                 </div>

@@ -68,9 +68,26 @@
         return $query_run = mysqli_query($conn,$product);
     }
 
+    function getPriceOrders1($id){
+        global $conn;
+        $product = "SELECT * FROM orders WHERE id = $id AND status IN (1,2)";
+        return $product1 = mysqli_query($conn,$product);
+    }
+
+
     function getPrice($id,$userid){
         global $conn;
         $product = "SELECT * FROM orders WHERE cart_id = $id AND user_id = $userid";
+        return $product1 = mysqli_query($conn,$product);
+    }
+     function getCartOrdersPrice($id,$cartid,$table){
+        global $conn;
+        $product = "SELECT * FROM $table WHERE user_id = $id AND cart_id = $cartid";
+        return $product1 = mysqli_query($conn,$product);
+    }
+     function getPriceOrders($userid){
+        global $conn;
+        $product = "SELECT * FROM orders WHERE user_id = $userid AND (status = 1 OR status = 2)";
         return $product1 = mysqli_query($conn,$product);
     }
     function getPriceCart($id,$userid){
@@ -100,7 +117,7 @@
     }
     function getProductUser($table,$id){
         global $conn;
-        $product = "SELECT * FROM $table WHERE user_id = $id AND status = 1 ORDER BY id DESC";
+        $product = "SELECT * FROM $table WHERE user_id = $id AND status = 1";
         return $product_run = mysqli_query($conn,$product);
     }
     function getShipping1($id){
@@ -137,6 +154,11 @@
                 return $result['count'];
         }
         return 0;
+    }
+    function getOrders1($userId,$orderId){
+        global $conn;
+        $product = "SELECT * FROM orders WHERE user_id = $userId AND id = $orderId";
+        return $product1 = mysqli_query($conn,$product);
     }
     function getCartOrders($userId,$cartId,$orderId){
         global $conn;
@@ -205,6 +227,19 @@
         $menu = "SELECT * FROM $table WHERE $select = $id";
         return $menu1 = mysqli_query($conn,$menu);
     }
+
+     function getDataByUsers($table,$id,$status,$cartid){
+        global $conn;
+        $menu = "SELECT * FROM $table WHERE user_id = $id AND status = $status AND id = $cartid";
+        return $menu1 = mysqli_query($conn,$menu);
+    }
+
+    function getTableByUsers($id){
+        global $conn;
+        $menu = "SELECT * FROM orders WHERE user_id = $id AND status IN (1, 2)";
+        return $menu1 = mysqli_query($conn,$menu);
+    }
+
 
     function getShipping($id){
         global $conn;

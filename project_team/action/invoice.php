@@ -4,26 +4,25 @@
     include('../config/dbcon.php');
     include('../function/userfunction.php');
 
-    if(isset($_GET['cartId']) || isset($_GET['orderid']) || isset($_GET['userid'])){
+    if(isset($_GET['orderid']) || isset($_GET['userid'])){
 
-        $cartId = $_GET['cartId'];
         $orderId = $_GET['orderid'];
         $userId = $_GET['userid'];
 
         // body
-        $order = getCartOrders($userId,$cartId,$orderId);
+        $order = getOrders1($userId,$orderId);
 
         if($order->num_rows > 0){
             foreach($order as $data){
 
                 $numId = $data['id'];
-                $name = $data['product_name'];
+                $name = $data['product_name'] ?? "Hello";
                 $firstName = $data['first_name'];
                 $lastName = $data['last_name'];
                 $phoneNumber = $data['phone_number'];
-                $date = $data['created_at'];
-                $qty = $data['product_qty'];
-                $productPrice = $data['product_price'];
+                $date = $data['created_at'] ?? 1;
+                $qty = $data['product_qty'] ?? 1;
+                $productPrice = $data['product_price'] ?? 1;
                 $city = $data['city'];
                 $province = $data['province'];
                 $shippingValue = 0;
@@ -37,19 +36,14 @@
                     $methodPayment = 'On Delivery';
                 }
 
-                $shipping = getShipping1($data['shipping_id']);
-                if($shipping->num_rows > 0){
-                    foreach($shipping as $num){
-                        $shippingValue = $num['shipping_price'];
-                    }
-                }
+
                 $pdf = new FPDF("P","mm","A4");
 
                 $pdf->AddPage();
 
                 $pdf->SetFont("Arial","B",16);
 
-                $pdf->Image('../uploads/default/default1.jpg',15,10,15,15);
+                $pdf->Image('../uploads/logo/logo-removebg-preview.png',15,10,15,15);
                 $pdf->Cell(65,8,"",0,0);
                 $pdf->Cell(59,5,"En Lin Smart Phone",0,0);
                 $pdf->Cell(59,8,"",0,1);
@@ -138,7 +132,7 @@
 
                 $pdf->SetFont("Arial","B",9);
                 $pdf->Cell(96,0,"",0,0);
-                $pdf->Cell(59,-18,"Status",0,0);    
+                $pdf->Cell(59,-18,"Status Payment",0,0);    
                 $pdf->Cell(59,0,"",0,1);
 
                 $pdf->SetFont("Arial","",9);
@@ -151,22 +145,71 @@
                 $pdf->SetDrawColor(50,55,57);
                 $pdf->Cell(5);
                 $pdf->Cell(30,6,'ID',1,0,'C');
-                $pdf->Cell(30,6,'Shipping',1,0,'C');
+                $pdf->Cell(30,6,'Name',1,0,'C');
                 $pdf->Cell(30,6,'Quantity',1,0,'C');
                 $pdf->Cell(30,6,'Product Price',1,0,'C');
                 $pdf->Cell(30,6,'Payment Method',1,0,'C');
                 $pdf->Cell(30,6,'Total',1,1,'C');
 
-                $pdf->SetFont("Arial","",9);
-                $pdf->Cell(5);
-                $pdf->Cell(30,6,$numId,1,0,'L');
-                $pdf->Cell(30,6,$shippingValue,1,0,'L');
-                $pdf->Cell(30,6,$qty,1,0,'R');
-                $pdf->Cell(30,6,'$' . $productPrice,1,0,'R');
-                $pdf->Cell(30,6,$methodPayment,1,0,'R');
-                $pdf->Cell(30,6,'$' . $totalPrice,1,1,'R');
+                ?>
+
+                <?php
+                    $shippingValue = 0;
+                    $price = 0;
+                    $totalSubPrice = 0;
+
+                    $cart_arr = $data['cart_id'];
+                    $cartiddata = explode(",",$cart_arr);
+                    foreach($cartiddata as $num){
+                    $data = getDataByUsers("cart",$userId,0,$num);
+                    if($data->num_rows > 0){
+                    foreach($data as $data1){
+                    $id = $data1['id'];
+                    $name = $data1['product_name'];
+                    $price += $data1['product_price'];
+                    $productPrice = $data1['product_price'];
+                    $shipping = getShipping1($data1['shipping_id']);
+                    if($shipping->num_rows > 0){
+                        foreach($shipping as $num){
+                            $shippingValue = $num['shipping_price'];
+                            $totalSubPrice = $price + $shippingValue;
+                        }
+                    }
+                    $pdf->SetFont("Arial","",9);
+                    $pdf->Cell(5);
+                    $pdf->Cell(30,6,$id,1,0,'L');
+                    $pdf->Cell(30,6,$name,1,0,'L');
+                    $pdf->Cell(30,6,$qty,1,0,'R');
+                    $pdf->Cell(30,6,'$' . $productPrice,1,0,'R');
+                    $pdf->Cell(30,6,$methodPayment,1,0,'C');
+                    $pdf->Cell(30,6,'$' . $productPrice,1,1,'R');
+                    }
+                    }
+                }
+                
+                ?>
+
+                <?php
 
                 // 
+                
+
+                $pdf->SetFont("Arial","B",9);
+                $pdf->Cell(125,6,'',0,0);
+                $pdf->Cell(30,6,"Shipping",0,0,'C');
+                $pdf->Cell(30,6,'$' . $shippingValue,1,1,'R');
+
+                if($totalPrice == $totalSubPrice){
+                    $discount = 0;
+                }else{
+                    $discount = $totalSubPrice - $totalPrice;
+                }
+
+                $pdf->SetFont("Arial","B",9);
+                $pdf->Cell(125,6,'',0,0);
+                $pdf->Cell(30,6,"Discount",0,0,'C');
+                $pdf->Cell(30,6,'$' . $discount,1,1,'R');
+                
                 $pdf->SetFont("Arial","B",9);
                 $pdf->Cell(125,6,'',0,0);
                 $pdf->Cell(30,6,"Subtotal",0,0,'C');

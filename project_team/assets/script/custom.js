@@ -16,9 +16,13 @@ $(document).ready(function(){
         });
     });
     $(".shipping-radio").on('change', function () {
+
         const value = $(this).val();
-        const id  = $("#cartId").val();
-        $.ajax({
+
+        $(".cart-id-hidden").each(function(){
+            let id = $(this).val();
+
+            $.ajax({
             method:"POST",
             url: "function/code.php",
             data: {
@@ -30,6 +34,8 @@ $(document).ready(function(){
                 location.reload();
             }
         });
+        });
     });
+        
     
 });

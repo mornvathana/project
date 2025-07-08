@@ -32,8 +32,16 @@
                 if($shipping->num_rows > 0){
                     foreach($shipping as $num){
                         $shippingValue = $num['shipping_price'];
+                        $totalSubPrice = $shippingValue + $productPrice;
                     }
                 }
+
+                if($totalPrice == $totalSubPrice){
+                    $discount = 0;
+                }else{
+                    $discount = $totalSubPrice - $totalPrice;
+                }
+
                 $pdf = new FPDF("P","mm",array(80,150));
 
                 $pdf->SetAutoPageBreak(false);
@@ -217,7 +225,7 @@
 
                 $pdf->SetFont("Arial","",7);
                 $pdf->Cell(55,1,"",0,0);
-                $pdf->Cell(59,142,"$0",0,0);
+                $pdf->Cell(59,142,'$' . $discount,0,0);
                 $pdf->Cell(59,1,"",0,1);
 
                 $pdf->SetFont("Arial","",7);

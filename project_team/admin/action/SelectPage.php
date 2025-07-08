@@ -5,6 +5,16 @@
     $page = $_POST['page'];
     $limit = 10;
     $totalPage = ($page -1 ) * $limit; 
+    $filterData = $_POST['filterData'];
+    $orderBy = '';
+
+    if($filterData == 'asc'){
+        $orderBy = "ORDER BY name ASC";
+    }else if($filterData == 'desc'){
+        $orderBy = "ORDER BY name DESC";
+    }else{
+        $orderBy = "ORDER BY id DESC";
+    }
 
     // get total page 
     $sqlTotal = "SELECT COUNT(*) as Total FROM brands";
@@ -12,7 +22,7 @@
     $rowTotal = $resTotal->fetch_array();
     $total = $rowTotal['0'];
 
-    $stmt = $conn->prepare("SELECT * FROM brands LIMIT ?,?");
+    $stmt = $conn->prepare("SELECT * FROM brands $orderBy LIMIT ?,?");
     $stmt->bind_param("ii", $totalPage, $limit);
     $data = array();
     if($stmt->execute()){

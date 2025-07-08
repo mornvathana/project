@@ -4,14 +4,21 @@
         let limit = 10;
         let startPage = $("#startPage");
         let totalPage = $("#totalPage");
+        let totalProduct = $("#totalProduct");
         let activeSection = "orders";
+        let value = "#orders";
 
-        $("ul.flex > li").click(function(){
+        function buttonAction(value){
             $("ul.flex > li a").removeClass("border-b-[2px] border-blue-500");
             $("ul.flex > li a span:first-child").removeClass("text-blue-500");
-            // add class to click button 
-            $(this).find("a").addClass("border-b-[2px] border-blue-500");
-            $(this).find("span:first-child").addClass("text-blue-500");
+
+            $(value).find("a").addClass("border-b-[2px] border-blue-500");
+            $(value).find("span:first-child").addClass("text-blue-500")
+        }
+
+        $("ul.flex > li").click(function(){
+            value = "#" + $(this).attr("id");
+            buttonAction(value);
         });
         
         $("#page_num").change(function(){
@@ -19,6 +26,7 @@
             currentPage = 1;
             startPage.text(currentPage);
             selectPage();
+          
         });
 
 
@@ -27,16 +35,20 @@
         if(currentPage < totalPageValue){
             currentPage += 1;
             startPage.text(currentPage);
+            buttonAction(value);
             selectPage();
+          
         }
             
         });
+        
 
         $("#back_btn").click(function(){
             if(currentPage > 1){
                 currentPage -= 1;
                 startPage.text(currentPage);
                 selectPage();
+              
             }
             
         });
@@ -69,8 +81,11 @@
             $("#orders").click(function () {
                activeSection = "orders";
                currentPage = 1;
+               value = "#orders";
                $("#startPage").text(currentPage);
                order(currentPage);
+             
+               
             });
             
             order(currentPage);
@@ -78,8 +93,11 @@
             $("#payments").click(function () {
                activeSection = "payment";
                currentPage = 1;
+               value = "#payments";
+               buttonAction
                $("#startPage").text(currentPage);
                payment(currentPage);
+             
             });
 
             $("#products").click(function () {
@@ -87,6 +105,7 @@
                 currentPage = 1;
                 $("#startPage").text(currentPage);
                 product(currentPage);
+              
             });
 
             function order(page){
@@ -120,7 +139,7 @@
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${item.id}</td>
                                     <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center">${item.firstName} ${item.lastName}</td>
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${formatDate(item.date)}</td>
-                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">$ ${item.total}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">$ ${item.totalprice}</td>
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">
                                         ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 3 ? '<span class="text-green-500">Success</span>' : '<span class="text-blue-500">Pedding</span>'}
                                     </td>
@@ -169,7 +188,7 @@
                                 txt += `<tr class="border-b border-gray-200">
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">${item.id}</td>
                                     <td class="text-[11px] md:text-[13px] py-1 flex justify-center items-center">${item.firstName} ${item.lastName}</td>
-                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">$ ${item.total}</td>
+                                    <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">$ ${item.totalprice}</td>
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2">
                                         ${item.status == 1 ? '<span class="text-red-500">Pedding</span>' : item.status == 3 ? '<span class="text-green-500">Success</span>' : '<span class="text-blue-500">Pedding</span>'}
                                     </td>
@@ -221,7 +240,7 @@
                                     <td class="text-[11px] text-[#3a3f40] md:text-[13px] py-2"><span class = 'text-blue-500'>${item.user_id}</span></td>
                                 </tr>`;
                             }
-                            $("#totalProducts").text(data[0]['total']);
+                             $("#totalProduct").text(data[0]['total']);
                             totalPage.text(Math.ceil( data[0]['total'] / limit));
                             display.html(head + txt);
                         }
