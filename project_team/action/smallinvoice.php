@@ -4,43 +4,27 @@
     include('../config/dbcon.php');
     include('../function/userfunction.php');
 
-    if(isset($_GET['cartId']) || isset($_GET['orderid']) || isset($_GET['userid'])){
+    if(isset($_GET['orderid']) || isset($_GET['userid'])){
 
-        $cartId = $_GET['cartId'];
         $orderId = $_GET['orderid'];
         $userId = $_GET['userid'];
 
         // body
-        $order = getCartOrders($userId,$cartId,$orderId);
+         $order = getOrders1($userId,$orderId);
 
         if($order->num_rows > 0){
             foreach($order as $data){
 
                 $numId = $data['id'];
-                $name = $data['product_name'];
                 $firstName = $data['first_name'];
                 $lastName = $data['last_name'];
                 $phoneNumber = $data['phone_number'];
                 $date = $data['created_at'];
-                $qty = $data['product_qty'];
-                $productPrice = $data['product_price'];
                 $city = $data['city'];
                 $province = $data['province'];
                 $shippingValue = 0;
                 $totalPrice = $data['total_price'];
-                $shipping = getShipping1($data['shipping_id']);
-                if($shipping->num_rows > 0){
-                    foreach($shipping as $num){
-                        $shippingValue = $num['shipping_price'];
-                        $totalSubPrice = $shippingValue + $productPrice;
-                    }
-                }
 
-                if($totalPrice == $totalSubPrice){
-                    $discount = 0;
-                }else{
-                    $discount = $totalSubPrice - $totalPrice;
-                }
 
                 $pdf = new FPDF("P","mm",array(80,150));
 
@@ -159,7 +143,7 @@
 
                 $pdf->SetFont("Arial","B",6);
                 $pdf->Cell(40,0,"",0,0);
-                $pdf->Cell(59,37,"Shipping",0,0);
+                $pdf->Cell(59,37,"Product Price",0,0);
                 $pdf->Cell(59,0,"",0,1);
 
                 $pdf->SetFont("Arial","B",6);
@@ -170,27 +154,64 @@
                 $pdf->SetFillColor(50,55,57);
                 $pdf->Rect(0,52,90,0,'F');
 
-                $pdf->SetFont("Arial","",0);
-                $pdf->Cell(-3,1,"",0,0);
-                $pdf->Cell(59,46,$name,0,0);
-                $pdf->Cell(59,1,"",0,1);
+                ?>
+                 <?php
+                    $shippingValue = 0;
+                    $price = 0;
+                    $totalSubPrice = 0;
+                    $totalProductPrice = 0;
+                    $finalTotalProuctPrice = 0;
+                    $finalTotalProuctPrice1 = 0;
 
-                $pdf->SetFont("Arial","",0);
-                $pdf->Cell(24,1,"",0,0);
-                $pdf->Cell(59,44,$qty,0,0);
-                $pdf->Cell(59,1,"",0,1);
+                    $cart_arr = $data['cart_id'];
+                    $cartiddata = explode(",",$cart_arr);
+                    foreach($cartiddata as $num){
+                    $data = getDataByUsers("cart",$userId,0,$num);
+                    if($data->num_rows > 0){
+                        foreach($data as $data1){
+                        $id = $data1['id'];
+                        $name = $data1['product_name'];
+                        $price += $data1['product_price'];
+                        $productPrice = $data1['product_price'];
+                        $productqty = $data1['product_qty'];
+                        $totalProductPrice = $data1['product_price'] * $data1['product_qty'];
+                        $finalTotalProuctPrice += $totalProductPrice;
+                        $shipping = getShipping1($data1['shipping_id']);
+                        if($shipping->num_rows > 0){
+                            foreach($shipping as $num){
+                                $shippingValue = $num['shipping_price'];
+                                $totalSubPrice = $price + $shippingValue;
+                                $finalTotalProuctPrice1 = $finalTotalProuctPrice +  $shippingValue;
 
-                $pdf->SetFont("Arial","",0);
-                $pdf->Cell(44,1,"",0,0);
-                $pdf->Cell(59,42,'$' . $shippingValue,0,0);
-                $pdf->Cell(59,1,"",0,1);
+                            }
+                        }
+                        $pdf->SetFont("Arial","",0);
+                        $pdf->Cell(-3,1,"",0,0);
+                        $pdf->Cell(59,46,$name,0,0);
+                        $pdf->Cell(59,1,"",0,1);
 
-                $pdf->SetFont("Arial","",0);
-                $pdf->Cell(59,1,"",0,0);
-                $pdf->Cell(59,40,'$' . $totalPrice,0,0);
-                $pdf->Cell(59,1,"",0,1);
-                $pdf->SetFillColor(50,55,57);
-                $pdf->Rect(0,100,80,0,'F');
+                        $pdf->SetFont("Arial","",0);
+                        $pdf->Cell(24,1,"",0,0);
+                        $pdf->Cell(59,44,$productqty,0,0);
+                        $pdf->Cell(59,1,"",0,1);
+
+                        $pdf->SetFont("Arial","",0);
+                        $pdf->Cell(44,1,"",0,0);
+                        $pdf->Cell(59,42,'$' . $productPrice,0,0);
+                        $pdf->Cell(59,1,"",0,1);
+
+                        $pdf->SetFont("Arial","",0);
+                        $pdf->Cell(59,1,"",0,0);
+                        $pdf->Cell(59,40,'$' . $totalProductPrice,0,0);
+                        $pdf->Cell(59,1,"",0,1);
+                        $pdf->SetFillColor(50,55,57);   
+                        $pdf->Rect(0,100,80,0,'F');
+                        }
+                    }
+                }
+                ?>
+                <?php
+
                 // end body
                 $pdf->SetFont("Arial","",6);
                 $pdf->Cell(-3,0,"",0,0);
@@ -199,13 +220,13 @@
 
                 $pdf->SetFont("Arial","",7);
                 $pdf->Cell(40,1,"",0,0);
-                $pdf->Cell(59,135,"Item price:",0,0);
+                $pdf->Cell(59,135,"Total price:",0,0);
                 $pdf->Cell(59,1,"",0,1);
                 
 
                 $pdf->SetFont("Arial","",7);
                 $pdf->Cell(55,1,"",0,0);
-                $pdf->Cell(59,132,'$' . $productPrice,0,0);
+                $pdf->Cell(59,132,'$' . $finalTotalProuctPrice,0,0);
                 $pdf->Cell(59,1,"",0,1);
 
                 $pdf->SetFont("Arial","",7);
@@ -222,6 +243,12 @@
                 $pdf->Cell(40,1,"",0,0);
                 $pdf->Cell(59,145,"Discount:",0,0);
                 $pdf->Cell(59,1,"",0,1);
+
+                if($totalPrice == $finalTotalProuctPrice1){
+                    $discount = 0;
+                }else{
+                    $discount = $totalSubPrice - $totalPrice;
+                }
 
                 $pdf->SetFont("Arial","",7);
                 $pdf->Cell(55,1,"",0,0);

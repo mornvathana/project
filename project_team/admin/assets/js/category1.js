@@ -3,13 +3,21 @@
         let limit = 10;
         let startPage = $("#startPage");
         let totalPage = $("#totalPage");
+        let search = "";
+
+        // for search 
+        $(document).on("keyup","#search",function(){
+            let value = $(this).val();
+            search = value;
+            filter(currentPage,search)
+        });
 
         $("#page_num").change(function(){
             limit = parseInt($(this).val());
             currentPage = 1;
             startPage.text(currentPage);
             load(currentPage);
-            filter(currentPage);
+            filter(currentPage,search);
         });
 
 
@@ -18,7 +26,7 @@
             if(currentPage < totalPageValue){
                 currentPage += 1;
                 load(currentPage);
-                filter(currentPage);
+                filter(currentPage,search);
                 startPage.text(currentPage);
             }
             
@@ -28,7 +36,7 @@
             if(currentPage > 1){
                 currentPage -= 1;
                 load(currentPage);
-                filter(currentPage);
+                filter(currentPage,search);
                 startPage.text(currentPage);
             }
             
@@ -36,10 +44,10 @@
 
             // start filter 
     $(document).on("change",".product-item-select",function(){
-       filter(currentPage);
+       filter(currentPage,search);
     });
 
-    function filter(page){
+    function filter(page,search){
         const display = $("#displayData");
         var product_item = $("#product_item").val();
         var category_item = $("#category_item").val();
@@ -52,6 +60,7 @@
                 "category_item": category_item,
                 "brand_item" : brand_item,
                 "page" : page,
+                "search": search,
                 "limit" : limit
             },
             dataType: "json",
@@ -69,10 +78,10 @@
                                     <p class = "text-[12px] text-[#515151]">
                                         ${item.brand}
                                     </p>
-                                    <p class = "text-[12px] text-[#515151]">${item.name}</p>
+                                    <p class = "text-[12px] text-[#515151]">${item.name.substring(0, 10)}...</p>
                                 </div>
                                 <div class=" w-full h-[50%] justify-center items-center flex">
-                                    <p class = "text-[12px] text-[#515151]">$ ${item.price}</p>
+                                    <p class = "text-[12px] text-[#515151]">$ ${item.sell}</p>
                                 </div>
                                 </div>
                                 <div class = " w-full h-[30%] flex justify-end items-center gap-2 text-sm ">
@@ -121,7 +130,7 @@
                                         <p class = "text-[12px] text-[#515151]">
                                             ${item.brand}
                                         </p>
-                                        <p class = "text-[12px] text-[#515151]">${item.name}</p>
+                                        <p class = "text-[12px] text-[#515151]">${item.name.substring(0,10)}...</p>
                                     </div>
                                     <div class=" w-full h-[50%] justify-center items-center flex">
                                         <p class = "text-[12px] text-[#515151]">$ ${item.price}</p>

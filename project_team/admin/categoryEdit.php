@@ -124,7 +124,7 @@ include("lang.php");
                                                 if($data->num_rows > 0){
                                                     foreach($data as $num){
                                                     ?>
-                                                    <div>
+                                                    <div id = "newoption">
                                                         <input type="checkbox" name = "option[]" value = "new" <?= $num['new_pd'] == 1 ? 'checked' : ''?>   id = "new" >
                                                         <label for="" class = "py-1 text-[13px]"><?php echo $text['newproduct']?></label>
                                                     </div>
@@ -223,6 +223,14 @@ include("lang.php");
         </script>
         <script>
         $(document).ready(function(){
+             $("#slug").change(function(){
+                let value = $(this).val();
+                if(value == '2nd Hand'){
+                    $("#newoption").addClass("hidden");
+                }else{
+                    $("#newoption").removeClass("hidden");
+                }
+            });
             // checked image 
             $("#checked").click(function(){
                 const id = $("#pdid").val();

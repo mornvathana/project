@@ -169,7 +169,18 @@
             <button class="shopping-cart text-[#144194] relative">
                 <a href="checkoutCart.php">
                     <i class="fa-solid fa-bag-shopping">
-                      <div class="cart-number bg-red-500 w-[20px] h-[20px] rounded-full absolute top-[-3px] left-3 text-white text-[15px] flex justify-center items-center p-2">1</div>
+                      <div class="cart-number bg-red-500 w-[20px] h-[20px] rounded-full absolute top-[-3px] left-3 text-white text-[15px] flex justify-center items-center p-2">
+                    <?php
+                    if(isset($_SESSION['auth_user'])){
+                        $userId =  $_SESSION['auth_user']['user_id'];
+                        $item = countStatusUser("cart","1",$userId);
+                        ?>
+                        <div class="cart-number bg-red-500 w-[20px] h-[20px] rounded-full absolute top-[-3px] left-3 text-white text-[15px] flex justify-center items-center p-2"><?= $item ?></div>
+                        <?php
+                    }
+                     
+                    ?>
+                    </div>
                     </i>
                 </a>
             </button>
@@ -224,7 +235,6 @@
                 }
             }
             ?>
-            <li><a href="contact.php"> Contact Us</a></li>
     </ul>
 </nav>
 

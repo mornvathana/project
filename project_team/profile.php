@@ -267,7 +267,7 @@
                                                             class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a>
                                                 </td>
                                                 <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1"><a
-                                                        href="action/smallinvoice.php?cartId=<?= $item['id']?>&orderid=<?= $idorder?>&userid=<?= $item['user_id']?>"
+                                                        href="action/smallinvoice.php?orderid=<?= $item['id']?>&userid=<?= $id?>"
                                                         target="_blank"><i
                                                             class="fas fa-download text-green-500 rounded-sm p-2 cursor-pointer bg-green-100"></i></a>
                                                 </td>
@@ -420,12 +420,12 @@
                         <h2 class="text-xl font-semibold text-gray-800 mb-6">Order Items</h2>
 
                         <div class="overflow-x-auto">
-                            <table class="min-w-full divide-y divide-gray-200">
+                            <table class="min-w-full divide-y divide-gray-200 text-center">
                                 <thead class="bg-gray-50">
                                     <tr>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                            Product</th>
+                                            #ID</th>
                                         <th scope="col"
                                             class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                             Total Price</th>
@@ -438,59 +438,54 @@
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white divide-y divide-gray-200">
-                                    <!-- Item 1 -->
-                                        <?php
-                                        $cart = getOrders($id);
-                                        if($cart->num_rows > 0){
-                                            foreach($cart as $item){
+                                    <?php
+                                       $orders =  getTableByUsers1($id);
+
+                                       if($orders->num_rows > 0){
+                                            foreach($orders as $item){
                                             ?>
-                                            <tr>
-                                             <td class="px-6 py-4 whitespace-nowrap">
-                                            <div class="flex items-center">
-                                                <div class="flex-shrink-0 h-16 w-16">
-                                                    <img class="h-16 w-16 rounded-md object-cover"
-                                                        src="uploads/category/<?= $item['product_image']?>"
-                                                        alt="">
-                                                </div>
-                                                    <div class="ml-4">
-                                                        <div class="text-sm font-medium text-gray-900"><?= $item['product_name']?></div>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                                                $
-                                            <?php
-                                            $idorder = 0;
-                                            $price = getPriceCart($item['id'],$id);
-                                            if($price->num_rows > 0){
-                                                foreach($price as $num){
-                                                $idorder = $num['id'];
-                                                $shipping = getCartOrdersPrice($id,$num['id'],"orders");
-                                                 $total = 0;
-                                                 if($shipping->num_rows > 0){
-                                                    foreach($shipping as $value){
-                                                    $total = $value['total_price'];
-                                                    ?>
-                                                    <?= $total ?> 
+                                                <tr class="border-b-2">
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <?= $item['id']?>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    $
                                                     <?php
-                                                    }
-                                                 }
-                                                }
-                                                }
-                                                ?>
-                                            </td>
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                                <?= $item['product_qty']?>
-                                            </td>
-                                            
-                                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                        $data = getPriceOrders2($item['id']);
+                                                        if($data->num_rows > 0){
+                                                            foreach($data as $value){
+                                                            ?>
+                                                            <?= $value['total_price']?>
+                                                            <?php
+                                                            }
+                                                        }
+                                                    ?>
+                                                </td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                                    <?php
+                                                        $total = 0;
+                                                        $cart_arr = $item['cart_id'];
+                                                        $cartiddata = explode(",",$cart_arr);
+
+                                                        foreach($cartiddata as $num){
+                                                           $data = getDataByUsers("cart",$id,0,$num);
+                                                           if($data->num_rows > 0){
+                                                            foreach($data as $qty){
+                                                                $total = $total + $qty['product_qty'];
+                                                            }
+                                                           }
+                                                        }
+                                                        echo $total;
+                                                    ?>
+                                                </td>
+                                                 <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                                 <button class="text-blue-600 hover:text-blue-900" data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" data-id = "<?= $item['id']?>" id = "viewdetail" type = "button">View Details</button>
                                             </td>
-                                        </tr>
+                                            </tr>
                                             <?php
                                             }
-                                        }
-                                        ?>
+                                       }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

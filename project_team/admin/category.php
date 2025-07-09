@@ -69,6 +69,7 @@ include("lang.php");
                          <div class = "w-full">
                             <label for="slug" class = "block py-1 text-[13px]">Slug</label>
                             <select id = "slug" name = "slug" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md">
+                            <option selected>Select Slug</option>
                             <?php
                                 $slug = getAll('product');
                                 if($slug->num_rows > 0){
@@ -94,7 +95,7 @@ include("lang.php");
                                 <input type="checkbox" name = "option[]" value = "used"   id = "used" >
                                 <label for="" class = "py-1 text-[13px]"><?php echo $text['usedproduct']?></label>
                             </div>
-                            <div>
+                            <div id = "newoption">
                                 <input type="checkbox" name = "option[]" value = "new"   id = "new" >
                                 <label for="" class = "py-1 text-[13px]"><?php echo $text['newproduct']?></label>
                             </div>
@@ -163,6 +164,14 @@ include("lang.php");
         </script>
          <script>
         $(document).ready(function(){
+            $("#slug").change(function(){
+                let value = $(this).val();
+                if(value == '2nd Hand'){
+                    $("#newoption").addClass("hidden");
+                }else{
+                    $("#newoption").removeClass("hidden");
+                }
+            });
             $("#profile_image").change(function(e){
                 var readerView = new FileReader();
                 readerView.onload = function(event){

@@ -389,6 +389,8 @@
                     didOpen: () => {
                         document.querySelector('.swal2-popup').style.width = '400px';
                     }
+                    }).then(() =>{
+                        window.location.reload();
                     });
 
 

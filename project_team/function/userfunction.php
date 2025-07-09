@@ -68,6 +68,12 @@
         return $query_run = mysqli_query($conn,$product);
     }
 
+    function getPriceOrders2($id){
+        global $conn;
+        $product = "SELECT * FROM orders WHERE id = $id AND status IN (1,2,3)";
+        return $product1 = mysqli_query($conn,$product);
+    }
+
     function getPriceOrders1($id){
         global $conn;
         $product = "SELECT * FROM orders WHERE id = $id AND status IN (1,2)";
@@ -231,6 +237,12 @@
      function getDataByUsers($table,$id,$status,$cartid){
         global $conn;
         $menu = "SELECT * FROM $table WHERE user_id = $id AND status = $status AND id = $cartid";
+        return $menu1 = mysqli_query($conn,$menu);
+    }
+
+    function getTableByUsers1($id){
+        global $conn;
+        $menu = "SELECT * FROM orders WHERE user_id = $id ";
         return $menu1 = mysqli_query($conn,$menu);
     }
 
