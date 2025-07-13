@@ -18,7 +18,6 @@
     $total_price = mysqli_real_escape_string($conn,$input_data['totalprice']);
     $scorecus = mysqli_real_escape_string($conn, $input_data['scorecus']);
     $discountcode = mysqli_real_escape_string($conn, $input_data['discount']);
-    $score_id = 1;
 
 
 
@@ -31,8 +30,8 @@
     // table orders
 
     if(!empty($cart_single_id)){
-        $insert = $conn->query( "INSERT INTO orders (user_id, cart_id,score_id, first_name, last_name, city, province, email, phone_number,delivery_option , total_price) 
-        VALUES ('$user_id', '$cart_single_id','$score_id', '$first_name', '$last_name', '$city', '$province', '$email', '$phone_number','$shipping', '$total_price')");
+        $insert = $conn->query( "INSERT INTO orders (user_id, cart_id, first_name, last_name, city, province, email, phone_number,delivery_option , total_price) 
+        VALUES ('$user_id', '$cart_single_id', '$first_name', '$last_name', '$city', '$province', '$email', '$phone_number','$shipping', '$total_price')");
         
         if(!$insert){
              echo json_encode(['status' => 'error', 'message' => 'Failed to save order: ' . mysqli_error($conn)]);
@@ -58,7 +57,7 @@
 
             if($score_cus){
 
-                $updateStatus = $conn->query("UPDATE discount SET status = 0 WHERE dis_code = '$discountcode'");
+                $updateStatus = $conn->query("UPDATE discount SET user_redeem = '$user_id' , status = 0 WHERE dis_code = '$discountcode'");
                 
             }
 
@@ -78,7 +77,7 @@
 
             if($score_cus){
 
-                $updateStatus = $conn->query("UPDATE discount SET status = 0 WHERE dis_code = '$discountcode'");
+                $updateStatus = $conn->query("UPDATE discount SET user_redeem = '$user_id' status = 0 WHERE dis_code = '$discountcode'");
 
             }
 

@@ -215,10 +215,9 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(formData)
                     })
-                    .then(response => response.text())
-                    .then(text => {
-                        const data = JSON.parse(text);
-                        value = data.order_id;
+                    .then(response => response.json())
+                    .then(data => {
+                        const value = data.order_id;
                         sendMessage(value);
                     })
                     .catch(error => {
