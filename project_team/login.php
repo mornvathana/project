@@ -1,5 +1,17 @@
 <?php 
 include('includes/header.php');
+require __DIR__ . "/vendor/autoload.php";
+
+$client = new Google\Client;
+
+$client->setClientId("825786283493-o10g62f6am36o0rqfktft33emrnfrash.apps.googleusercontent.com");
+$client->setClientSecret("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");
+$client->setRedirectUri("http://localhost:8080/project/project_team/redirect.php");
+
+$client->addScope("email");
+$client->addScope("profile");
+
+$url = $client->createAuthUrl();
 ?>
     <!-- start -->
     <div class="form-body py-[70px]">
@@ -36,7 +48,7 @@ include('includes/header.php');
                 <div class="line-form"></div>
 
                 <div class="media-options">
-                    <a href="#" class="field google p-3 space-x-3 rounded-[6px]">
+                    <a href="<?= $url ?>" class="field google p-3 space-x-3 rounded-[6px]">
                         <img src="https://th.bing.com/th/id/R.0fa3fe04edf6c0202970f2088edea9e7?rik=joOK76LOMJlBPw&riu=http%3a%2f%2fpluspng.com%2fimg-png%2fgoogle-logo-png-open-2000.png&ehk=0PJJlqaIxYmJ9eOIp9mYVPA4KwkGo5Zob552JPltDMw%3d&risl=&pid=ImgRaw&r=0" alt="" class="google-img">
                         <span>Login with Google</span>
                     </a>
