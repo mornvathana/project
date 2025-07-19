@@ -23,9 +23,9 @@ $barcodeURL = "https://barcode.tec-it.com/barcode.ashx?data=$barcodeData&code=$b
                         <li id="payments">
                             <a class="w-[100px] cursor-pointer font-medium text-[#646a7a] pl-2 pr-5 py-2 text-[10px] md:text-[12px] lg:text-[14px]"><span><?php echo $text['payment']?></span> <span id = "totalPayments"></span></a>
                         </li>
-                        <li id="products">
+                        <!-- <li id="products">
                             <a class="w-[100px] cursor-pointer font-medium text-[#646a7a] pl-2 pr-5 py-2 text-[10px] md:text-[12px] lg:text-[14px]"><span><?php echo $text['product']?></span> <span id = "totalProduct"></span></a>
-                        </li>
+                        </li> -->
                     </ul>
                 </div>
             </div>

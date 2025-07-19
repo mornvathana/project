@@ -10,16 +10,21 @@
     if ($order->num_rows > 0) {
         while($row = $order->fetch_array()){
                 $num = $row[2];
+                $cart = explode(",",$num)[0];
+                $numfirst = (int)$cart;
+
                 $user_id = $row[1];
-                $sql = $conn->query("SELECT * FROM cart WHERE id = $num AND status = 0 AND user_id = $user_id");
+                $sql = $conn->query("SELECT * FROM cart WHERE id = $numfirst AND status = 0 AND user_id = $user_id");
                 foreach($sql as $data){
                     $image = $data['product_image'];
                     $barcode = $data['barcode'];
+                    $productname = $data['product_name'];
                 }
             $Data[] = array(
                 "id" => $row[0],
                 "barcode" => $barcode,
-                "delivery" => $row[10],
+                "productname" => $productname,
+                "delivery" => $row[9],
                 "user_id" => $row[1],
                 "first" => $row[3],
                 "last" => $row[4],
@@ -27,10 +32,10 @@
                 "province" => $row[6],
                 "email" => $row[7],
                 "phone_number" => $row[8],
-                "total_price" => $row[9],
+                "totalprice" => $row[9],
                 "image" => $image,
-                "status" => $row[10],
-                "created_at" => $row[11],
+                "status" => $row[11],
+                "created_at" => $row[12],
             );
         }
         echo json_encode($Data);

@@ -38,6 +38,7 @@
             "status" => $item['status'],
         );
         echo json_encode($data);
+        
         }
     }else{
         echo $stmt->error;

@@ -95,18 +95,6 @@
             </div>
             </div>
             
-            <!-- Language Selector -->
-            <div class="relative inline-block text-left">
-            <!-- Language Selector Button -->
-            <button id="language-button" onclick="toggleLanguageMenu()" class="inline-flex items-center justify-center w-full text-sm font-medium text-gray-700 bg-white rounded-md hover:bg-gray-50">
-            <img src="https://flagcdn.com/w20/gb.png" alt="English" class="flag-icon mr-2">
-            ENG
-            <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
-            </svg>
-            </button>
-
-            </div>
 
             <button class="shopping-cart text-[#144194] text-xl relative">
                 <a href="checkoutCart.php"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">

@@ -3,6 +3,8 @@
         let totalPage = 10;
         let startPage = $("#startPage");
         let selectPage = 0;
+        let orderid = 0;
+        let optionvalue = '';
         const status = $("#category_status").val();
 
         startPage.text(currentPage);
@@ -81,10 +83,25 @@
                 });
            
         });
-        //    
+        // 
+        $(document).on("click","#product",function(){
+            optionvalue = "";
+            ordercheck(orderid);
+        });
+
+        $(document).on("click","#info",function(){
+            optionvalue = "info";
+            ordercheck(orderid);
+        });
+        
         $(document).on("click","#btn_verify", function(){
             let id = $(this).data("id");
-            const display = $("#displayDataStatus");
+            orderid = id;
+            ordercheck(orderid);
+        });
+
+        const ordercheck = (id) =>{
+             const display = $("#displayDataStatus");
             $.ajax({
                 method: "GET",
                 url: "action/orderGet.php",
@@ -93,16 +110,18 @@
                 },
                 dataType: "json",
                 success: function (data) {
+                    console.log(data);
                     if(data.length > 0){
                         let txt = "";
-                        for(i in data){
+                        for(i in data){ 
                             let item = data[i];
+                            if(optionvalue == 'info'){
                             txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto addClss overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                    <div class="relative p-4 w-[950px]  max-h-full">
+                                    <div class="relative p-4 w-[700px]  max-h-full">
                                         <!-- Modal content -->
                                         <div class="relative bg-[#fff] rounded-lg shadow-lg dark:bg-gray-700">
                                             <!-- Modal header -->
-                                            <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600 border-gray-200">
+                                            <div class="flex items-center justify-between p-4 md:p-3 border-b rounded-t dark:border-gray-600 border-gray-200">
                                                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
                                                     Report Sell
                                                 </h3>
@@ -114,71 +133,192 @@
                                                 </button>
                                             </div>
                                             <!-- Modal body -->
-                                            <form class="p-4 md:p-5 grid-cols-1 md:grid-cols-2 grid gap-4" >
-                                                <div class="flex-shrink-0">
-                                                    <img src="../uploads/category/${item.image}" alt="Product Image" class="w-[400px] h-[300px] object-cover rounded-lg border" />
+                                           <div class = "w-full h-[350px]">
+                                           <div class = "w-full h-[10%]  flex justify-between items-center">
+                                                <ul class = "flex">
+                                                    <li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "product">${item.productname}</li>
+                                                </ul>
+                                                 <ul class = "flex">
+                                                    <li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "info">Client info</li>
+                                                </ul>
+                                           </div>   
+                                           <div class = "w-full h-[90%] flex">
+                                           <div class = "w-[40%] h-full flex justify-center items-center ">
+                                           <img src = "../uploads/category/${item.image}" class = "w-[50%] h-[50%] object-cover rounded-md">
+                                           </div>
+                                           <div class = "w-[60%] h-full">
+                                           <div class = "w-[100%] h-[100%] flex justify-center items-center">
+                                                <div class="relative ">
+                                                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 flex rounded-md ">
+                                                        <tbody>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    Full Name
+                                                                </th>
+                                                            </tr>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    Address
+                                                                </th>
+                                                            </tr>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    Email
+                                                                </th>
+                                                            </tr>
+                                                            <tr class="bg-white dark:bg-gray-800">
+                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    Phone Number
+                                                                </th>
+                                                            </tr>
+                                                            <tr class="bg-white dark:bg-gray-800">
+                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    Created at
+                                                                </th>
+                                                            </tr>
+                                                        </tbody> 
+                                                        <tbody>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    ${item.first} ${item.last}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    ${item.city} city ${item.province} province
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="bg-white dark:bg-gray-800">
+                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
+                                                                  ${item.email}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
+                                                                ${item.phone_number}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    ${item.created_at}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
                                                 </div>
-                                                <div class=" mb-4 grid grid-cols-2 gap-5 ">
-                                                    <div class="col-span-1">
-                                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Barcode</label>
-                                                        <input type="hidden" name="id" id="pdid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.id}" readonly>
-                                                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.barcode}" readonly>
-                                                    </div>
-                                                    <div class="col-span-1">
-                                                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                                                        <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.first} ${item.last}" readonly>
-                                                    </div>
-                                                    <div class="col-span-2 sm:col-span-1">
-                                                        <label for="province" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                                        <input type="text" name="province" id="province" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.province}" readonly>
-                                                    </div>
-                                                     <div class="col-span-1">
-                                                        <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Delivery</label>
-                                                        <input type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.delivery}" readonly>
-                                                    </div>
-                                                    <div class="col-span-1">
-                                                        <label for="total_price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Contact</label>
-                                                        <input type="text" name="total_price" id="total_price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.total_price}" readonly>
-                                                    </div>
-                                                    <div class="col-span-2 sm:col-span-1">
-                                                        <label for="Model" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Province</label>
-                                                        <input type="text" name="Model" id="Model" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.province}" readonly>
-                                                    </div>
-                                                    <div class="col-span-2 sm:col-span-1">
-                                                        <label for="method_payment" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">City</label>
-                                                        <input type="text" name="method_payment" id="method_payment" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.city}" readonly>
-                                                    </div>
-                                                    <div class="col-span-2 sm:col-span-1">
-                                                        <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Discount</label>
-                                                        <input type="text" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.phone_number}" readonly>
-                                                    </div>
-                                                     <div class="col-span-2 sm:col-span-1">
-                                                        <label for="phone_number" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Discount</label>
-                                                        <input type="text" name="phone_number" id="phone_number" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.phone_number}" readonly>
-                                                    </div>
-                                                    <div class="col-span-2 sm:col-span-1">
-                                                        <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Status</label>
-                                                        <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                            <option value="1" ${item.status == 1 ? 'selected' : ''} >Pedding</option>
-                                                            <option value="2" ${item.status == 2 ? 'selected' : ''} >Processing</option>
-                                                            <option value="3" ${item.status == 3 ? 'selected' : ''} >Completed</option>
-                                                        </select>
-                                                    </div>
-                                                <div></div>
-                                                <button id = "btn_save"  type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-20 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                    Save
-                                                </button>
-                                                </div>
-                                            </form>
+                                           </div>
+                                           </div>
+                                           </div>
+                                           </div>
                                         </div>
                                     </div>
                                 </div> `;
+                            }else{
+                            txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto addClss overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                                    <div class="relative p-4 w-[700px]  max-h-full">
+                                        <!-- Modal content -->
+                                        <div class="relative bg-[#fff] rounded-lg shadow-lg dark:bg-gray-700">
+                                            <!-- Modal header -->
+                                            <div class="flex items-center justify-between p-4 md:p-3 border-b rounded-t dark:border-gray-600 border-gray-200">
+                                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                                    Report Sell
+                                                </h3>
+                                                <button type="button" id = "closeX" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
+                                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
+                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
+                                                    </svg>
+                                                    <span class="sr-only">Close modal</span>
+                                                </button>
+                                            </div>
+                                            <!-- Modal body -->
+                                           <div class = "w-full h-[350px]">
+                                           <div class = "w-full h-[10%]  flex justify-between items-center">
+                                                <ul class = "flex">
+                                                    <li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "product">${item.productname}</li>
+                                                </ul>
+                                                 <ul class = "flex">
+                                                    <li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "info">Client info</li>
+                                                </ul>
+                                           </div>   
+                                           <div class = "w-full h-[90%] flex">
+                                           <div class = "w-[40%] h-full flex justify-center items-center ">
+                                           <img src = "../uploads/category/${item.image}" class = "w-[50%] h-[50%] object-cover rounded-md">
+                                           </div>
+                                           <div class = "w-[60%] h-full">
+                                           <div class = "w-[100%] h-[100%] flex justify-center items-center">
+                                                <div class="relative overflow-x-auto">
+                                                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 flex rounded-md ">
+                                                        <tbody>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    Product Name
+                                                                </th>
+                                                            </tr>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    Barcode
+                                                                </th>
+                                                            </tr>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    Status
+                                                                </th>
+                                                            </tr>
+                                                            <tr class="bg-white dark:bg-gray-800">
+                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    Payment Method
+                                                                </th>
+                                                            </tr>
+                                                            <tr class="bg-white dark:bg-gray-800">
+                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    Delivery Method
+                                                                </th>
+                                                            </tr>
+                                                        </tbody> 
+                                                        <tbody>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    ${item.productname}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    ${item.barcode}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="bg-white dark:bg-gray-800">
+                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    ${item.status == 1 ? '<span class = "text-red-500">Pedding</span>' : item.status == 2 ? '<span class = "text-blue-500">Proccessing</span>' : item.status == 3 ? '<span class = "text-green-500">Completed</span>' : '<span class = "text-red-500">Unknown</span>'}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
+                                                                ${item.totalprice ? '<span class="text-green-500">Finished</span>' : '<span class="text-red-500">Undefined</span>'}
+                                                                </td>
+                                                            </tr>
+                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
+                                                                    ${item.delivery}
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                           </div>
+                                           </div>
+                                           </div>
+                                           </div>
+                                        </div>
+                                    </div>
+                                </div>`;
+                            }
                         }
                        display.html(txt);
                     }
                 }
             });
-        });
+        }
+
         $(document).on("click","#closeX",function(){
             $(".addClss").addClass("hidden");
             
@@ -257,7 +397,7 @@
                     display.html(`<span class="loader absolute left-[50%]"></span>`);
                 },
                 success: function (data) {
-                    if(data){
+                    if(data.length > 0){
                         let txt = "";
                         for(i in data){
                           let item = data[i];

@@ -34,9 +34,9 @@
                 "province" => $row[6],
                 "email" => $row[7],
                 "phone_number" => $row[8],
-                "total_price" => $row[9],
-                "status" => $row[10],
-                "created_at" => $row[11],
+                "total_price" => $row[10],
+                "status" => $row[11],
+                "created_at" => $row[12],
                 "total" => $total
             );
         }

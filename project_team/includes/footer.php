@@ -360,6 +360,7 @@
         var prod_price = $('#product_price').val();
         var prod_image = $('#product_image').val();
         var prod_barcode = $('#product_barcode').val();
+
         $.ajax({
             method:"POST",
             url: "function/code.php",

@@ -107,7 +107,7 @@ ob_end_flush();
                 <form action="">
                 <ul>
                     <li class="flex flex-col space-y-2 text-sm md:text-[17px] font-normal">
-                        <span class="font-semibold">Shipping:</span>
+                        <span class="font-semibold">Shipping <span class = "text-red-500 text-sm">(select shipping before continue)</span>:</span>
                         <div class="mt-5 text-sm space-y-3">
                         <?php
                             $current_shipping_id = $cart['shipping_id'];

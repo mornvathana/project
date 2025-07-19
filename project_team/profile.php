@@ -375,7 +375,18 @@
                     <div class="bg-white rounded-xl shadow-md p-6 mb-8">
                         <div class="flex flex-col md:flex-row justify-between items-center">
                             <div class="mb-4 md:mb-0 text-center md:text-left">
-                                <h2 class="text-xl font-semibold text-gray-800">Hea Oun Cambodia</h2>
+                                <h2 class="text-xl font-semibold text-gray-800">
+                                    <?php
+                                    $user = getById("users",$id);
+                                    if($user->num_rows > 0){
+                                        foreach($user as $name){
+                                        ?>
+                                        <?= $name['name']?>
+                                        <?php
+                                        }
+                                    }
+                                ?>
+                                </h2>
                                 <p class="text-gray-600">Items : (
                                 <?php
                                     $data = countCart("cart",$id);
@@ -397,12 +408,13 @@
                                     <?php
                                      $data = getPriceOrders($id);
                                      $total = 0;
-                                    if($data->num_rows > 0){
-                                        foreach($data as $price){
-                                            $total += $price['total_price'];
+                                        if($data->num_rows > 0){
+                                            foreach($data as $price){
+                                                $total += $price['total_price'];
+                                            }
                                             echo $total;
                                         }
-                                    }
+                                    
                                     ?>
                                 </p>
                             </div>
@@ -1229,6 +1241,7 @@
                 },
                 dataType: "json",
                 success: function (data) {
+
                     if(data.length > 0){
                         let txt = "";
                         let box1 = "";
