@@ -198,7 +198,7 @@
                                                             </tr>
                                                             <tr class="bg-white dark:bg-gray-800">
                                                                 <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    Created at
+                                                                    Status
                                                                 </th>
                                                             </tr>
                                                         </tbody> 
@@ -225,7 +225,7 @@
                                                             </tr>
                                                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                                                                 <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    ${item.created_at}
+                                                                
                                                                 </td>
                                                             </tr>
                                                         </tbody>
