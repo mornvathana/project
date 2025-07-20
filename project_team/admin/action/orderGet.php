@@ -11,10 +11,10 @@
         while($row = $order->fetch_array()){
                 $num = $row[2];
                 $cart = explode(",",$num)[0];
-                $numfirst = (int)$cart;
+                $numid = (int)$cart;
 
                 $user_id = $row[1];
-                $sql = $conn->query("SELECT * FROM cart WHERE id = $numfirst AND status = 0 AND user_id = $user_id");
+                $sql = $conn->query("SELECT * FROM cart WHERE id = $numid AND status = 0 AND user_id = $user_id");
                 foreach($sql as $data){
                     $image = $data['product_image'];
                     $barcode = $data['barcode'];
