@@ -4,6 +4,7 @@
         let startPage = $("#startPage");
         let selectPage = 0;
         let orderid = 0;
+        let title = '';
         let optionvalue = '';
         const status = $("#category_status").val();
 
@@ -86,36 +87,60 @@
         // 
         $(document).on("click","#product",function(){
             optionvalue = "";
-            ordercheck(orderid);
+            let name = $(this).text();
+            title = name;
+            ordercheck(orderid,title);
         });
 
         $(document).on("click","#info",function(){
             optionvalue = "info";
-            ordercheck(orderid);
+            ordercheck(orderid,title);
         });
         
         $(document).on("click","#btn_verify", function(){
             let id = $(this).data("id");
             orderid = id;
-            ordercheck(orderid);
+            ordercheck(orderid,title);
         });
 
-        const ordercheck = (id) =>{
+        const ordercheck = (id,title) =>{
              const display = $("#displayDataStatus");
             $.ajax({
-                method: "GET",
+                method: "POST",
                 url: "action/orderGet.php",
                 data: {
                     "id" : id, 
+                    "title" : title,
                 },
                 dataType: "json",
                 success: function (data) {
-                    console.log(data);
                     if(data.length > 0){
                         let txt = "";
                         for(i in data){ 
                             let item = data[i];
+                            let product1 = item.productname1;
+
+                            let name = item.productname; 
+                            let lastName = '';
+
+                            if (Array.isArray(name)) {
+                                lastName = name[name.length - 1];
+                            }else{
+                                lastName = name;
+                            } 
+
+                            let barcode = item.barcode;
+                            let status  = item.status;
+                            let totalprice = item.totalprice;
+                            let delivery = item.delivery;
+                            let image = item.image;
                             if(optionvalue == 'info'){
+                            
+                            let itemmenu = "";
+                            for(let i in product1){
+                                itemmenu += `<li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "product">${product1[i]}</li>`;
+                            }
+                            
                             txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto addClss overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                     <div class="relative p-4 w-[700px]  max-h-full">
                                         <!-- Modal content -->
@@ -136,7 +161,7 @@
                                            <div class = "w-full h-[350px]">
                                            <div class = "w-full h-[10%]  flex justify-between items-center">
                                                 <ul class = "flex">
-                                                    <li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "product">${item.productname}</li>
+                                                ${itemmenu}
                                                 </ul>
                                                  <ul class = "flex">
                                                     <li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "info">Client info</li>
@@ -214,6 +239,42 @@
                                     </div>
                                 </div> `;
                             }else{
+
+                            let itemmenu = "";
+                            for(let i in product1){
+                                itemmenu += `<li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "product">${product1[i]}</li>`;
+                            }
+                            
+                            let item = "";
+                            for(let i in name){
+                                item += `${name[i]}`;
+                            }
+
+                            let barcode1 = "";
+                            for(let i in barcode){
+                                barcode1 += `${barcode[i]}`;
+                            }
+
+                            let status1 = "";
+                            for(let i in status){
+                                status1 += `${status[i]}`;
+                            }
+
+                            let totalprice1 = "";
+                            for(let i in totalprice){
+                                totalprice1 += `${totalprice[i]}`;
+                            }
+
+                            let delivery1 = "";
+                            for(let i in delivery){
+                                delivery1 += `${delivery[i]}`;
+                            }
+
+                            let image1 = "";
+                            for(let i in image){
+                                image1 += `${image[i]}`;
+                            }
+
                             txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto addClss overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
                                     <div class="relative p-4 w-[700px]  max-h-full">
                                         <!-- Modal content -->
@@ -234,7 +295,7 @@
                                            <div class = "w-full h-[350px]">
                                            <div class = "w-full h-[10%]  flex justify-between items-center">
                                                 <ul class = "flex">
-                                                    <li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "product">${item.productname}</li>
+                                                ${itemmenu}
                                                 </ul>
                                                  <ul class = "flex">
                                                     <li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "info">Client info</li>
@@ -242,7 +303,7 @@
                                            </div>   
                                            <div class = "w-full h-[90%] flex">
                                            <div class = "w-[40%] h-full flex justify-center items-center ">
-                                           <img src = "../uploads/category/${item.image}" class = "w-[50%] h-[50%] object-cover rounded-md">
+                                           <img src = "../uploads/category/${image1}" class = "w-[50%] h-[50%] object-cover rounded-md">
                                            </div>
                                            <div class = "w-[60%] h-full">
                                            <div class = "w-[100%] h-[100%] flex justify-center items-center">
@@ -278,27 +339,27 @@
                                                         <tbody>
                                                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                                                                 <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    ${item.productname}
+                                                                    ${lastName}
                                                                 </td>
                                                             </tr>
                                                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                                                                 <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    ${item.barcode}
+                                                                    ${barcode1}
                                                                 </td>
                                                             </tr>
                                                             <tr class="bg-white dark:bg-gray-800">
                                                                 <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    ${item.status == 1 ? '<span class = "text-red-500">Pedding</span>' : item.status == 2 ? '<span class = "text-blue-500">Proccessing</span>' : item.status == 3 ? '<span class = "text-green-500">Completed</span>' : '<span class = "text-red-500">Unknown</span>'}
+                                                                    ${status1 == 1 ? '<span class = "text-red-500">Pedding</span>' : status1 == 2 ? '<span class = "text-blue-500">Proccessing</span>' : status1 == 3 ? '<span class = "text-green-500">Completed</span>' : '<span class = "text-red-500">Unknown</span>'}
                                                                 </td>
                                                             </tr>
                                                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                                                                 <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                ${item.totalprice ? '<span class="text-green-500">Finished</span>' : '<span class="text-red-500">Undefined</span>'}
+                                                                ${totalprice1 ? '<span class="text-green-500">Finished</span>' : '<span class="text-red-500">Undefined</span>'}
                                                                 </td>
                                                             </tr>
                                                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                                                                 <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    ${item.delivery}
+                                                                    ${delivery1}
                                                                 </td>
                                                             </tr>
                                                         </tbody>
