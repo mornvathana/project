@@ -177,7 +177,7 @@
         }
       },
        title: {
-        text: 'ទំនិញសរុប'
+        text: 'Total Product'
       },
       series: [{
         name: 'Medals',

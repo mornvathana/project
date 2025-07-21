@@ -165,6 +165,9 @@ include("lang.php");
                                             <div class="w-[90%] gap-2 grid grid-cols-3 h-[100%] rounded-md">
                                                 <?php
                                                     $image_string = $item['demo_image'];
+                                                    ?>
+                                                    <input type = "hidden" name = "old_demo_image" value = "<?= $image_string?>">
+                                                    <?php
                                                     $image_array = explode(',', $image_string);
                                                     foreach($image_array as $img){
                                                     ?>

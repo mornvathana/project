@@ -87,9 +87,9 @@ include("lang.php");
                 <form class="max-w-sm">
                     <select id="page_num" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-7 px-2">
                         <option value="10" selected><?php echo $text['page']?></option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
+                        <option value="10">10</option>
+                        <option value="30">30</option>
+                        <option value="60">60</option>
                     </select>
                 </form>
 

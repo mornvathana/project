@@ -158,7 +158,7 @@
                                                 </button>
                                             </div>
                                             <!-- Modal body -->
-                                           <div class = "w-full h-[350px]">
+                                           <div class = "w-full h-[420px]">
                                            <div class = "w-full h-[10%]  flex justify-between items-center">
                                                 <ul class = "flex">
                                                 ${itemmenu}
@@ -169,7 +169,7 @@
                                            </div>   
                                            <div class = "w-full h-[90%] flex">
                                            <div class = "w-[40%] h-full flex justify-center items-center ">
-                                           <img src = "../uploads/category/${item.image}" class = "w-[50%] h-[50%] object-cover rounded-md">
+                                           <img src = "../uploads/default/default.png" class = "w-[60%] h-[50%] object-cover rounded-md">
                                            </div>
                                            <div class = "w-[60%] h-full">
                                            <div class = "w-[100%] h-[100%] flex justify-center items-center">
@@ -223,9 +223,34 @@
                                                                 ${item.phone_number}
                                                                 </td>
                                                             </tr>
+                                                            <input type="hidden" name="id" id="pdid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.id}" readonly>
                                                             <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
                                                                 <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                
+                                                                  <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg px-7 py-1">
+                                                                    ${item.status == 3 ? `<option value="3" ${item.status == 3 ? 'selected' : ''} >Completed</option>` :  ''}
+                                                                    ${item.status == 2 ? 
+                                                                                        `
+                                                                                        <option value="2" ${item.status == 2 ? 'selected' : ''} >Process</option>
+                                                                                        <option value="3" ${item.status == 3 ? 'selected' : ''} >Completed</option>
+                                                                                        ` 
+                                                                                        :  ''}
+                                                                    ${item.status == 1 ? 
+                                                                                        `
+                                                                                        <option value="1" ${item.status == 1 ? 'selected' : ''} >Pedding</option>
+                                                                                        <option value="2" ${item.status == 2 ? 'selected' : ''} >Process</option>
+                                                                                        <option value="3" ${item.status == 3 ? 'selected' : ''} >Completed</option>
+                                                                                        ` 
+                                                                                        :  ''}
+                                                                  
+                                                                    
+                                                                </select>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td scope="row" class="px-6 py-4 text-end text-gray-900 whitespace-nowrap dark:text-white">
+                                                                  <button id = "btn_save"  type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-20 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                                        Save
+                                                                   </button>
                                                                 </td>
                                                             </tr>
                                                         </tbody>
@@ -282,7 +307,7 @@
                                             <!-- Modal header -->
                                             <div class="flex items-center justify-between p-4 md:p-3 border-b rounded-t dark:border-gray-600 border-gray-200">
                                                 <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                                    Report Sell
+                                                    Report Orders
                                                 </h3>
                                                 <button type="button" id = "closeX" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
                                                     <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -292,7 +317,7 @@
                                                 </button>
                                             </div>
                                             <!-- Modal body -->
-                                           <div class = "w-full h-[350px]">
+                                           <div class = "w-full h-[420px]">
                                            <div class = "w-full h-[10%]  flex justify-between items-center">
                                                 <ul class = "flex">
                                                 ${itemmenu}
@@ -303,7 +328,7 @@
                                            </div>   
                                            <div class = "w-full h-[90%] flex">
                                            <div class = "w-[40%] h-full flex justify-center items-center ">
-                                           <img src = "../uploads/category/${image1}" class = "w-[50%] h-[50%] object-cover rounded-md">
+                                           <img src = "../uploads/category/${image1}" class = "w-[60%] h-[50%] object-cover rounded-md">
                                            </div>
                                            <div class = "w-[60%] h-full">
                                            <div class = "w-[100%] h-[100%] flex justify-center items-center">
@@ -390,7 +415,7 @@
         $(document).on("click","#btn_save",function(){
             const status = $("#category").val();
             const id = $("#pdid").val();
-            alert(id);
+            location.reload();
             // 
             $.ajax({
                 method: "POST",
@@ -401,24 +426,7 @@
                 },
                 dataType: "dataType",
                 success: function (response) {
-                    if(response == 202){
-                        Swal.fire({
-                        icon: 'success',
-                        title: '<span class="text-gray-800 font-semibold text-lg">Successfully!</span>',
-                        showCancelButton: false,  
-                        showConfirmButton: false, 
-                        timer: 1000,  
-                        background: '#fff',
-                        focusCancel: true,
-                        buttonsStyling: false,
-                        customClass: {
-                            popup: 'rounded-xl shadow-md p-6',
-                        },
-                        didOpen: () => {
-                            document.querySelector('.swal2-popup').style.width = '400px';
-                        }
-                        });
-                    }
+                    
                 }
             });
         });

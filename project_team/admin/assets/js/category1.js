@@ -1,6 +1,6 @@
  $(document).ready(function(){
         let currentPage = 1;
-        let limit = 10;
+        let limit = 12;
         let startPage = $("#startPage");
         let totalPage = $("#totalPage");
         let search = "";

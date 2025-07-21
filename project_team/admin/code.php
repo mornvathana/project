@@ -118,6 +118,7 @@
         $description = $_POST['description'];
         $brand = $_POST['brand'];
         $slug = $_POST['slug'];
+        $old_demo = $_POST['old_demo_image'];
 
         $popular = $_POST['option'] ? 1 : 0;
         $used = $_POST['option'] ? 1 : 0;
@@ -130,19 +131,28 @@
         $path = "../uploads/category";  
         $image_ext = pathinfo($image, PATHINFO_EXTENSION);
 
-        $demo_image = ['demo_image']; 
+        $demo_image = $_FILES['demo_image']['name']; 
         $valid = true;
         $demo_images = [];
+        $hasimage = false;
+        $has_new_demo_image = false;
+
+        foreach ($_FILES['demo_image']['name'] as $name) {
+            if (!empty($name)) {
+                $has_new_demo_image = true;
+                break;
+            }
+        }
 
         foreach($_FILES['demo_image']['size'] as $key => $demo_size){
-            if($demo_size > 1000 * 1024){
+            if($demo_size > 10000 * 1024){
                 $valid = false;
                 break;
             }
         }
 
-         if($size > 1000 * 1024 || !$valid){
-            redirect1("category.php","Please upload new image!");
+         if($size > 10000 * 1024 || !$valid){
+            redirect1("categoryEdit.php","Please upload new image!");
          }else{
             $stmt = $conn->prepare("UPDATE product_detail  SET brand_id = ?,  slug = ?, barcode = ?,
             name = ?, original_price = ?, sell_price = ? WHERE id = ?");
@@ -150,15 +160,20 @@
             $stmt->execute();
             
             if($stmt){
-                // process demo image 
-                foreach($_FILES['demo_image']['name'] as $key => $demo_name){
-                    $demo_ext = pathinfo($demo_name, PATHINFO_EXTENSION);
-                    $demo_filename = time() . '_' . $key . '.' . $demo_ext;
-                    move_uploaded_file($_FILES['demo_image']['tmp_name'][$key], $path . '/' . $demo_filename);
-                    $demo_images[] = $demo_filename;
-                }
-                // check demo_image
-                $demo_images_string = implode(',', $demo_images);            
+                if ($has_new_demo_image) {
+                        foreach ($_FILES['demo_image']['name'] as $key => $demo_name) {
+                            if (!empty($demo_name)) {
+                                $demo_ext = pathinfo($demo_name, PATHINFO_EXTENSION);
+                                $demo_filename = time() . '_' . $key . '.' . $demo_ext;
+                                move_uploaded_file($_FILES['demo_image']['tmp_name'][$key], $path . '/' . $demo_filename);
+                                $demo_images[] = $demo_filename;
+                            }
+                        }
+                        $demo_images_string = implode(',', $demo_images);
+                    } else {
+                        $demo_images_string = $old_demo;
+                    }
+                         
                 // delete old image 
                 if(!empty($image)){
                     $img_data = "SELECT * FROM product_image WHERE id = $id";
@@ -166,7 +181,7 @@
                     if($img_data_run->num_rows > 0){
                         $img_query = $img_data_run->fetch_assoc()['image'];
                         $img_path = $path . '/' . $img_query;
-                        // remove image from folder 
+                        
                         if( $img_query != "default.jpg" && file_exists($img_path)){
                             unlink($img_path);
                         }
@@ -651,14 +666,14 @@
          if($size > 10000 * 1024 || !$valid){
             redirect1("webinfo.php","Please upload new image!");
          }else{
-        // process demo image 
-        foreach($_FILES['demo_image']['name'] as $key => $demo_name){
+       
+            foreach($_FILES['demo_image']['name'] as $key => $demo_name){
             $demo_ext = pathinfo($demo_name, PATHINFO_EXTENSION);
             $demo_filename = time() . '_' . $key . '.' . $demo_ext;
             move_uploaded_file($_FILES['demo_image']['tmp_name'][$key], $path . '/' . $demo_filename);
             $demo_images[] = $demo_filename;
-        }
-        $demo_images_string = implode(',', $demo_images);  
+            }
+            $demo_images_string = implode(',', $demo_images); 
               
         // delete old image 
         if(!empty($image)){
