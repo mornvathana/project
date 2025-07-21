@@ -9,10 +9,12 @@
     $totalPage = ($page - 1) * $num;
 
     // total row 
-    $sql = "SELECT COUNT(*) as Total FROM orders WHERE user_id = $userId AND status = $limit";
-    $sTotal = $conn->query($sql);
-    $rTotal = $sTotal->fetch_array();
-    $total = $rTotal['0'];
+    $stmt = $conn->prepare("SELECT COUNT(*) as Total FROM orders WHERE user_id = ? AND status = ?");
+    $stmt->bind_param("ii", $userId, $limit);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $rTotal = $result->fetch_assoc();
+    $total = $rTotal['Total'];
 
     // fetch data 
     $stmt = $conn->prepare("SELECT * FROM orders WHERE user_id = ? AND status = ? LIMIT ?,?");

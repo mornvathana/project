@@ -111,7 +111,7 @@
     }else if(isset($_POST['category_update'])){
         $barcode = $_POST['barcode'];
         $id = $_POST['id'];
-        $name = $_POST['name'];
+        $pdname = $_POST['pdname']; 
         $original_price = $_POST['original_price'];
         $sell_price = $_POST['sell_price'];
         $specification = $_POST['specification'];
@@ -156,7 +156,7 @@
          }else{
             $stmt = $conn->prepare("UPDATE product_detail  SET brand_id = ?,  slug = ?, barcode = ?,
             name = ?, original_price = ?, sell_price = ? WHERE id = ?");
-            $stmt->bind_param("isissii", $brand, $slug, $barcode, $name, $original_price, $sell_price,$id);
+            $stmt->bind_param("isissii", $brand, $slug, $barcode,$pdname, $original_price, $sell_price,$id);
             $stmt->execute();
             
             if($stmt){

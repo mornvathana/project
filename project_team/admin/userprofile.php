@@ -187,11 +187,11 @@
                 }
             ?>
             <!--  -->
+            <input type="hidden" name="userId" id="uservalueid" value = "<?= $id?>">
             <div class = "h-[5%] flex justify-center items-center">
                 <div class = "w-[95%] h-full flex justify-between items-center">
                 <div>
                     <h1 class = "text-md font-medium"><?php echo $text['report']?></h1>
-                    <input type="hidden" name="userId" id="userId" value = "<?= $id?>">
                 </div>
                 <div>
                     <!--  -->

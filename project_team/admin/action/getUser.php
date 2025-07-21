@@ -3,6 +3,7 @@
     include('../../config/dbcon.php');
     // 
     $page = $_POST['page'];
+    $roleas = 0;
     $limit = 10;
     $totalPage = ($page -1 ) * $limit; 
 
@@ -12,8 +13,8 @@
     $rowTotal = $resTotal->fetch_array();
     $total = $rowTotal['0'];
 
-    $stmt = $conn->prepare("SELECT * FROM users ORDER BY id DESC LIMIT ?,? ");
-    $stmt->bind_param("ii",$totalPage, $limit);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE role_as = ? ORDER BY id DESC LIMIT ?,? ");
+    $stmt->bind_param("iii",$roleas,$totalPage, $limit);
     $data = array();
     if($stmt->execute()){
         $result = $stmt->get_result();

@@ -13,7 +13,7 @@ return [
     "sale" => "ការលក់",
     "increase" => "កើនឡើង",
     "decrease" => "បន្ថយ",
-    "chooseLanguage" => "ជ្រើសរើសភាសា",
+    "chooseLanguage" => "ភាសា",
     "usa" => "ភាសាអង់គ្លេស",
     "kh" => "ភាសាខ្មែរ",
     "topSellReport" => "របាយការណ៍លក់កំពូល",

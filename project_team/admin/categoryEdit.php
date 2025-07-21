@@ -33,14 +33,14 @@ include("lang.php");
                                         </div>
                                         <div class = "w-full">
                                         <label for="name" class = "block py-1 text-[13px]"><?php echo $text['name']?></label>
-                                        <input type="text" name = "name" id = "name" value = "<?= $item['name'] ?>" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Name">
+                                        <input type="text" name = "pdname"  value = "<?= $item['name'] ?>" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Name">
                                         </div>
                                         <div class = "w-full">
-                                            <label for="price" class = "block py-1 text-[13px]"><?php echo $text['originalprice']?></label>
+                                            <label for="price" class = "block py-1 text-[13px] w-full"><?php echo $text['originalprice']?></label>
                                             <input type="text" name = "original_price" value = "<?= $item['original_price'] ?>" id = "price" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Original price">
                                         </div>
                                         <div class = "w-full">
-                                            <label for="sell_price" class = "block py-1 text-[13px]"><?php echo $text['sellprice']?></label>
+                                            <label for="sell_price" class = "block py-1 text-[13px] w-full"><?php echo $text['sellprice']?></label>
                                             <input type="text" name = "sell_price" id = "sell_price" value = "<?= $item['sell_price'] ?>" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Original price">
                                         </div>
                                         <div class = "w-full">
@@ -90,7 +90,7 @@ include("lang.php");
                                         </div>
                                         <!--  -->
                                         <div class = "w-full my-2">
-                                        <label for="" class = "block py-1 text-[13px] font-medium font-medium"><?php echo $text['productchoise']?></label>
+                                        <label for="" class = "block py-1 text-[13px] font-medium font-medium w-full"><?php echo $text['productchoise']?></label>
                                         <div class = "flex justify-between items-center grid grid-cols-3">
                                         <input type="hidden" id = "userId" value = "<?= $user_id?>">
                                             <?php

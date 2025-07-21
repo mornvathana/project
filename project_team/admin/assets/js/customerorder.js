@@ -1,35 +1,33 @@
  $(document).ready(function(){
-        let currentPage = 2;
-        let totalPage = 10;
+        let currentPage = 1;
+        let totalPage = $("#totalPage");
         let startPage = $("#startPage");
-        let selectPage = 0;
+        let limit = 10;
+        let status = 0;
         let orderid = 0;
         let title = '';
         let optionvalue = '';
-        const status = $("#category_status").val();
 
         startPage.text(currentPage);
 
         $("#next_btn").click(function(){
-            if(currentPage < totalPage){
-                currentPage++;
+            const totalPageValue = parseInt(totalPage.text());
+
+            if(currentPage < totalPageValue){
+                currentPage += 1;
+                startPage.text(currentPage);
+                reload(currentPage,status);
             }
-            startPage.text(currentPage);
-            // 
-            let status = $("#category_status").val(); 
-            reload(status)
+
 
         });
 
         $("#back_btn").click(function(){
             if(currentPage > 1){
-                currentPage--;
-            }
-            startPage.text(currentPage);
-
-            let status = $("#category_status").val(); 
-            reload(status)
-            
+                currentPage -= 1;
+                startPage.text(currentPage);
+                reload(currentPage,status);
+            };
         })
 
         $(document).on("click","#btn_delete",function(){
@@ -141,128 +139,103 @@
                                 itemmenu += `<li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "product">${product1[i]}</li>`;
                             }
                             
-                            txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto addClss overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                    <div class="relative p-4 w-[700px]  max-h-full">
-                                        <!-- Modal content -->
-                                        <div class="relative bg-[#fff] rounded-lg shadow-lg dark:bg-gray-700">
-                                            <!-- Modal header -->
-                                            <div class="flex items-center justify-between p-4 md:p-3 border-b rounded-t dark:border-gray-600 border-gray-200">
-                                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                                    Report Sell
-                                                </h3>
-                                                <button type="button" id = "closeX" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
-                                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                                    </svg>
-                                                    <span class="sr-only">Close modal</span>
-                                                </button>
-                                            </div>
-                                            <!-- Modal body -->
-                                           <div class = "w-full h-[420px]">
-                                           <div class = "w-full h-[10%]  flex justify-between items-center">
-                                                <ul class = "flex">
-                                                ${itemmenu}
-                                                </ul>
-                                                 <ul class = "flex">
-                                                    <li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "info">Client info</li>
-                                                </ul>
-                                           </div>   
-                                           <div class = "w-full h-[90%] flex">
-                                           <div class = "w-[40%] h-full flex justify-center items-center ">
-                                           <img src = "../uploads/default/default.png" class = "w-[60%] h-[50%] object-cover rounded-md">
-                                           </div>
-                                           <div class = "w-[60%] h-full">
-                                           <div class = "w-[100%] h-[100%] flex justify-center items-center">
-                                                <div class="relative ">
-                                                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 flex rounded-md ">
-                                                        <tbody>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    Full Name
-                                                                </th>
-                                                            </tr>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    Address
-                                                                </th>
-                                                            </tr>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    Email
-                                                                </th>
-                                                            </tr>
-                                                            <tr class="bg-white dark:bg-gray-800">
-                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    Phone Number
-                                                                </th>
-                                                            </tr>
-                                                            <tr class="bg-white dark:bg-gray-800">
-                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    Status
-                                                                </th>
-                                                            </tr>
-                                                        </tbody> 
-                                                        <tbody>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    ${item.first} ${item.last}
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    ${item.city} city ${item.province} province
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="bg-white dark:bg-gray-800">
-                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                  ${item.email}
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                ${item.phone_number}
-                                                                </td>
-                                                            </tr>
-                                                            <input type="hidden" name="id" id="pdid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value = "${item.id}" readonly>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                  <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg px-7 py-1">
-                                                                    ${item.status == 3 ? `<option value="3" ${item.status == 3 ? 'selected' : ''} >Completed</option>` :  ''}
-                                                                    ${item.status == 2 ? 
-                                                                                        `
-                                                                                        <option value="2" ${item.status == 2 ? 'selected' : ''} >Process</option>
-                                                                                        <option value="3" ${item.status == 3 ? 'selected' : ''} >Completed</option>
-                                                                                        ` 
-                                                                                        :  ''}
-                                                                    ${item.status == 1 ? 
-                                                                                        `
-                                                                                        <option value="1" ${item.status == 1 ? 'selected' : ''} >Pedding</option>
-                                                                                        <option value="2" ${item.status == 2 ? 'selected' : ''} >Process</option>
-                                                                                        <option value="3" ${item.status == 3 ? 'selected' : ''} >Completed</option>
-                                                                                        ` 
-                                                                                        :  ''}
-                                                                  
-                                                                    
-                                                                </select>
-                                                                </td>
-                                                            </tr>
-                                                            <tr>
-                                                                <td scope="row" class="px-6 py-4 text-end text-gray-900 whitespace-nowrap dark:text-white">
-                                                                  <button id = "btn_save"  type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-20 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                                        Save
-                                                                   </button>
-                                                                </td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                           </div>
-                                           </div>
-                                           </div>
-                                           </div>
-                                        </div>
-                                    </div>
-                                </div> `;
+                            txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true"
+    class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/40 p-4">
+    <div class="relative w-full max-w-3xl bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+        <!-- Header -->
+        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                Report Sell
+            </h3>
+            <button id="closeX" type="button"
+                class="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700">
+                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 14 14" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M1 1l6 6m0 0l6 6M7 7l6-6M7 7L1 13" />
+                </svg>
+                <span class="sr-only">Close modal</span>
+            </button>
+        </div>
+
+        <!-- Body -->
+        <div class="p-5 space-y-6">
+            <!-- Header Menu -->
+            <div class="flex justify-between items-center">
+                <ul class="flex gap-3 text-sm text-gray-600 dark:text-gray-300">
+                    ${itemmenu}
+                </ul>
+                <ul>
+                    <li id="info"
+                        class="cursor-pointer border-b-2 border-blue-500 px-4 py-1 text-sm text-blue-600 dark:text-blue-400 font-medium">
+                        Client Info
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Content Section -->
+            <div class="flex flex-col md:flex-row gap-6">
+                <!-- Image -->
+                <div class="md:w-2/5 flex items-center justify-center">
+                    <img src="../uploads/default/default.png"
+                        class="w-48 h-48 object-cover rounded-md border border-gray-200 dark:border-gray-600" />
+                </div>
+
+                <!-- Info Table -->
+                <div class="md:w-3/5 w-full">
+                    <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
+                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                            <tr>
+                                <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Full Name</th>
+                                <td class="px-4 py-2">${item.first} ${item.last}</td>
+                            </tr>
+                            <tr>
+                                <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Address</th>
+                                <td class="px-4 py-2">${item.city} city, ${item.province} province</td>
+                            </tr>
+                            <tr>
+                                <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Email</th>
+                                <td class="px-4 py-2">${item.email}</td>
+                            </tr>
+                            <tr>
+                                <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Phone Number</th>
+                                <td class="px-4 py-2">${item.phone_number}</td>
+                            </tr>
+                            <tr>
+                                <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Status</th>
+                                <td class="px-4 py-2">
+                                    <select id="category"
+                                        class="w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                        ${item.status == 3 ? `
+                                            <option value="3" selected>Completed</option>` : ''}
+                                        ${item.status == 2 ? `
+                                            <option value="2" selected>Process</option>
+                                            <option value="3">Completed</option>` : ''}
+                                        ${item.status == 1 ? `
+                                            <option value="1" selected>Pending</option>
+                                            <option value="2">Process</option>
+                                            <option value="3">Completed</option>` : ''}
+                                    </select>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Hidden ID -->
+                    <input type="hidden" name="id" id="pdid" value="${item.id}" />
+
+                    <!-- Save Button -->
+                    <div class="mt-4 text-end">
+                        <button id="btn_save" type="submit"
+                            class="inline-flex items-center px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                            Save
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+`;
                             }else{
 
                             let itemmenu = "";
@@ -300,103 +273,91 @@
                                 image1 += `${image[i]}`;
                             }
 
-                            txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true" class="overflow-y-auto addClss overflow-x-hidden fixed top-0 right-0 left-0 z-50 flex justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
-                                    <div class="relative p-4 w-[700px]  max-h-full">
-                                        <!-- Modal content -->
-                                        <div class="relative bg-[#fff] rounded-lg shadow-lg dark:bg-gray-700">
-                                            <!-- Modal header -->
-                                            <div class="flex items-center justify-between p-4 md:p-3 border-b rounded-t dark:border-gray-600 border-gray-200">
-                                                <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                                                    Report Orders
-                                                </h3>
-                                                <button type="button" id = "closeX" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
-                                                    <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
-                                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"/>
-                                                    </svg>
-                                                    <span class="sr-only">Close modal</span>
-                                                </button>
-                                            </div>
-                                            <!-- Modal body -->
-                                           <div class = "w-full h-[420px]">
-                                           <div class = "w-full h-[10%]  flex justify-between items-center">
-                                                <ul class = "flex">
+                            txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true"
+                                class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden p-4 bg-black/40">
+                                <div class="relative w-full max-w-3xl bg-white rounded-xl shadow-xl dark:bg-gray-800">
+                                    <!-- Header -->
+                                    <div class="flex items-center justify-between p-4 border-b dark:border-gray-700">
+                                        <h3 class="text-xl font-semibold text-gray-800 dark:text-white">Report Orders</h3>
+                                        <button id="closeX" type="button"
+                                            class="text-gray-400 hover:text-gray-600 dark:hover:text-white rounded-full w-8 h-8 flex items-center justify-center">
+                                            <svg class="w-4 h-4" fill="none" viewBox="0 0 14 14" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M1 1l6 6m0 0l6 6M7 7l6-6M7 7L1 13" />
+                                            </svg>
+                                        </button>
+                                    </div>
+
+                                    <!-- Modal Content -->
+                                    <div class="p-5 space-y-6">
+                                        <!-- Tabs / Navigation -->
+                                        <div class="flex justify-between items-center">
+                                            <ul class="flex gap-3 text-sm text-gray-600 dark:text-gray-300">
                                                 ${itemmenu}
-                                                </ul>
-                                                 <ul class = "flex">
-                                                    <li class = "mx-2 border-b-[2px] border-blue-500 py-2 px-5 cursor-pointer text-sm" id = "info">Client info</li>
-                                                </ul>
-                                           </div>   
-                                           <div class = "w-full h-[90%] flex">
-                                           <div class = "w-[40%] h-full flex justify-center items-center ">
-                                           <img src = "../uploads/category/${image1}" class = "w-[60%] h-[50%] object-cover rounded-md">
-                                           </div>
-                                           <div class = "w-[60%] h-full">
-                                           <div class = "w-[100%] h-[100%] flex justify-center items-center">
-                                                <div class="relative overflow-x-auto">
-                                                    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 flex rounded-md ">
+                                            </ul>
+                                            <ul>
+                                                <li id="info"
+                                                    class="cursor-pointer border-b-2 border-blue-500 px-4 py-1 text-sm text-blue-600 dark:text-blue-400 font-medium">
+                                                    Client Info
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                        <!-- Main Body -->
+                                        <div class="flex flex-col md:flex-row gap-6">
+                                            <!-- Image Section -->
+                                            <div class="md:w-2/5 flex items-center justify-center">
+                                                <img src="../uploads/category/${image1}"
+                                                    class="w-48 h-48 object-cover rounded-md border border-gray-200 dark:border-gray-600" alt="Product">
+                                            </div>
+
+                                            <!-- Table Section -->
+                                            <div class="md:w-3/5">
+                                                <div class="overflow-hidden rounded-md border border-gray-200 dark:border-gray-700">
+                                                    <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
+                                                        <thead class="bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white">
+                                                            <tr>
+                                                                <th class="px-4 py-2">Field</th>
+                                                                <th class="px-4 py-2">Value</th>
+                                                            </tr>
+                                                        </thead>
                                                         <tbody>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    Product Name
-                                                                </th>
+                                                            <tr class="border-t dark:border-gray-600">
+                                                                <td class="px-4 py-2 font-medium">Product Name</td>
+                                                                <td class="px-4 py-2">${lastName}</td>
                                                             </tr>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    Barcode
-                                                                </th>
+                                                            <tr class="border-t dark:border-gray-600">
+                                                                <td class="px-4 py-2 font-medium">Barcode</td>
+                                                                <td class="px-4 py-2">${barcode1}</td>
                                                             </tr>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    Status
-                                                                </th>
-                                                            </tr>
-                                                            <tr class="bg-white dark:bg-gray-800">
-                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    Payment Method
-                                                                </th>
-                                                            </tr>
-                                                            <tr class="bg-white dark:bg-gray-800">
-                                                                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    Delivery Method
-                                                                </th>
-                                                            </tr>
-                                                        </tbody> 
-                                                        <tbody>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    ${lastName}
+                                                            <tr class="border-t dark:border-gray-600">
+                                                                <td class="px-4 py-2 font-medium">Status</td>
+                                                                <td class="px-4 py-2">
+                                                                    ${status1 == 1 ? '<span class="text-red-500">Pending</span>' :
+                                                                    status1 == 2 ? '<span class="text-blue-500">Processing</span>' :
+                                                                    status1 == 3 ? '<span class="text-green-500">Completed</span>' :
+                                                                    '<span class="text-gray-400">Unknown</span>'}
                                                                 </td>
                                                             </tr>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    ${barcode1}
+                                                            <tr class="border-t dark:border-gray-600">
+                                                                <td class="px-4 py-2 font-medium">Payment Method</td>
+                                                                <td class="px-4 py-2">
+                                                                    ${totalprice1 ? '<span class="text-green-500">Finished</span>' : '<span class="text-red-500">Undefined</span>'}
                                                                 </td>
                                                             </tr>
-                                                            <tr class="bg-white dark:bg-gray-800">
-                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    ${status1 == 1 ? '<span class = "text-red-500">Pedding</span>' : status1 == 2 ? '<span class = "text-blue-500">Proccessing</span>' : status1 == 3 ? '<span class = "text-green-500">Completed</span>' : '<span class = "text-red-500">Unknown</span>'}
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                ${totalprice1 ? '<span class="text-green-500">Finished</span>' : '<span class="text-red-500">Undefined</span>'}
-                                                                </td>
-                                                            </tr>
-                                                            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
-                                                                <td scope="row" class="px-6 py-4 text-sm text-gray-900 whitespace-nowrap dark:text-white">
-                                                                    ${delivery1}
-                                                                </td>
+                                                            <tr class="border-t dark:border-gray-600">
+                                                                <td class="px-4 py-2 font-medium">Delivery Method</td>
+                                                                <td class="px-4 py-2">${delivery1}</td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </div>
-                                           </div>
-                                           </div>
-                                           </div>
-                                           </div>
-                                        </div>
-                                    </div>
-                                </div>`;
+                                            </div>
+                                        </div> <!-- End main body -->
+                                    </div> <!-- End modal content -->
+                                </div>
+                            </div>
+                            `;
                             }
                         }
                        display.html(txt);
@@ -409,7 +370,7 @@
             $(".addClss").addClass("hidden");
             
             let status = $("#category_status").val(); 
-            reload(status);
+            reload(currentPage,status);
         });
         // btn_save
         $(document).on("click","#btn_save",function(){
@@ -422,7 +383,7 @@
                 url: "action/updateOrder.php",
                 data: {
                     "status" : status,
-                    "id" : id,
+                    "id" : id
                 },
                 dataType: "dataType",
                 success: function (response) {
@@ -432,34 +393,20 @@
         });
 
         $(document).on("change","#category_status",function(){
-            reload(status);
-            pageNum(10);
-        });
-
-        $(document).on('click','#page_num',function(){
             let num = $(this).val();
-            pageNum(num);
+            status = num;
+            reload(currentPage,status);
         });
 
-        function pageNum(num){
-            selectPage = num;
-            // 
-            let status = $("#category_status").val(); 
-            reload(status)
-        }
-
-        function reload(status){
-            const statusNum = status;
+        function reload(page,status){
             const display = $("#displayDataStatus");
-            const offset = (currentPage - 1) * totalPage;
 
             $.ajax({
-                method: 'GET',
+                method: 'POST',
                 url: "action/getOrderStatus.php",
                 data: {
-                    "status": statusNum,
-                    "selectPage" : selectPage,
-                    "currentPage" : offset,
+                    "page" : page,
+                    "status": status
                 },
                 dataType: "json",
                 beforeSend: function(){
@@ -516,7 +463,10 @@
                         </div>
                     </div>`;
                         }
+                        totalPage.text(Math.ceil(data[0]['total'] / limit));
                         display.html(txt);
+                    }else{
+                        display.html("");
                     }
                 }
             });
