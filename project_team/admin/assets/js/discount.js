@@ -170,21 +170,16 @@
                                             class="${isActive ? 'bg-green-100 text-green-500 border-[1px] border-green-500' : 'bg-red-100 text-red-500 border-[1px] border-red-500'}  px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
                                             ${isActive ? 'Unused' : 'redeemed'}
                                     </button>
-                                </td>
+                                </td>   
                                 <td class="text-[11px] shadow-style bg-[#ffffff] md:text-[13px] py-1">
-                                    ${isActive ? `<div class="flex justify-center items-center gap-5">
+                                    <div class="flex justify-center items-center gap-5">
                                         <form action="code.php" method="post" enctype="multipart/form-data">
                                             <input type="hidden" name="discount_id" value="${item.id}">
                                             <button type="submit" name="discount_delete" class="bg-red-100 border-[1px] border-red-500 text-red-500 px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>
-                                    </div>` : `<div class="flex justify-center items-center gap-5">
-                                            <input type="hidden" name="discount_id" value="${item.id}">
-                                            <button data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" data-id = "${item.id}" type="submit" id = "viewdetail" class=" border-[1px] border-blue-500 bg-blue-100 text-blue-500 px-2 py-[1px] text-[11px] md:text-[13px] rounded-md">
-                                                View Detail
-                                            </button>
-                                    </div>`}
+                                    </div>
                                 </td>
                             </tr>`;
                         }

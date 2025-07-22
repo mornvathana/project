@@ -140,102 +140,106 @@
                             }
                             
                             txt += `<div id="crud-modal" tabindex="-1" aria-hidden="true"
-    class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/40 p-4">
-    <div class="relative w-full max-w-3xl bg-white dark:bg-gray-800 rounded-xl shadow-lg">
-        <!-- Header -->
-        <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
-            <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                Report Sell
-            </h3>
-            <button id="closeX" type="button"
-                class="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700">
-                <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 14 14" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M1 1l6 6m0 0l6 6M7 7l6-6M7 7L1 13" />
-                </svg>
-                <span class="sr-only">Close modal</span>
-            </button>
-        </div>
+                                class="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/40 p-4">
+                                <div class="relative w-full max-w-3xl bg-white dark:bg-gray-800 rounded-xl shadow-lg">
+                                    <!-- Header -->
+                                    <div class="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+                                        <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
+                                            Report Sell
+                                        </h3>
+                                        <button id="closeX" type="button"
+                                            class="w-8 h-8 rounded-full flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-100 dark:hover:text-white dark:hover:bg-gray-700">
+                                            <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 14 14" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M1 1l6 6m0 0l6 6M7 7l6-6M7 7L1 13" />
+                                            </svg>
+                                            <span class="sr-only">Close modal</span>
+                                        </button>
+                                    </div>
 
-        <!-- Body -->
-        <div class="p-5 space-y-6">
-            <!-- Header Menu -->
-            <div class="flex justify-between items-center">
-                <ul class="flex gap-3 text-sm text-gray-600 dark:text-gray-300">
-                    ${itemmenu}
-                </ul>
-                <ul>
-                    <li id="info"
-                        class="cursor-pointer border-b-2 border-blue-500 px-4 py-1 text-sm text-blue-600 dark:text-blue-400 font-medium">
-                        Client Info
-                    </li>
-                </ul>
-            </div>
+                                    <!-- Body -->
+                                    <div class="p-5 space-y-6">
+                                        <!-- Header Menu -->
+                                        <div class="flex justify-between items-center">
+                                            <ul class="flex gap-3 text-sm text-gray-600 dark:text-gray-300">
+                                                ${itemmenu}
+                                            </ul>
+                                            <ul>
+                                                <li id="info"
+                                                    class="cursor-pointer border-b-2 border-blue-500 px-4 py-1 text-sm text-blue-600 dark:text-blue-400 font-medium">
+                                                    Client Info
+                                                </li>
+                                            </ul>
+                                        </div>
 
-            <!-- Content Section -->
-            <div class="flex flex-col md:flex-row gap-6">
-                <!-- Image -->
-                <div class="md:w-2/5 flex items-center justify-center">
-                    <img src="../uploads/default/default.png"
-                        class="w-48 h-48 object-cover rounded-md border border-gray-200 dark:border-gray-600" />
-                </div>
+                                        <!-- Content Section -->
+                                        <div class="flex flex-col md:flex-row gap-6">
+                                            <!-- Image -->
+                                            <div class="md:w-2/5 flex items-center justify-center">
+                                                <img src="../uploads/default/default.png"
+                                                    class="w-48 h-48 object-cover rounded-md border border-gray-200 dark:border-gray-600" />
+                                            </div>
 
-                <!-- Info Table -->
-                <div class="md:w-3/5 w-full">
-                    <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
-                        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-                            <tr>
-                                <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Full Name</th>
-                                <td class="px-4 py-2">${item.first} ${item.last}</td>
-                            </tr>
-                            <tr>
-                                <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Address</th>
-                                <td class="px-4 py-2">${item.city} city, ${item.province} province</td>
-                            </tr>
-                            <tr>
-                                <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Email</th>
-                                <td class="px-4 py-2">${item.email}</td>
-                            </tr>
-                            <tr>
-                                <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Phone Number</th>
-                                <td class="px-4 py-2">${item.phone_number}</td>
-                            </tr>
-                            <tr>
-                                <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Status</th>
-                                <td class="px-4 py-2">
-                                    <select id="category"
-                                        class="w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
-                                        ${item.status == 3 ? `
-                                            <option value="3" selected>Completed</option>` : ''}
-                                        ${item.status == 2 ? `
-                                            <option value="2" selected>Process</option>
-                                            <option value="3">Completed</option>` : ''}
-                                        ${item.status == 1 ? `
-                                            <option value="1" selected>Pending</option>
-                                            <option value="2">Process</option>
-                                            <option value="3">Completed</option>` : ''}
-                                    </select>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                            <!-- Info Table -->
+                                            <div class="md:w-3/5 w-full">
+                                                <table class="w-full text-sm text-left text-gray-700 dark:text-gray-300">
+                                                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                                                        <tr>
+                                                            <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Full Name</th>
+                                                            <td class="px-4 py-2">${item.first} ${item.last}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Address</th>
+                                                            <td class="px-4 py-2">${item.city} city, ${item.province} province</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Email</th>
+                                                            <td class="px-4 py-2">${item.email}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Phone Number</th>
+                                                            <td class="px-4 py-2">${item.phone_number}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Total Price</th>
+                                                            <td class="px-4 py-2">$${item.totalprice}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th class="px-4 py-2 font-medium text-gray-900 dark:text-white">Status</th>
+                                                            <td class="px-4 py-2">
+                                                                <select id="category"
+                                                                    class="w-full rounded-lg border border-gray-300 bg-gray-50 px-3 py-2 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                                                                    ${item.status == 3 ? `
+                                                                        <option value="3" selected>Completed</option>` : ''}
+                                                                    ${item.status == 2 ? `
+                                                                        <option value="2" selected>Process</option>
+                                                                        <option value="3">Completed</option>` : ''}
+                                                                    ${item.status == 1 ? `
+                                                                        <option value="1" selected>Pending</option>
+                                                                        <option value="2">Process</option>
+                                                                        <option value="3">Completed</option>` : ''}
+                                                                </select>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
 
-                    <!-- Hidden ID -->
-                    <input type="hidden" name="id" id="pdid" value="${item.id}" />
+                                                <!-- Hidden ID -->
+                                                <input type="hidden" name="id" id="pdid" value="${item.id}" />
 
-                    <!-- Save Button -->
-                    <div class="mt-4 text-end">
-                        <button id="btn_save" type="submit"
-                            class="inline-flex items-center px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
-                            Save
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-`;
+                                                <!-- Save Button -->
+                                                <div class="mt-4 text-end">
+                                                    <button id="btn_save" type="submit"
+                                                        class="inline-flex items-center px-6 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
+                                                        Save
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            `;
                             }else{
 
                             let itemmenu = "";

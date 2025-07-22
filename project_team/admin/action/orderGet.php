@@ -45,7 +45,7 @@
                 "province" => $row[6],
                 "email" => $row[7],
                 "phone_number" => $row[8],
-                "totalprice" => $row[9],
+                "totalprice" => $row[10],
                 "image" => $image,
                 "status" => $row[11],
                 "created_at" => $row[12],

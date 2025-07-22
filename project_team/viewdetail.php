@@ -70,6 +70,7 @@ ob_end_flush();
                 <form method = "post" class = "upl">
                   <input type="hidden" id = "prod_id" value = "<?= $item['id']?>">
                   <input type="hidden" id = "product_name" value = "<?= $item['name']?>">
+                  <input type="hidden" id = "userid" value = "<?= $user_id ?>">
                   <input type="hidden" id = "product_barcode" value = "<?= $item['barcode']?>">
                   <input type="hidden" id = "product_price" value ="<?= $item['sell_price']?>">
                   <input type="hidden" id = "product_image" value = "<?= $item['image']?>">

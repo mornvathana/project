@@ -151,7 +151,7 @@
                                                 }else{
                                                     ?>
                                                     <button class = "text-red-500 border-[1px] mb-1  border-red-500 rounded-md px-1 mx-1" id = "delete_user" data-id = "<?= $userItem['id'] ?>"><?php echo $text['delete']?></button>
-                                                    <button class = "text-blue-500 border-[1px] mb-1  border-blue-500 rounded-md px-1 mx-1"><a href="adminedit.php?id=<?= $userItem['id'] ?>"><?php echo $text['edit']?></a></button>
+                                                    <!-- <button class = "text-blue-500 border-[1px] mb-1  border-blue-500 rounded-md px-1 mx-1"><a href="adminedit.php?id=<?= $userItem['id'] ?>"><?php echo $text['edit']?></a></button> -->
                                                     <?php
                                                     if($userItem['status'] == 0){
                                                         ?>

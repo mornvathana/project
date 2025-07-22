@@ -354,6 +354,12 @@
     // start add project to carts
     $(document).on('click','.addToCart',function(e){
         e.preventDefault();
+        var userid = $("#userid").val();
+
+        if(userid == 0){
+            window.location.href = "http://localhost:8080/project/project_team/login.php";
+        }
+
         var qty = $(this).closest('.product_qty').find('.input-qty').val();
         var prod_id = $('#prod_id').val();
         var prod_name = $('#product_name').val();
