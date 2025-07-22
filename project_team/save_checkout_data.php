@@ -9,6 +9,7 @@
     $user_id = mysqli_real_escape_string($conn, $input_data['userid']);
     $cart_ids = $input_data['cartid'];
     $first_name = mysqli_real_escape_string($conn, $input_data['first_name']);
+    $productid = mysqli_real_escape_string($conn, $input_data['productvalueid']);
     $last_name = mysqli_real_escape_string($conn, $input_data['last_name']);
     $email = mysqli_real_escape_string($conn, $input_data['email']);
     $city = mysqli_real_escape_string($conn, $input_data['city']);
@@ -89,10 +90,12 @@
             }
 
         }
+
     }
 
     // for cart id 
     if(!empty($cart_single_id)){
+        $conn->query("DELETE FROM product_detail WHERE id = '$productid'");
         echo json_encode(['status' => 'success', 'order_id' => $cart_single_id]);
     }
 

@@ -13,6 +13,7 @@
     const city = document.getElementById("city");
     const address = document.getElementById("address");
     const phoneNumber = document.getElementById("phone-number");
+    const productid = document.getElementById("productid");
     const userId = document.getElementById("user_id");
     const CartId = document.querySelectorAll(".cart_id");
     const CartidArray = Array.from(CartId).map(input => input.value);
@@ -204,6 +205,7 @@
                         city: city.value,
                         address: address.value,
                         phone_number: phoneNumber.value,
+                        productvalueid : productid.value,
                         shipping : shippingMethod.value,
                         totalprice: totalPrice,
                         discount : discode.value,

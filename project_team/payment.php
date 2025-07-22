@@ -153,6 +153,7 @@ if($_SESSION['auth_user']){
                         <!-- user_id -->
                         <input type="hidden" name="user_id" id= "user_id" value = "<?= $user_id?>">
                         <input type="hidden" name="cart_id" class = "cart_id" value = "<?= $product['id']?>">
+                        <input type="hidden" name="productid" id = "productid" value = "<?= $product['category_id']?>">
                         <!-- end user_id and cart_id -->
                         <td class="py-4 px-4"><?= $product['product_qty'] ?></td>
                         <td class="py-4 px-4 text-right" >$<?= $product['product_price'] ?></td>
