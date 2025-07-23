@@ -117,7 +117,7 @@ if(isset($_GET['id'])){
                     </div>
                     </div>
                     <div class="w-full md:mt-5 flex justify-end items-center pr-5">
-                    <button type = "submit" name = "update_admin" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md"><?php echo $text['submit']?></button>
+                    <button type = "submit" name = "create_admin" class = "bg-blue-500 text-white px-2 py-1 font-medium rounded-md"><?php echo $text['submit']?></button>
                     </div>
                     </div>
                     </div>
