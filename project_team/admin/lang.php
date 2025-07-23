@@ -1,6 +1,6 @@
 <?php
     if(!isset($_SESSION['lang'])){
-        $_SESSION['lang'] = 'kh';
+        $_SESSION['lang'] = 'eng';
     }
 
     if(isset($_GET['lang'])){
