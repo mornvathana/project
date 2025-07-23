@@ -1372,7 +1372,7 @@
                                         </span>
                                          ${item.shippingMethod}</p>
                                         <p class="mt-2">
-                                            <i class="fas fa-phone-alt mr-2"></i> ${item.phonenumber}
+                                            <i class="fas fa-phone-alt mr-2"></i>+885${item.phonenumber}
                                         </p>
                                     </div>
                                 </div>

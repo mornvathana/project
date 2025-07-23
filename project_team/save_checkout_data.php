@@ -95,7 +95,7 @@
 
     // for cart id 
     if(!empty($cart_single_id)){
-        // $conn->query("DELETE FROM product_detail WHERE id = '$productid'");
+        $conn->query("DELETE FROM product_detail WHERE id = '$productid'");
         echo json_encode(['status' => 'success', 'order_id' => $cart_single_id]);
     }
 
