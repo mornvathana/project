@@ -585,7 +585,7 @@
                          <span>pts</span></p>
                 </div>
                 <div class="text-center md:text-right font-[Roboto,hanuman,Sans-serif]">
-                    <p class="text-gray-600 mb-2">Points expiring soon: <span class="font-semibold">250 pts</span> (Jun 30, 2025)</p>
+                    <p class="text-gray-600 mb-2">Discount coupon</p>
                     <p class="text-sm text-gray-500">Earn more points with every purchase!</p>
                 </div>
             </div>
