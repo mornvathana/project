@@ -113,7 +113,6 @@ ob_end_flush();
                   <path stroke-linecap="round" stroke-linejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
                   </svg>
                   <span class="ml-1 text-md">Add to favorite</span></button>
-                  <button class="text-blue-800 rounded-full font-semibold flex items-center ml-3"><i class="fa-brands fa-facebook"></i> <span class="ml-1 text-md">Share to facebook</span></button>
                   <?php
                 }
                 ?>
@@ -132,6 +131,7 @@ ob_end_flush();
                     $dom = new DOMDocument();
                     libxml_use_internal_errors(true); // avoid HTML warnings
                     $dom->loadHTML($html);
+                    //________________________________________add message if data is null
 
                     $paragraphs = $dom->getElementsByTagName('p');
 

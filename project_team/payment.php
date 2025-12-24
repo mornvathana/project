@@ -228,7 +228,7 @@ if($_SESSION['auth_user']){
                       if($get_shipping->num_rows > 0){
                           $shippingData = $get_shipping->fetch_assoc();
                           $finalTotal = $itemTotal + $shippingData['shipping_price'];
-                          echo '$' . number_format($finalTotal);
+                          echo '$' . number_format($finalTotal,2);
                       }
                   ?>
                   </p> <!-- Total amount -->

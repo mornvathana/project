@@ -37,15 +37,8 @@
         <h2 class="text-2xl font-semibold text-blue-800 mb-6">Personal Information</h2>
 
         <!-- Avatar -->
-        <div class="flex space-x-4 mb-6 rounded-lg bg-gray-100 p-2">
-        <img src="https://th.bing.com/th/id/R.b3cf4fdb4aa23910a48d8efa69c8b447?rik=tlXIaDQ20rnx2Q&riu=http%3a%2f%2fcdn.collider.com%2fwp-content%2fuploads%2f2016%2f03%2fsuperman-returns.jpg&ehk=V8oY2akdo8%2fHFZ0XXdU%2beMwvSyLlDUtmm8k9rIrk%2fK8%3d&risl=&pid=ImgRaw&r=0" alt="Avatar" class="w-20 h-20 rounded-full object-cover" />
-        <div>
-        <!-- Modal toggle -->
-        <button data-modal-target="static-modal" data-modal-toggle="static-modal" class="block text-blue-800 font-semibold" type="button">
-        Change Profile
-        </button>
-            <p class="text-sm text-gray-500">Upload JPG, PNG image required.</p>
-        </div>
+        <div class="flex space-x-4 mb-6 rounded-lg p-2">
+       
 
         <!-- Main modal -->
         <div id="static-modal" data-modal-backdrop="static" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
@@ -592,7 +585,7 @@
                          <span>pts</span></p>
                 </div>
                 <div class="text-center md:text-right font-[Roboto,hanuman,Sans-serif]">
-                    <p class="text-gray-600 mb-2">Points expiring soon: <span class="font-semibold">250 pts</span> (Jun 30, 2025)</p>
+                    <p class="text-gray-600 mb-2">Discount coupon</p>
                     <p class="text-sm text-gray-500">Earn more points with every purchase!</p>
                 </div>
             </div>
@@ -1379,7 +1372,7 @@
                                         </span>
                                          ${item.shippingMethod}</p>
                                         <p class="mt-2">
-                                            <i class="fas fa-phone-alt mr-2"></i> ${item.phonenumber}
+                                            <i class="fas fa-phone-alt mr-2"></i>+885${item.phonenumber}
                                         </p>
                                     </div>
                                 </div>

@@ -18,12 +18,11 @@
                 <div class="slide swiper-slide">
                     <img src="uploads/webinfo/<?= $item ?>" alt="" class="image" />
                     <div class="image-data">
-                    <span class="text">We really like what we do.</span>
+                    <span class="text">Buy Now Get Now.</span>
                     <h2>
-                        Coffee Beans with a <br />
-                        Perfect Aroma
+                        Welcome to <br>
+                        En Lin Shop
                     </h2>
-                    <a href="#" class="button">About Us</a>
                     </div>
                 </div>
                 <!--  -->

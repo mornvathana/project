@@ -29,11 +29,11 @@ include("lang.php");
                         <input type="text" name = "name" id = "name" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Name">
                         </div>
                         <div class = "w-full">
-                            <label for="price" class = "block py-1 text-[13px]"><?php echo $text['originalprice']?></label>
+                            <label for="price" class = "block py-1 text-[13px] w-full"><?php echo $text['originalprice']?></label>
                             <input type="text" name = "original_price" id = "price" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Original price">
                         </div>
                         <div class = "w-full">
-                            <label for="sell_price" class = "block py-1 text-[13px]"><?php echo $text['sellprice']?></label>
+                            <label for="sell_price" class = "block py-1 text-[13px] w-full"><?php echo $text['sellprice']?></label>
                             <input type="text" name = "sell_price" id = "sell_price" class = "border border-gray-300 py-2 pl-1 text-[14px] outline-none w-full rounded-md" placeholder = "Original price">
                         </div>
                         <div class = "w-full">

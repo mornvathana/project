@@ -131,12 +131,10 @@
             </h1>
             <div
                 class="sort-box font-[Poppins,hanuman,Sans-serif] text-[13px] sm:text-[15px] md:text-[16px] lg:text-[16px] xl:text-[16px] 2xl:text-[16px] text-gray-700 font-medium">
-                <form method="GET" id="filterForm" class="relative mb-6">
-                    <!-- Add hidden fields -->
+                <!-- <form method="GET" id="filterForm" class="relative mb-6">
                     <input type="hidden" name="id" value="<?= $_GET['id'] ?? '' ?>">
                     <input type="hidden" name="slug" value="<?= $_GET['slug'] ?? '' ?>">
 
-                    <!-- Sort dropdown -->
                     <div class="sort-box mt-4">
                         <select name="sort" id="sortSelect" class="border bg-white p-2 rounded-md">
                             <option value="">Default</option>
@@ -152,7 +150,7 @@
                             </option>
                         </select>
                     </div>
-                </form>
+                </form> -->
 
             </div>
         </div>
